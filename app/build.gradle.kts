@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
@@ -16,20 +15,64 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        vectorDrawables.useSupportLibrary = true
+        proguardFiles(
+            getDefaultProguardFile("proguard-android-optimize.txt"),
+            "proguard-rules.pro"
+        )
+
+        // General Build Configs
+        buildConfigField("String", "BASE_URL", "\"url\"")
+        buildConfigField("String", "example", "Lorem Ipsum")
     }
 
     buildTypes {
-        release {
+        getByName("debug") {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            isShrinkResources = false
+            isDebuggable = true
+        }
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
+
+            // Specified Build Configs
+            buildConfigField("String", "example", "Lorem Ipsum but release")
         }
     }
+
+    flavorDimensions += listOf("version", "mode")
+    productFlavors {
+        create("dev") {
+            dimension = "version"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            resValue("string", "app_name", "Doodle Dev")
+        }
+        create("prod") {
+            dimension = "version"
+            applicationIdSuffix = ".prod"
+            versionNameSuffix = "-prod"
+            resValue("string", "app_name", "Doodle")
+        }
+        create("trial") {
+            dimension = "mode"
+            applicationIdSuffix = ".trial"
+            versionNameSuffix = "-trial"
+            resValue("string", "app_name", "Doodle Trial")
+        }
+        create("premium") {
+            dimension = "mode"
+            applicationIdSuffix = ".premium"
+            versionNameSuffix = "-premium"
+            resValue("string", "app_name", "Doodle Premium")
+
+            // Specified Build Configs
+            buildConfigField("String", "BASE_URL", "\"url but premium\"")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -46,7 +89,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
