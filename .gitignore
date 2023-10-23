@@ -1,6 +1,7 @@
 # built application files
 *.apk
 *.ap_
+/signedAPKs
 
 # files for the dex VM
 *.dex
@@ -11,11 +12,8 @@ build-cache
 # Mac OS file
 *.DS_Store
 
-# Java class files
+# Compiled Java class files
 *.class
-
-# VSCode file
-.vscode
 
 # generated files
 bin/
@@ -33,10 +31,9 @@ build/
 /captures
 .externalNativeBuild
 .cxx
-local.properties
 
 # Local configuration file (sdk path, etc)
-#local.properties
+local.properties
 
 # Eclipse project files
 .classpath
@@ -60,6 +57,17 @@ proguard/
 /build
 */*/build/**
 
-/signedAPKs
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
+# Log file
+*.log
+
+# AjCore files
 ajcore.*
