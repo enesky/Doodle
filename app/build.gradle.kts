@@ -23,7 +23,7 @@ android {
 
         // General Build Configs
         buildConfigField("String", "BASE_URL", "\"url\"")
-        buildConfigField("String", "example", "Lorem Ipsum")
+        buildConfigField("String", "example", "\"Lorem Ipsum\"")
     }
 
     buildTypes {
@@ -79,7 +79,10 @@ android {
     }
     kotlinOptions.jvmTarget = "17"
     composeOptions.kotlinCompilerExtensionVersion = "1.5.3"
-    buildFeatures.compose = true
+    buildFeatures{
+        compose = true
+        buildConfig = true
+    }
 
     packaging {
         resources {
