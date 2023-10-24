@@ -22,8 +22,18 @@ android {
         )
 
         // General Build Configs
+        resValue("string", "app_name", "Doodle")
         buildConfigField("String", "BASE_URL", "\"url\"")
         buildConfigField("String", "example", "\"Lorem Ipsum\"")
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("doodle-release-key.keystore")
+            storePassword = "123456"
+            keyAlias = "Doodle Key"
+            keyPassword = "123456"
+        }
     }
 
     buildTypes {
@@ -37,8 +47,10 @@ android {
             isShrinkResources = true
             isDebuggable = false
 
+            signingConfig = signingConfigs.getByName("release")
+
             // Specified Build Configs
-            buildConfigField("String", "example", "Lorem Ipsum but release")
+            buildConfigField("String", "example", "\"Lorem Ipsum but release\"")
         }
     }
 
@@ -48,13 +60,11 @@ android {
             dimension = "version"
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
-            resValue("string", "app_name", "Doodle Dev")
         }
         create("prod") {
             dimension = "version"
             applicationIdSuffix = ".prod"
             versionNameSuffix = "-prod"
-            resValue("string", "app_name", "Doodle")
         }
         create("trial") {
             dimension = "mode"
