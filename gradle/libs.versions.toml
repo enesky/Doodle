@@ -10,14 +10,14 @@ activity-compose            = "1.8.0"
 retrofit                    = "2.9.0"
 okhttp                      = "4.11.0"
 chucker                     = "4.0.0"
-junit                       = "4.13.2"
-androidx-test-ext-junit     = "1.1.5"
-espresso-core               = "3.5.1"
-composeStateEvents          = "2.1.0"
-dataStore                   = "1.0.0"
+compose-state-events        = "2.1.0"
+data-store                  = "1.0.0"
 compose-bom                 = "2023.10.01"
 firebase-bom                = "32.4.0"
 koin-bom                    = "3.5.1"
+junit                       = "4.13.2"
+androidx-test-ext-junit     = "1.1.5"
+espresso-core               = "3.5.1"
 
 [libraries]
 core-ktx                    = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }
@@ -32,14 +32,14 @@ material3                   = { module= "androidx.compose.material3:material3" }
 ui-tooling                  = { module= "androidx.compose.ui:ui-tooling" }
 ui-test-manifest            = { module= "androidx.compose.ui:ui-test-manifest" }
 koin-bom                    = { module= "io.insert-koin:koin-bom", version.ref= "koin-bom" }
-koinCoroutines              = { module= "io.insert-koin:koin-core-coroutines"}
-koinNavigation              = { module= "io.insert-koin:koin-androidx-navigation"}
-koinCompose                 = { module= "io.insert-koin:koin-androidx-compose"}
-koinTestJunit4              = { module= "io.insert-koin:koin-test-junit4"}
-koinTestAndroid             = { module= "io.insert-koin:koin-android-test"}
-compose-state-events        = { module= "com.github.leonard-palm:compose-state-events", version.ref= "composeStateEvents" }
-dataStore                   = { module= "androidx.datastore:datastore", version.ref= "dataStore" }
-dataStore-preferences       = { module= "androidx.datastore:datastore-preferences", version.ref= "dataStore" }
+koin-coroutines             = { module= "io.insert-koin:koin-core-coroutines"}
+koin-navigation             = { module= "io.insert-koin:koin-androidx-navigation"}
+koin-compose                = { module= "io.insert-koin:koin-androidx-compose"}
+koin-test-junit-4           = { module= "io.insert-koin:koin-test-junit4"}
+koin-test-android           = { module= "io.insert-koin:koin-android-test"}
+compose-state-events        = { module= "com.github.leonard-palm:compose-state-events", version.ref= "compose-state-events" }
+data-store                  = { module= "androidx.datastore:datastore", version.ref= "data-store" }
+data-store-preferences      = { module= "androidx.datastore:datastore-preferences", version.ref= "data-store" }
 firebase-bom                = { module= "com.google.firebase:firebase-bom", version.ref= "firebase-bom" }
 firebase-analytics          = { module= "com.google.firebase:firebase-analytics-ktx" }
 firebase-crashlytics        = { module= "com.google.firebase:firebase-crashlytics-ktx" }
@@ -56,17 +56,17 @@ espresso-core               = { module= "androidx.test.espresso:espresso-core", 
 [bundles]
 compose-materials           = ["ui", "ui-graphics", "ui-tooling-preview", "material3"]
 compose-debug               = ["ui-tooling", "ui-test-manifest"]
-koin-materials              = ["koinCoroutines", "koinNavigation", "koinCompose"]
-koin-test-materials         = ["koinTestJunit4", "koinTestAndroid"]
+koin-materials              = ["koin-coroutines", "koin-navigation", "koin-compose"]
+koin-test-materials         = ["koin-test-junit-4", "koin-test-android"]
 testing                     = ["androidx-test-ext-junit", "espresso-core", "ui-test-junit4"]
 network                     = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
 firebase-materials          = ["firebase-analytics", "firebase-crashlytics"]
 third-party-libs            = ["compose-state-events"]
-datastore                   = ["dataStore", "dataStore-preferences"]
+datastore                   = ["data-store", "data-store-preferences"]
 
 [plugins]
-androidApplication          = { id= "com.android.application", version.ref= "agp" }
-kotlinAndroid               = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin" }
+android-application         = { id= "com.android.application", version.ref= "agp" }
+kotlin-android              = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin" }
 ksp                         = { id= "com.google.devtools.ksp", version.ref= "ksp"}
 google                      = { id= "com.google.gms.google-services", version.ref= "google-services"}
 crashlytics                 = { id= "com.google.firebase.crashlytics", version.ref= "crashlytics-plugin"}
