@@ -3,6 +3,9 @@ package dev.enesky.doodle
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.MarqueeAnimationMode
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -31,6 +34,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Greeting(modifier: Modifier = Modifier) {
     Box(
@@ -38,8 +42,11 @@ fun Greeting(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "Welcome to ${stringResource(R.string.app_name)}!",
-            style = MaterialTheme.typography.headlineLarge,
+            modifier = Modifier.basicMarquee(
+                iterations = Int.MAX_VALUE
+            ),
+            text = "Doodling around in ${stringResource(R.string.app_name)}!",
+            style = MaterialTheme.typography.headlineMedium,
         )
     }
 }
