@@ -1,4 +1,4 @@
-package dev.enesky.doodle.app.ui.theme
+package dev.enesky.doodle.app.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
