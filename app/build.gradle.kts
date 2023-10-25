@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.google)
+    alias(libs.plugins.crashlytics)
 }
 
 android {
@@ -124,16 +126,28 @@ dependencies {
 
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
-    implementation(libs.bundles.composeMaterials)
-    debugImplementation(libs.bundles.composeDebug)
+    implementation(libs.bundles.compose.materials)
+    debugImplementation(libs.bundles.compose.debug)
 
-    val koinBom = platform(libs.koinBom)
+    val koinBom = platform(libs.koin.bom)
     implementation(koinBom)
-    implementation(libs.bundles.koinMaterials)
+    implementation(libs.bundles.koin.materials)
+
+    val firebaseBom = platform(libs.firebase.bom)
+    implementation(firebaseBom)
+    implementation(libs.bundles.firebase.materials)
+
+    implementation(libs.bundles.network)
+
+    debugImplementation(libs.chucker)
+    releaseImplementation(libs.chucker.no.op)
+
+    implementation(libs.bundles.third.party.libs)
+    implementation(libs.bundles.datastore)
 
     testImplementation(libs.junit)
     testImplementation(koinBom)
-    testImplementation(libs.bundles.koinTestMaterials)
+    testImplementation(libs.bundles.koin.test.materials)
     androidTestImplementation(composeBom)
     androidTestImplementation(libs.bundles.testing)
 }

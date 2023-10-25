@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "553106997185",
+    "project_id": "doodle-5ab11",
+    "storage_bucket": "doodle-5ab11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553106997185:android:b0c371426b9577b17b3940",
+        "android_client_info": {
+          "package_name": "dev.enesky.doodle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADM5K8M_9pE7nU-OkFFeadYLWK0MexOsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553106997185:android:0ccd3ef7210095877b3940",
+        "android_client_info": {
+          "package_name": "dev.enesky.doodle.dev.premium"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADM5K8M_9pE7nU-OkFFeadYLWK0MexOsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553106997185:android:7affa8918197a61a7b3940",
+        "android_client_info": {
+          "package_name": "dev.enesky.doodle.dev.trial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADM5K8M_9pE7nU-OkFFeadYLWK0MexOsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553106997185:android:bdd856229717582b7b3940",
+        "android_client_info": {
+          "package_name": "dev.enesky.doodle.prod.premium"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADM5K8M_9pE7nU-OkFFeadYLWK0MexOsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553106997185:android:4ce801ba857020907b3940",
+        "android_client_info": {
+          "package_name": "dev.enesky.doodle.prod.trial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADM5K8M_9pE7nU-OkFFeadYLWK0MexOsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
