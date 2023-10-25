@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
@@ -28,25 +31,31 @@ android {
     }
 
     signingConfigs {
+        val keystoreProperties = Properties()
+        val keystorePath = "../Doodle/keystore/keystore.properties"
+        val keystorePropertiesFile = rootProject.file(keystorePath)
+        FileInputStream(keystorePropertiesFile).use { keystoreProperties.load(it) }
         create("release") {
-            storeFile = file("doodle-release-key.keystore")
-            storePassword = "123456"
-            keyAlias = "Doodle Key"
-            keyPassword = "123456"
+            // Change storeFile path if Doodle goes to any market
+            storeFile = file(keystoreProperties["storeFile"].toString())
+            storePassword = keystoreProperties["storePassword"].toString()
+            keyAlias = keystoreProperties["keyAlias"].toString()
+            keyPassword = keystoreProperties["keyPassword"].toString()
+            enableV1Signing = true //Jar Signature
+            enableV2Signing = true // Full APK Signature
         }
     }
 
     buildTypes {
-        getByName("debug") {
+        debug {
             isMinifyEnabled = false
             isShrinkResources = false
             isDebuggable = true
         }
-        getByName("release") {
+        release {
             isMinifyEnabled = true
             isShrinkResources = true
             isDebuggable = false
-
             signingConfig = signingConfigs.getByName("release")
 
             // Specified Build Configs
