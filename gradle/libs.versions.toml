@@ -9,22 +9,36 @@ espresso-core           = "3.5.1"
 lifecycle-runtime-ktx   = "2.6.2"
 activity-compose        = "1.8.0"
 compose-bom             = "2023.10.01"
+koinVers                = "3.5.1"
 
 [libraries]
 core-ktx                = { group= "androidx.core", name= "core-ktx", version.ref= "core-ktx" }
-junit                   = { group= "junit", name= "junit", version.ref= "junit" }
-androidx-test-ext-junit = { group= "androidx.test.ext", name= "junit", version.ref= "androidx-test-ext-junit" }
-espresso-core           = { group= "androidx.test.espresso", name= "espresso-core", version.ref= "espresso-core" }
 lifecycle-runtime-ktx   = { group= "androidx.lifecycle", name= "lifecycle-runtime-ktx", version.ref= "lifecycle-runtime-ktx" }
 activity-compose        = { group= "androidx.activity", name= "activity-compose", version.ref= "activity-compose" }
 compose-bom             = { group= "androidx.compose", name= "compose-bom", version.ref= "compose-bom" }
 ui                      = { group= "androidx.compose.ui", name= "ui" }
 ui-graphics             = { group= "androidx.compose.ui", name= "ui-graphics" }
-ui-tooling              = { group= "androidx.compose.ui", name= "ui-tooling" }
 ui-tooling-preview      = { group= "androidx.compose.ui", name= "ui-tooling-preview" }
-ui-test-manifest        = { group= "androidx.compose.ui", name= "ui-test-manifest" }
 ui-test-junit4          = { group= "androidx.compose.ui", name= "ui-test-junit4" }
 material3               = { group= "androidx.compose.material3", name= "material3" }
+ui-tooling              = { group= "androidx.compose.ui", name= "ui-tooling" }
+ui-test-manifest        = { group= "androidx.compose.ui", name= "ui-test-manifest" }
+koinBom                 = { group= "io.insert-koin", name= "koin-bom", version.ref= "koinVers" }
+koinCoroutines          = { group= "io.insert-koin", name= "koin-core-coroutines"}
+koinNavigation          = { group= "io.insert-koin", name= "koin-androidx-navigation"}
+koinCompose             = { group= "io.insert-koin", name= "koin-androidx-compose"}
+koinTestJunit4          = { group= "io.insert-koin", name= "koin-test-junit4"}
+koinTestAndroid         = { group= "io.insert-koin", name= "koin-android-test"}
+junit                   = { group= "junit", name= "junit", version.ref= "junit" }
+androidx-test-ext-junit = { group= "androidx.test.ext", name= "junit", version.ref= "androidx-test-ext-junit" }
+espresso-core           = { group= "androidx.test.espresso", name= "espresso-core", version.ref= "espresso-core" }
+
+[bundles]
+composeMaterials = ["ui", "ui-graphics", "ui-tooling-preview", "material3"]
+composeDebug = ["ui-tooling", "ui-test-manifest"]
+koinMaterials = ["koinCoroutines", "koinNavigation", "koinCompose"]
+koinTestMaterials = ["koinTestJunit4", "koinTestAndroid"]
+testing = ["androidx-test-ext-junit", "espresso-core", "ui-test-junit4"]
 
 [plugins]
 androidApplication      = { id= "com.android.application", version.ref= "agp" }
