@@ -92,12 +92,14 @@ android {
         }
     }
 
+    // Compile Settings
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions.jvmTarget = "17"
     composeOptions.kotlinCompilerExtensionVersion = "1.5.3"
+
     buildFeatures{
         compose = true
         buildConfig = true
