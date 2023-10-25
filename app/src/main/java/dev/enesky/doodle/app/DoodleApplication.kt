@@ -1,4 +1,4 @@
-package dev.enesky.doodle
+package dev.enesky.doodle.app
 
 import android.app.Application
 import org.koin.android.ext.koin.androidContext

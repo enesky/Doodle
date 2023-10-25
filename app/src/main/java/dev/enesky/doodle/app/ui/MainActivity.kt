@@ -1,4 +1,4 @@
-package dev.enesky.doodle
+package dev.enesky.doodle.app.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,7 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import dev.enesky.doodle.ui.theme.DoodleTheme
+import dev.enesky.doodle.R
+import dev.enesky.doodle.app.ui.theme.DoodleTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
