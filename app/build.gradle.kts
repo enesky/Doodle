@@ -28,7 +28,7 @@ android {
         )
 
         // General Build Configs
-        resValue("string", "app_name", "Doodle")
+        resValue("string", "app_name_flavor", "Doodle")
         buildConfigField("String", "BASE_URL", "\"https://api.jikan.moe/v4/\"")
         buildConfigField("String", "example", "\"Lorem Ipsum\"")
     }
@@ -82,13 +82,13 @@ android {
             dimension = "mode"
             applicationIdSuffix = ".trial"
             versionNameSuffix = "-trial"
-            resValue("string", "app_name", "Doodle Trial")
+            resValue("string", "app_name_flavor", "Doodle Trial")
         }
         create("premium") {
             dimension = "mode"
             applicationIdSuffix = ".premium"
             versionNameSuffix = "-premium"
-            resValue("string", "app_name", "Doodle Premium")
+            resValue("string", "app_name_flavor", "Doodle Premium")
 
             // Specified Build Configs
             buildConfigField("String", "BASE_URL", "\"https://api.jikan.moe/v4/\"")
