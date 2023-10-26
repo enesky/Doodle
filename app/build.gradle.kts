@@ -127,7 +127,6 @@ dependencies {
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     implementation(libs.bundles.compose.materials)
-    debugImplementation(libs.bundles.compose.debug)
 
     val koinBom = platform(libs.koin.bom)
     implementation(koinBom)
@@ -139,7 +138,7 @@ dependencies {
 
     implementation(libs.bundles.network)
 
-    debugImplementation(libs.chucker)
+    debugImplementation(libs.bundles.debug.implementations)
     releaseImplementation(libs.chucker.no.op)
 
     implementation(libs.bundles.third.party.libs)

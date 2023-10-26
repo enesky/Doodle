@@ -4,6 +4,7 @@ kotlin                      = "1.9.10"
 ksp                         = "1.9.10-1.0.13"
 google-services             = "4.4.0"
 crashlytics-plugin          = "2.9.9"
+firebase-perf-plugin        = "1.4.2"
 core-ktx                    = "1.12.0"
 lifecycle-runtime-ktx       = "2.6.2"
 activity-compose            = "1.8.0"
@@ -31,6 +32,16 @@ ui-test-junit4              = { module= "androidx.compose.ui:ui-test-junit4" }
 material3                   = { module= "androidx.compose.material3:material3" }
 ui-tooling                  = { module= "androidx.compose.ui:ui-tooling" }
 ui-test-manifest            = { module= "androidx.compose.ui:ui-test-manifest" }
+data-store                  = { module= "androidx.datastore:datastore", version.ref= "data-store" }
+data-store-preferences      = { module= "androidx.datastore:datastore-preferences", version.ref= "data-store" }
+androidx-test-ext-junit     = { module= "androidx.test.ext:junit", version.ref= "androidx-test-ext-junit" }
+espresso-core               = { module= "androidx.test.espresso:espresso-core", version.ref= "espresso-core" }
+firebase-bom                = { module= "com.google.firebase:firebase-bom", version.ref= "firebase-bom" }
+firebase-analytics          = { module= "com.google.firebase:firebase-analytics-ktx" }
+firebase-crashlytics        = { module= "com.google.firebase:firebase-crashlytics-ktx" }
+firebase-performance        = { module= "com.google.firebase:firebase-perf-ktx" }
+firebase-authentication     = { module= "com.google.firebase:firebase-crashlytics-ktx" }
+firebase-remote-config      = { module= "com.google.firebase:firebase-config-ktx" }
 koin-bom                    = { module= "io.insert-koin:koin-bom", version.ref= "koin-bom" }
 koin-coroutines             = { module= "io.insert-koin:koin-core-coroutines"}
 koin-navigation             = { module= "io.insert-koin:koin-androidx-navigation"}
@@ -60,7 +71,7 @@ koin-materials              = ["koin-coroutines", "koin-navigation", "koin-compo
 koin-test-materials         = ["koin-test-junit-4", "koin-test-android"]
 testing                     = ["androidx-test-ext-junit", "espresso-core", "ui-test-junit4"]
 network                     = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
-firebase-materials          = ["firebase-analytics", "firebase-crashlytics"]
+firebase-materials          = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
 third-party-libs            = ["compose-state-events"]
 datastore                   = ["data-store", "data-store-preferences"]
 
@@ -70,3 +81,4 @@ kotlin-android              = { id= "org.jetbrains.kotlin.android", version.ref=
 ksp                         = { id= "com.google.devtools.ksp", version.ref= "ksp"}
 google                      = { id= "com.google.gms.google-services", version.ref= "google-services"}
 crashlytics                 = { id= "com.google.firebase.crashlytics", version.ref= "crashlytics-plugin"}
+performance                 = { id= "com.google.firebase.firebase-perf", version.ref= "firebase-perf-plugin"}
