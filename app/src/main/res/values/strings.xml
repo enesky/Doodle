@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Doodle</string>
+    <string name="welcome">Welcome to %s !!!</string>
 </resources>
