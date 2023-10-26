@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.google)
     alias(libs.plugins.crashlytics)
+    alias(libs.plugins.detekt)
 }
 
 android {
