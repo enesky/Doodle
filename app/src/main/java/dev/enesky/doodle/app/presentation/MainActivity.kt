@@ -7,6 +7,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -38,14 +39,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {
         Text(
             modifier = Modifier.basicMarquee(
                 iterations = Int.MAX_VALUE
             ),
-            text = "Doodling around in ${stringResource(R.string.app_name)}!",
+            text = stringResource(id = R.string.welcome, stringResource(R.string.app_name)),
             style = MaterialTheme.typography.headlineMedium,
         )
     }
