@@ -47,7 +47,7 @@ fun Greeting(modifier: Modifier = Modifier) {
                 iterations = Int.MAX_VALUE
             ),
             text = stringResource(id = R.string.welcome, stringResource(R.string.app_name)),
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.headlineLarge,
         )
     }
 }
