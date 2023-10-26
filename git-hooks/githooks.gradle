@@ -1,0 +1,23 @@
+// https://blog.sebastiano.dev/ooga-chaka-git-hooks-to-enforce-code-quality/
+
+task copyGitHooks(type: Copy) {
+    description 'Copies the git hooks from /git-hooks to the .git folder.'
+    group 'git hooks'
+    from("${rootDir}/git-hooks/hooks/") {
+        include '**/*.sh'
+        rename '(.*).sh', '$1'
+    }
+    into "${rootDir}/.git/hooks"
+}
+
+task installGitHooks(type: Exec) {
+    description 'Installs the git hooks from /git-hooks/hooks/.'
+    group 'git hooks'
+    workingDir rootDir
+    commandLine 'chmod'
+    args '-R', '+x', '.git/hooks/'
+    dependsOn copyGitHooks
+    doLast {
+        logger.info('Git hook installed successfully.')
+    }
+}

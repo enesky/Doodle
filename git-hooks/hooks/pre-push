@@ -1,6 +1,9 @@
 #!/bin/sh
 # same file is added to project/.git/hooks/
-echo "Running detekt check."
+
+echo "*************************************************"
+echo "*                Running Detekt                 *"
+echo "*************************************************"
 
 OUTPUT="/tmp/detekt-$(date +%s)"
 ./gradlew detektAll > $OUTPUT

@@ -18,6 +18,8 @@ tasks.register("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)
 }
 
+apply(from = "git-hooks/githooks.gradle")
+
 // Detekt Config
 apply(plugin = "io.gitlab.arturbosch.detekt")
 
