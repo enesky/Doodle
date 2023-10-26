@@ -14,11 +14,17 @@ plugins {
     alias(libs.plugins.detekt) apply false
 }
 
+apply(from = "git-hooks/githooks.gradle")
+
 tasks.register("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)
 }
 
-apply(from = "git-hooks/githooks.gradle")
+afterEvaluate {
+    tasks.named("clean") {
+        dependsOn(":installGitHooks")
+    }
+}
 
 // Detekt Config
 apply(plugin = "io.gitlab.arturbosch.detekt")
