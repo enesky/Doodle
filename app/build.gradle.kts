@@ -29,7 +29,7 @@ android {
 
         // General Build Configs
         resValue("string", "app_name", "Doodle")
-        buildConfigField("String", "BASE_URL", "\"url\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.jikan.moe/v4/\"")
         buildConfigField("String", "example", "\"Lorem Ipsum\"")
     }
 
@@ -91,7 +91,7 @@ android {
             resValue("string", "app_name", "Doodle Premium")
 
             // Specified Build Configs
-            buildConfigField("String", "BASE_URL", "\"url but premium\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.jikan.moe/v4/\"")
         }
     }
 
