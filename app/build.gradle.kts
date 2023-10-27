@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import java.util.Properties
 import java.io.FileInputStream
 
@@ -145,9 +146,33 @@ dependencies {
     implementation(libs.bundles.third.party.libs)
     implementation(libs.bundles.datastore)
 
+    detektPlugins(libs.bundles.detekt.rules)
+
     testImplementation(libs.junit)
     testImplementation(koinBom)
     testImplementation(libs.bundles.koin.test.materials)
     androidTestImplementation(composeBom)
     androidTestImplementation(libs.bundles.testing)
+}
+
+// Detekt configuraitons
+detekt {
+    source.setFrom(files(projectDir))
+    config.setFrom(files("$rootDir/detekt/config.yml", "$rootDir/detekt/compose-config.yml"))
+    ignoreFailures = false
+    parallel = true
+    buildUponDefaultConfig = false
+}
+
+tasks.withType<Detekt>().configureEach {
+    include("**/*.kt")
+    exclude("**/*.kts")
+    exclude("**/resources/**")
+    exclude("**/build/**")
+    exclude("**/.idea/**")
+}
+
+tasks.register<Detekt>("detektAutoCorrect") {
+    description = "Auto corrects detekt issues as much as possible."
+    autoCorrect = true
 }
