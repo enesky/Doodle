@@ -61,6 +61,8 @@ chucker-no-op               = { module= "com.github.chuckerteam.chucker:library-
 leak-canary                 = { module= "com.squareup.leakcanary:leakcanary-android", version.ref= "leak-canary" }
 junit                       = { module= "junit:junit", version.ref= "junit" }
 detekt                      = { module= "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref= "detekt" }
+detekt-formatting-rules     = { module= "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref= "detekt" }
+detekt-compose-rules        = { module= "io.nlopez.compose.rules:detekt", version.ref= "detekt-compose" }
 
 [bundles]
 compose-materials           = ["ui", "ui-graphics", "ui-tooling-preview", "material3"]
@@ -72,6 +74,8 @@ network                     = ["retrofit", "retrofit-converter-gson", "okhttp", 
 firebase-materials          = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
 third-party-libs            = ["compose-state-events"]
 datastore                   = ["data-store", "data-store-preferences"]
+# Detekt rules also needs to be added through terminal with their jar files
+detekt-rules                = ["detekt-formatting-rules", "detekt-compose-rules"]
 
 [plugins]
 android-application         = { id= "com.android.application", version.ref= "gradle-plugin" }
