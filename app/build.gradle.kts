@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.google)
     alias(libs.plugins.crashlytics)
     alias(libs.plugins.detekt)
+    id("kotlin-parcelize")
 }
 
 android {
