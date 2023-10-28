@@ -74,7 +74,7 @@ koin-test-materials         = ["koin-test-junit-4", "koin-test-android"]
 testing                     = ["androidx-test-ext-junit", "espresso-core", "ui-test-junit4"]
 network                     = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
 firebase-materials          = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
-third-party-libs            = ["compose-state-events"]
+third-party-libs            = ["compose-state-events",  "detekt", "coil-compose"]
 datastore                   = ["data-store", "data-store-preferences"]
 detekt-rules                = ["detekt-formatting-rules", "detekt-compose-rules"]
 
