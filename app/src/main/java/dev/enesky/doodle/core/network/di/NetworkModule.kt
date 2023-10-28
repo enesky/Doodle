@@ -8,6 +8,7 @@ import com.chuckerteam.chucker.api.RetentionManager
 import dev.enesky.doodle.BuildConfig
 import dev.enesky.doodle.core.network.repository.JikanDataSourceImpl
 import dev.enesky.doodle.core.network.api.service.JikanService
+import dev.enesky.doodle.core.network.repository.JikanDataSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -77,7 +78,7 @@ val networkModule = module {
             .create(JikanService::class.java)
     }
 
-    single<JikanDataSourceImpl> {
+    single<JikanDataSource> {
         JikanDataSourceImpl(get<JikanService>())
     }
 
