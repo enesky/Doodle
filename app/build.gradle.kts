@@ -57,6 +57,7 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             isDebuggable = true
+            buildConfigField("boolean", "logEnabled", "true")
         }
         release {
             isMinifyEnabled = true
@@ -66,6 +67,7 @@ android {
 
             // Specified Build Configs
             buildConfigField("String", "example", "\"Lorem Ipsum but release\"")
+            buildConfigField("boolean", "logEnabled", "false")
         }
     }
 
@@ -144,8 +146,8 @@ dependencies {
     debugImplementation(libs.bundles.debug.implementations)
     releaseImplementation(libs.chucker.no.op)
 
-    implementation(libs.bundles.third.party.libs)
-    implementation(libs.bundles.datastore)
+    implementation(libs.bundles.third.party.libraries)
+    implementation(libs.bundles.androidx.libraries)
 
     detektPlugins(libs.bundles.detekt.rules)
 
