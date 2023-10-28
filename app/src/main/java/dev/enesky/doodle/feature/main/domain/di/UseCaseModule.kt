@@ -1,6 +1,8 @@
 package dev.enesky.doodle.feature.main.domain.di
 
+import dev.enesky.doodle.core.network.di.repositoryModule
 import dev.enesky.doodle.core.network.repository.JikanRepository
+import dev.enesky.doodle.feature.main.domain.usecase.AnimeCharactersUseCase
 import dev.enesky.doodle.feature.main.domain.usecase.AnimeUseCase
 import dev.enesky.doodle.feature.main.domain.usecase.PopularAnimesUseCase
 import org.koin.dsl.module
@@ -17,6 +19,10 @@ val useCaseModule = module {
 
     single<AnimeUseCase> {
         AnimeUseCase { get<JikanRepository>().getAnimeById(it) }
+    }
+
+    single<AnimeCharactersUseCase> {
+        AnimeCharactersUseCase { get<JikanRepository>().getCharactersByAnimeId(it) }
     }
 
 }
