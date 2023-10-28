@@ -1,6 +1,5 @@
 package dev.enesky.doodle.feature.main.domain.di
 
-import dev.enesky.doodle.core.network.di.repositoryModule
 import dev.enesky.doodle.core.network.repository.JikanRepository
 import dev.enesky.doodle.feature.main.domain.usecase.AnimeCharactersUseCase
 import dev.enesky.doodle.feature.main.domain.usecase.AnimeUseCase
