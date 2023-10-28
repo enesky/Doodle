@@ -28,8 +28,7 @@ class DoodleApplication : Application() {
                 viewModelModule,
                 useCaseModule
             )
-            if (BuildConfig.logEnabled)
-                androidLogger()
+            if (BuildConfig.logEnabled) androidLogger()
         }
     }
 

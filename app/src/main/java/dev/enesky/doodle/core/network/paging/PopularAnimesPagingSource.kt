@@ -26,8 +26,12 @@ class PopularAnimesPagingSource(
             LoadResult.Page(
                 data = popularAnimes.data,
                 prevKey = if (nextPage == 1) null else nextPage - 1,
-                nextKey = if (popularAnimes.data.isEmpty() || popularAnimes.pagination.hasNextPage.not()) null
-                          else popularAnimes.pagination.currentPage.plus(1)
+                nextKey =
+                    if (popularAnimes.data.isEmpty() || popularAnimes.pagination.hasNextPage.not()) {
+                        null
+                    } else {
+                        popularAnimes.pagination.currentPage.plus(1)
+                    }
             )
         } catch (e: IOException) {
             LoadResult.Error(e)
