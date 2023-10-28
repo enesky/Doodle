@@ -17,6 +17,7 @@ detekt-compose              = "0.3.2"
 compose-state-events        = "2.1.0"
 data-store                  = "1.0.0"
 compose-bom                 = "2023.10.01"
+paging-compose              = "3.2.1"
 firebase-bom                = "32.4.0"
 koin-bom                    = "3.5.1"
 junit                       = "4.13.2"
@@ -45,6 +46,7 @@ ui-tooling                  = { module= "androidx.compose.ui:ui-tooling" }
 ui-tooling-preview          = { module= "androidx.compose.ui:ui-tooling-preview" }
 ui-test-manifest            = { module= "androidx.compose.ui:ui-test-manifest" }
 material3                   = { module= "androidx.compose.material3:material3" }
+androidx-paging-compose     = { module= "androidx.paging:paging-compose", version.ref= "paging-compose" }
 data-store                  = { module= "androidx.datastore:datastore", version.ref= "data-store" }
 data-store-preferences      = { module= "androidx.datastore:datastore-preferences", version.ref= "data-store" }
 androidx-test-ext-junit     = { module= "androidx.test.ext:junit", version.ref= "androidx-test-ext-junit" }
@@ -83,6 +85,6 @@ koin-test-materials         = ["koin-test-junit-4", "koin-test-android"]
 testing                     = ["androidx-test-ext-junit", "espresso-core", "ui-test-junit4"]
 network                     = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
 firebase-materials          = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
-third-party-libs            = ["compose-state-events",  "detekt", "coil-compose"]
-datastore                   = ["data-store", "data-store-preferences"]
+third-party-libraries       = ["compose-state-events",  "detekt", "coil-compose"]
+androidx-libraries          = ["androidx-paging-compose","data-store", "data-store-preferences"]
 detekt-rules                = ["detekt-formatting-rules", "detekt-compose-rules"]
