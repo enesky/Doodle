@@ -155,7 +155,7 @@ dependencies {
     androidTestImplementation(libs.bundles.testing)
 }
 
-// Detekt configuraitons
+// Detekt configurations
 detekt {
     source.setFrom(files(projectDir))
     config.setFrom(files("$rootDir/detekt/config.yml", "$rootDir/detekt/compose-config.yml"))
