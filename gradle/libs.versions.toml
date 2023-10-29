@@ -26,6 +26,7 @@ espresso-core               = "3.5.1"
 coilCompose                 = "2.4.0"
 
 [plugins]
+android-library             = { id= "com.android.library", version.ref= "gradle-plugin" }
 android-application         = { id= "com.android.application", version.ref= "gradle-plugin" }
 kotlin-android              = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin-plugin" }
 ksp                         = { id= "com.google.devtools.ksp", version.ref= "ksp-plugin"}
@@ -76,6 +77,11 @@ detekt                      = { module= "io.gitlab.arturbosch.detekt:detekt-grad
 detekt-formatting-rules     = { module= "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref= "detekt" }
 detekt-compose-rules        = { module= "io.nlopez.compose.rules:detekt", version.ref= "detekt-compose" }
 coil-compose                = { module= "io.coil-kt:coil-compose", version.ref= "coilCompose" }
+
+# Dependencies of the included build-logic
+android-gradle-plugin        = { module= "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
+kotlin-gradle-plugin         = { module= "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-plugin" }
+ksp-gradle-plugin            = { module= "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp-plugin" }
 
 [bundles]
 compose-materials           = ["ui", "ui-graphics", "ui-tooling-preview", "material3"]
