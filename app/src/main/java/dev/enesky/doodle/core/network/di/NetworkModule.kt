@@ -30,9 +30,14 @@ val networkModule = module {
             .build()
     }
 
+    single<GsonConverterFactory> {
+        GsonConverterFactory.create()
+    }
+
     single<OkHttpClient> {
         OkHttpClient.Builder()
             .addInterceptor(get<HttpLoggingInterceptor>())
+            .addInterceptor(get<ChuckerInterceptor>())
             .build()
     }
 
@@ -48,6 +53,7 @@ val networkModule = module {
             .maxContentLength(250_000L)
             .redactHeaders("Content-Type", "application/json")
             .alwaysReadResponseBody(true)
+            .createShortcut(true)
             .build()
     }
 
@@ -57,10 +63,6 @@ val networkModule = module {
             showNotification = true,
             retentionPeriod = RetentionManager.Period.ONE_DAY
         )
-    }
-
-    single<GsonConverterFactory> {
-        GsonConverterFactory.create()
     }
 
     single<ImageLoaderFactory> {
