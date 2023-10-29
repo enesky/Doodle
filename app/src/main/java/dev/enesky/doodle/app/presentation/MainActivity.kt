@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.collectAsLazyPagingItems
 import dev.enesky.doodle.R
 import dev.enesky.doodle.app.presentation.theme.DoodleTheme
 import dev.enesky.doodle.feature.main.MainViewModel
@@ -30,7 +31,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
 
-    //private val mainViewModel: MainViewModel by viewModel()
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +53,6 @@ class MainActivity : ComponentActivity() {
 fun Greeting(
     modifier: Modifier = Modifier,
 ) {
-
     /*
     val mainViewModel: MainViewModel?
     if (!LocalInspectionMode.current) {
@@ -64,8 +64,9 @@ fun Greeting(
     }
     */
 
-
     val viewModel = getViewModel<MainViewModel>()
+    viewModel.getPopularAnimes()
+    val animes = viewModel.popularAnimes.collectAsLazyPagingItems()
 
     Box(
         modifier = modifier.fillMaxWidth(),
@@ -85,13 +86,11 @@ fun Greeting(
             Button(
                 modifier = Modifier.padding(32.dp),
                 onClick = {
-                    //mainViewModel?.getPopularAnimes()
-                    viewModel.getAnimeById(1)
+                    print(animes)
                 }
             ) {
                 Text(text = "Request it", color = Color.White)
             }
-            
         }
     }
 }
