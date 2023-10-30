@@ -120,7 +120,11 @@ android {
     }
 
     ksp {
-        arg("KOIN_CONFIG_CHECK", "true") // Activates compile time safety
+        /**
+         * Activates compile time safety
+         * But this is not a guarantee that there are no problems you may encounter at run-time.
+         **/
+        arg("KOIN_CONFIG_CHECK", "true")
     }
 }
 
