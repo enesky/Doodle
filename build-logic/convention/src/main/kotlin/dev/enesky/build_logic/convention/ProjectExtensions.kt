@@ -1,4 +1,4 @@
-package dev.enesky.build_logic.convention.
+package dev.enesky.build_logic.convention
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
