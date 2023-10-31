@@ -33,5 +33,4 @@ interface JikanService {
     suspend fun getCharactersByAnimeId(
         @Path("anime-id") animeId: Int
     ): Response<List<Character>>
-
 }

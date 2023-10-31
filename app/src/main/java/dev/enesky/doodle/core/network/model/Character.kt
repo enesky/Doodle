@@ -14,7 +14,7 @@ data class Character(
     val role: String,
     val favorites: Int,
     val voiceActors: List<VoiceActor>
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class Person(
@@ -22,10 +22,10 @@ data class Person(
     val url: String,
     val images: Images,
     val name: String
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class VoiceActor(
     val person: Person,
     val language: String
-): Parcelable
+) : Parcelable

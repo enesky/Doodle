@@ -6,5 +6,4 @@ package dev.enesky.doodle.core.util
 object Constants {
 
     const val ITEMS_PER_PAGE = 25
-
 }
