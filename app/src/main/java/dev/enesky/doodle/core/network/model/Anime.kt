@@ -46,7 +46,7 @@ data class Anime(
     @SerializedName("explicit_genres") val explicitGenres: List<InnerAnimeItem>,
     val themes: List<InnerAnimeItem>,
     val demographics: List<InnerAnimeItem>,
-) : Parcelable
+): Parcelable
 
 @Parcelize
 data class Trailer(
@@ -54,13 +54,13 @@ data class Trailer(
     val url: String,
     @SerializedName("emdeb_url") val embedUrl: String,
     val images: Images
-) : Parcelable
+): Parcelable
 
 @Parcelize
 data class TitleList(
     val type: String,
     val title: String
-) : Parcelable
+): Parcelable
 
 @Parcelize
 data class AiredTime(
@@ -68,14 +68,14 @@ data class AiredTime(
     val to: String,
     val prop: AiredProp,
     val string: String
-) : Parcelable
+): Parcelable
 
 @Parcelize
 data class AiredProp(
     val day: Int,
     val month: Int,
     val year: Int
-) : Parcelable
+): Parcelable
 
 @Parcelize
 data class Broadcast(
@@ -83,7 +83,7 @@ data class Broadcast(
     val time: String,
     val timezone: String,
     val string: String
-) : Parcelable
+): Parcelable
 
 @Parcelize
 data class InnerAnimeItem(
@@ -91,4 +91,4 @@ data class InnerAnimeItem(
     val type: String,
     val name: String,
     val url: String
-) : Parcelable
+): Parcelable

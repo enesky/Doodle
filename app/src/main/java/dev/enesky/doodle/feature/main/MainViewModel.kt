@@ -25,7 +25,7 @@ class MainViewModel(
     private val popularAnimesUseCase: PopularAnimesUseCase,
     private val animeUseCase: AnimeUseCase,
     private val animeCharactersUseCase: AnimeCharactersUseCase
-) : ViewModel() {
+): ViewModel() {
 
     var popularAnimes: Flow<PagingData<Anime>> = emptyFlow()
 
@@ -43,14 +43,14 @@ class MainViewModel(
     fun getAnimeById(animeId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             animeUseCase(animeId).asResource().onEach { resource ->
-                when (resource) {
-                    is Resource.Loading -> { }
+                when(resource) {
+                    is Resource.Loading -> {  }
 
                     is Resource.Success -> {
                         print(resource.data.toString())
                     }
 
-                    is Resource.Error -> { }
+                    is Resource.Error -> {  }
                 }
             }.launchIn(this)
         }
@@ -64,4 +64,5 @@ class MainViewModel(
             }
         }
     }
+
 }

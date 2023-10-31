@@ -24,4 +24,5 @@ class JikanRepository(
     suspend fun getCharactersByAnimeId(animeId: Int): Result<List<Character>> {
         return jikanDataSource.getCharactersByAnimeId(animeId)
     }
+
 }

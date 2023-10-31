@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 /**
- Created by Enes Kamil YILMAZ on 28/10/2023
+  Created by Enes Kamil YILMAZ on 28/10/2023
 */
 
 class AnimeUseCase(
@@ -20,4 +20,5 @@ class AnimeUseCase(
             }
         }
     }
+
 }

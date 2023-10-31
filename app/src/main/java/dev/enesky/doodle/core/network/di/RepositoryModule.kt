@@ -1,9 +1,10 @@
 package dev.enesky.doodle.core.network.di
 
 import dev.enesky.doodle.core.network.api.service.JikanService
+import dev.enesky.doodle.core.network.repository.JikanRepository
 import dev.enesky.doodle.core.network.paging.PopularAnimesPagingSource
 import dev.enesky.doodle.core.network.repository.JikanDataSource
-import dev.enesky.doodle.core.network.repository.JikanRepository
+import dev.enesky.doodle.feature.main.domain.di.useCaseModule
 import org.koin.dsl.module
 
 /**
@@ -19,4 +20,5 @@ val repositoryModule = module {
     single<PopularAnimesPagingSource> {
         PopularAnimesPagingSource(get<JikanService>())
     }
+
 }
