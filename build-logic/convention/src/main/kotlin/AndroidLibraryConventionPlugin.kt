@@ -12,19 +12,13 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("com.android.library")
                 apply("org.jetbrains.kotlin.android")
-                apply("nowinandroid.android.lint")
             }
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = 34
             }
-            dependencies {
-                add("testImplementation", kotlin("test"))
-                add("testImplementation", project(":core:testing"))
-                add("androidTestImplementation", kotlin("test"))
-                add("androidTestImplementation", project(":core:testing"))
-            }
+            dependencies { }
         }
     }
 }

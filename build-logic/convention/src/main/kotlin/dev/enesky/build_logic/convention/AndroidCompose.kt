@@ -28,13 +28,6 @@ internal fun Project.configureAndroidCompose(
             // Add ComponentActivity to debug manifest
             add("debugImplementation", libs.findLibrary("androidx.compose.ui.testManifest").get())
         }
-
-        testOptions {
-            unitTests {
-                // For Robolectric
-                isIncludeAndroidResources = true
-            }
-        }
     }
 
     tasks.withType<KotlinCompile>().configureEach {
