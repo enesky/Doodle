@@ -1,4 +1,3 @@
-import io.gitlab.arturbosch.detekt.Detekt
 import java.util.Properties
 import java.io.FileInputStream
 
@@ -105,7 +104,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions.jvmTarget = "17"
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
     composeOptions.kotlinCompilerExtensionVersion = "1.5.3"
 
     buildFeatures{
@@ -160,26 +159,4 @@ dependencies {
     testImplementation(libs.bundles.koin.test.materials)
     androidTestImplementation(composeBom)
     androidTestImplementation(libs.bundles.testing)
-}
-
-// Detekt configurations
-detekt {
-    source.setFrom(files(projectDir))
-    config.setFrom(files("$rootDir/detekt/config.yml", "$rootDir/detekt/compose-config.yml"))
-    ignoreFailures = false
-    parallel = true
-    buildUponDefaultConfig = false
-}
-
-tasks.withType<Detekt>().configureEach {
-    include("**/*.kt")
-    exclude("**/*.kts")
-    exclude("**/resources/**")
-    exclude("**/build/**")
-    exclude("**/.idea/**")
-}
-
-tasks.register<Detekt>("detektAutoCorrect") {
-    description = "Auto corrects detekt issues as much as possible."
-    autoCorrect = true
 }
