@@ -18,3 +18,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Doodle"
 include(":app")
+include(":features")
+include(":core")

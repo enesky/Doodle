@@ -24,6 +24,8 @@ junit                       = "4.13.2"
 androidx-test-ext-junit     = "1.1.5"
 espresso-core               = "3.5.1"
 coilCompose                 = "2.4.0"
+appcompat = "1.6.1"
+material = "1.10.0"
 
 [plugins]
 android-library             = { id= "com.android.library", version.ref= "gradle-plugin" }
@@ -83,6 +85,8 @@ android-gradle-plugin        = { module= "com.android.tools.build:gradle", versi
 kotlin-gradle-plugin         = { module= "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-plugin" }
 ksp-gradle-plugin            = { module= "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp-plugin" }
 detekt-gradle-plugin         = { module= "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref= "detekt" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
 compose-materials           = ["ui", "ui-graphics", "ui-tooling-preview", "material3"]
