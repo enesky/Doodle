@@ -27,7 +27,6 @@ import dev.enesky.doodle.R
 import dev.enesky.doodle.app.presentation.theme.DoodleTheme
 import dev.enesky.doodle.feature.main.MainViewModel
 import org.koin.androidx.compose.getViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
 
