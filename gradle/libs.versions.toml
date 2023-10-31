@@ -73,7 +73,7 @@ chucker                     = { module= "com.github.chuckerteam.chucker:library"
 chucker-no-op               = { module= "com.github.chuckerteam.chucker:library-no-op", version.ref= "chucker" }
 leak-canary                 = { module= "com.squareup.leakcanary:leakcanary-android", version.ref= "leak-canary" }
 junit                       = { module= "junit:junit", version.ref= "junit" }
-detekt                      = { module= "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref= "detekt" }
+detekt-cli                          = { module= "io.gitlab.arturbosch.detekt:detekt-cli", version.ref= "detekt" }
 detekt-formatting-rules     = { module= "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref= "detekt" }
 detekt-compose-rules        = { module= "io.nlopez.compose.rules:detekt", version.ref= "detekt-compose" }
 coil-compose                = { module= "io.coil-kt:coil-compose", version.ref= "coilCompose" }
@@ -82,6 +82,7 @@ coil-compose                = { module= "io.coil-kt:coil-compose", version.ref= 
 android-gradle-plugin        = { module= "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
 kotlin-gradle-plugin         = { module= "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-plugin" }
 ksp-gradle-plugin            = { module= "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp-plugin" }
+detekt-gradle-plugin         = { module= "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref= "detekt" }
 
 [bundles]
 compose-materials           = ["ui", "ui-graphics", "ui-tooling-preview", "material3"]
@@ -91,6 +92,6 @@ koin-test-materials         = ["koin-test-junit-4", "koin-test-android"]
 testing                     = ["androidx-test-ext-junit", "espresso-core", "ui-test-junit4"]
 network                     = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
 firebase-materials          = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
-third-party-libraries       = ["compose-state-events",  "detekt", "coil-compose"]
+third-party-libraries       = ["compose-state-events",  "detekt-gradle-plugin", "coil-compose"]
 androidx-libraries          = ["androidx-paging-compose","data-store", "data-store-preferences"]
-detekt-rules                = ["detekt-formatting-rules", "detekt-compose-rules"]
+detekt-rules                = ["detekt-formatting-rules", "detekt-compose-rules"] # detekt-cli
