@@ -38,17 +38,13 @@ subprojects {
     val detektPluginId = "io.gitlab.arturbosch.detekt"
     val sourcePath: String = rootDir.absolutePath
     val mainConfigFile = "$rootDir/detekt/config.yml"
+    val composeConfigFile = "$rootDir/detekt/compose-config.yml"
     val baselineFile = "$rootDir/detekt/baseline.xml"
     val kotlinFiles = "**/*.kt"
     val resourceFiles = "**/resources/**"
     val buildFiles = "**/build/**"
     val generatedFiles = "**/generated/**"
     val ideRelatedFiles = "**/.idea/**"
-
-    // TODO: uncomment these after updating detekt to 1.23.2 (includes update of kotlin 1.9.1)
-    //  -> add detekt-cli to libs.bundles.detekt.rules
-    //  -> val composeConfigFile = "$rootDir/detekt/compose-config.yml"
-    //  -> config.setFrom(files(mainConfigFile, composeConfigFile))
 
     apply {
         plugin(detektPluginId)
@@ -60,7 +56,7 @@ subprojects {
 
     detekt {
         source.setFrom(fileTree(sourcePath))
-        config.setFrom(files(mainConfigFile))
+        config.setFrom(files(mainConfigFile, composeConfigFile))
         baseline = File(baselineFile)
         ignoreFailures = false
         parallel = true
