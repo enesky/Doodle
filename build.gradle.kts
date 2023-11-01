@@ -10,6 +10,9 @@ plugins {
     alias(libs.plugins.crashlytics) apply false
     alias(libs.plugins.performance) apply false
     alias(libs.plugins.detekt) apply true
+
+    // Convention Plugins
+    // id("doodle.detekt") -> extensions not working so i had to implement it here below
 }
 
 /**

@@ -9,8 +9,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             pluginManager.apply {
                 apply("doodle.android.library")
                 // apply("doodle.android.hilt")
-
-                apply(libs.findLibrary("detekt-gradle-plugin").get().get().group.toString())
             }
 
             dependencies {
@@ -24,11 +22,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
 
                 add("implementation", libs.findLibrary("kotlinx.coroutines.android").get())
-
-                add("detektPlugins", libs.findLibrary("detekt.formatting.rules").get())
-                add("detektPlugins", libs.findLibrary("detekt.compose.rules").get())
-                // "detektPlugins"(libs.findLibrary("detekt-formatting-rules").get())
-                // "detektPlugins"(libs.findLibrary("detekt-compose-rules").get())
             }
         }
     }
