@@ -67,7 +67,7 @@ gradlePlugin {
             implementationClass = "JvmLibraryConventionPlugin"
         }
         register("detekt") {
-            id = "doodle.detekt"
+            id = "doodle.detekt.library"
             implementationClass = "DetektConventionPlugin"
         }
     }
