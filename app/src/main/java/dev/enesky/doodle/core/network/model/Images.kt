@@ -11,7 +11,7 @@ import kotlinx.parcelize.Parcelize
 data class Images(
     val jpg: ImageList,
     val webp: ImageList
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class ImageList(
@@ -20,4 +20,4 @@ data class ImageList(
     @SerializedName("medium_image_url") val mediumImageUrl: String,
     @SerializedName("large_image_url") val largeImageUrl: String,
     @SerializedName("maximum_image_url") val maximumImageUrl: String
-): Parcelable
+) : Parcelable

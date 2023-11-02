@@ -61,7 +61,7 @@ fun Greeting(
     } else {
         mainViewModel = null
     }
-    */
+     */
 
     val viewModel = getViewModel<MainViewModel>()
     viewModel.getPopularAnimes()

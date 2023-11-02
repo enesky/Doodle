@@ -23,5 +23,4 @@ val useCaseModule = module {
     single<AnimeCharactersUseCase> {
         AnimeCharactersUseCase { get<JikanRepository>().getCharactersByAnimeId(it) }
     }
-
 }

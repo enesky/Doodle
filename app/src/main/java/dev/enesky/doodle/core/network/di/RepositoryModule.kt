@@ -19,5 +19,4 @@ val repositoryModule = module {
     single<PopularAnimesPagingSource> {
         PopularAnimesPagingSource(get<JikanService>())
     }
-
 }
