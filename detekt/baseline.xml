@@ -7,32 +7,5 @@
     <ID>MagicNumber:AndroidTestConventionPlugin.kt$AndroidTestConventionPlugin$34</ID>
     <ID>MagicNumber:KotlinAndroid.kt$21</ID>
     <ID>MagicNumber:KotlinAndroid.kt$34</ID>
-    <ID>NewLineAtEndOfFile:AndroidApplicationConventionPlugin.kt$.AndroidApplicationConventionPlugin.kt</ID>
-    <ID>NewLineAtEndOfFile:AndroidApplicationJacocoConventionPlugin.kt$.AndroidApplicationJacocoConventionPlugin.kt</ID>
-    <ID>NewLineAtEndOfFile:AndroidLibraryJacocoConventionPlugin.kt$.AndroidLibraryJacocoConventionPlugin.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleInstrumentedTest.kt$dev.enesky.core.common.ExampleInstrumentedTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleInstrumentedTest.kt$dev.enesky.core.data.ExampleInstrumentedTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleInstrumentedTest.kt$dev.enesky.core.domain.ExampleInstrumentedTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleInstrumentedTest.kt$dev.enesky.core.navigation.ExampleInstrumentedTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleInstrumentedTest.kt$dev.enesky.core.network.ExampleInstrumentedTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleInstrumentedTest.kt$dev.enesky.core.ui.ExampleInstrumentedTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleInstrumentedTest.kt$dev.enesky.feature.details.ExampleInstrumentedTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleInstrumentedTest.kt$dev.enesky.feature.login.ExampleInstrumentedTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleInstrumentedTest.kt$dev.enesky.feature.main.ExampleInstrumentedTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleInstrumentedTest.kt$dev.enesky.feature.settings.ExampleInstrumentedTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$dev.enesky.core.common.ExampleUnitTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$dev.enesky.core.data.ExampleUnitTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$dev.enesky.core.domain.ExampleUnitTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$dev.enesky.core.navigation.ExampleUnitTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$dev.enesky.core.network.ExampleUnitTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$dev.enesky.core.ui.ExampleUnitTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$dev.enesky.feature.details.ExampleUnitTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$dev.enesky.feature.login.ExampleUnitTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$dev.enesky.feature.main.ExampleUnitTest.kt</ID>
-    <ID>NewLineAtEndOfFile:ExampleUnitTest.kt$dev.enesky.feature.settings.ExampleUnitTest.kt</ID>
-    <ID>PackageNaming:AndroidCompose.kt$package dev.enesky.build_logic.convention</ID>
-    <ID>PackageNaming:Jacoco.kt$package dev.enesky.build_logic.convention</ID>
-    <ID>PackageNaming:KotlinAndroid.kt$package dev.enesky.build_logic.convention</ID>
-    <ID>PackageNaming:ProjectExtensions.kt$package dev.enesky.build_logic.convention</ID>
   </CurrentIssues>
 </SmellBaseline>
