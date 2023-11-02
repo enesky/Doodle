@@ -1,6 +1,6 @@
 // https://blog.sebastiano.dev/ooga-chaka-git-hooks-to-enforce-code-quality/
 
-task copyGitHooks(type: Copy) {
+tasks.register('copyGitHooks', Copy) {
     description 'Copies the git hooks from /git-hooks to the .git folder.'
     group 'git hooks'
     from("${rootDir}/git-hooks/hooks/") {
@@ -10,7 +10,7 @@ task copyGitHooks(type: Copy) {
     into "${rootDir}/.git/hooks"
 }
 
-task installGitHooks(type: Exec) {
+tasks.register('installGitHooks', Exec) {
     description 'Installs the git hooks from /git-hooks/hooks/.'
     group 'git hooks'
     workingDir rootDir
