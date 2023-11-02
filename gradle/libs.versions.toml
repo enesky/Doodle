@@ -37,6 +37,19 @@ crashlytics                 = { id= "com.google.firebase.crashlytics", version.r
 performance                 = { id= "com.google.firebase.firebase-perf", version.ref= "firebase-perf-plugin"}
 detekt                      = { id= "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
+# Convention Plugins
+doodle-android-application = { id = "doodle.android.application", version = "unspecified" }
+doodle-android-application-compose = { id = "doodle.android.application.compose", version = "unspecified" }
+doodle-android-application-firebase = { id = "doodle.android.application.firebase", version = "unspecified" }
+doodle-android-application-jacoco = { id = "doodle.android.application.jacoco", version = "unspecified" }
+doodle-android-feature = { id = "doodle.android.feature", version = "unspecified" }
+doodle-android-library = { id = "doodle.android.library", version = "unspecified" }
+doodle-android-library-compose = { id = "doodle.android.library.compose", version = "unspecified" }
+doodle-android-library-jacoco = { id = "doodle.android.library.jacoco", version = "unspecified" }
+doodle-android-test = { id = "doodle.android.test", version = "unspecified" }
+doodle-jvm-library = { id = "doodle.jvm.library", version = "unspecified" }
+doodle-detekt-library = { id = "doodle.detekt.library", version = "unspecified" }
+
 [libraries]
 core-ktx                    = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }
 lifecycle-runtime-ktx       = { module= "androidx.lifecycle:lifecycle-runtime-ktx", version.ref= "lifecycle-runtime-ktx" }
