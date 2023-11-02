@@ -14,8 +14,8 @@ import java.io.File
  * Detekt Configurations
  *  to use it on normal mode -> ./gradlew detektAll
  *  to use it on steroids -> ./gradlew detektDevPremiumDebug
- *  to use it with auto correct enabled -> ./gradlew detekt / detektDevPremiumDebug --auto-correct
- *  to use it to create a baseline -> ./gradlew detekCreateBaseline / detektBaselineDevPremiumDebug
+ *  to use it with auto correct enabled -> ./gradlew detektAll / detektDevPremiumDebug --auto-correct
+ *  to use it to create a baseline -> ./gradlew detektCreateBaseline / detektBaselineDevPremiumDebug
  **/
 
 class DetektConventionPlugin : Plugin<Project> {
