@@ -6,7 +6,7 @@ echo "*         Running Detekt Auto Correct           *"
 echo "*************************************************"
 
 OUTPUT="/tmp/detekt-$(date +%s)"
-./gradlew detektDevPremiumDebug --auto-correct > $OUTPUT
+./gradlew detektAll --auto-correct > $OUTPUT
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
   cat $OUTPUT

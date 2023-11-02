@@ -6,7 +6,7 @@ echo "*                Running Detekt                 *"
 echo "*************************************************"
 
 OUTPUT="/tmp/detekt-$(date +%s)"
-./gradlew detektDevPremiumDebug > $OUTPUT
+./gradlew detektAll > $OUTPUT
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
   cat $OUTPUT
