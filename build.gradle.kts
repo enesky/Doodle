@@ -11,7 +11,7 @@ plugins {
     alias(libs.plugins.detekt) apply false
 
     // Convention Plugins
-    // id("doodle.detekt") -> extensions not working so i had to implement it here below
+    id("doodle.detekt")
 }
 
 /**
