@@ -22,6 +22,8 @@ dependencies {
     compileOnly(libs.kotlin.gradle.plugin)
     compileOnly(libs.ksp.gradle.plugin)
     compileOnly(libs.detekt.gradle.plugin)
+
+    enableVersionCatalogAccess()
 }
 
 gradlePlugin {
@@ -62,13 +64,19 @@ gradlePlugin {
             id = "doodle.android.test"
             implementationClass = "AndroidTestConventionPlugin"
         }
-        register("jvmLibrary") {
-            id = "doodle.jvm.library"
-            implementationClass = "JvmLibraryConventionPlugin"
-        }
         register("detekt") {
             id = "doodle.detekt.library"
             implementationClass = "DetektConventionPlugin"
         }
     }
+}
+
+/**
+ *  This is needed in order to properly use libs extension in convention plugins
+ *  and use convention plugins from version catalog in other modules
+ *
+ *  ex. Extensions/libs, VersionCatalog access on plugin aliases in every module's build.gradle.kts
+ */
+fun DependencyHandlerScope.enableVersionCatalogAccess() {
+    compileOnly(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }
