@@ -4,11 +4,11 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
-    alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.google) apply false
-    alias(libs.plugins.crashlytics) apply false
-    alias(libs.plugins.performance) apply false
-    alias(libs.plugins.detekt) apply false
+    alias(libs.plugins.ksp.plugin) apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
+    alias(libs.plugins.firebase.performance) apply false
+    alias(libs.plugins.detekt.plugin) apply false
 
     // Convention Plugins
     id("doodle.detekt.library")
