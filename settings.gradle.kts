@@ -17,16 +17,19 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Doodle"
+
 include(":app")
-include(":feature")
-include(":core")
-include(":core:common")
-include(":core:data")
-include(":core:domain")
-include(":core:network")
-include(":core:navigation")
-include(":core:ui")
-include(":feature:login")
-include(":feature:main")
-include(":feature:details")
-include(":feature:settings")
+include(
+    ":core:common",
+    ":core:data",
+    ":core:domain",
+    ":core:network",
+    ":core:navigation",
+    ":core:ui"
+)
+include(
+    ":feature:login",
+    ":feature:main",
+    ":feature:details",
+    ":feature:settings"
+)
