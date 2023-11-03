@@ -20,59 +20,58 @@ import java.io.File
 
 class DetektConventionPlugin : Plugin<Project> {
 
-    override fun apply(project: Project) {
-        project.run {
+    override fun apply(project: Project) = with(project) {
 
-            val sourcePath: String = rootDir.absolutePath
-            val mainConfigFile = "$rootDir/detekt/config.yml"
-            val composeConfigFile = "$rootDir/detekt/compose-config.yml"
-            val baselineFile = "$rootDir/detekt/baseline.xml"
-            val kotlinFiles = "**/*.kt"
-            val resourceFiles = "**/resources/**"
-            val buildFiles = "**/build/**"
-            val generatedFiles = "**/generated/**"
-            val ideRelatedFiles = "**/.idea/**"
+        val sourcePath: String = rootDir.absolutePath
+        val mainConfigFile = "$rootDir/detekt/config.yml"
+        val composeConfigFile = "$rootDir/detekt/compose-config.yml"
+        val baselineFile = "$rootDir/detekt/baseline.xml"
+        val kotlinFiles = "**/*.kt"
+        val resourceFiles = "**/resources/**"
+        val buildFiles = "**/build/**"
+        val generatedFiles = "**/generated/**"
+        val ideRelatedFiles = "**/.idea/**"
 
-            pluginManager.apply {
-                apply(libs.findLibrary("detekt-gradle-plugin").get().get().group.toString())
+        pluginManager.apply {
+            apply(libs.detekt.gradle.plugin.get().group.toString())
+        }
+
+        dependencies {
+            add("detektPlugins", libs.detekt.cli.get())
+            add("detektPlugins", libs.detekt.formatting.rules.get())
+            add("detektPlugins", libs.detekt.compose.rules.get())
+        }
+
+        extensions.configure<DetektExtension> {
+
+            tasks.withType<Detekt>().configureEach {
+                include(kotlinFiles)
+                exclude(resourceFiles, buildFiles, generatedFiles, ideRelatedFiles)
+                reports {
+                    html.required.set(false)
+                    xml.required.set(false)
+                    txt.required.set(false)
+                }
             }
 
-            dependencies {
-                "detektPlugins"(libs.findBundle("detekt-rules").get())
+            tasks.register<Detekt>("detektAll") {
+                description = "Detects all detekt issues."
+                setSource(sourcePath)
+                config.setFrom(files(mainConfigFile, composeConfigFile))
+                baseline.set(File(baselineFile))
+                parallel = true
             }
 
-            extensions.configure<DetektExtension> {
-
-                tasks.withType<Detekt>().configureEach {
-                    include(kotlinFiles)
-                    exclude(resourceFiles, buildFiles, generatedFiles, ideRelatedFiles)
-                    reports {
-                        html.required.set(false)
-                        xml.required.set(false)
-                        txt.required.set(false)
-                    }
-                }
-
-                tasks.register<Detekt>("detektAll") {
-                    description = "Detects all detekt issues."
-                    setSource(sourcePath)
-                    config.setFrom(files(mainConfigFile, composeConfigFile))
-                    baseline.set(File(baselineFile))
-                    parallel = true
-                }
-
-                tasks.register<DetektCreateBaselineTask>("detektCreateBaseline") {
-                    description = "Creates a new detekt baseline."
-                    parallel.set(true)
-                    ignoreFailures.set(true)
-                    setSource(sourcePath)
-                    config.setFrom(files(mainConfigFile, composeConfigFile))
-                    baseline.set(File(baselineFile))
-                    include(kotlinFiles)
-                    exclude(resourceFiles, buildFiles, generatedFiles, ideRelatedFiles)
-                }
+            tasks.register<DetektCreateBaselineTask>("detektCreateBaseline") {
+                description = "Creates a new detekt baseline."
+                parallel.set(true)
+                ignoreFailures.set(true)
+                setSource(sourcePath)
+                config.setFrom(files(mainConfigFile, composeConfigFile))
+                baseline.set(File(baselineFile))
+                include(kotlinFiles)
+                exclude(resourceFiles, buildFiles, generatedFiles, ideRelatedFiles)
             }
         }
     }
-
 }
