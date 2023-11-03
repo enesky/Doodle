@@ -32,6 +32,10 @@ gradlePlugin {
             id = "doodle.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+        register("androidSigningConfig") {
+            id = "doodle.android.signing.config"
+            implementationClass = "AndroidSigningConfigConventionPlugin"
+        }
         register("androidApplicationCompose") {
             id = "doodle.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
