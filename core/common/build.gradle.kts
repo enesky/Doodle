@@ -1,5 +1,3 @@
-import dev.enesky.build_logic.convention.BuildLogicParams
-
 plugins {
     // Convention Plugins
     id(libs.plugins.doodle.android.application.main.get().pluginId)
