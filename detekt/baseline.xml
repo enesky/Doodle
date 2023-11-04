@@ -1,11 +1,13 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues />
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>MagicNumber:AndroidApplicationConventionPlugin.kt$AndroidApplicationConventionPlugin$34</ID>
     <ID>MagicNumber:AndroidLibraryConventionPlugin.kt$AndroidLibraryConventionPlugin$34</ID>
     <ID>MagicNumber:AndroidTestConventionPlugin.kt$AndroidTestConventionPlugin$34</ID>
-    <ID>MagicNumber:KotlinAndroid.kt$21</ID>
-    <ID>MagicNumber:KotlinAndroid.kt$34</ID>
+    <ID>NewLineAtEndOfFile:AndroidApplicationMainConventionPlugin.kt$.AndroidApplicationMainConventionPlugin.kt</ID>
+    <ID>NewLineAtEndOfFile:AndroidCompose.kt$dev.enesky.build_logic.convention.AndroidCompose.kt</ID>
+    <ID>NewLineAtEndOfFile:Extensions.kt$dev.enesky.build_logic.convention.Extensions.kt</ID>
+    <ID>NewLineAtEndOfFile:KotlinAndroid.kt$dev.enesky.build_logic.convention.KotlinAndroid.kt</ID>
+    <ID>WildcardImport:AndroidApplicationMainConventionPlugin.kt$import dev.enesky.build_logic.convention.*</ID>
   </CurrentIssues>
 </SmellBaseline>
