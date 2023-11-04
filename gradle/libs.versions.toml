@@ -49,11 +49,11 @@ firebase-performance                  = { id= "com.google.firebase.firebase-perf
 detekt-plugin                         = { id= "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
 # Convention Plugins
-doodle-android-application            = { id= "doodle.android.application", version= "unspecified" }
-doodle-android-signing-config         = { id= "doodle.android.signing.config", version= "unspecified" }
+doodle-android-application-main       = { id= "doodle.android.application.main", version= "unspecified" }
 doodle-android-application-compose    = { id= "doodle.android.application.compose", version= "unspecified" }
 doodle-android-application-firebase   = { id= "doodle.android.application.firebase", version= "unspecified" }
 doodle-android-application-jacoco     = { id= "doodle.android.application.jacoco", version= "unspecified" }
+doodle-android-signing-config         = { id= "doodle.android.signing.config", version= "unspecified" }
 doodle-android-feature                = { id= "doodle.android.feature", version= "unspecified" }
 doodle-android-library                = { id= "doodle.android.library", version= "unspecified" }
 doodle-android-library-compose        = { id= "doodle.android.library.compose", version= "unspecified" }
