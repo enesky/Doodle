@@ -99,7 +99,6 @@ chucker                               = { module= "com.github.chuckerteam.chucke
 chucker-no-op                         = { module= "com.github.chuckerteam.chucker:library-no-op", version.ref= "chucker" }
 leak-canary                           = { module= "com.squareup.leakcanary:leakcanary-android", version.ref= "leak-canary" }
 junit                                 = { module= "junit:junit", version.ref= "junit" }
-detekt-cli                            = { module= "io.gitlab.arturbosch.detekt:detekt-cli", version.ref= "detekt" }
 detekt-formatting-rules               = { module= "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref= "detekt" }
 detekt-compose-rules                  = { module= "io.nlopez.compose.rules:detekt", version.ref= "detekt-compose" }
 coil-compose                          = { module= "io.coil-kt:coil-compose", version.ref= "coilCompose" }
@@ -121,5 +120,5 @@ koin-test-materials                   = ["koin-test-junit-4", "koin-test-android
 testing                               = ["androidx-test-ext-junit", "espresso-core", "ui-test-junit4"]
 network                               = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
 firebase-materials                    = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
-third-party-libraries                 = ["compose-state-events",  "detekt-gradle-plugin", "coil-compose"]
+third-party-libraries                 = ["compose-state-events", "coil-compose"]
 androidx-libraries                    = ["androidx-paging-compose","data-store", "data-store-preferences"]
