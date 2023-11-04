@@ -33,11 +33,10 @@ class DetektConventionPlugin : Plugin<Project> {
         val ideRelatedFiles = "**/.idea/**"
 
         pluginManager.apply {
-            apply(libs.detekt.gradle.plugin.get().group.toString())
+            apply(libs.plugins.detekt.plugin.get().pluginId)
         }
 
         dependencies {
-            add("detektPlugins", libs.detekt.cli.get())
             add("detektPlugins", libs.detekt.formatting.rules.get())
             add("detektPlugins", libs.detekt.compose.rules.get())
         }
@@ -47,11 +46,6 @@ class DetektConventionPlugin : Plugin<Project> {
             tasks.withType<Detekt>().configureEach {
                 include(kotlinFiles)
                 exclude(resourceFiles, buildFiles, generatedFiles, ideRelatedFiles)
-                reports {
-                    html.required.set(false)
-                    xml.required.set(false)
-                    txt.required.set(false)
-                }
             }
 
             tasks.register<Detekt>("detektAll") {
