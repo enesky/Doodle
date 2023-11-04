@@ -30,7 +30,7 @@ gradlePlugin {
     plugins {
         register("androidApplication") {
             id = "doodle.android.application.main"
-            implementationClass = "AndroidApplicationConventionPlugin"
+            implementationClass = "AndroidApplicationMainConventionPlugin"
         }
         register("androidSigningConfig") {
             id = "doodle.android.signing.config"

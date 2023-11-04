@@ -7,11 +7,13 @@ import org.gradle.kotlin.dsl.configure
 /**
  * Configure Android Application-specific options
  */
-class AndroidApplicationConventionPlugin : Plugin<Project> {
+class AndroidApplicationMainConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply(libs.plugins.android.application.get().pluginId)
             apply(libs.plugins.kotlin.android.get().pluginId)
+            apply(libs.plugins.ksp.plugin.get().pluginId)
+            apply("kotlin-parcelize")
         }
 
         extensions.configure<ApplicationExtension> {
