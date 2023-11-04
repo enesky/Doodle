@@ -12,9 +12,7 @@ java {
 }
 
 tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
 }
 
 dependencies {
@@ -29,53 +27,55 @@ dependencies {
 gradlePlugin {
     plugins {
         register("androidApplication") {
-            id = "doodle.android.application.main"
+            id = libs.plugins.doodle.android.application.main.get().pluginId
             implementationClass = "AndroidApplicationMainConventionPlugin"
         }
         register("androidSigningConfig") {
-            id = "doodle.android.signing.config"
+            id = libs.plugins.doodle.android.signing.config.get().pluginId
             implementationClass = "AndroidSigningConfigConventionPlugin"
         }
         register("androidApplicationCompose") {
-            id = "doodle.android.application.compose"
+            id = libs.plugins.doodle.android.application.compose.get().pluginId
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
         register("androidFirebase") {
-            id = "doodle.android.application.firebase"
+            id = libs.plugins.doodle.android.application.firebase.get().pluginId
             implementationClass = "AndroidApplicationFirebaseConventionPlugin"
         }
         register("androidApplicationJacoco") {
-            id = "doodle.android.application.jacoco"
+            id = libs.plugins.doodle.android.application.jacoco.get().pluginId
             implementationClass = "AndroidApplicationJacocoConventionPlugin"
         }
         register("androidFeature") {
-            id = "doodle.android.feature"
+            id = libs.plugins.doodle.android.feature.get().pluginId
             implementationClass = "AndroidFeatureConventionPlugin"
         }
         register("androidLibrary") {
-            id = "doodle.android.library"
-            implementationClass = "AndroidLibraryConventionPlugin"
+            id = libs.plugins.doodle.android.library.main.get().pluginId
+            implementationClass = "AndroidLibraryMainConventionPlugin"
         }
         register("androidLibraryCompose") {
-            id = "doodle.android.library.compose"
+            id = libs.plugins.doodle.android.library.compose.get().pluginId
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
         register("androidLibraryJacoco") {
-            id = "doodle.android.library.jacoco"
+            id = libs.plugins.doodle.android.library.jacoco.get().pluginId
             implementationClass = "AndroidLibraryJacocoConventionPlugin"
         }
         register("androidTest") {
-            id = "doodle.android.test"
+            id = libs.plugins.doodle.android.test.get().pluginId
             implementationClass = "AndroidTestConventionPlugin"
         }
         register("detekt") {
-            id = "doodle.detekt.library"
+            id = libs.plugins.doodle.detekt.library.get().pluginId
             implementationClass = "DetektConventionPlugin"
         }
     }
 }
 
 /**
+ *                          !!! IMPORTANT !!!
+ *
  *  This is needed in order to properly use libs extension in convention plugins
  *  and use convention plugins from version catalog in other modules
  *

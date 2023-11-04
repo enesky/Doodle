@@ -55,7 +55,7 @@ doodle-android-application-firebase   = { id= "doodle.android.application.fireba
 doodle-android-application-jacoco     = { id= "doodle.android.application.jacoco", version= "unspecified" }
 doodle-android-signing-config         = { id= "doodle.android.signing.config", version= "unspecified" }
 doodle-android-feature                = { id= "doodle.android.feature", version= "unspecified" }
-doodle-android-library                = { id= "doodle.android.library", version= "unspecified" }
+doodle-android-library-main           = { id= "doodle.android.library.main", version= "unspecified" }
 doodle-android-library-compose        = { id= "doodle.android.library.compose", version= "unspecified" }
 doodle-android-library-jacoco         = { id= "doodle.android.library.jacoco", version= "unspecified" }
 doodle-android-test                   = { id= "doodle.android.test", version= "unspecified" }

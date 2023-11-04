@@ -2,7 +2,7 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>MagicNumber:AndroidLibraryConventionPlugin.kt$AndroidLibraryConventionPlugin$34</ID>
+    <ID>MagicNumber:AndroidLibraryMainConventionPlugin.kt$AndroidLibraryMainConventionPlugin$34</ID>
     <ID>MagicNumber:AndroidTestConventionPlugin.kt$AndroidTestConventionPlugin$34</ID>
     <ID>NewLineAtEndOfFile:AndroidApplicationMainConventionPlugin.kt$.AndroidApplicationMainConventionPlugin.kt</ID>
     <ID>NewLineAtEndOfFile:AndroidCompose.kt$dev.enesky.build_logic.convention.AndroidCompose.kt</ID>
