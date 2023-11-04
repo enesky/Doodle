@@ -1,14 +1,15 @@
+import dev.enesky.build_logic.convention.BuildLogicParams
+
 plugins {
     // Convention Plugins
-    alias(libs.plugins.doodle.android.application)
-    alias(libs.plugins.doodle.android.signing.config)
-    alias(libs.plugins.doodle.android.application.compose)
+    id(libs.plugins.doodle.android.application.main.get().pluginId)
+    id(libs.plugins.doodle.android.signing.config.get().pluginId)
+    id(libs.plugins.doodle.android.application.compose.get().pluginId)
 
     // Others
     alias(libs.plugins.ksp.plugin)
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.crashlytics)
-    alias(libs.plugins.detekt.plugin)
     id("kotlin-parcelize")
 }
 

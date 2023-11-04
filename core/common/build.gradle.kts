@@ -1,7 +1,9 @@
+import dev.enesky.build_logic.convention.BuildLogicParams
+
 plugins {
     // Convention Plugins
-    alias(libs.plugins.doodle.android.application)
-    alias(libs.plugins.doodle.android.application.compose)
+    id(libs.plugins.doodle.android.application.main.get().pluginId)
+    id(libs.plugins.doodle.android.application.compose.get().pluginId)
 }
 
 android.namespace = "dev.enesky.core.common"
