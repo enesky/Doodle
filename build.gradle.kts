@@ -11,7 +11,8 @@ plugins {
     alias(libs.plugins.detekt.plugin) apply false
 
     // Convention Plugins
-    id("doodle.detekt.library")
+    // id("doodle.detekt.library")
+    // alias(libs.plugins.doodle.detekt.library) apply false
 }
 
 /**
