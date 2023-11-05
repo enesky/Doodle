@@ -6,6 +6,10 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 
+/**
+ * Android Library Main Convention Plugin
+ * -> For modules/build.gradle.kts, not for app/build.gradle.kts <-
+ */
 class AndroidLibraryMainConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
@@ -19,7 +23,9 @@ class AndroidLibraryMainConventionPlugin : Plugin<Project> {
                 defaultConfig.targetSdk = libs.versions.target.sdk.get().toString().toInt()
             }
 
-            dependencies { }
+            dependencies {
+
+            }
         }
     }
 }

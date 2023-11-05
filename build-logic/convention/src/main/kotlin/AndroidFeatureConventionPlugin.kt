@@ -8,12 +8,18 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply {
 
+
             }
 
             dependencies {
+                add("debugImplementation", libs.bundles.debug.implementations)
+                add("releaseImplementation", libs.chucker.no.op)
 
-                // TODO: Add core modules here
-
+                val koinBom = platform(libs.koin.bom)
+                add("implementation", koinBom)
+                add("implementation", libs.bundles.koin.materials)
+                add("testImplementation", koinBom)
+                add("testImplementation", libs.bundles.koin.test.materials)
             }
         }
     }
