@@ -26,7 +26,7 @@ internal fun ApplicationExtension.getBuildTypes() =
             )
 
             // Specified Build Configs
-            buildConfigField("String", "example", "Lorem Ipsum but release")
+            buildConfigField("String", "example", "\"Lorem Ipsum but release\"")
             buildConfigField("boolean", "logEnabled", "false")
         }
     }
@@ -61,12 +61,12 @@ internal fun ApplicationExtension.getProductFlavors() {
             resValue("string", "app_name_flavor", "Doodle Premium")
 
             // Specified Build Configs
-            buildConfigField("String", "example", "Lorem Ipsum but premium")
+            buildConfigField("String", "example", "\"Lorem Ipsum but premium\"")
         }
     }
 }
 
 internal fun ApplicationDefaultConfig.getGeneralBuildConfigs() {
     resValue("string", "app_name_flavor", "Doodle")
-    buildConfigField("String", "example", "Lorem Ipsum")
+    buildConfigField("String", "example", "\"Lorem Ipsum\"")
 }

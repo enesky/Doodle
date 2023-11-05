@@ -1,5 +1,6 @@
 import com.android.build.gradle.LibraryExtension
 import dev.enesky.build_logic.convention.configureKotlinAndroid
+import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -9,14 +10,15 @@ class AndroidLibraryMainConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("com.android.library")
-                apply("org.jetbrains.kotlin.android")
+                apply(libs.plugins.android.library.get().pluginId)
+                apply(libs.plugins.kotlin.android.get().pluginId)
             }
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = 34
+                defaultConfig.targetSdk = libs.versions.target.sdk.get().toString().toInt()
             }
+
             dependencies { }
         }
     }
