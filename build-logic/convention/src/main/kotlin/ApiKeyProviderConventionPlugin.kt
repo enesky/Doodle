@@ -4,6 +4,10 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import java.util.Properties
 
+/**
+ * Configure Api Key Provider
+ * -> Only for app/build.gradle.kts <-
+ */
 class ApiKeyProviderConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         val localProperties = Properties()
@@ -42,7 +46,6 @@ class ApiKeyProviderConventionPlugin : Plugin<Project> {
              *     }
              * }
              */
-
         }
     }
 }
