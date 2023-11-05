@@ -24,4 +24,16 @@ dependencies {
     implementation(libs.bundles.network)
     implementation(libs.bundles.third.party.libraries)
     implementation(libs.bundles.androidx.libraries)
+
+    // Module Implementations
+    implementation(projects.core.common)
+    implementation(projects.core.data)
+    implementation(projects.core.domain)
+    implementation(projects.core.network)
+    implementation(projects.core.navigation)
+    implementation(projects.core.ui)
+    implementation(projects.feature.login)
+    implementation(projects.feature.main)
+    implementation(projects.feature.details)
+    implementation(projects.feature.settings)
 }
