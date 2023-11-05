@@ -18,6 +18,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "Doodle"
 
+/**
+ * Enables to use modules with type-safe accessors
+ * ex. implementation(project(":core:common")) -> implementation(projects.core.common)
+ **/
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(":app")
 include(
     ":core:common",
