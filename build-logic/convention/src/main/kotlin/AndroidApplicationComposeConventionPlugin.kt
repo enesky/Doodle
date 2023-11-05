@@ -9,7 +9,6 @@ class AndroidApplicationComposeConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply(libs.plugins.android.application.get().pluginId)
-
             configureAndroidCompose(extensions.getByType<ApplicationExtension>())
         }
     }
