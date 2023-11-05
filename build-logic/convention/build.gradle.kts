@@ -86,6 +86,10 @@ gradlePlugin {
             id = libs.plugins.doodle.api.key.provider.get().pluginId
             implementationClass = "ApiKeyProviderConventionPlugin"
         }
+        register("gitHooks") {
+            id = libs.plugins.doodle.git.hooks.get().pluginId
+            implementationClass = "GitHooksConventionPlugin"
+        }
     }
 }
 

@@ -6,7 +6,7 @@ target-sdk = "34"
 compose-compiler = "1.5.3"
 
 # Plugin Versions
-gradle-plugin                         = "8.3.0-alpha11"
+gradle-plugin                         = "8.3.0-alpha12"
 kotlin-plugin                         = "1.9.10"
 ksp-plugin                            = "1.9.10-1.0.13"
 google-services-plugin                = "4.4.0"
@@ -61,6 +61,7 @@ doodle-android-library-jacoco         = { id= "doodle.android.library.jacoco", v
 doodle-android-test                   = { id= "doodle.android.test", version= "unspecified" }
 doodle-detekt-library                 = { id= "doodle.detekt.library", version= "unspecified" }
 doodle-api-key-provider               = { id= "doodle.api.key.provider", version= "unspecified" }
+doodle-git-hooks                      = { id= "doodle.git.hooks", version= "unspecified" }
 
 [libraries]
 core-ktx                              = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }
