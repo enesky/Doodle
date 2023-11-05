@@ -12,19 +12,5 @@ plugins {
 
     // Convention Plugins
     id(libs.plugins.doodle.detekt.library.get().pluginId)
-}
-
-/**
- * Git Hooks Related
- **/
-apply(from = "git-hooks/githooks.gradle")
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.layout.buildDirectory)
-}
-
-afterEvaluate {
-    tasks.named("clean") {
-        dependsOn(":installGitHooks")
-    }
+    id(libs.plugins.doodle.git.hooks.get().pluginId)
 }
