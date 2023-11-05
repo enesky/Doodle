@@ -1,6 +1,6 @@
 <p align="center">
   <a>
-    <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" width="300" alt="Doodel App Icon" >
+    <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="Doodel App Icon" >
   </a>
 </p>
 
