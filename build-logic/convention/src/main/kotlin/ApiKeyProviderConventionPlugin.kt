@@ -14,16 +14,35 @@ class ApiKeyProviderConventionPlugin : Plugin<Project> {
             }
         }
 
-        val doodleApiUrl = checkNotNull(
-            localProperties.getProperty("doodle.apiurl") ?: System.getenv("DOODLE_API_URL")
+        val doodleApiUrl: String = checkNotNull(
+            localProperties.getProperty("doodle.api.url") ?: System.getenv("DOODLE_API_URL")
         )
-        val doodleApiKey = checkNotNull(
-            localProperties.getProperty("doodle.apikey") ?: System.getenv("DOODLE_API_KEY")
+        val doodleApiKey: String = checkNotNull(
+            localProperties.getProperty("doodle.api.key") ?: System.getenv("DOODLE_API_KEY")
         )
 
         extensions.configure<BaseAppModuleExtension> {
-            defaultConfig.buildConfigField("String", "DOODLE_API_URL", "\"$doodleApiUrl\"")
-            defaultConfig.buildConfigField("String", "DOODLE_API_KEY", "\"$doodleApiKey\"")
+            defaultConfig.buildConfigField("String", "DOODLE_API_URL", doodleApiUrl)
+            defaultConfig.buildConfigField("String", "DOODLE_API_KEY", doodleApiKey)
+
+            /**
+             * Example usage of buildConfigField for different build types and flavors
+             *
+             * buildTypes {
+             *     getByName("release") {
+             *         buildConfigField("String", "DOODLE_API_URL", doodleApiUrlForRelease)
+             *         buildConfigField("String", "DOODLE_API_KEY", doodleApiKeyForRelease)
+             *     }
+             * }
+             *
+             * productFlavors {
+             *     getByName("premium") {
+             *         buildConfigField("String", "DOODLE_API_URL", doodleApiUrlForPremium)
+             *         buildConfigField("String", "DOODLE_API_KEY", doodleApiKeyForPremium)
+             *     }
+             * }
+             */
+
         }
     }
 }
