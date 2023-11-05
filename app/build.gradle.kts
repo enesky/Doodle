@@ -4,7 +4,7 @@ plugins {
     id(libs.plugins.doodle.android.signing.config.get().pluginId)
     id(libs.plugins.doodle.android.application.compose.get().pluginId)
     id(libs.plugins.doodle.android.application.firebase.get().pluginId)
-    //id(libs.plugins.doodle.android.test.get().pluginId)
+    id(libs.plugins.doodle.android.feature.get().pluginId)
 }
 
 android {
@@ -24,12 +24,4 @@ dependencies {
     implementation(libs.bundles.network)
     implementation(libs.bundles.third.party.libraries)
     implementation(libs.bundles.androidx.libraries)
-
-    val koinBom = platform(libs.koin.bom)
-    val composeBom = platform(libs.compose.bom)
-    testImplementation(libs.junit)
-    testImplementation(koinBom)
-    testImplementation(libs.bundles.koin.test.materials)
-    androidTestImplementation(composeBom)
-    androidTestImplementation(libs.bundles.testing)
 }
