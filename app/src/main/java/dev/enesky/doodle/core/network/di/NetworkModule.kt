@@ -25,7 +25,7 @@ val networkModule = module {
     single<Retrofit> {
         Retrofit.Builder()
             .client(get<OkHttpClient>())
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BuildConfig.DOODLE_API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

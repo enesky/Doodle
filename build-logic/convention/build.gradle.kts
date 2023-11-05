@@ -24,6 +24,18 @@ dependencies {
     enableVersionCatalogAccess()
 }
 
+/**
+ * Little note about convention plugin id naming
+ *
+ * ID's should be UNIQUE
+ * If a id starts with something like this -> doodle.android.application
+ * And there is a different id like this -> doodle.android.application.compose
+ * First one will give you troubles when you try to use it
+ * Because it may recognized as the second one and it can throw an error
+ * Try to use unique id's like -> doodle.android.application.main instead of doodle.android.application
+ *
+ **/
+
 gradlePlugin {
     plugins {
         register("androidApplication") {
@@ -69,6 +81,10 @@ gradlePlugin {
         register("detekt") {
             id = libs.plugins.doodle.detekt.library.get().pluginId
             implementationClass = "DetektConventionPlugin"
+        }
+        register("apiKeyProvider") {
+            id = libs.plugins.doodle.api.key.provider.get().pluginId
+            implementationClass = "ApiKeyProviderConventionPlugin"
         }
     }
 }

@@ -60,6 +60,7 @@ doodle-android-library-compose        = { id= "doodle.android.library.compose", 
 doodle-android-library-jacoco         = { id= "doodle.android.library.jacoco", version= "unspecified" }
 doodle-android-test                   = { id= "doodle.android.test", version= "unspecified" }
 doodle-detekt-library                 = { id= "doodle.detekt.library", version= "unspecified" }
+doodle-api-key-provider               = { id= "doodle.api.key.provider", version= "unspecified" }
 
 [libraries]
 core-ktx                              = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }
