@@ -1,5 +1,9 @@
 import com.android.build.api.dsl.ApplicationExtension
-import dev.enesky.build_logic.convention.*
+import dev.enesky.build_logic.convention.configureKotlinAndroid
+import dev.enesky.build_logic.convention.getBuildTypes
+import dev.enesky.build_logic.convention.getGeneralBuildConfigs
+import dev.enesky.build_logic.convention.getProductFlavors
+import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
