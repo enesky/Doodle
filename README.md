@@ -1,13 +1,19 @@
+<p align="center">
+  <a>
+    <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" width="300" alt="Doodel App Icon" >
+  </a>
+</p>
+
 # Doodle
 
-Doodling around
+Just doodling around
 
 Trying to apply best practices for later usages :)
 
 
-### How to run the app
+## How to run the app
 
-In order to run the app, you need to create a `local.properties` file in the root folder of the project.
+In order to run the app, you need to create a `local.properties` file in the root folder of the project.  
 Here is how my current `local.properties` looks like:
 
 ```
