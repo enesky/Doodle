@@ -1,6 +1,6 @@
 package dev.enesky.doodle.app.di
 
-import dev.enesky.doodle.feature.main.MainViewModel
+import dev.enesky.doodle.app.ui.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
