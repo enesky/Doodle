@@ -124,4 +124,4 @@ testing                               = ["androidx-test-ext-junit", "espresso-co
 network                               = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
 firebase-materials                    = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
 third-party-libraries                 = ["compose-state-events", "coil-compose"]
-androidx-libraries                    = ["androidx-paging-compose","data-store", "data-store-preferences"]
+androidx-libraries                    = ["androidx-paging-compose", "data-store", "data-store-preferences"]
