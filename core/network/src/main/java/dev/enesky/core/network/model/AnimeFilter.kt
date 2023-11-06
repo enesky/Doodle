@@ -1,4 +1,4 @@
-package dev.enesky.doodle.core.network.model
+package dev.enesky.core.network.model
 
 /**
  * Created by Enes Kamil YILMAZ on 28/10/2023

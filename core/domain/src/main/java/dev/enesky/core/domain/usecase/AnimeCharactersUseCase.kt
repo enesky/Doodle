@@ -1,6 +1,6 @@
-package dev.enesky.doodle.feature.main.domain.usecase
+package dev.enesky.core.domain.usecase
 
-import dev.enesky.doodle.core.network.model.Character
+import dev.enesky.core.network.model.Character
 
 /**
  * Created by Enes Kamil YILMAZ on 29/10/2023

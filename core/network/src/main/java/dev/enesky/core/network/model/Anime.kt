@@ -1,4 +1,4 @@
-package dev.enesky.doodle.core.network.model
+package dev.enesky.core.network.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
