@@ -21,8 +21,6 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
     implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.bundles.network)
-    implementation(libs.bundles.third.party.libraries)
     implementation(libs.bundles.androidx.libraries)
 
     // Module Implementations

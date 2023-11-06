@@ -1,17 +1,20 @@
-import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import com.android.build.gradle.LibraryExtension
+import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.getByType
 import java.util.Properties
 
 /**
  * Configure Api Key Provider
- * -> Only for app/build.gradle.kts <-
+ * -> Only for core/network/build.gradle.kts <-
  */
 class ApiKeyProviderConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
+        pluginManager.apply(libs.plugins.android.library.get().pluginId)
+
         val localProperties = Properties()
-        val localPropertiesFile = rootProject.file("local.properties") // it's ignored by git
+        val localPropertiesFile = rootProject.file("local.properties") // It's ignored by git
         if (localPropertiesFile.exists() && localPropertiesFile.isFile) {
             localPropertiesFile.inputStream().use { input ->
                 localProperties.load(input)
@@ -19,13 +22,15 @@ class ApiKeyProviderConventionPlugin : Plugin<Project> {
         }
 
         val doodleApiUrl: String = checkNotNull(
-            localProperties.getProperty("doodle.api.url") ?: System.getenv("DOODLE_API_URL")
+            localProperties.getProperty("doodle.api.url") ?: System.getenv("DOODLE_API_URL") ?: "\"\""
         )
         val doodleApiKey: String = checkNotNull(
-            localProperties.getProperty("doodle.api.key") ?: System.getenv("DOODLE_API_KEY")
+            localProperties.getProperty("doodle.api.key") ?: System.getenv("DOODLE_API_KEY") ?: "\"\""
         )
 
-        extensions.configure<BaseAppModuleExtension> {
+        with(extensions.getByType<LibraryExtension>()) {
+            buildFeatures.buildConfig = true
+
             defaultConfig.buildConfigField("String", "DOODLE_API_URL", doodleApiUrl)
             defaultConfig.buildConfigField("String", "DOODLE_API_KEY", doodleApiKey)
 
