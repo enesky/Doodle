@@ -7,9 +7,11 @@ import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
 
 /**
  * Configure Android Application-specific options
+ *  -> Only for app/build.gradle.kts <-
  */
 class AndroidApplicationMainConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
@@ -17,7 +19,7 @@ class AndroidApplicationMainConventionPlugin : Plugin<Project> {
             apply(libs.plugins.android.application.get().pluginId)
             apply(libs.plugins.kotlin.android.get().pluginId)
             apply(libs.plugins.ksp.plugin.get().pluginId)
-            apply("kotlin-parcelize")
+            apply(libs.plugins.doodle.android.feature.get().pluginId)
         }
 
         extensions.configure<ApplicationExtension> {
@@ -32,6 +34,16 @@ class AndroidApplicationMainConventionPlugin : Plugin<Project> {
 
                 packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
             }
+        }
+
+        dependencies {
+            add("implementation", libs.core.ktx)
+            add("implementation", libs.material)
+            add("implementation", libs.lifecycle.runtime.ktx)
+
+            add("debugImplementation", libs.leak.canary)
+            add("debugImplementation", libs.chucker)
+            add("releaseImplementation", libs.chucker.no.op)
         }
     }
 }
