@@ -1,5 +1,4 @@
 import com.android.build.gradle.LibraryExtension
-import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
@@ -11,8 +10,6 @@ import java.util.Properties
  */
 class ApiKeyProviderConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
-        pluginManager.apply(libs.plugins.android.library.get().pluginId)
-
         val localProperties = Properties()
         val localPropertiesFile = rootProject.file("local.properties") // It's ignored by git
         if (localPropertiesFile.exists() && localPropertiesFile.isFile) {

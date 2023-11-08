@@ -8,14 +8,13 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         pluginManager.apply("kotlin-parcelize")
 
         dependencies {
-            add("debugImplementation", libs.bundles.debug.implementations)
-            add("releaseImplementation", libs.chucker.no.op)
-
             val koinBom = platform(libs.koin.bom)
             add("implementation", koinBom)
             add("implementation", libs.bundles.koin.materials)
 
-            add("implementation", libs.androidx.paging.compose)
+            // Unit Test
+            add("testImplementation", libs.junit)
+            add("androidTestImplementation", libs.bundles.testing)
         }
     }
 }
