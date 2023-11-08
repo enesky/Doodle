@@ -116,7 +116,7 @@ appcompat                             = { group = "androidx.appcompat", name = "
 material                              = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
-compose-materials                     = ["ui", "ui-graphics", "ui-tooling-preview", "material3"]
+compose-materials                     = ["androidx-paging-compose", "ui", "ui-graphics", "ui-tooling-preview", "material3"]
 debug-implementations                 = ["ui-tooling", "ui-test-manifest", "leak-canary", "chucker"]
 koin-materials                        = ["koin-coroutines", "koin-navigation", "koin-compose"]
 koin-test-materials                   = ["koin-test-junit-4", "koin-test-android"]
