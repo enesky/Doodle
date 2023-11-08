@@ -39,6 +39,7 @@ class AndroidApplicationMainConventionPlugin : Plugin<Project> {
         dependencies {
             add("implementation", libs.core.ktx)
             add("implementation", libs.material)
+            add("implementation", libs.activity.compose)
             add("implementation", libs.lifecycle.runtime.ktx)
 
             add("debugImplementation", libs.leak.canary)
