@@ -1,6 +1,6 @@
 package dev.enesky.doodle.app.di
 
-import dev.enesky.doodle.app.ui.MainViewModel
+import dev.enesky.doodle.app.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
@@ -11,4 +11,5 @@ import org.koin.dsl.module
 val viewModelModule = module {
 
     viewModelOf(::MainViewModel)
+
 }

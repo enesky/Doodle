@@ -1,4 +1,4 @@
-package dev.enesky.doodle.app.ui
+package dev.enesky.doodle.app.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package dev.enesky.doodle.app.ui
+package dev.enesky.doodle.app.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -29,8 +29,6 @@ import org.koin.androidx.compose.getViewModel
 
 class MainActivity : ComponentActivity() {
 
-    // private val mainViewModel: MainViewModel by viewModel()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -51,17 +49,6 @@ class MainActivity : ComponentActivity() {
 fun Greeting(
     modifier: Modifier = Modifier,
 ) {
-    /*
-    val mainViewModel: MainViewModel?
-    if (!LocalInspectionMode.current) {
-        // We're _not_ executing in an Android Studio Preview.
-        mainViewModel = koinViewModel()
-        mainViewModel.getPopularAnimes()
-    } else {
-        mainViewModel = null
-    }
-     */
-
     val viewModel = getViewModel<MainViewModel>()
     viewModel.getPopularAnimes()
     val animes = viewModel.popularAnimes.collectAsLazyPagingItems()
