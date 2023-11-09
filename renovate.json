@@ -3,6 +3,21 @@
   "extends": [
     "config:base"
   ],
+  "exclude": [
+    "app.main:app.main.gradle.plugin",
+    "app.compose:app.compose.gradle.plugin",
+    "app.jacoco:app.jacoco.gradle.plugin",
+    "app.firebase:app.firebase.gradle.plugin",
+    "library.main:library.main.gradle.plugin",
+    "library.compose:library.compose.gradle.plugin",
+    "library.jacoco:library.jacoco.gradle.plugin",
+    "common.feature:common.feature.gradle.plugin",
+    "common.test:common.test.gradle.plugin",
+    "common.signing.config:common.signing.config.gradle.plugin",
+    "common.api.key.provider:common.api.key.provider.gradle.plugin",
+    "common.git.hooks:common.git.hooks.gradle.plugin",
+    "common.detekt:common.detekt.gradle.plugin"
+  ],
   "packageRules": [
     {
       "groupName": "Kotlin, KSP and Compose Compiler",
