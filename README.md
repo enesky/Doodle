@@ -25,7 +25,7 @@ Just doodling around
 Trying to apply best practices for later usages :)
 
 <p align="center">  
-🗡️ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetpack (Room, ViewModel), and Material Design based on MVVM and Clean architecture.
+🗡️ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetpack (Room, ViewModel), and Material Design based on MVVM, Clean and Multi-Module architecture.
 </p>
 
 ## Tech stack & Open-source libraries
@@ -46,6 +46,7 @@ Trying to apply best practices for later usages :)
 - Architecture
     - MVVM Architecture (View - DataBinding - ViewModel - Model)
     - Clean Architecture approach (Data - Domain - Presentation)
+    - Multi-Module Architecture (build_logic(with lots of customized convention plugins) - app - core - feature)
     - Repository Pattern
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit): Construct the REST APIs and paging network data.
 - [ksp](https://github.com/google/ksp): Kotlin Symbol Processing API.
