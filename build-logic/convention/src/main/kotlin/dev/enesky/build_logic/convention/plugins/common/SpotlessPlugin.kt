@@ -45,7 +45,7 @@ class SpotlessPlugin : Plugin<Project> {
 
             format("xml") {
                 target("**/*.xml")
-                targetExclude("build/**/*.xml", "**/build/**/*.xml", "config/**/*.xml")
+                targetExclude(".idea/**.xml", "build/**/*.xml", "**/build/**/*.xml", "config/**/*.xml")
                 licenseHeaderFile(rootProject.file("config/spotless/licence.xml"), "(<[^!?])")
             }
 
