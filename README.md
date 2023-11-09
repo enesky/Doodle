@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://renovatebot.com/"><img alt="Renovate" src="https://img.shields.io/badge/RenovateBot-not_enabled-red.svg"/></a>
+  <a href="https://renovatebot.com/"><img alt="Renovate" src="https://img.shields.io/badge/RenovateBot-enabled-light_green.svg"/></a>
   <a href="https://github.com/enesky/Doodle/actions/workflows/main.yml"><img alt="Lint Checks & Build" src="https://github.com/enesky/Doodle/actions/workflows/main.yml/badge.svg"/></a>
   <!-- Add more -->
 </p>
