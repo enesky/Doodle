@@ -1,5 +1,4 @@
-# This workflow performs a static analysis of your Kotlin source code using
-# Detekt.
+# This workflow performs lint checks and builds the project.
 #
 # Scans are triggered:
 # 1. On every push to default and protected branches
@@ -8,8 +7,8 @@
 
 name: Lint Checks & Build
 
+# Triggers the workflow on push or pull request events but only for default and protected branches
 on:
-  # Triggers the workflow on push or pull request events but only for default and protected branches
   push:
     branches: [ "main" ]
   pull_request:
@@ -18,7 +17,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   spotless:
     name: Spotless
@@ -78,7 +76,6 @@ jobs:
     needs: [ detekt ]
     runs-on: macos-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
