@@ -7,6 +7,11 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/enesky/Doodle/actions/workflows/detekt.yml"><img alt="Scan with Detekt" src="https://github.com/enesky/Doodle/actions/workflows/detekt.yml/badge.svg?branch=main"/></a>
+  <!-- Add more -->
+</p>
+
+<p align="center">
   <a href="https://github.com/enesky/Doodle/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=24"><img alt="API" src="https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat"/></a>
   <!-- Add more -->
