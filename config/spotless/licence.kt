@@ -1,0 +1,3 @@
+/**
+ * Spotless licence file
+ */
