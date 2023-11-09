@@ -1,4 +1,4 @@
-package dev.enesky.build_logic.plugins.app
+package dev.enesky.build_logic.convention.plugins.app
 
 import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin

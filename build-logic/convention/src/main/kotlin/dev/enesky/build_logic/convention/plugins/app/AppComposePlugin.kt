@@ -1,4 +1,4 @@
-package dev.enesky.build_logic.plugins.app
+package dev.enesky.build_logic.convention.plugins.app
 
 import com.android.build.api.dsl.ApplicationExtension
 import dev.enesky.build_logic.convention.configureAndroidCompose

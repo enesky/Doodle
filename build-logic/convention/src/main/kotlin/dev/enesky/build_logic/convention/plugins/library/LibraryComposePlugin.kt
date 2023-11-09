@@ -1,4 +1,4 @@
-package dev.enesky.build_logic.plugins.library
+package dev.enesky.build_logic.convention.plugins.library
 
 import com.android.build.gradle.LibraryExtension
 import dev.enesky.build_logic.convention.configureAndroidCompose

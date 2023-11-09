@@ -1,4 +1,4 @@
-package dev.enesky.build_logic.plugins.common
+package dev.enesky.build_logic.convention.plugins.common
 
 import dev.enesky.build_logic.convention.libs
 import io.gitlab.arturbosch.detekt.Detekt

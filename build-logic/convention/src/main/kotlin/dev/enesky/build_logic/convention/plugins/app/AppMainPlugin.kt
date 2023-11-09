@@ -1,4 +1,4 @@
-package dev.enesky.build_logic.plugins.app
+package dev.enesky.build_logic.convention.plugins.app
 
 import com.android.build.api.dsl.ApplicationExtension
 import dev.enesky.build_logic.convention.configureKotlinAndroid
@@ -40,7 +40,6 @@ class AppMainPlugin : Plugin<Project> {
 
         dependencies {
             add("implementation", libs.core.ktx)
-            add("implementation", libs.material)
             add("implementation", libs.activity.compose)
             add("implementation", libs.lifecycle.runtime.ktx)
 

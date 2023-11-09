@@ -37,9 +37,12 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        val rootPath = "dev.enesky.build_logic.plugins"
+        val rootPath = "dev.enesky.build_logic.convention.plugins"
 
-        // App Related Convention Plugins
+        /**
+         * App Related Convention Plugins
+         * -> For app/build.gradle.kts, not for modules/build.gradle.kts <-
+         */
         register("appMain") {
             id = libs.plugins.app.main.get().pluginId
             implementationClass = "$rootPath.app.AppMainPlugin"
@@ -57,7 +60,10 @@ gradlePlugin {
             implementationClass = "$rootPath.app.AppFirebasePlugin"
         }
 
-        // Library Related Convention Plugins
+        /**
+         * Library Related Convention Plugins
+         * -> For modules/build.gradle.kts, not for app/build.gradle.kts <-
+         */
         register("libraryMain") {
             id = libs.plugins.library.main.get().pluginId
             implementationClass = "$rootPath.library.LibraryMainPlugin"
@@ -71,7 +77,10 @@ gradlePlugin {
             implementationClass = "$rootPath.library.LibraryJacocoPlugin"
         }
 
-        // Common Convention Plugins
+        /**
+         * Common Convention Plugins
+         * -> For both app/build.gradle.kts and modules/build.gradle.kts <-
+         */
         register("commonFeature") {
             id = libs.plugins.common.feature.get().pluginId
             implementationClass = "$rootPath.common.FeaturePlugin"

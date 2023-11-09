@@ -1,4 +1,4 @@
-package dev.enesky.build_logic.plugins.library
+package dev.enesky.build_logic.convention.plugins.library
 
 import com.android.build.gradle.LibraryExtension
 import dev.enesky.build_logic.convention.configureKotlinAndroid
@@ -27,7 +27,6 @@ class LibraryMainPlugin : Plugin<Project> {
 
             dependencies {
                 add("implementation", libs.core.ktx)
-                add("implementation", libs.material)
                 add("implementation", libs.lifecycle.runtime.ktx)
             }
         }

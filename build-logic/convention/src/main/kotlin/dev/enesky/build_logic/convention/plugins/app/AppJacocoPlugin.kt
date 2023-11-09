@@ -1,20 +1,19 @@
-package dev.enesky.build_logic.plugins.library
+package dev.enesky.build_logic.convention.plugins.app
 
-import com.android.build.api.variant.LibraryAndroidComponentsExtension
+import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import dev.enesky.build_logic.convention.configureJacoco
-import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 
-class LibraryJacocoPlugin : Plugin<Project> {
+class AppJacocoPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
                 apply("org.gradle.jacoco")
-                apply(libs.plugins.android.library.get().pluginId)
+                apply("com.android.application")
             }
-            val extension = extensions.getByType<LibraryAndroidComponentsExtension>()
+            val extension = extensions.getByType<ApplicationAndroidComponentsExtension>()
             configureJacoco(extension)
         }
     }
