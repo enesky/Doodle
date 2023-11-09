@@ -12,5 +12,5 @@ enum class AnimeType(val type: String) {
     OVA("ova"),
     SPECIAL("special"),
     ONA("ona"),
-    MUSIC("music")
+    MUSIC("music"),
 }

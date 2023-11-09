@@ -22,7 +22,7 @@ internal fun ApplicationExtension.getBuildTypes() =
 
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
 
             // Specified Build Configs

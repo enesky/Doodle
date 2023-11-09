@@ -61,7 +61,7 @@ val networkModule = module {
         ChuckerCollector(
             context = androidContext(),
             showNotification = true,
-            retentionPeriod = RetentionManager.Period.ONE_DAY
+            retentionPeriod = RetentionManager.Period.ONE_DAY,
         )
     }
 

@@ -12,9 +12,8 @@ import java.util.Properties
 internal fun BaseAppModuleExtension.createSigningConfigFromProperties(
     target: Project,
     name: String,
-    properties: Properties
+    properties: Properties,
 ): SigningConfig? {
-
     /**
      *                 !!! IMPORTANT !!!
      * Change storeFile path if Doodle goes to any market
@@ -33,7 +32,7 @@ internal fun BaseAppModuleExtension.createSigningConfigFromProperties(
         keyPassword = keystore.getValue("keyPassword")
         storeFile = target.file(keystore.getValue("storeFile"))
         storePassword = keystore.getValue("storePassword")
-        enableV1Signing = true //Jar Signature
+        enableV1Signing = true // Jar Signature
         enableV2Signing = true // Full APK Signature
     }
 }

@@ -11,7 +11,6 @@ import org.gradle.kotlin.dsl.dependencies
 internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *, *>,
 ) = with(commonExtension) {
-
     compileSdk = libs.versions.compile.sdk.get().toString().toInt()
 
     defaultConfig {

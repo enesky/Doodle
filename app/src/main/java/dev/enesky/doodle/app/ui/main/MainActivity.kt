@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
             DoodleTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background,
                 ) {
                     Greeting()
                 }
@@ -55,15 +55,15 @@ fun Greeting(
 
     Box(
         modifier = modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             Text(
                 modifier = Modifier.basicMarquee(
-                    iterations = Int.MAX_VALUE
+                    iterations = Int.MAX_VALUE,
                 ),
                 text = stringResource(id = R.string.welcome, stringResource(R.string.app_name)),
                 style = MaterialTheme.typography.headlineLarge,
@@ -72,7 +72,7 @@ fun Greeting(
                 modifier = Modifier.padding(32.dp),
                 onClick = {
                     print(animes)
-                }
+                },
             ) {
                 Text(text = "Request it", color = Color.White)
             }
@@ -86,7 +86,7 @@ private fun GreetingPreview() {
     DoodleTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
+            color = MaterialTheme.colorScheme.background,
         ) {
             Greeting()
         }

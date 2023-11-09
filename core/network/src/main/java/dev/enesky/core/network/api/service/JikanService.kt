@@ -21,16 +21,16 @@ interface JikanService {
         @Query("page") page: Int = 1,
         @Query("type") type: String = AnimeType.TV.type,
         @Query("filter") filter: String = AnimeFilter.G.filter,
-        @Query("sfw") sfw: Boolean = true
+        @Query("sfw") sfw: Boolean = true,
     ): AnimePagingResponse
 
     @GET("anime/{anime-id}")
     suspend fun getAnimeById(
-        @Path("anime-id") animeId: Int
+        @Path("anime-id") animeId: Int,
     ): Response<Anime>
 
     @GET("anime/{anime-id}/characters")
     suspend fun getCharactersByAnimeId(
-        @Path("anime-id") animeId: Int
+        @Path("anime-id") animeId: Int,
     ): Response<List<Character>>
 }

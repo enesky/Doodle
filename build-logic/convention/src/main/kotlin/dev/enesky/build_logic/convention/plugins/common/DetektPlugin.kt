@@ -22,7 +22,6 @@ import java.io.File
 class DetektPlugin : Plugin<Project> {
 
     override fun apply(project: Project) = with(project) {
-
         val sourcePath: String = rootDir.absolutePath
         val mainConfigFile = "$rootDir/config/detekt/config.yml"
         val composeConfigFile = "$rootDir/config/detekt/compose-config.yml"
@@ -43,7 +42,6 @@ class DetektPlugin : Plugin<Project> {
         }
 
         extensions.configure<DetektExtension> {
-
             tasks.withType<Detekt>().configureEach {
                 include(kotlinFiles)
                 exclude(resourceFiles, buildFiles, generatedFiles, ideRelatedFiles)

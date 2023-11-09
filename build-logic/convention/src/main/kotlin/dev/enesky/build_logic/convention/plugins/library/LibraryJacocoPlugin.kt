@@ -18,5 +18,4 @@ class LibraryJacocoPlugin : Plugin<Project> {
             configureJacoco(extension)
         }
     }
-
 }

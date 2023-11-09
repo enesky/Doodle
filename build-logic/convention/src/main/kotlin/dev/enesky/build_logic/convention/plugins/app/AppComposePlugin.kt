@@ -19,9 +19,7 @@ class AppComposePlugin : Plugin<Project> {
             configureAndroidCompose(extensions.getByType<ApplicationExtension>())
 
             dependencies {
-
             }
         }
     }
-
 }

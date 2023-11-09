@@ -16,7 +16,7 @@ private val coverageExclusions = listOf(
     "**/R.class",
     "**/R\$*.class",
     "**/BuildConfig.*",
-    "**/Manifest*.*"
+    "**/Manifest*.*",
 )
 
 private fun String.capitalize() = replaceFirstChar {
@@ -27,7 +27,7 @@ internal fun Project.configureJacoco(
     androidComponentsExtension: AndroidComponentsExtension<*, *, *>,
 ) {
     configure<JacocoPluginExtension> {
-        //toolVersion = libs.versions.jacoco.get().toString()
+        // toolVersion = libs.versions.jacoco.get().toString()
     }
 
     val jacocoTestReport = tasks.create("jacocoTestReport")
@@ -46,7 +46,7 @@ internal fun Project.configureJacoco(
             classDirectories.setFrom(
                 fileTree("$buildDir/tmp/kotlin-classes/${variant.name}") {
                     exclude(coverageExclusions)
-                }
+                },
             )
 
             sourceDirectories.setFrom(files("$projectDir/src/main/java", "$projectDir/src/main/kotlin"))
