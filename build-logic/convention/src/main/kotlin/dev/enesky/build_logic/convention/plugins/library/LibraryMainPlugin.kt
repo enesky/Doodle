@@ -27,6 +27,8 @@ class LibraryMainPlugin : Plugin<Project> {
 
             dependencies {
                 add("implementation", libs.core.ktx)
+                add("implementation", libs.material)
+                add("implementation", libs.appcompat)
                 add("implementation", libs.lifecycle.runtime.ktx)
             }
         }
