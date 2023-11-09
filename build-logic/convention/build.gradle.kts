@@ -20,6 +20,7 @@ dependencies {
     compileOnly(libs.kotlin.gradle.plugin)
     compileOnly(libs.ksp.gradle.plugin)
     compileOnly(libs.detekt.gradle.plugin)
+    compileOnly(libs.spotless.gradle.plugin)
 
     enableVersionCatalogAccess()
 }
@@ -103,7 +104,11 @@ gradlePlugin {
         }
         register("commonDetekt") {
             id = libs.plugins.common.detekt.get().pluginId
-            implementationClass = "$rootPath.common.DetektConventionPlugin"
+            implementationClass = "$rootPath.common.DetektPlugin"
+        }
+        register("commonSpotless") {
+            id = libs.plugins.common.spotless.get().pluginId
+            implementationClass = "$rootPath.common.SpotlessPlugin"
         }
     }
 }

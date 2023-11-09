@@ -38,6 +38,8 @@ desugar-jdk-libs                      = "2.0.3"
 jacoco                                = "0.8.7"
 appcompat                             = "1.6.1"
 material                              = "1.10.0"
+ktlint                                = "11.4.2"
+spotless                              = "6.22.0"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
@@ -49,6 +51,8 @@ google-services                       = { id= "com.google.gms.google-services", 
 firebase-crashlytics                  = { id= "com.google.firebase.crashlytics", version.ref= "crashlytics-plugin"}
 firebase-performance                  = { id= "com.google.firebase.firebase-perf", version.ref= "firebase-perf-plugin"}
 detekt-plugin                         = { id= "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+ktlint-plugin                         = { id= "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+spotless-plugin                       = { id= "com.diffplug.spotless", version.ref = "spotless" }
 
 # Convention Plugins
 app-main                              = { id= "app.main", version= "unspecified" }
@@ -64,6 +68,7 @@ common-signing-config                 = { id= "common.signing.config", version= 
 common-api-key-provider               = { id= "common.api.key.provider", version= "unspecified" }
 common-git-hooks                      = { id= "common.git.hooks", version= "unspecified" }
 common-detekt                         = { id= "common.detekt", version= "unspecified" }
+common-spotless                       = { id= "common.spotless", version= "unspecified" }
 
 [libraries]
 core-ktx                              = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }
@@ -115,6 +120,7 @@ kotlin-gradle-plugin                  = { module= "org.jetbrains.kotlin:kotlin-g
 ksp-gradle-plugin                     = { module= "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp-plugin" }
 detekt-gradle-plugin                  = { module= "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref= "detekt" }
 desugar-jdk-libs                      = { module= "com.android.tools:desugar_jdk_libs", version.ref= "desugar-jdk-libs" }
+spotless-gradle-plugin                = { module= "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
 [bundles]
 compose-materials                     = ["androidx-paging-compose", "ui", "ui-graphics", "ui-tooling-preview", "material3"]

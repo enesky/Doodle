@@ -9,8 +9,11 @@ plugins {
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.firebase.performance) apply false
     alias(libs.plugins.detekt.plugin) apply false
+    alias(libs.plugins.spotless.plugin) apply false
+    alias(libs.plugins.ktlint.plugin) apply false
 
     // Convention Plugins
+    id(libs.plugins.common.spotless.get().pluginId)
     id(libs.plugins.common.detekt.get().pluginId)
     id(libs.plugins.common.git.hooks.get().pluginId)
 }
