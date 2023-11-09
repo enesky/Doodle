@@ -1,9 +1,9 @@
 plugins {
     // Convention Plugins
-    id(libs.plugins.doodle.android.application.main.get().pluginId)
-    id(libs.plugins.doodle.android.application.compose.get().pluginId)
-    id(libs.plugins.doodle.android.application.firebase.get().pluginId)
-    id(libs.plugins.doodle.android.signing.config.get().pluginId)
+    id(libs.plugins.app.main.get().pluginId)
+    id(libs.plugins.app.compose.get().pluginId)
+    id(libs.plugins.app.firebase.get().pluginId)
+    id(libs.plugins.common.signing.config.get().pluginId)
 }
 
 android {

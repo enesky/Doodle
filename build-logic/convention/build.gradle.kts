@@ -27,73 +27,74 @@ dependencies {
 /**
  * Little note about convention plugin id naming
  *
- * ID's should be UNIQUE
+ * All plugin id's have to be UNIQUE
  * If a id starts with something like this -> doodle.android.application
  * And there is a different id like this -> doodle.android.application.compose
  * First one will give you troubles when you try to use it
  * Because it may recognized as the second one and it can throw an error
  * Try to use unique id's like -> doodle.android.application.main instead of doodle.android.application
- *
  **/
 
 gradlePlugin {
     plugins {
+        val rootPath = "dev.enesky.build_logic.plugins"
+
         // App Related Convention Plugins
         register("appMain") {
-            id = libs.plugins.doodle.android.application.main.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.app.AppMainPlugin"
+            id = libs.plugins.app.main.get().pluginId
+            implementationClass = "$rootPath.app.AppMainPlugin"
         }
         register("appCompose") {
-            id = libs.plugins.doodle.android.application.compose.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.app.AppComposePlugin"
-        }
-        register("appFirebase") {
-            id = libs.plugins.doodle.android.application.firebase.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.app.AppFirebasePlugin"
+            id = libs.plugins.app.compose.get().pluginId
+            implementationClass = "$rootPath.app.AppComposePlugin"
         }
         register("appJacoco") {
-            id = libs.plugins.doodle.android.application.jacoco.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.app.AppJacocoPlugin"
+            id = libs.plugins.app.jacoco.get().pluginId
+            implementationClass = "$rootPath.app.AppJacocoPlugin"
+        }
+        register("appFirebase") {
+            id = libs.plugins.app.firebase.get().pluginId
+            implementationClass = "$rootPath.app.AppFirebasePlugin"
         }
 
         // Library Related Convention Plugins
         register("libraryMain") {
-            id = libs.plugins.doodle.android.library.main.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.library.LibraryMainPlugin"
+            id = libs.plugins.library.main.get().pluginId
+            implementationClass = "$rootPath.library.LibraryMainPlugin"
         }
         register("libraryCompose") {
-            id = libs.plugins.doodle.android.library.compose.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.library.LibraryComposePlugin"
+            id = libs.plugins.library.compose.get().pluginId
+            implementationClass = "$rootPath.library.LibraryComposePlugin"
         }
         register("libraryJacoco") {
-            id = libs.plugins.doodle.android.library.jacoco.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.library.LibraryJacocoPlugin"
+            id = libs.plugins.library.jacoco.get().pluginId
+            implementationClass = "$rootPath.library.LibraryJacocoPlugin"
         }
 
         // Common Convention Plugins
-        register("commonSigningConfig") {
-            id = libs.plugins.doodle.android.signing.config.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.common.SigningConfigPlugin"
-        }
         register("commonFeature") {
-            id = libs.plugins.doodle.android.feature.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.common.FeaturePlugin"
+            id = libs.plugins.common.feature.get().pluginId
+            implementationClass = "$rootPath.common.FeaturePlugin"
         }
         register("commonTest") {
-            id = libs.plugins.doodle.android.test.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.common.TestPlugin"
+            id = libs.plugins.common.test.get().pluginId
+            implementationClass = "$rootPath.common.TestPlugin"
         }
-        register("commonDetekt") {
-            id = libs.plugins.doodle.detekt.library.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.common.DetektConventionPlugin"
+        register("commonSigningConfig") {
+            id = libs.plugins.common.signing.config.get().pluginId
+            implementationClass = "$rootPath.common.SigningConfigPlugin"
         }
         register("commonApiKeyProvider") {
-            id = libs.plugins.doodle.api.key.provider.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.common.ApiKeyProviderPlugin"
+            id = libs.plugins.common.api.key.provider.get().pluginId
+            implementationClass = "$rootPath.common.ApiKeyProviderPlugin"
         }
         register("commonGitHooks") {
-            id = libs.plugins.doodle.git.hooks.get().pluginId
-            implementationClass = "dev.enesky.build_logic.plugins.common.GitHooksPlugin"
+            id = libs.plugins.common.git.hooks.get().pluginId
+            implementationClass = "$rootPath.common.GitHooksPlugin"
+        }
+        register("commonDetekt") {
+            id = libs.plugins.common.detekt.get().pluginId
+            implementationClass = "$rootPath.common.DetektConventionPlugin"
         }
     }
 }

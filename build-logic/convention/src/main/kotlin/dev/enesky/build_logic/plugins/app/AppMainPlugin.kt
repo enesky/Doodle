@@ -21,7 +21,7 @@ class AppMainPlugin : Plugin<Project> {
             apply(libs.plugins.android.application.get().pluginId)
             apply(libs.plugins.kotlin.android.get().pluginId)
             apply(libs.plugins.ksp.plugin.get().pluginId)
-            apply(libs.plugins.doodle.android.feature.get().pluginId)
+            apply(libs.plugins.common.feature.get().pluginId)
         }
 
         extensions.configure<ApplicationExtension> {

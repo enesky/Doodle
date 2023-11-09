@@ -1,7 +1,7 @@
 plugins {
     // Convention Plugins
-    id(libs.plugins.doodle.android.library.compose.get().pluginId)
-    id(libs.plugins.doodle.android.library.main.get().pluginId)
+    id(libs.plugins.library.main.get().pluginId)
+    id(libs.plugins.library.compose.get().pluginId)
 }
 
 android.namespace = "dev.enesky.feature.main"
