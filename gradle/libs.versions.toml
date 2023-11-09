@@ -36,6 +36,8 @@ espresso-core                         = "3.5.1"
 coilCompose                           = "2.4.0"
 desugar-jdk-libs                      = "2.0.3"
 jacoco                                = "0.8.7"
+appcompat                             = "1.6.1"
+material                              = "1.10.0"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
@@ -104,6 +106,8 @@ junit                                 = { module= "junit:junit", version.ref= "j
 detekt-formatting-rules               = { module= "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref= "detekt" }
 detekt-compose-rules                  = { module= "io.nlopez.compose.rules:detekt", version.ref= "detekt-compose" }
 coil-compose                          = { module= "io.coil-kt:coil-compose", version.ref= "coilCompose" }
+appcompat                             = { module= "androidx.appcompat:appcompat", version.ref = "appcompat" }
+material                              = { module= "com.google.android.material:material", version.ref = "material" }
 
 # Dependencies of the included build-logic
 android-gradle-plugin                 = { module= "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
