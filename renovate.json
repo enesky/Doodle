@@ -25,8 +25,13 @@
       "platformAutomerge": true
     },
     {
-      "description": "Exclude Spotless updates",
-      "matchPackagePrefixes": ["com.diffplug.spotless"],
+      "groupName": "Convention Plugins",
+      "matchPackagePrefixes": [],
+      "matchPackagePatterns": [
+        "app.*",
+        "library.*",
+        "common.*"
+      ],
       "enabled": false
     }
   ]
