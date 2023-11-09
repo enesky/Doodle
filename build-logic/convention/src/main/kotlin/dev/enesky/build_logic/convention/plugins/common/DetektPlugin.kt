@@ -19,15 +19,14 @@ import java.io.File
  *  to use it with auto correct enabled -> ./gradlew detektAll / detektDevPremiumDebug --auto-correct
  *  to use it to create a baseline -> ./gradlew detektCreateBaseline / detektBaselineDevPremiumDebug
  **/
-
-class DetektConventionPlugin : Plugin<Project> {
+class DetektPlugin : Plugin<Project> {
 
     override fun apply(project: Project) = with(project) {
 
         val sourcePath: String = rootDir.absolutePath
-        val mainConfigFile = "$rootDir/detekt/config.yml"
-        val composeConfigFile = "$rootDir/detekt/compose-config.yml"
-        val baselineFile = "$rootDir/detekt/baseline.xml"
+        val mainConfigFile = "$rootDir/config/detekt/config.yml"
+        val composeConfigFile = "$rootDir/config/detekt/compose-config.yml"
+        val baselineFile = "$rootDir/config/detekt/baseline.xml"
         val kotlinFiles = "**/*.kt"
         val resourceFiles = "**/resources/**"
         val buildFiles = "**/build/**"
