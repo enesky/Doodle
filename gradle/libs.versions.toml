@@ -1,5 +1,6 @@
 [versions]
 # Project Versions
+jvm                                   = "17"
 compile-sdk                           = "34"
 min-sdk                               = "24"
 target-sdk                            = "34"
@@ -33,15 +34,13 @@ junit                                 = "4.13.2"
 androidx-test-ext-junit               = "1.1.5"
 espresso-core                         = "3.5.1"
 coilCompose                           = "2.4.0"
-appcompat                             = "1.6.1"
-material                              = "1.10.0"
 desugar-jdk-libs                      = "2.0.3"
 jacoco                                = "0.8.7"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
 android-library                       = { id= "com.android.library", version.ref= "gradle-plugin" }
-android-test                          = { id = "com.android.test", version.ref = "gradle-plugin" }
+android-test                          = { id= "com.android.test", version.ref = "gradle-plugin" }
 kotlin-android                        = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin-plugin" }
 ksp-plugin                            = { id= "com.google.devtools.ksp", version.ref= "ksp-plugin"}
 google-services                       = { id= "com.google.gms.google-services", version.ref= "google-services-plugin"}
@@ -112,8 +111,6 @@ kotlin-gradle-plugin                  = { module= "org.jetbrains.kotlin:kotlin-g
 ksp-gradle-plugin                     = { module= "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp-plugin" }
 detekt-gradle-plugin                  = { module= "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref= "detekt" }
 desugar-jdk-libs                      = { module= "com.android.tools:desugar_jdk_libs", version.ref= "desugar-jdk-libs" }
-appcompat                             = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material                              = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
 compose-materials                     = ["androidx-paging-compose", "ui", "ui-graphics", "ui-tooling-preview", "material3"]
