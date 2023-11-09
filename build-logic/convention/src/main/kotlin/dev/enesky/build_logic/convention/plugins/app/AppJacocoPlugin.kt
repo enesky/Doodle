@@ -17,5 +17,4 @@ class AppJacocoPlugin : Plugin<Project> {
             configureJacoco(extension)
         }
     }
-
 }

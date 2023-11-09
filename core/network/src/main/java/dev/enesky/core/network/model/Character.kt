@@ -13,7 +13,7 @@ data class Character(
     val character: Person,
     val role: String,
     val favorites: Int,
-    val voiceActors: List<VoiceActor>
+    val voiceActors: List<VoiceActor>,
 ) : Parcelable
 
 @Parcelize
@@ -21,11 +21,11 @@ data class Person(
     @SerializedName("mal_id") val id: Int,
     val url: String,
     val images: Images,
-    val name: String
+    val name: String,
 ) : Parcelable
 
 @Parcelize
 data class VoiceActor(
     val person: Person,
-    val language: String
+    val language: String,
 ) : Parcelable

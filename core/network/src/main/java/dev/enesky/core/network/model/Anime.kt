@@ -53,13 +53,13 @@ data class Trailer(
     @SerializedName("youtube_id") val youtubeId: String,
     val url: String,
     @SerializedName("emdeb_url") val embedUrl: String,
-    val images: Images
+    val images: Images,
 ) : Parcelable
 
 @Parcelize
 data class TitleList(
     val type: String,
-    val title: String
+    val title: String,
 ) : Parcelable
 
 @Parcelize
@@ -67,14 +67,14 @@ data class AiredTime(
     val from: String,
     val to: String,
     val prop: AiredProp,
-    val string: String
+    val string: String,
 ) : Parcelable
 
 @Parcelize
 data class AiredProp(
     val day: Int,
     val month: Int,
-    val year: Int
+    val year: Int,
 ) : Parcelable
 
 @Parcelize
@@ -82,7 +82,7 @@ data class Broadcast(
     val day: String,
     val time: String,
     val timezone: String,
-    val string: String
+    val string: String,
 ) : Parcelable
 
 @Parcelize
@@ -90,5 +90,5 @@ data class InnerAnimeItem(
     @SerializedName("mal_id") val id: Int,
     val type: String,
     val name: String,
-    val url: String
+    val url: String,
 ) : Parcelable

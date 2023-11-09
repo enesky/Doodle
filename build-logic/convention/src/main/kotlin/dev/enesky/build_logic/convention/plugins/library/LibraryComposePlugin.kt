@@ -20,5 +20,4 @@ class LibraryComposePlugin : Plugin<Project> {
             configureAndroidCompose(extension)
         }
     }
-
 }

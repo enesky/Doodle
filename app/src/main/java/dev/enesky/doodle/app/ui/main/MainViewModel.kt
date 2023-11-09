@@ -4,12 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import dev.enesky.core.network.model.Anime
-import dev.enesky.core.network.util.Resource
-import dev.enesky.core.network.util.asResource
 import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
 import dev.enesky.core.domain.usecase.AnimeUseCase
 import dev.enesky.core.domain.usecase.PopularAnimesUseCase
+import dev.enesky.core.network.model.Anime
+import dev.enesky.core.network.util.Resource
+import dev.enesky.core.network.util.asResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 class MainViewModel(
     private val popularAnimesUseCase: PopularAnimesUseCase,
     private val animeUseCase: AnimeUseCase,
-    private val animeCharactersUseCase: AnimeCharactersUseCase
+    private val animeCharactersUseCase: AnimeCharactersUseCase,
 ) : ViewModel() {
 
     var popularAnimes: Flow<PagingData<Anime>> = emptyFlow()

@@ -12,7 +12,7 @@ import java.io.IOException
  */
 
 class PopularAnimesPagingSource(
-    private val jikanService: JikanService
+    private val jikanService: JikanService,
 ) : PagingSource<Int, Anime>() {
 
     override fun getRefreshKey(state: PagingState<Int, Anime>): Int? {
@@ -31,7 +31,7 @@ class PopularAnimesPagingSource(
                     null
                 } else {
                     popularAnimes.pagination.currentPage.plus(1)
-                }
+                },
             )
         } catch (e: IOException) {
             LoadResult.Error(e)

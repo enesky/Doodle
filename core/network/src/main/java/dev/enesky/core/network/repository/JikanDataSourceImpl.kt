@@ -7,8 +7,8 @@ import dev.enesky.core.network.api.service.JikanService
 import dev.enesky.core.network.model.Anime
 import dev.enesky.core.network.model.Character
 import dev.enesky.core.network.paging.PopularAnimesPagingSource
-import dev.enesky.core.network.util.getBodyOrThrowError
 import dev.enesky.core.network.util.Constants.ITEMS_PER_PAGE
+import dev.enesky.core.network.util.getBodyOrThrowError
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.Flow
  */
 
 class JikanDataSourceImpl(
-    private val jikanService: JikanService
+    private val jikanService: JikanService,
 ) : JikanDataSource {
 
     override fun getPopularAnimes(): Flow<PagingData<Anime>> {
@@ -24,7 +24,7 @@ class JikanDataSourceImpl(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE),
             pagingSourceFactory = {
                 PopularAnimesPagingSource(jikanService)
-            }
+            },
         ).flow
     }
 

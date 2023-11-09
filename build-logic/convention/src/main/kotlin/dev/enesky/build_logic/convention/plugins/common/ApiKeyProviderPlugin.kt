@@ -21,10 +21,10 @@ class ApiKeyProviderPlugin : Plugin<Project> {
         }
 
         val doodleApiUrl: String = checkNotNull(
-            localProperties.getProperty("doodle.api.url") ?: System.getenv("DOODLE_API_URL") ?: "\"\""
+            localProperties.getProperty("doodle.api.url") ?: System.getenv("DOODLE_API_URL") ?: "\"\"",
         )
         val doodleApiKey: String = checkNotNull(
-            localProperties.getProperty("doodle.api.key") ?: System.getenv("DOODLE_API_KEY") ?: "\"\""
+            localProperties.getProperty("doodle.api.key") ?: System.getenv("DOODLE_API_KEY") ?: "\"\"",
         )
 
         with(extensions.getByType<LibraryExtension>()) {

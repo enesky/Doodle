@@ -1,9 +1,9 @@
 package dev.enesky.core.domain.di
 
-import dev.enesky.core.network.repository.JikanRepository
 import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
 import dev.enesky.core.domain.usecase.AnimeUseCase
 import dev.enesky.core.domain.usecase.PopularAnimesUseCase
+import dev.enesky.core.network.repository.JikanRepository
 import org.koin.dsl.module
 
 /**

@@ -26,7 +26,7 @@ class SigningConfigPlugin : Plugin<Project> {
             val releaseSigningConfig = createSigningConfigFromProperties(
                 target = this@with,
                 name = "release",
-                properties = keystoreProperties
+                properties = keystoreProperties,
             )
 
             defaultConfig {
