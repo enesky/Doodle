@@ -48,6 +48,27 @@
         "common.*"
       ],
       "enabled": false
+    },
+    {
+      "groupName": "Convention Plugins with Exact Namings",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": [
+        "^app.main.*",
+        "^app.compose.*",
+        "^app.jacoco.*",
+        "^app.firebase.*",
+        "^library.main.*",
+        "^library.compose.*",
+        "^library.jacoco.*",
+        "^common.feature.*",
+        "^common.test.*",
+        "^common.signing.config.*",
+        "^common.api.key.provider.*",
+        "^common.git.hooks.*",
+        "^common.detekt.*"
+      ],
+      "excludePackageNames": [],
+      "enabled": true
     }
   ]
 }
