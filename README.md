@@ -8,6 +8,7 @@
 
 <p align="center">
   <a href="https://renovatebot.com/"><img alt="Renovate" src="https://img.shields.io/badge/RenovateBot-not_enabled-red.svg"/></a>
+  <a href="https://github.com/enesky/Doodle/actions/workflows/build.yml"><img alt="Build with Gradle" src="https://github.com/enesky/Doodle/actions/workflows/build.yml/badge.svg"/></a>
   <a href="https://github.com/enesky/Doodle/actions/workflows/detekt.yml"><img alt="Scan with Detekt" src="https://github.com/enesky/Doodle/actions/workflows/detekt.yml/badge.svg"/></a>
   <!-- Add more -->
 </p>
