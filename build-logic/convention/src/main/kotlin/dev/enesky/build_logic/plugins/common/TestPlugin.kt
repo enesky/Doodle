@@ -1,3 +1,5 @@
+package dev.enesky.build_logic.plugins.common
+
 import com.android.build.gradle.TestExtension
 import dev.enesky.build_logic.convention.configureKotlinAndroid
 import dev.enesky.build_logic.convention.libs
@@ -10,7 +12,7 @@ import org.gradle.kotlin.dsl.dependencies
  * Configure Test libraries for Android
  * -> For benchmark/build.gradle.kts, not for other/build.gradle.kts <-
  */
-class AndroidTestConventionPlugin : Plugin<Project> {
+class TestPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply(libs.plugins.android.test.get().pluginId)

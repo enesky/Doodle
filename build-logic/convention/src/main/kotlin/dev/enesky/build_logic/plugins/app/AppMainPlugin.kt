@@ -1,3 +1,5 @@
+package dev.enesky.build_logic.plugins.app
+
 import com.android.build.api.dsl.ApplicationExtension
 import dev.enesky.build_logic.convention.configureKotlinAndroid
 import dev.enesky.build_logic.convention.getBuildTypes
@@ -13,7 +15,7 @@ import org.gradle.kotlin.dsl.dependencies
  * Configure Android Application-specific options
  *  -> Only for app/build.gradle.kts <-
  */
-class AndroidApplicationMainConventionPlugin : Plugin<Project> {
+class AppMainPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply(libs.plugins.android.application.get().pluginId)

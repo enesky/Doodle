@@ -1,3 +1,5 @@
+package dev.enesky.build_logic.plugins.common
+
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.Delete
@@ -9,7 +11,7 @@ import org.gradle.kotlin.dsl.register
  * -> Only for project/build.gradle.kts <-
  */
 
-class GitHooksConventionPlugin : Plugin<Project> {
+class GitHooksPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
 
         apply(from = "git-hooks/githooks.gradle")

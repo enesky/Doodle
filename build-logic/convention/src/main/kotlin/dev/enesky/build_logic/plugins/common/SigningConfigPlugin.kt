@@ -1,4 +1,4 @@
-
+package dev.enesky.build_logic.plugins.common
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import dev.enesky.build_logic.convention.createSigningConfigFromProperties
 import org.gradle.api.Plugin
@@ -10,7 +10,7 @@ import java.util.Properties
  * Configure Android Signing Config-specific options
  *      -> Only for app/build.gradle.kts <-
  */
-class AndroidSigningConfigConventionPlugin : Plugin<Project> {
+class SigningConfigPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         val keystoreProperties = Properties()
         val keystorePath = "../Doodle/keystore/keystore.properties"

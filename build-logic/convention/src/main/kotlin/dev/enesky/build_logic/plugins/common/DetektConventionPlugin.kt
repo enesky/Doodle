@@ -1,3 +1,5 @@
+package dev.enesky.build_logic.plugins.common
+
 import dev.enesky.build_logic.convention.libs
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask

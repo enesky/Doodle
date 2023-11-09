@@ -1,3 +1,5 @@
+package dev.enesky.build_logic.plugins.library
+
 import com.android.build.gradle.LibraryExtension
 import dev.enesky.build_logic.convention.configureKotlinAndroid
 import dev.enesky.build_logic.convention.libs
@@ -10,7 +12,7 @@ import org.gradle.kotlin.dsl.dependencies
  * Android Library Main Convention Plugin
  * -> For modules/build.gradle.kts, not for app/build.gradle.kts <-
  */
-class AndroidLibraryMainConventionPlugin : Plugin<Project> {
+class LibraryMainPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {

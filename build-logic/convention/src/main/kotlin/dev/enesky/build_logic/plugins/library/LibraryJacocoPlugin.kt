@@ -1,3 +1,5 @@
+package dev.enesky.build_logic.plugins.library
+
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import dev.enesky.build_logic.convention.configureJacoco
 import dev.enesky.build_logic.convention.libs
@@ -5,7 +7,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 
-class AndroidLibraryJacocoConventionPlugin : Plugin<Project> {
+class LibraryJacocoPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {

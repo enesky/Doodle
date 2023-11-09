@@ -1,9 +1,11 @@
+package dev.enesky.build_logic.plugins.app
+
 import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class AndroidApplicationFirebaseConventionPlugin : Plugin<Project> {
+class AppFirebasePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {

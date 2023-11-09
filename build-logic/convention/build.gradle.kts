@@ -38,57 +38,62 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        register("androidApplication") {
+        // App Related Convention Plugins
+        register("appMain") {
             id = libs.plugins.doodle.android.application.main.get().pluginId
-            implementationClass = "AndroidApplicationMainConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.app.AppMainPlugin"
         }
-        register("androidSigningConfig") {
-            id = libs.plugins.doodle.android.signing.config.get().pluginId
-            implementationClass = "AndroidSigningConfigConventionPlugin"
-        }
-        register("androidApplicationCompose") {
+        register("appCompose") {
             id = libs.plugins.doodle.android.application.compose.get().pluginId
-            implementationClass = "AndroidApplicationComposeConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.app.AppComposePlugin"
         }
-        register("androidFirebase") {
+        register("appFirebase") {
             id = libs.plugins.doodle.android.application.firebase.get().pluginId
-            implementationClass = "AndroidApplicationFirebaseConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.app.AppFirebasePlugin"
         }
-        register("androidApplicationJacoco") {
+        register("appJacoco") {
             id = libs.plugins.doodle.android.application.jacoco.get().pluginId
-            implementationClass = "AndroidApplicationJacocoConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.app.AppJacocoPlugin"
         }
-        register("androidFeature") {
-            id = libs.plugins.doodle.android.feature.get().pluginId
-            implementationClass = "AndroidFeatureConventionPlugin"
-        }
-        register("androidLibrary") {
+
+        // Library Related Convention Plugins
+        register("libraryMain") {
             id = libs.plugins.doodle.android.library.main.get().pluginId
-            implementationClass = "AndroidLibraryMainConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.library.LibraryMainPlugin"
         }
-        register("androidLibraryCompose") {
+        register("libraryCompose") {
             id = libs.plugins.doodle.android.library.compose.get().pluginId
-            implementationClass = "AndroidLibraryComposeConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.library.LibraryComposePlugin"
         }
-        register("androidLibraryJacoco") {
+        register("libraryJacoco") {
             id = libs.plugins.doodle.android.library.jacoco.get().pluginId
-            implementationClass = "AndroidLibraryJacocoConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.library.LibraryJacocoPlugin"
         }
-        register("androidTest") {
+
+        // Common Convention Plugins
+        register("commonSigningConfig") {
+            id = libs.plugins.doodle.android.signing.config.get().pluginId
+            implementationClass = "dev.enesky.build_logic.plugins.common.SigningConfigPlugin"
+        }
+        register("commonFeature") {
+            id = libs.plugins.doodle.android.feature.get().pluginId
+            implementationClass = "dev.enesky.build_logic.plugins.common.FeaturePlugin"
+        }
+        register("commonTest") {
             id = libs.plugins.doodle.android.test.get().pluginId
-            implementationClass = "AndroidTestConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.common.TestPlugin"
         }
-        register("detekt") {
+        register("commonDetekt") {
             id = libs.plugins.doodle.detekt.library.get().pluginId
-            implementationClass = "DetektConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.common.DetektConventionPlugin"
         }
-        register("apiKeyProvider") {
+        register("commonApiKeyProvider") {
             id = libs.plugins.doodle.api.key.provider.get().pluginId
-            implementationClass = "ApiKeyProviderConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.common.ApiKeyProviderPlugin"
         }
-        register("gitHooks") {
+        register("commonGitHooks") {
             id = libs.plugins.doodle.git.hooks.get().pluginId
-            implementationClass = "GitHooksConventionPlugin"
+            implementationClass = "dev.enesky.build_logic.plugins.common.GitHooksPlugin"
         }
     }
 }

@@ -1,3 +1,5 @@
+package dev.enesky.build_logic.plugins.common
+
 import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -8,7 +10,7 @@ import java.util.Properties
  * Configure Api Key Provider
  * -> Only for core/network/build.gradle.kts <-
  */
-class ApiKeyProviderConventionPlugin : Plugin<Project> {
+class ApiKeyProviderPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         val localProperties = Properties()
         val localPropertiesFile = rootProject.file("local.properties") // It's ignored by git
