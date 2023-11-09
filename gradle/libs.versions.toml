@@ -1,5 +1,6 @@
 [versions]
 # Project Versions
+jvm                                   = "17"
 compile-sdk                           = "34"
 min-sdk                               = "24"
 target-sdk                            = "34"
@@ -33,15 +34,13 @@ junit                                 = "4.13.2"
 androidx-test-ext-junit               = "1.1.5"
 espresso-core                         = "3.5.1"
 coilCompose                           = "2.4.0"
-appcompat                             = "1.6.1"
-material                              = "1.10.0"
 desugar-jdk-libs                      = "2.0.3"
 jacoco                                = "0.8.7"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
 android-library                       = { id= "com.android.library", version.ref= "gradle-plugin" }
-android-test                          = { id = "com.android.test", version.ref = "gradle-plugin" }
+android-test                          = { id= "com.android.test", version.ref = "gradle-plugin" }
 kotlin-android                        = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin-plugin" }
 ksp-plugin                            = { id= "com.google.devtools.ksp", version.ref= "ksp-plugin"}
 google-services                       = { id= "com.google.gms.google-services", version.ref= "google-services-plugin"}
@@ -50,19 +49,19 @@ firebase-performance                  = { id= "com.google.firebase.firebase-perf
 detekt-plugin                         = { id= "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
 # Convention Plugins
-doodle-android-application-main       = { id= "doodle.android.application.main", version= "unspecified" }
-doodle-android-application-compose    = { id= "doodle.android.application.compose", version= "unspecified" }
-doodle-android-application-firebase   = { id= "doodle.android.application.firebase", version= "unspecified" }
-doodle-android-application-jacoco     = { id= "doodle.android.application.jacoco", version= "unspecified" }
-doodle-android-signing-config         = { id= "doodle.android.signing.config", version= "unspecified" }
-doodle-android-feature                = { id= "doodle.android.feature", version= "unspecified" }
-doodle-android-library-main           = { id= "doodle.android.library.main", version= "unspecified" }
-doodle-android-library-compose        = { id= "doodle.android.library.compose", version= "unspecified" }
-doodle-android-library-jacoco         = { id= "doodle.android.library.jacoco", version= "unspecified" }
-doodle-android-test                   = { id= "doodle.android.test", version= "unspecified" }
-doodle-detekt-library                 = { id= "doodle.detekt.library", version= "unspecified" }
-doodle-api-key-provider               = { id= "doodle.api.key.provider", version= "unspecified" }
-doodle-git-hooks                      = { id= "doodle.git.hooks", version= "unspecified" }
+app-main                              = { id= "app.main", version= "unspecified" }
+app-compose                           = { id= "app.compose", version= "unspecified" }
+app-jacoco                            = { id= "app.jacoco", version= "unspecified" }
+app-firebase                          = { id= "app.firebase", version= "unspecified" }
+library-main                          = { id= "library.main", version= "unspecified" }
+library-compose                       = { id= "library.compose", version= "unspecified" }
+library-jacoco                        = { id= "library.jacoco", version= "unspecified" }
+common-feature                        = { id= "common.feature", version= "unspecified" }
+common-test                           = { id= "common.test", version= "unspecified" }
+common-signing-config                 = { id= "common.signing.config", version= "unspecified" }
+common-api-key-provider               = { id= "common.api.key.provider", version= "unspecified" }
+common-git-hooks                      = { id= "common.git.hooks", version= "unspecified" }
+common-detekt                         = { id= "common.detekt", version= "unspecified" }
 
 [libraries]
 core-ktx                              = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }
@@ -112,11 +111,9 @@ kotlin-gradle-plugin                  = { module= "org.jetbrains.kotlin:kotlin-g
 ksp-gradle-plugin                     = { module= "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp-plugin" }
 detekt-gradle-plugin                  = { module= "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref= "detekt" }
 desugar-jdk-libs                      = { module= "com.android.tools:desugar_jdk_libs", version.ref= "desugar-jdk-libs" }
-appcompat                             = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material                              = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
-compose-materials                     = ["ui", "ui-graphics", "ui-tooling-preview", "material3"]
+compose-materials                     = ["androidx-paging-compose", "ui", "ui-graphics", "ui-tooling-preview", "material3"]
 debug-implementations                 = ["ui-tooling", "ui-test-manifest", "leak-canary", "chucker"]
 koin-materials                        = ["koin-coroutines", "koin-navigation", "koin-compose"]
 koin-test-materials                   = ["koin-test-junit-4", "koin-test-android"]
@@ -124,4 +121,4 @@ testing                               = ["androidx-test-ext-junit", "espresso-co
 network                               = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
 firebase-materials                    = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
 third-party-libraries                 = ["compose-state-events", "coil-compose"]
-androidx-libraries                    = ["androidx-paging-compose","data-store", "data-store-preferences"]
+androidx-libraries                    = ["androidx-paging-compose", "data-store", "data-store-preferences"]

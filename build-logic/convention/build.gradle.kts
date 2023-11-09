@@ -7,12 +7,12 @@ plugins {
 group = "dev.enesky.build_logic.convention"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.jvm.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.jvm.get())
 }
 
 tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+    kotlinOptions.jvmTarget = libs.versions.jvm.get().toString()
 }
 
 dependencies {
@@ -27,68 +27,83 @@ dependencies {
 /**
  * Little note about convention plugin id naming
  *
- * ID's should be UNIQUE
+ * All plugin id's have to be UNIQUE
  * If a id starts with something like this -> doodle.android.application
  * And there is a different id like this -> doodle.android.application.compose
  * First one will give you troubles when you try to use it
  * Because it may recognized as the second one and it can throw an error
  * Try to use unique id's like -> doodle.android.application.main instead of doodle.android.application
- *
  **/
 
 gradlePlugin {
     plugins {
-        register("androidApplication") {
-            id = libs.plugins.doodle.android.application.main.get().pluginId
-            implementationClass = "AndroidApplicationMainConventionPlugin"
+        val rootPath = "dev.enesky.build_logic.convention.plugins"
+
+        /**
+         * App Related Convention Plugins
+         * -> For app/build.gradle.kts, not for modules/build.gradle.kts <-
+         */
+        register("appMain") {
+            id = libs.plugins.app.main.get().pluginId
+            implementationClass = "$rootPath.app.AppMainPlugin"
         }
-        register("androidSigningConfig") {
-            id = libs.plugins.doodle.android.signing.config.get().pluginId
-            implementationClass = "AndroidSigningConfigConventionPlugin"
+        register("appCompose") {
+            id = libs.plugins.app.compose.get().pluginId
+            implementationClass = "$rootPath.app.AppComposePlugin"
         }
-        register("androidApplicationCompose") {
-            id = libs.plugins.doodle.android.application.compose.get().pluginId
-            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        register("appJacoco") {
+            id = libs.plugins.app.jacoco.get().pluginId
+            implementationClass = "$rootPath.app.AppJacocoPlugin"
         }
-        register("androidFirebase") {
-            id = libs.plugins.doodle.android.application.firebase.get().pluginId
-            implementationClass = "AndroidApplicationFirebaseConventionPlugin"
+        register("appFirebase") {
+            id = libs.plugins.app.firebase.get().pluginId
+            implementationClass = "$rootPath.app.AppFirebasePlugin"
         }
-        register("androidApplicationJacoco") {
-            id = libs.plugins.doodle.android.application.jacoco.get().pluginId
-            implementationClass = "AndroidApplicationJacocoConventionPlugin"
+
+        /**
+         * Library Related Convention Plugins
+         * -> For modules/build.gradle.kts, not for app/build.gradle.kts <-
+         */
+        register("libraryMain") {
+            id = libs.plugins.library.main.get().pluginId
+            implementationClass = "$rootPath.library.LibraryMainPlugin"
         }
-        register("androidFeature") {
-            id = libs.plugins.doodle.android.feature.get().pluginId
-            implementationClass = "AndroidFeatureConventionPlugin"
+        register("libraryCompose") {
+            id = libs.plugins.library.compose.get().pluginId
+            implementationClass = "$rootPath.library.LibraryComposePlugin"
         }
-        register("androidLibrary") {
-            id = libs.plugins.doodle.android.library.main.get().pluginId
-            implementationClass = "AndroidLibraryMainConventionPlugin"
+        register("libraryJacoco") {
+            id = libs.plugins.library.jacoco.get().pluginId
+            implementationClass = "$rootPath.library.LibraryJacocoPlugin"
         }
-        register("androidLibraryCompose") {
-            id = libs.plugins.doodle.android.library.compose.get().pluginId
-            implementationClass = "AndroidLibraryComposeConventionPlugin"
+
+        /**
+         * Common Convention Plugins
+         * -> For both app/build.gradle.kts and modules/build.gradle.kts <-
+         */
+        register("commonFeature") {
+            id = libs.plugins.common.feature.get().pluginId
+            implementationClass = "$rootPath.common.FeaturePlugin"
         }
-        register("androidLibraryJacoco") {
-            id = libs.plugins.doodle.android.library.jacoco.get().pluginId
-            implementationClass = "AndroidLibraryJacocoConventionPlugin"
+        register("commonTest") {
+            id = libs.plugins.common.test.get().pluginId
+            implementationClass = "$rootPath.common.TestPlugin"
         }
-        register("androidTest") {
-            id = libs.plugins.doodle.android.test.get().pluginId
-            implementationClass = "AndroidTestConventionPlugin"
+        register("commonSigningConfig") {
+            id = libs.plugins.common.signing.config.get().pluginId
+            implementationClass = "$rootPath.common.SigningConfigPlugin"
         }
-        register("detekt") {
-            id = libs.plugins.doodle.detekt.library.get().pluginId
-            implementationClass = "DetektConventionPlugin"
+        register("commonApiKeyProvider") {
+            id = libs.plugins.common.api.key.provider.get().pluginId
+            implementationClass = "$rootPath.common.ApiKeyProviderPlugin"
         }
-        register("apiKeyProvider") {
-            id = libs.plugins.doodle.api.key.provider.get().pluginId
-            implementationClass = "ApiKeyProviderConventionPlugin"
+        register("commonGitHooks") {
+            id = libs.plugins.common.git.hooks.get().pluginId
+            implementationClass = "$rootPath.common.GitHooksPlugin"
         }
-        register("gitHooks") {
-            id = libs.plugins.doodle.git.hooks.get().pluginId
-            implementationClass = "GitHooksConventionPlugin"
+        register("commonDetekt") {
+            id = libs.plugins.common.detekt.get().pluginId
+            implementationClass = "$rootPath.common.DetektConventionPlugin"
         }
     }
 }

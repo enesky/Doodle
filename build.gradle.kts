@@ -11,6 +11,6 @@ plugins {
     alias(libs.plugins.detekt.plugin) apply false
 
     // Convention Plugins
-    id(libs.plugins.doodle.detekt.library.get().pluginId)
-    id(libs.plugins.doodle.git.hooks.get().pluginId)
+    id(libs.plugins.common.detekt.get().pluginId)
+    id(libs.plugins.common.git.hooks.get().pluginId)
 }

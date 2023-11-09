@@ -1,15 +1,18 @@
 plugins {
     // Convention Plugins
-    id(libs.plugins.doodle.android.library.main.get().pluginId)
+    id(libs.plugins.library.main.get().pluginId)
+    id(libs.plugins.common.feature.get().pluginId)
+    id(libs.plugins.common.api.key.provider.get().pluginId)
 }
 
 android.namespace = "dev.enesky.core.network"
 
 dependencies {
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    implementation(libs.bundles.network)
+    implementation(libs.bundles.third.party.libraries)
+    implementation(libs.bundles.androidx.libraries)
+
+    // Chucker
+    debugImplementation(libs.chucker)
+    releaseImplementation(libs.chucker.no.op)
 }
