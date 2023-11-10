@@ -30,27 +30,21 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
 ## Tech stack & Open-source libraries
 
 - Minimum SDK level 24
-- [Kotlin](https://kotlinlang.org/) based, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
+- [Kotlin](https://kotlinlang.org/) based, Compose for UI Toolkit, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous jobs.
 - Jetpack
     - Compose: Android’s recommended modern toolkit for building native UI. 
     - Lifecycle: Observe Android lifecycles and handle UI states upon the lifecycle changes.
     - ViewModel: Manages UI-related data holder and lifecycle aware. Allows data to survive configuration changes such as screen rotations.
     - DataBinding: Binds UI components in your layouts to data sources in your app using a declarative format rather than programmatically.
     - Room: Constructs Database by providing an abstraction layer over SQLite to allow fluent database access.
-- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) -
-  Collection of libraries that help you design robust, testable, and maintainable apps.
-    - [Stateflow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow) - StateFlow is
-      a state-holder observable flow that emits the current and new state updates to its collectors.
-    - [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) - A flow is an asynchronous
-      version of a Sequence, a type of collection whose values are lazily produced.
-    - [Compose Destinations Navigation](https://developer.android.com/jetpack/compose/navigation) - 
-      Simplified and type-safe navigation for Compose.
-    - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Jetpack
-      DataStore is a data storage solution that allows you to store key-value pairs or typed objects
-      with protocol buffers. DataStore uses Kotlin coroutines and Flow to store data asynchronously,
+- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture): Collection of libraries that help you design robust, testable, and maintainable apps.
+    - [Coroutines](https://developer.android.com/kotlin/coroutines): Concurrency design pattern that you can use on Android to simplify code that executes asynchronously.
+    - [Stateflow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow): StateFlow is a state-holder observable flow that emits the current and new state updates to its collectors.
+    - [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html): A flow is an asynchronous version of a Sequence, a type of collection whose values are lazily produced.
+    - [Compose Destinations Navigation](https://developer.android.com/jetpack/compose/navigation): Simplified and type-safe navigation for Compose.
+    - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore): Jetpack DataStore is a data storage solution that allows you to store key-value pairs or typed objects with protocol buffers. DataStore uses Kotlin coroutines and Flow to store data asynchronously,
       consistently, and transactionally.
-    - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager) - 
-      Schedule automatically repeating or guarantee one-time background processing.
+    - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager): Schedule automatically repeating or guarantee one-time background processing.
 - Firebase
     - Analytics: for tracking events.
     - Crashlytics: for tracking crashes.
@@ -79,15 +73,15 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
 Here is how my current `local.properties` looks like:
 
 ```properties
-doodle.api.url="https://api.jikan.moe/v4/"
-doodle.api.key="sample api key" 
-#Jikan API doesn't require an API key, but I'm using it as an example for later usages.
+  doodle.api.url="https://api.jikan.moe/v4/"
+  doodle.api.key="sample api key" 
+  #Jikan API doesn't require an API key, but I'm using it as an example for later usages.
 ```
 
 - Ktlint should be added using brew
 
 ```console
-brew install ktlint
+  brew install ktlint
 ```
 
 ## Open API
