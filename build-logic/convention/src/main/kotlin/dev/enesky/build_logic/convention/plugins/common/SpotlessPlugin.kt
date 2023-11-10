@@ -38,6 +38,8 @@ class SpotlessPlugin : Plugin<Project> {
                 target("**/*.kt")
                 targetExclude("build/**/*.kt", "**/build/**/*.kt", "config/**/*.kt", "${layout.buildDirectory}/**/*.kt")
                 licenseHeaderFile(rootProject.file("config/spotless/licence.kt"))
+                // Remove below in order to run licence header apply.
+                // Somehow they are breaking it.
                 ktlint().editorConfigOverride(
                     mapOf(
                         "indent_size" to "4",
