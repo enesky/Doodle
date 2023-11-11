@@ -21,7 +21,3 @@ plugins {
 }
 
 android.namespace = "dev.enesky.feature.login"
-
-dependencies {
-    implementation(projects.core.navigation)
-}
