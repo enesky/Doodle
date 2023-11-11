@@ -64,6 +64,10 @@ class AppMainPlugin : Plugin<Project> {
             add("debugImplementation", libs.leak.canary)
             add("debugImplementation", libs.chucker)
             add("releaseImplementation", libs.chucker.no.op)
+
+            val koinBom = platform(libs.koin.bom)
+            add("implementation", koinBom)
+            add("implementation", libs.bundles.koin.materials)
         }
     }
 }

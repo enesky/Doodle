@@ -46,6 +46,10 @@ class LibraryMainPlugin : Plugin<Project> {
                 add("implementation", libs.material)
                 add("implementation", libs.appcompat)
                 add("implementation", libs.lifecycle.runtime.ktx)
+
+                val koinBom = platform(libs.koin.bom)
+                add("implementation", koinBom)
+                add("implementation", libs.bundles.koin.materials)
             }
         }
     }
