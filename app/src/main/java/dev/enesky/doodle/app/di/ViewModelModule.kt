@@ -2,6 +2,7 @@ package dev.enesky.doodle.app.di
 
 import dev.enesky.core.domain.di.useCaseModule
 import dev.enesky.doodle.app.ui.main.MainViewModel
+import dev.enesky.feature.details.DetailsViewModel
 import dev.enesky.feature.login.LoginViewModel
 import dev.enesky.feature.main.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -21,4 +22,5 @@ val viewModelModule = lazyModule {
     viewModelOf(::MainViewModel)
     viewModelOf(::LoginViewModel)
     viewModelOf(::HomeViewModel)
+    viewModelOf(::DetailsViewModel)
 }
