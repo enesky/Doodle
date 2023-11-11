@@ -5,7 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import dev.enesky.core.navigation.DoodleNavigationDestination
+import dev.enesky.feature.details.navigation.DetailsDestination
+import dev.enesky.feature.details.navigation.detailsGraph
 import dev.enesky.feature.login.navigation.loginGraph
+import dev.enesky.feature.main.navigation.HomeDestination
 import dev.enesky.feature.main.navigation.homeGraph
 
 /**
@@ -26,7 +29,24 @@ fun DoodleNavHost(
         navController = navController,
         startDestination = startDestination.route
     ) {
-        loginGraph( )
-        homeGraph()
+        loginGraph(
+            onNavigateToHomeDestination = {
+                onNavigateToDestination(
+                    HomeDestination, HomeDestination.route
+                )
+            }
+        )
+        homeGraph(
+            onNavigateToDetailsDestination = { animeId ->
+                onNavigateToDestination(
+                    DetailsDestination, DetailsDestination.createNavigationRoute(id = animeId)
+                )
+            }
+        )
+        detailsGraph(
+            showSnackbar = {
+                onShowMessage("Snackbar")
+            }
+        )
     }
 }
