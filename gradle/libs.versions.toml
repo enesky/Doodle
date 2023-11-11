@@ -125,7 +125,7 @@ desugar-jdk-libs                      = { module= "com.android.tools:desugar_jdk
 spotless-gradle-plugin                = { module= "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
 [bundles]
-compose-materials                     = ["androidx-paging-compose", "ui", "ui-graphics", "ui-tooling-preview", "material3"]
+compose-materials                     = ["androidx-paging-compose", "ui", "ui-graphics", "ui-tooling", "ui-tooling-preview", "material3"]
 debug-implementations                 = ["ui-tooling", "ui-test-manifest", "leak-canary", "chucker"]
 koin-materials                        = ["koin-coroutines", "koin-navigation", "koin-compose"]
 koin-test-materials                   = ["koin-test-junit-4", "koin-test-android"]
