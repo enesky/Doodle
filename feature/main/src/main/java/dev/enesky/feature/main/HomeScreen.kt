@@ -24,8 +24,8 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HomeRoute(
-    modifier: Modifier = Modifier,
     onNavigateDetailsClick: (id: String) -> Unit,
+    modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinViewModel()
 ) {
     HomeScreen(modifier, onNavigateDetailsClick)
@@ -37,11 +37,11 @@ private fun HomeScreen(
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background,
     ) {
         HomeContent(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             onNavigateDetailsClick = onNavigateDetailsClick,
         )
     }

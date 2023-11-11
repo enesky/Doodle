@@ -24,8 +24,8 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun LoginRoute(
-    modifier: Modifier = Modifier,
     onNavigateHomeClick: () -> Unit,
+    modifier: Modifier = Modifier,
     viewModel: LoginViewModel = koinViewModel()
 ) {
     LoginScreen(
@@ -40,11 +40,11 @@ private fun LoginScreen(
     onNavigateHomeClick: () -> Unit,
 ) {
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background,
     ) {
         LoginContent(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             onNavigateHomeClick = onNavigateHomeClick,
         )
     }
