@@ -8,4 +8,8 @@ import androidx.lifecycle.ViewModel
 
 class LoginViewModel: ViewModel() {
 
+    init {
+        println("@@@@@ LoginViewModel initialized")
+    }
+
 }
