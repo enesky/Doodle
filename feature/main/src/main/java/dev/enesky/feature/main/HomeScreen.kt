@@ -3,10 +3,12 @@ package dev.enesky.feature.main
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,25 +25,32 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun HomeRoute(
     modifier: Modifier = Modifier,
+    onNavigateDetailsClick: (id: String) -> Unit,
     viewModel: HomeViewModel = koinViewModel()
 ) {
-    HomeScreen(
-        modifier = modifier
-    )
+    HomeScreen(modifier, onNavigateDetailsClick)
 }
 
 @Composable
 private fun HomeScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateDetailsClick: (id: String) -> Unit,
 ) {
-    HomeContent(
-        modifier = modifier.fillMaxWidth(),
-    )
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background,
+    ) {
+        HomeContent(
+            modifier = modifier.fillMaxWidth(),
+            onNavigateDetailsClick = onNavigateDetailsClick,
+        )
+    }
 }
 
 @Composable
 private fun HomeContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateDetailsClick: (id: String) -> Unit,
 ) {
     Box(
         modifier = modifier.fillMaxWidth(),
@@ -58,7 +67,7 @@ private fun HomeContent(
             Button(
                 modifier = Modifier.padding(32.dp),
                 onClick = {
-                    // TODO: Add navigation to Details Screen
+                    onNavigateDetailsClick("1")
                 },
             ) {
                 Text(text = "Navigate to Details", color = Color.White)
@@ -67,8 +76,10 @@ private fun HomeContent(
     }
 }
 
-@Preview
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(
+        onNavigateDetailsClick = {}
+    )
 }

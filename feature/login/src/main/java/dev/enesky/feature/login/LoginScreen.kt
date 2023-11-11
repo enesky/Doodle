@@ -3,10 +3,12 @@ package dev.enesky.feature.login
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,25 +25,35 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun LoginRoute(
     modifier: Modifier = Modifier,
+    onNavigateHomeClick: () -> Unit,
     viewModel: LoginViewModel = koinViewModel()
 ) {
     LoginScreen(
-        modifier = modifier
+        modifier = modifier,
+        onNavigateHomeClick = onNavigateHomeClick,
     )
 }
 
 @Composable
 private fun LoginScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateHomeClick: () -> Unit,
 ) {
-    LoginContent(
-        modifier = modifier.fillMaxWidth(),
-    )
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background,
+    ) {
+        LoginContent(
+            modifier = modifier.fillMaxWidth(),
+            onNavigateHomeClick = onNavigateHomeClick,
+        )
+    }
 }
 
 @Composable
 private fun LoginContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateHomeClick: () -> Unit,
 ) {
     Box(
         modifier = modifier.fillMaxWidth(),
@@ -58,7 +70,7 @@ private fun LoginContent(
             Button(
                 modifier = Modifier.padding(32.dp),
                 onClick = {
-                    // TODO: Add navigation to Home Screen
+                    onNavigateHomeClick()
                 },
             ) {
                 Text(text = "Navigate to Home", color = Color.White)
@@ -67,8 +79,10 @@ private fun LoginContent(
     }
 }
 
-@Preview
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun LoginScreenPreview() {
-    LoginScreen()
+    LoginScreen(
+        onNavigateHomeClick = {}
+    )
 }

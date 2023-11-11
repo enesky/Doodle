@@ -3,10 +3,12 @@ package dev.enesky.feature.details
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,9 +36,14 @@ fun DetailsRoute(
 private fun DetailsScreen(
     modifier: Modifier = Modifier
 ) {
-    DetailsContent(
-        modifier = modifier.fillMaxWidth(),
-    )
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background,
+    ) {
+        DetailsContent(
+            modifier = modifier.fillMaxWidth(),
+        )
+    }
 }
 
 @Composable
@@ -67,7 +74,7 @@ private fun DetailsContent(
     }
 }
 
-@Preview
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun DetailsScreenPreview() {
     DetailsScreen()
