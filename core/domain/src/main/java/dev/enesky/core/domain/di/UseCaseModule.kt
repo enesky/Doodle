@@ -20,13 +20,15 @@ import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
 import dev.enesky.core.domain.usecase.AnimeUseCase
 import dev.enesky.core.domain.usecase.PopularAnimesUseCase
 import dev.enesky.core.network.repository.JikanRepository
-import org.koin.dsl.module
+import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.dsl.lazyModule
 
 /**
  * Created by Enes Kamil YILMAZ on 28/10/2023
  */
 
-val useCaseModule = module {
+@OptIn(KoinExperimentalAPI::class)
+val useCaseModule = lazyModule {
 
     single<PopularAnimesUseCase> {
         PopularAnimesUseCase(get<JikanRepository>()::getPopularAnimes)
