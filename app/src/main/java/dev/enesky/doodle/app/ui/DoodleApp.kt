@@ -34,7 +34,7 @@ fun DoodleApp(
 ) {
     DoodleTheme {
         CompositionLocalProvider(
-            LocalSnackbarHostState provides appState.snackbarHostState
+            LocalSnackbarHostState provides appState.snackbarHostState,
         ) {
             Scaffold(
                 /*bottomBar = {
@@ -53,21 +53,21 @@ fun DoodleApp(
                 snackbarHost = {
                     DoodleSnackbarHost(
                         modifier = Modifier.windowInsetsPadding(
-                            //if (appState.shouldShowBottomBar) {
+                            // if (appState.shouldShowBottomBar) {
                             //    WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
-                            //} else {
-                                WindowInsets.safeDrawing
-                            //}
+                            // } else {
+                            WindowInsets.safeDrawing,
+                            // }
                         ),
-                        snackbarHostState = appState.snackbarHostState
+                        snackbarHostState = appState.snackbarHostState,
                     )
                 },
                 contentWindowInsets = WindowInsets(
                     left = 0.dp,
                     top = 0.dp,
                     right = 0.dp,
-                    bottom = 0.dp
-                )
+                    bottom = 0.dp,
+                ),
             ) { innerPadding ->
                 DoodleNavHost(
                     modifier = Modifier
@@ -78,8 +78,8 @@ fun DoodleApp(
                     onNavigateToDestination = appState::navigate,
                     onBackClick = appState::onBackClick,
                     onShowMessage = { message -> appState.showMessage(message) },
-                    //onSetSystemBarsColorTransparent = { appState.setSystemBarsColor(Color.Transparent) },
-                    //onResetSystemBarsColor = { appState.setSystemBarsColor(systemBarsColor) }
+                    // onSetSystemBarsColorTransparent = { appState.setSystemBarsColor(Color.Transparent) },
+                    // onResetSystemBarsColor = { appState.setSystemBarsColor(systemBarsColor) }
                 )
             }
         }

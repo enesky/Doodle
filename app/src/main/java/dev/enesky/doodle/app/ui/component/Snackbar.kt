@@ -37,7 +37,7 @@ fun DoodleSnackbarHost(
 ) {
     SnackbarHost(
         hostState = snackbarHostState,
-        modifier = modifier
+        modifier = modifier,
     ) { snackbarData ->
         Snackbar(
             snackbarData = snackbarData,
@@ -51,7 +51,7 @@ fun DoodleSnackbarHost(
 
 @Suppress("CompositionLocalAllowlist")
 val LocalSnackbarHostState = staticCompositionLocalOf<SnackbarHostState> {
-    error(LocalSnackbarHostStateErrorMessage)
+    error(LOCAL_SNACKBAR_HOST_STATE_ERROR_MESSAGE)
 }
 
-private const val LocalSnackbarHostStateErrorMessage = "No SnackbarHostState provided."
+private const val LOCAL_SNACKBAR_HOST_STATE_ERROR_MESSAGE = "No SnackbarHostState provided."

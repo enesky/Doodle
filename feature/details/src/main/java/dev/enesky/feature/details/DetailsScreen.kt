@@ -25,16 +25,16 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun DetailsRoute(
     modifier: Modifier = Modifier,
-    viewModel: DetailsViewModel = koinViewModel()
+    viewModel: DetailsViewModel = koinViewModel(),
 ) {
     DetailsScreen(
-        modifier = modifier
+        modifier = modifier,
     )
 }
 
 @Composable
 private fun DetailsScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -48,7 +48,7 @@ private fun DetailsScreen(
 
 @Composable
 private fun DetailsContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier.fillMaxWidth(),

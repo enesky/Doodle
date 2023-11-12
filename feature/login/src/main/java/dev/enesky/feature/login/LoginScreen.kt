@@ -26,7 +26,7 @@ import org.koin.androidx.compose.koinViewModel
 fun LoginRoute(
     onNavigateHomeClick: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: LoginViewModel = koinViewModel()
+    viewModel: LoginViewModel = koinViewModel(),
 ) {
     LoginScreen(
         modifier = modifier,
@@ -83,6 +83,6 @@ private fun LoginContent(
 @Composable
 private fun LoginScreenPreview() {
     LoginScreen(
-        onNavigateHomeClick = {}
+        onNavigateHomeClick = {},
     )
 }

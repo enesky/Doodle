@@ -26,7 +26,7 @@ import org.koin.androidx.compose.koinViewModel
 fun HomeRoute(
     onNavigateDetailsClick: (id: String) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = koinViewModel()
+    viewModel: HomeViewModel = koinViewModel(),
 ) {
     HomeScreen(modifier, onNavigateDetailsClick)
 }
@@ -80,6 +80,6 @@ private fun HomeContent(
 @Composable
 private fun HomeScreenPreview() {
     HomeScreen(
-        onNavigateDetailsClick = {}
+        onNavigateDetailsClick = {},
     )
 }

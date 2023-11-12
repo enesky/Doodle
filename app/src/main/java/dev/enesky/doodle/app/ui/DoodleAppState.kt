@@ -25,18 +25,19 @@ fun rememberDoodleAppState(
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
-    startDestination: LoginDestination = LoginDestination // TODO: Check if user is logged in or not
+    // TODO: Check if user is logged in or not
+    startDestination: LoginDestination = LoginDestination,
 ) = remember(
     snackbarHostState,
     coroutineScope,
     navController,
-    startDestination
+    startDestination,
 ) {
     DoodleAppState(
         snackbarHostState = snackbarHostState,
         coroutineScope = coroutineScope,
         navController = navController,
-        startDestination = startDestination
+        startDestination = startDestination,
     )
 }
 
@@ -45,7 +46,7 @@ class DoodleAppState(
     val snackbarHostState: SnackbarHostState,
     val coroutineScope: CoroutineScope,
     val navController: NavHostController,
-    val startDestination: LoginDestination
+    val startDestination: LoginDestination,
 ) {
     init {
         coroutineScope.launch {
@@ -88,5 +89,5 @@ class DoodleAppState(
 
     fun showMessage(message: String) = snackbarMessages.update { it + message }
 
-    //TODO: Add system ui color controller -> system bar & navigation bar
+    // TODO: Add system ui color controller -> system bar & navigation bar
 }

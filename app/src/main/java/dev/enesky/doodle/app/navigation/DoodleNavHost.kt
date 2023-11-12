@@ -22,31 +22,33 @@ fun DoodleNavHost(
     onNavigateToDestination: (DoodleNavigationDestination, String) -> Unit,
     onBackClick: () -> Unit,
     onShowMessage: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = startDestination.route
+        startDestination = startDestination.route,
     ) {
         loginGraph(
             onNavigateToHomeDestination = {
                 onNavigateToDestination(
-                    HomeDestination, HomeDestination.route
+                    HomeDestination,
+                    HomeDestination.route,
                 )
-            }
+            },
         )
         homeGraph(
             onNavigateToDetailsDestination = { animeId ->
                 onNavigateToDestination(
-                    DetailsDestination, DetailsDestination.createNavigationRoute(id = animeId)
+                    DetailsDestination,
+                    DetailsDestination.createNavigationRoute(id = animeId),
                 )
-            }
+            },
         )
         detailsGraph(
             showSnackbar = {
                 onShowMessage("Snackbar")
-            }
+            },
         )
     }
 }

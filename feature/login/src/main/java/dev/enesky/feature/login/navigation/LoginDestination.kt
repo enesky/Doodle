@@ -15,9 +15,9 @@ object LoginDestination : DoodleNavigationDestination {
 }
 
 fun NavGraphBuilder.loginGraph(
-    onNavigateToHomeDestination: () -> Unit
+    onNavigateToHomeDestination: () -> Unit,
 ) = composable(route = LoginDestination.route) {
     LoginRoute(
-        onNavigateHomeClick = onNavigateToHomeDestination
+        onNavigateHomeClick = onNavigateToHomeDestination,
     )
 }
