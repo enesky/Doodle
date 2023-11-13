@@ -16,11 +16,18 @@
  */
 package dev.enesky.doodle.app.di
 
-import org.koin.dsl.module
+import dev.enesky.core.network.di.networkModule
+import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.core.module.includes
+import org.koin.dsl.lazyModule
 
 /**
  * Created by Enes Kamil YILMAZ on 28/10/2023
  */
 
-val appModule = module {
+@OptIn(KoinExperimentalAPI::class)
+val appModule = lazyModule {
+
+    // Includes all the lazy modules from the core modules
+    includes(networkModule, viewModelModule)
 }

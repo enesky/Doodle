@@ -64,8 +64,7 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
 
 ## How to run Doodle locally
 
-- In order to run the app, you need to create a `local.properties` file in the root folder of the project.   
-Here is how my current `local.properties` looks like:
+- In order to run the app, you need to add these to your `local.properties` file in the root folder of the project.   
 
 ```properties
   doodle.api.url="https://api.jikan.moe/v4/"

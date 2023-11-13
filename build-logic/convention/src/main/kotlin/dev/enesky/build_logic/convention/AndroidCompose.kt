@@ -36,9 +36,12 @@ internal fun Project.configureAndroidCompose(commonExtension: CommonExtension<*,
             libs.versions.compose.compiler.get().toString()
 
         dependencies {
+            add("implementation", project(":core:navigation"))
+
             val composeBomPlatform = platform(libs.compose.bom.get().toString())
             add("implementation", composeBomPlatform)
             add("implementation", libs.bundles.compose.materials)
+            add("implementation", libs.androidx.navigation.compose)
             add("androidTestImplementation", composeBomPlatform)
         }
     }

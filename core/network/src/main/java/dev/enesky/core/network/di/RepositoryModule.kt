@@ -20,13 +20,15 @@ import dev.enesky.core.network.api.service.JikanService
 import dev.enesky.core.network.paging.PopularAnimesPagingSource
 import dev.enesky.core.network.repository.JikanDataSource
 import dev.enesky.core.network.repository.JikanRepository
-import org.koin.dsl.module
+import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.dsl.lazyModule
 
 /**
  * Created by Enes Kamil YILMAZ on 28/10/2023
  */
 
-val repositoryModule = module {
+@OptIn(KoinExperimentalAPI::class)
+val repositoryModule = lazyModule {
 
     single<JikanRepository> {
         JikanRepository(get<JikanDataSource>())

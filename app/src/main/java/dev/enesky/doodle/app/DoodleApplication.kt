@@ -17,15 +17,15 @@
 package dev.enesky.doodle.app
 
 import android.app.Application
-import dev.enesky.core.domain.di.useCaseModule
-import dev.enesky.core.network.di.networkModule
-import dev.enesky.core.network.di.repositoryModule
 import dev.enesky.doodle.BuildConfig
 import dev.enesky.doodle.app.di.appModule
-import dev.enesky.doodle.app.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.context.startKoin
+import org.koin.core.lazyModules
+import org.koin.core.waitAllStartJobs
+import org.koin.mp.KoinPlatform
 
 /**
  * Created by Enes Kamil YILMAZ on 25/10/2023
@@ -35,16 +35,23 @@ class DoodleApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        initializeKoin()
+    }
+
+    /**
+     * Configure and initialize Koin for dependency injection
+     */
+    @OptIn(KoinExperimentalAPI::class)
+    private fun initializeKoin() {
         startKoin {
             androidContext(this@DoodleApplication)
-            modules(
-                appModule,
-                networkModule,
-                repositoryModule,
-                viewModelModule,
-                useCaseModule,
-            )
-            if (BuildConfig.logEnabled) androidLogger()
+            lazyModules(appModule)
+            if (BuildConfig.logEnabled) {
+                androidLogger()
+            }
         }
+
+        // Wait for start jobs to complete
+        KoinPlatform.getKoin().waitAllStartJobs()
     }
 }

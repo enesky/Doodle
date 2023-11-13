@@ -26,10 +26,6 @@ class FeaturePlugin : Plugin<Project> {
         pluginManager.apply("kotlin-parcelize")
 
         dependencies {
-            val koinBom = platform(libs.koin.bom)
-            add("implementation", koinBom)
-            add("implementation", libs.bundles.koin.materials)
-
             // Unit Test
             add("testImplementation", libs.junit)
             add("androidTestImplementation", libs.bundles.testing)

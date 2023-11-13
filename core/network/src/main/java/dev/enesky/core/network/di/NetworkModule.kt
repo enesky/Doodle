@@ -28,7 +28,9 @@ import dev.enesky.core.network.repository.JikanDataSourceImpl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module
+import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.core.module.includes
+import org.koin.dsl.lazyModule
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -36,7 +38,10 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created by Enes Kamil YILMAZ on 28/10/2023
  */
 
-val networkModule = module {
+@OptIn(KoinExperimentalAPI::class)
+val networkModule = lazyModule {
+
+    includes(repositoryModule) // Adds all the repositories to the network module
 
     single<Retrofit> {
         Retrofit.Builder()
@@ -88,6 +93,8 @@ val networkModule = module {
                 .build()
         }
     }
+
+    /** Jikan Api Related **/
 
     /** Jikan Api Related **/
 
