@@ -59,6 +59,7 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
     - <a href="https://github.com/diffplug/spotless" target="_blank">Spotless</a> and <a href="https://github.com/pinterest/ktlint" target="_blank">Ktlint</a> for lint check and auto formatting
     - <a href="https://github.com/renovatebot/renovate" target="_blank">RenovateBot</a> for auto dependency update tool
     - <a href="https://github.com/enesky/Doodle/actions" target="_blank">GitHub Actions</a> for simple ci pipeline
+    - <a href="https://github.com/enesky/Doodle/tree/main/config/git-hooks" target="_blank">GitHooks</a> for running static analysis and code formatters before commit and push actions
     - <a href="https://github.com/square/leakcanary" target="_blank">LeakCanary</a> for leak detection on runtime
     - <a href="https://github.com/ChuckerTeam/chucker" target="_blank">Chucker</a> for network inspector on debug builds
 
