@@ -80,7 +80,7 @@ private fun LoginScreen(
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Suppress("LongMethod", "MagicNumber", "RememberMissing")
+@Suppress("LongMethod", "MagicNumber")
 @Composable
 private fun LoginContent(
     modifier: Modifier = Modifier,
@@ -89,7 +89,9 @@ private fun LoginContent(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var isPasswordVisible by remember { mutableStateOf(false) }
-    val isFormValid by derivedStateOf { email.isNotBlank() && password.length >= 7 }
+    val isFormValid = remember {
+        derivedStateOf { email.isNotBlank() && password.length >= 7 }
+    }
     var needEmail by remember { mutableStateOf(false) }
 
     val iconWeight = 1f
@@ -220,7 +222,7 @@ private fun LoginContent(
                         onClick = {
                             // TODO: add login
                         },
-                        enabled = isFormValid,
+                        enabled = isFormValid.value,
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
                     ) {
@@ -237,7 +239,7 @@ private fun LoginContent(
                         onClick = {
                             // TODO: add google sign in
                         },
-                        enabled = isFormValid,
+                        enabled = isFormValid.value,
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
                     ) {
