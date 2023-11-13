@@ -62,12 +62,8 @@ fun DoodleApp(
                         snackbarHostState = appState.snackbarHostState,
                     )
                 },
-                contentWindowInsets = WindowInsets(
-                    left = 0.dp,
-                    top = 0.dp,
-                    right = 0.dp,
-                    bottom = 0.dp,
-                ),
+                // Use this when you want to use all the screen
+                // contentWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp),
             ) { innerPadding ->
                 DoodleNavHost(
                     modifier = Modifier
