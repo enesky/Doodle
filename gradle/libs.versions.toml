@@ -7,7 +7,7 @@ target-sdk                            = "34"
 compose-compiler                      = "1.5.3"
 
 # Plugin Versions
-gradle-plugin                         = "8.3.0-alpha12"
+gradle-plugin                         = "8.3.0-alpha13"
 kotlin-plugin                         = "1.9.10"
 ksp-plugin                            = "1.9.10-1.0.13"
 google-services-plugin                = "4.4.0"
