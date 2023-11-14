@@ -19,10 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.doodle.app.navigation.DoodleNavHost
 import dev.enesky.doodle.app.ui.component.DoodleSnackbarHost
 import dev.enesky.doodle.app.ui.component.LocalSnackbarHostState
-import dev.enesky.doodle.app.ui.theme.DoodleTheme
 
 @OptIn(ExperimentalLayoutApi::class)
 @Suppress("ModifierMissing")
@@ -42,7 +42,7 @@ fun DoodleApp(
                         enter = BottomBarEnterTransition,
                         exit = BottomBarExitTransition
                     ) {
-                        CinemaxBottomBar(
+                        BottomBar(
                             destinations = appState.topLevelDestinations,
                             currentDestination = appState.currentTopLevelDestination,
                             onNavigateToDestination = appState::navigate

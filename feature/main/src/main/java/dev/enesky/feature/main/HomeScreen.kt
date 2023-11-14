@@ -65,7 +65,7 @@ private fun HomeContent(
                 style = MaterialTheme.typography.headlineLarge,
             )
             Button(
-                modifier = Modifier.padding(32.dp),
+                modifier = Modifier.padding(16.dp),
                 onClick = {
                     onNavigateDetailsClick("1")
                 },

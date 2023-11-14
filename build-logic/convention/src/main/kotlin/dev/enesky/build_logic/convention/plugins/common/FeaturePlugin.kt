@@ -25,7 +25,6 @@ import org.gradle.kotlin.dsl.dependencies
  */
 class FeaturePlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
-
         dependencies {
             add("implementation", project(":core:design-system"))
         }
