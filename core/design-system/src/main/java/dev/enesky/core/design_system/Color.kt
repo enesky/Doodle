@@ -97,7 +97,6 @@ val dark_surfaceTint = Color(0xFFFFB694)
 val dark_outlineVariant = Color(0xFF52443D)
 val dark_scrim = Color(0xFF000000)
 
-
 val seed = Color(0xFFF2712B)
 val CustomColor1 = Color(0xFF813724)
 val light_CustomColor1 = Color(0xFF9B432D)
@@ -135,21 +134,20 @@ val selectedColorsList = listOf(
  */
 @Composable
 private fun ColorPicker(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center,
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
             Text(
                 text = "Selected Colors",
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(16.dp),
-                textDecoration = TextDecoration.Underline
+                textDecoration = TextDecoration.Underline,
             )
             LazyColumn {
                 items(selectedColorsList.size) {
@@ -169,7 +167,7 @@ private fun ColorPicker(
                                     .weight(1f),
                                 color = Color.White,
                                 style = MaterialTheme.typography.bodyMedium,
-                                textAlign = TextAlign.Center
+                                textAlign = TextAlign.Center,
                             )
                             Text(
                                 text = selectedColorsList[it].first,
@@ -178,7 +176,7 @@ private fun ColorPicker(
                                     .weight(1f),
                                 color = Color.Gray,
                                 style = MaterialTheme.typography.bodyMedium,
-                                textAlign = TextAlign.Center
+                                textAlign = TextAlign.Center,
                             )
                             Text(
                                 text = selectedColorsList[it].first,
@@ -187,7 +185,7 @@ private fun ColorPicker(
                                     .weight(1f),
                                 color = Color.Black,
                                 style = MaterialTheme.typography.bodyMedium,
-                                textAlign = TextAlign.Center
+                                textAlign = TextAlign.Center,
                             )
                         }
                     }
