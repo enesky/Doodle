@@ -18,7 +18,6 @@ package dev.enesky.core.design_system
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,7 +35,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -127,12 +125,13 @@ private val selectedColorsList = listOf(
     "ebonyClay" to ebonyClay,
     "limedSpruce" to limedSpruce,
     "soothingBreeze" to soothingBreeze,
-    "geyser" to geyser
+    "geyser" to geyser,
 )
 
 /**
  * To see the preview of the colors
  */
+@Suppress("LongMethod")
 @Composable
 private fun ColorPicker(
     modifier: Modifier = Modifier,
@@ -160,14 +159,14 @@ private fun ColorPicker(
                             color = Color.White,
                             style = MaterialTheme.typography.bodyMedium,
                             textAlign = TextAlign.Center,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
                         )
                         Text(
                             text = selectedColorsList[it].first + " - " + it.toString(),
                             color = Color.Black,
                             style = MaterialTheme.typography.bodyMedium,
                             textAlign = TextAlign.Center,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
                         )
                     }
                 }
@@ -192,16 +191,13 @@ private fun ColorPicker(
                             .padding(8.dp),
                         verticalArrangement = Arrangement.Center,
                     ) {
-                        items(selectedColorsList.size) {innerIt ->
-                            /**
-                             * Bold text
-                             */
+                        items(selectedColorsList.size) { innerIt ->
                             Text(
                                 text = it.toString(),
                                 color = selectedColorsList[innerIt].second,
                                 style = MaterialTheme.typography.titleMedium,
                                 textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
                             )
                         }
                     }
