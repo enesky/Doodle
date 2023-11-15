@@ -20,9 +20,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -30,6 +34,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -115,18 +120,14 @@ val ebonyClay = Color(0xFF2B323F)
 val limedSpruce = Color(0xFF334048)
 val soothingBreeze = Color(0xFFB2BEC3)
 val geyser = Color(0xFFDFE6E9)
-val eastBay = Color(0xFF4D4C7D)
-val rhino = Color(0xFF363062)
 
-val selectedColorsList = listOf(
+private val selectedColorsList = listOf(
     "blazeOrange" to blazeOrange,
     "crusta" to crusta,
     "ebonyClay" to ebonyClay,
     "limedSpruce" to limedSpruce,
     "soothingBreeze" to soothingBreeze,
-    "geyser" to geyser,
-    "eastBay" to eastBay,
-    "rhino" to rhino,
+    "geyser" to geyser
 )
 
 /**
@@ -140,52 +141,67 @@ private fun ColorPicker(
         modifier = modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center,
     ) {
-        Column(
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Text(
-                text = "Selected Colors",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(16.dp),
-                textDecoration = TextDecoration.Underline,
-            )
-            LazyColumn {
-                items(selectedColorsList.size) {
-                    Surface(
+        LazyColumn {
+            items(selectedColorsList.size) {
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(1.dp),
+                    color = selectedColorsList[it].second,
+                ) {
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(1.dp),
-                        color = selectedColorsList[it].second,
+                            .padding(8.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
-                        Row(
-                            horizontalArrangement = Arrangement.Center,
-                        ) {
+                        Text(
+                            text = it.toString() + " - " + selectedColorsList[it].first,
+                            color = Color.White,
+                            style = MaterialTheme.typography.bodyMedium,
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = selectedColorsList[it].first + " - " + it.toString(),
+                            color = Color.Black,
+                            style = MaterialTheme.typography.bodyMedium,
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+            }
+        }
+        LazyRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(225.dp),
+            horizontalArrangement = Arrangement.Center,
+        ) {
+            items(selectedColorsList.size) { it ->
+                Surface(
+                    modifier = Modifier
+                        .width(20.dp)
+                        .fillMaxHeight(),
+                    color = selectedColorsList[it].second,
+                ) {
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .padding(8.dp),
+                        verticalArrangement = Arrangement.Center,
+                    ) {
+                        items(selectedColorsList.size) {innerIt ->
+                            /**
+                             * Bold text
+                             */
                             Text(
-                                text = selectedColorsList[it].first,
-                                modifier = Modifier
-                                    .padding(8.dp)
-                                    .weight(1f),
-                                color = Color.White,
-                                style = MaterialTheme.typography.bodyMedium,
+                                text = it.toString(),
+                                color = selectedColorsList[innerIt].second,
+                                style = MaterialTheme.typography.titleMedium,
                                 textAlign = TextAlign.Center,
-                            )
-                            Text(
-                                text = selectedColorsList[it].first,
-                                modifier = Modifier
-                                    .padding(8.dp)
-                                    .weight(1f),
-                                color = Color.Gray,
-                                style = MaterialTheme.typography.bodyMedium,
-                                textAlign = TextAlign.Center,
-                            )
-                            Text(
-                                text = selectedColorsList[it].first,
-                                modifier = Modifier
-                                    .padding(8.dp)
-                                    .weight(1f),
-                                color = Color.Black,
-                                style = MaterialTheme.typography.bodyMedium,
-                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold
                             )
                         }
                     }
@@ -197,6 +213,6 @@ private fun ColorPicker(
 
 @Preview(showBackground = true)
 @Composable
-private fun ColorPicketPreview() {
+private fun ColorPickerPreview() {
     ColorPicker()
 }
