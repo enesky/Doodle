@@ -19,13 +19,10 @@ package dev.enesky.core.design_system
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -38,94 +35,33 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-val light_primary = Color(0xFFA14000)
-val light_onPrimary = Color(0xFFFFFFFF)
-val light_primaryContainer = Color(0xFFFFDBCC)
-val light_onPrimaryContainer = Color(0xFF351000)
-val light_secondary = Color(0xFF974800)
-val light_onSecondary = Color(0xFFFFFFFF)
-val light_secondaryContainer = Color(0xFFFFDBC7)
-val light_onSecondaryContainer = Color(0xFF311300)
-val light_tertiary = Color(0xFF006689)
-val light_onTertiary = Color(0xFFFFFFFF)
-val light_tertiaryContainer = Color(0xFFC2E8FF)
-val light_onTertiaryContainer = Color(0xFF001E2C)
-val light_error = Color(0xFFBA1A1A)
-val light_errorContainer = Color(0xFFFFDAD6)
-val light_onError = Color(0xFFFFFFFF)
-val light_onErrorContainer = Color(0xFF410002)
-val light_background = Color(0xFFF8FDFF)
-val light_onBackground = Color(0xFF001F25)
-val light_surface = Color(0xFFF8FDFF)
-val light_onSurface = Color(0xFF001F25)
-val light_surfaceVariant = Color(0xFFF4DED5)
-val light_onSurfaceVariant = Color(0xFF52443D)
-val light_outline = Color(0xFF85736C)
-val light_inverseOnSurface = Color(0xFFD6F6FF)
-val light_inverseSurface = Color(0xFF00363F)
-val light_inversePrimary = Color(0xFFFFB694)
-val light_shadow = Color(0xFF000000)
-val light_surfaceTint = Color(0xFFA14000)
-val light_outlineVariant = Color(0xFFD8C2BA)
-val light_scrim = Color(0xFF000000)
+object LightThemeColors {
+    val blazeOrange = Color(0xFFF96D00)      // Main color
+    val ebonyClay = Color(0xFF2B323F)        // Background color on dark mode
+    val white = Color.White                        // Text color on dark background
+    val soothingBreeze = Color(0xFFB2BEC3)  // Second text or second background color on dark mode
 
-val dark_primary = Color(0xFFFFB694)
-val dark_onPrimary = Color(0xFF571F00)
-val dark_primaryContainer = Color(0xFF7B2F00)
-val dark_onPrimaryContainer = Color(0xFFFFDBCC)
-val dark_secondary = Color(0xFFFFB688)
-val dark_onSecondary = Color(0xFF512400)
-val dark_secondaryContainer = Color(0xFF733500)
-val dark_onSecondaryContainer = Color(0xFFFFDBC7)
-val dark_tertiary = Color(0xFF78D1FF)
-val dark_onTertiary = Color(0xFF003549)
-val dark_tertiaryContainer = Color(0xFF004D68)
-val dark_onTertiaryContainer = Color(0xFFC2E8FF)
-val dark_error = Color(0xFFFFB4AB)
-val dark_errorContainer = Color(0xFF93000A)
-val dark_onError = Color(0xFF690005)
-val dark_onErrorContainer = Color(0xFFFFDAD6)
-val dark_background = Color(0xFF001F25)
-val dark_onBackground = Color(0xFFA6EEFF)
-val dark_surface = Color(0xFF001F25)
-val dark_onSurface = Color(0xFFA6EEFF)
-val dark_surfaceVariant = Color(0xFF52443D)
-val dark_onSurfaceVariant = Color(0xFFD8C2BA)
-val dark_outline = Color(0xFFA08D85)
-val dark_inverseOnSurface = Color(0xFF001F25)
-val dark_inverseSurface = Color(0xFFA6EEFF)
-val dark_inversePrimary = Color(0xFFA14000)
-val dark_shadow = Color(0xFF000000)
-val dark_surfaceTint = Color(0xFFFFB694)
-val dark_outlineVariant = Color(0xFF52443D)
-val dark_scrim = Color(0xFF000000)
+}
 
-val seed = Color(0xFFF2712B)
-val CustomColor1 = Color(0xFF813724)
-val light_CustomColor1 = Color(0xFF9B432D)
-val light_onCustomColor1 = Color(0xFFFFFFFF)
-val light_CustomColor1Container = Color(0xFFFFDBD2)
-val light_onCustomColor1Container = Color(0xFF3C0800)
-val dark_CustomColor1 = Color(0xFFFFB4A2)
-val dark_onCustomColor1 = Color(0xFF5E1704)
-val dark_CustomColor1Container = Color(0xFF7D2D18)
-val dark_onCustomColor1Container = Color(0xFFFFDBD2)
+object DarkThemeColors {
+    val blazeOrange = Color(0xFFF96D00)      // Main color
+    val geyser = Color(0xFFDFE6E9)          // Background color on light mode
+    val black = Color.Black                        // Text color on light background
+    val soothingBreeze = Color(0xFFB2BEC3)  // Second text or second background color on dark mode
+}
 
-// Selected Colors
-val blazeOrange = Color(0xFFF96D00)
-val crusta = Color(0xFFFD8731)
-val ebonyClay = Color(0xFF2B323F)
-val limedSpruce = Color(0xFF334048)
-val soothingBreeze = Color(0xFFB2BEC3)
-val geyser = Color(0xFFDFE6E9)
+private val lightColors = listOf(
+    "main color" to LightThemeColors.blazeOrange,
+    "background color" to LightThemeColors.ebonyClay,
+    "text color" to LightThemeColors.white,
+    "secondary background color" to LightThemeColors.soothingBreeze,
+)
 
-private val selectedColorsList = listOf(
-    "blazeOrange" to blazeOrange,
-    "crusta" to crusta,
-    "ebonyClay" to ebonyClay,
-    "limedSpruce" to limedSpruce,
-    "soothingBreeze" to soothingBreeze,
-    "geyser" to geyser,
+private val darkColors = listOf(
+    "main color" to DarkThemeColors.blazeOrange,
+    "background color" to DarkThemeColors.geyser,
+    "text color" to DarkThemeColors.black,
+    "secondary background color" to DarkThemeColors.soothingBreeze,
 )
 
 /**
@@ -135,71 +71,33 @@ private val selectedColorsList = listOf(
 @Composable
 private fun ColorPicker(
     modifier: Modifier = Modifier,
+    colorList: List<Pair<String, Color>> = darkColors,
 ) {
     Box(
         modifier = modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center,
     ) {
         LazyColumn {
-            items(selectedColorsList.size) {
+            items(colorList.size) {
                 Surface(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .width(250.dp)
                         .padding(1.dp),
-                    color = selectedColorsList[it].second,
+                    color = colorList[it].second,
                 ) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(8.dp),
+                            .padding(2.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
                         Text(
-                            text = it.toString() + " - " + selectedColorsList[it].first,
-                            color = Color.White,
+                            text = it.toString() + " - " + colorList[it].first,
+                            color = colorList[2].second,
                             style = MaterialTheme.typography.bodyMedium,
                             textAlign = TextAlign.Center,
                             fontWeight = FontWeight.Bold,
                         )
-                        Text(
-                            text = selectedColorsList[it].first + " - " + it.toString(),
-                            color = Color.Black,
-                            style = MaterialTheme.typography.bodyMedium,
-                            textAlign = TextAlign.Center,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-                }
-            }
-        }
-        LazyRow(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(225.dp),
-            horizontalArrangement = Arrangement.Center,
-        ) {
-            items(selectedColorsList.size) { it ->
-                Surface(
-                    modifier = Modifier
-                        .width(20.dp)
-                        .fillMaxHeight(),
-                    color = selectedColorsList[it].second,
-                ) {
-                    LazyColumn(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .padding(8.dp),
-                        verticalArrangement = Arrangement.Center,
-                    ) {
-                        items(selectedColorsList.size) { innerIt ->
-                            Text(
-                                text = it.toString(),
-                                color = selectedColorsList[innerIt].second,
-                                style = MaterialTheme.typography.titleMedium,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold,
-                            )
-                        }
                     }
                 }
             }
@@ -207,8 +105,14 @@ private fun ColorPicker(
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun ColorPickerPreview() {
-    ColorPicker()
+private fun LightThemeColorsPreview() {
+    ColorPicker(colorList = lightColors)
+}
+
+@Preview
+@Composable
+private fun DarkThemeColorsPreview() {
+    ColorPicker(colorList = darkColors)
 }
