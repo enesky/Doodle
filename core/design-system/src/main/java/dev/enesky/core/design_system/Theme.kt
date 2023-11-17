@@ -33,15 +33,15 @@ import androidx.core.view.WindowCompat
 
 private val LightColors = lightColorScheme(
     primary = LightThemeColors.blazeOrange,
-    surface = LightThemeColors.ebonyClay,
-    onSurface = LightThemeColors.white,
+    surface = LightThemeColors.geyser,
+    onSurface = LightThemeColors.black,
     secondary = LightThemeColors.soothingBreeze,
 )
 
 private val DarkColors = darkColorScheme(
     primary = DarkThemeColors.blazeOrange,
-    surface = DarkThemeColors.geyser,
-    onSurface = DarkThemeColors.black,
+    surface = DarkThemeColors.ebonyClay,
+    onSurface = DarkThemeColors.white,
     secondary = DarkThemeColors.soothingBreeze,
 )
 
@@ -67,8 +67,9 @@ fun DoodleTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            window.statusBarColor = colorScheme.surface.toArgb()
+            window.navigationBarColor = colorScheme.surface.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme.not()
         }
     }
 
