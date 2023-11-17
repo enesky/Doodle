@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.doodle.app.ui.theme
+package dev.enesky.core.design_system
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

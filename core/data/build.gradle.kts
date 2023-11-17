@@ -17,6 +17,9 @@
 plugins {
     // Convention Plugins
     id(libs.plugins.library.main.get().pluginId)
+
+    // Kotlin Plugins
+    id("kotlin-parcelize")
 }
 
 android.namespace = "dev.enesky.core.data"

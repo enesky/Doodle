@@ -31,9 +31,9 @@ fun DoodleSnackbarHost(
     snackbarHostState: SnackbarHostState,
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(8.dp),
-    // TODO: -> containerColor: Color = CinemaxTheme.colors.primarySoft,
-    // TODO: -> contentColor: Color = CinemaxTheme.colors.whiteGrey,
-    // TODO: -> actionColor: Color = CinemaxTheme.colors.primaryBlue
+    // TODO: -> containerColor: Color = Theme.colors.primarySoft,
+    // TODO: -> contentColor: Color = Theme.colors.whiteGrey,
+    // TODO: -> actionColor: Color = Theme.colors.primaryBlue
 ) {
     SnackbarHost(
         hostState = snackbarHostState,

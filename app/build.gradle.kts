@@ -36,6 +36,7 @@ dependencies {
     // Module Implementations
     implementation(projects.core.common)
     implementation(projects.core.data)
+    implementation(projects.core.designSystem)
     implementation(projects.core.domain)
     implementation(projects.core.network)
     implementation(projects.core.navigation)

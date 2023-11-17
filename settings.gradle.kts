@@ -44,6 +44,7 @@ include(":app")
 include(
     ":core:common",
     ":core:data",
+    ":core:design-system",
     ":core:domain",
     ":core:network",
     ":core:navigation",

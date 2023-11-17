@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.doodle.app.ui.theme
+package dev.enesky.core.design_system
 
 import android.app.Activity
 import android.os.Build
@@ -31,33 +31,27 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80,
+private val LightColors = lightColorScheme(
+    primary = LightThemeColors.blazeOrange,
+    surface = LightThemeColors.ebonyClay,
+    onSurface = LightThemeColors.white,
+    secondary = LightThemeColors.soothingBreeze,
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-     */
+private val DarkColors = darkColorScheme(
+    primary = DarkThemeColors.blazeOrange,
+    surface = DarkThemeColors.geyser,
+    onSurface = DarkThemeColors.black,
+    secondary = DarkThemeColors.soothingBreeze,
 )
 
+/**
+ * Dynamic color is available on Android 12+
+ **/
 @Composable
 fun DoodleTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
@@ -65,9 +59,10 @@ fun DoodleTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> DarkColors
+        else -> LightColors
     }
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {

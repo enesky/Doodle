@@ -16,19 +16,17 @@
  */
 package dev.enesky.build_logic.convention.plugins.common
 
-import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
+/**
+ * A plugin that applies common dependencies for feature modules.
+ */
 class FeaturePlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
-        pluginManager.apply("kotlin-parcelize")
-
         dependencies {
-            // Unit Test
-            add("testImplementation", libs.junit)
-            add("androidTestImplementation", libs.bundles.testing)
+            add("implementation", project(":core:design-system"))
         }
     }
 }
