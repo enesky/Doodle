@@ -36,14 +36,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-object LightThemeColors {
+object DarkThemeColors {
     val blazeOrange = Color(0xFFF96D00) // Main color
     val ebonyClay = Color(0xFF2B323F) // Background color on dark mode
     val white = Color.White // Text color on dark background
     val soothingBreeze = Color(0xFFB2BEC3) // Second text or second background color on dark mode
 }
 
-object DarkThemeColors {
+object LightThemeColors {
     val blazeOrange = Color(0xFFF96D00) // Main color
     val geyser = Color(0xFFDFE6E9) // Background color on light mode
     val black = Color.Black // Text color on light background
@@ -53,8 +53,8 @@ object DarkThemeColors {
 private val lightColors = ImmutableList(
     list = listOf(
         "main color" to LightThemeColors.blazeOrange,
-        "background color" to LightThemeColors.ebonyClay,
-        "text color" to LightThemeColors.white,
+        "background color" to LightThemeColors.geyser,
+        "text color" to LightThemeColors.black,
         "secondary background color" to LightThemeColors.soothingBreeze,
     ),
 )
@@ -62,8 +62,8 @@ private val lightColors = ImmutableList(
 private val darkColors = ImmutableList(
     list = listOf(
         "main color" to DarkThemeColors.blazeOrange,
-        "background color" to DarkThemeColors.geyser,
-        "text color" to DarkThemeColors.black,
+        "background color" to DarkThemeColors.ebonyClay,
+        "text color" to DarkThemeColors.white,
         "secondary background color" to DarkThemeColors.soothingBreeze,
     ),
 )
