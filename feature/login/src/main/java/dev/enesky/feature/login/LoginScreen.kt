@@ -1,6 +1,8 @@
 package dev.enesky.feature.login
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -45,6 +47,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.enesky.core.design_system.DarkThemeColors
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -79,8 +82,6 @@ private fun LoginScreen(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Suppress("LongMethod", "MagicNumber")
 @Composable
 private fun LoginContent(
     modifier: Modifier = Modifier,
@@ -94,197 +95,176 @@ private fun LoginContent(
     }
     var needEmail by remember { mutableStateOf(false) }
 
-    val iconWeight = 1f
-    val cardWeight = 2.4f
-
     Column(
-        Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(DarkThemeColors.ebonyClay)
+            .padding(
+                vertical = 8.dp,
+                horizontal = 32.dp,
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.Center,
     ) {
         Image(
+            modifier = Modifier
+                .size(200.dp),
             painter = painterResource(id = R.drawable.ic_launcher),
             contentDescription = "App Logo",
-            modifier = Modifier
-                .weight(iconWeight)
-                .size(200.dp),
         )
-        Card(
-            Modifier
-                .weight(cardWeight)
-                .padding(horizontal = 4.dp),
-            shape = RoundedCornerShape(
-                topStart = 32.dp,
-                topEnd = 32.dp,
-                bottomStart = 0.dp,
-                bottomEnd = 0.dp,
-            ),
-        ) {
-            Column(
-                Modifier
-                    .fillMaxSize()
-                    .padding(
-                        start = 32.dp,
-                        end = 32.dp,
-                        top = 32.dp,
-                        bottom = 8.dp,
-                    ),
-            ) {
+        Spacer(modifier = Modifier.height(32.dp))
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "Welcome to Doodle!",
+            color = Color.White,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold,
+            fontSize = 28.sp,
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = email,
+            onValueChange = { email = it },
+            label = {
                 Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Welcome to Doodle!",
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 28.sp,
+                    text = "Email"
                 )
-                Column(
-                    Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
-                ) {
-                    Spacer(modifier = Modifier.weight(1f))
-                    OutlinedTextField(
-                        modifier = Modifier.fillMaxWidth(),
-                        value = email,
-                        onValueChange = { email = it },
-                        label = {
-                            Text(
-                                text = if (needEmail) {
-                                    "NO EMAIL"
-                                } else {
-                                    "Email"
-                                },
-                            )
-                        },
-                        singleLine = true,
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Email,
-                            imeAction = ImeAction.Next,
-                        ),
-                        trailingIcon = {
-                            if (email.isNotBlank()) {
-                                IconButton(onClick = { email = "" }) {
-                                    Icon(
-                                        imageVector = Icons.Filled.Clear,
-                                        contentDescription = "",
-                                    )
-                                }
-                            }
-                        },
-                        colors = OutlinedTextFieldDefaults.colors(
-                            // textColor = Color.White,
-                            focusedLabelColor = Color.White,
-                            // focusedBorderColor = MaterialTheme.colors.onSurface.copy(
-                            // alpha = TextFieldDefaults.IconOpacity
-                            // )
-                        ),
-                        isError = needEmail,
-
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    OutlinedTextField(
-                        modifier = Modifier.fillMaxWidth(),
-                        value = password,
-                        onValueChange = { password = it },
-                        label = {
-                            Text(
-                                "Password",
-                            )
-                        },
-                        singleLine = true,
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Password,
-                            imeAction = ImeAction.Done,
-                        ),
-                        visualTransformation =
-                        if (isPasswordVisible) {
-                            VisualTransformation.None
-                        } else {
-                            PasswordVisualTransformation()
-                        },
-                        trailingIcon = {
-                            IconButton(onClick = {
-                                isPasswordVisible = !isPasswordVisible
-                            }) {
-                                // TODO add icon for password visible/invisible eye
-                            }
-                        },
-                        colors = TextFieldDefaults.outlinedTextFieldColors(
-                            // textColor = Color.White,
-                            focusedLabelColor = Color.White,
-                            // focusedBorderColor = MaterialTheme.colors.onSurface.copy(
-                            // alpha = TextFieldDefaults.IconOpacity
-                            // )
-                        ),
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Button(
-                        onClick = {
-                            // TODO: add login
-                        },
-                        enabled = isFormValid.value,
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(16.dp),
-                    ) {
-                        Text(
-                            text = "Sign Up/In",
-                            color = Color.White,
-                        )
-                    }
-                    Spacer(modifier = Modifier.weight(1f))
-
-                    // TODO: add google sign in
-
-                    Button(
-                        onClick = {
-                            // TODO: add google sign in
-                        },
-                        enabled = isFormValid.value,
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(16.dp),
-                    ) {
-                        Text(
-                            text = "Google Sign In",
-                            color = Color.White,
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.weight(1f))
-                    TextButton(
-                        modifier = Modifier.padding(4.dp),
-                        onClick = {
-                            // TODO: add sign in anonymously
-                            onNavigateHomeClick()
-                        },
-                    ) {
-                        Text(
-                            text = "Sign in anonymously",
-                            color = Color.White,
-                            textDecoration = TextDecoration.Underline,
-                        )
-                    }
-                    Spacer(modifier = Modifier.weight(1f))
-                    TextButton(
-                        modifier = Modifier.padding(4.dp),
-                        onClick = {
-                            if (email.isEmpty()) {
-                                needEmail = true
-                                return@TextButton
-                            }
-                            needEmail = false
-                            // TODO add forgot password
-                        },
-                    ) {
-                        Text(
-                            text = "Forgot password?",
-                            color = Color.White,
-                            fontSize = 12.sp,
+            },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Next,
+            ),
+            trailingIcon = {
+                if (email.isNotBlank()) {
+                    IconButton(onClick = { email = "" }) {
+                        Icon(
+                            imageVector = Icons.Filled.Clear,
+                            contentDescription = "",
                         )
                     }
                 }
-            }
+            },
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = Color.White,
+                unfocusedBorderColor = DarkThemeColors.blazeOrange,
+                focusedLabelColor = Color.White,
+                focusedBorderColor = DarkThemeColors.blazeOrange,
+                unfocusedPlaceholderColor = DarkThemeColors.blazeOrange,
+                unfocusedLabelColor = DarkThemeColors.white,
+            ),
+            isError = needEmail,
+
+            )
+        Spacer(modifier = Modifier.height(8.dp))
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = password,
+            onValueChange = { password = it },
+            label = {
+                Text(
+                    "Password",
+                )
+            },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+                imeAction = ImeAction.Done,
+            ),
+            visualTransformation =
+            if (isPasswordVisible) {
+                VisualTransformation.None
+            } else {
+                PasswordVisualTransformation()
+            },
+            trailingIcon = {
+                IconButton(onClick = {
+                    isPasswordVisible = !isPasswordVisible
+                }) {
+                    // TODO add icon for password visible/invisible eye
+                }
+            },
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = Color.White,
+                unfocusedBorderColor = DarkThemeColors.blazeOrange,
+                focusedLabelColor = Color.White,
+                focusedBorderColor = DarkThemeColors.blazeOrange,
+                unfocusedPlaceholderColor = DarkThemeColors.blazeOrange,
+                unfocusedLabelColor = DarkThemeColors.white,
+            ),
+        )
+        Spacer(modifier = Modifier.height(32.dp))
+        Button(
+            onClick = {
+                // TODO: add login
+            },
+            enabled = isFormValid.value,
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(16.dp),
+            border = BorderStroke(
+                width = 1.dp,
+                color = DarkThemeColors.blazeOrange,
+                )
+        ) {
+            Text(
+                text = "Sign Up/In",
+                color = Color.White,
+            )
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        // TODO: add google sign in
+
+        Button(
+            onClick = {
+                // TODO: add google sign in
+            },
+            enabled = isFormValid.value,
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(16.dp),
+        ) {
+            Text(
+                text = "Google Sign In",
+                color = Color.White,
+            )
+        }
+
+
+
+        Spacer(modifier = Modifier.height(16.dp))
+        TextButton(
+            modifier = Modifier.padding(4.dp),
+            onClick = {
+                // TODO: add sign in anonymously
+                onNavigateHomeClick()
+            },
+        ) {
+            Text(
+                text = "Sign in anonymously",
+                color = Color.White,
+                textDecoration = TextDecoration.Underline,
+            )
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        TextButton(
+            modifier = Modifier.padding(4.dp),
+            onClick = {
+                if (email.isEmpty()) {
+                    needEmail = true
+                    return@TextButton
+                }
+                needEmail = false
+                // TODO add forgot password
+            },
+        ) {
+            Text(
+                text = "Forgot password?",
+                color = Color.White,
+                fontSize = 12.sp,
+            )
         }
     }
+
 }
 
 @Preview(showBackground = true)
