@@ -45,7 +45,6 @@ private val DarkColors = darkColorScheme(
     secondary = DarkThemeColors.soothingBreeze,
 )
 
-
 /**
  * Dynamic color is available on Android 12+
  **/

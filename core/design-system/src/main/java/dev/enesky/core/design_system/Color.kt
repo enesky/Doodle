@@ -27,6 +27,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,32 +37,40 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 object LightThemeColors {
-    val blazeOrange = Color(0xFFF96D00)      // Main color
-    val ebonyClay = Color(0xFF2B323F)        // Background color on dark mode
-    val white = Color.White                        // Text color on dark background
-    val soothingBreeze = Color(0xFFB2BEC3)  // Second text or second background color on dark mode
-
+    val blazeOrange = Color(0xFFF96D00) // Main color
+    val ebonyClay = Color(0xFF2B323F) // Background color on dark mode
+    val white = Color.White // Text color on dark background
+    val soothingBreeze = Color(0xFFB2BEC3) // Second text or second background color on dark mode
 }
 
 object DarkThemeColors {
-    val blazeOrange = Color(0xFFF96D00)      // Main color
-    val geyser = Color(0xFFDFE6E9)          // Background color on light mode
-    val black = Color.Black                        // Text color on light background
-    val soothingBreeze = Color(0xFFB2BEC3)  // Second text or second background color on dark mode
+    val blazeOrange = Color(0xFFF96D00) // Main color
+    val geyser = Color(0xFFDFE6E9) // Background color on light mode
+    val black = Color.Black // Text color on light background
+    val soothingBreeze = Color(0xFFB2BEC3) // Second text or second background color on dark mode
 }
 
-private val lightColors = listOf(
-    "main color" to LightThemeColors.blazeOrange,
-    "background color" to LightThemeColors.ebonyClay,
-    "text color" to LightThemeColors.white,
-    "secondary background color" to LightThemeColors.soothingBreeze,
+private val lightColors = ImmutableList(
+    list = listOf(
+        "main color" to LightThemeColors.blazeOrange,
+        "background color" to LightThemeColors.ebonyClay,
+        "text color" to LightThemeColors.white,
+        "secondary background color" to LightThemeColors.soothingBreeze,
+    ),
 )
 
-private val darkColors = listOf(
-    "main color" to DarkThemeColors.blazeOrange,
-    "background color" to DarkThemeColors.geyser,
-    "text color" to DarkThemeColors.black,
-    "secondary background color" to DarkThemeColors.soothingBreeze,
+private val darkColors = ImmutableList(
+    list = listOf(
+        "main color" to DarkThemeColors.blazeOrange,
+        "background color" to DarkThemeColors.geyser,
+        "text color" to DarkThemeColors.black,
+        "secondary background color" to DarkThemeColors.soothingBreeze,
+    ),
+)
+
+@Immutable
+data class ImmutableList<T>(
+    val list: List<T>,
 )
 
 /**
@@ -71,19 +80,19 @@ private val darkColors = listOf(
 @Composable
 private fun ColorPicker(
     modifier: Modifier = Modifier,
-    colorList: List<Pair<String, Color>> = darkColors,
+    colorList: ImmutableList<Pair<String, Color>> = darkColors,
 ) {
     Box(
         modifier = modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center,
     ) {
         LazyColumn {
-            items(colorList.size) {
+            items(colorList.list.size) {
                 Surface(
                     modifier = Modifier
                         .width(250.dp)
                         .padding(1.dp),
-                    color = colorList[it].second,
+                    color = colorList.list[it].second,
                 ) {
                     Row(
                         modifier = Modifier
@@ -92,8 +101,8 @@ private fun ColorPicker(
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
                         Text(
-                            text = it.toString() + " - " + colorList[it].first,
-                            color = colorList[2].second,
+                            text = it.toString() + " - " + colorList.list[it].first,
+                            color = colorList.list[2].second,
                             style = MaterialTheme.typography.bodyMedium,
                             textAlign = TextAlign.Center,
                             fontWeight = FontWeight.Bold,
