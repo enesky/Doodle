@@ -58,7 +58,7 @@ data class DoodleColors(
     val default: Color = Color.Unspecified,
     val transparent: Color = Color.Transparent,
     val main: Color = BlazeOrange,
-    val background: Color = if (isSystemInDarkTheme) EbonyClay else Geyser,
+    val background: Color = if (isSystemInDarkTheme) EbonyClay else SoothingBreeze,
     val backgroundDark: Color = EbonyClay,
     val backgroundLight: Color = Geyser,
     val text: Color = if (isSystemInDarkTheme) White else Black,

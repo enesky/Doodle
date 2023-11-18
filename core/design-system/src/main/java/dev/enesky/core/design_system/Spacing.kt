@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 private val DefaultSpace = 0.dp
+private val BorderStroke = 1.dp
 private val ExtraSmallSpace = 4.dp
 private val SmallSpace = 8.dp
 private val SmallMediumSpace = 12.dp
@@ -34,6 +35,7 @@ private val LargestSpace = 64.dp
 @Immutable
 data class DoodleSpacing(
     val default: Dp = DefaultSpace,
+    val border: Dp = BorderStroke,
     val extraSmall: Dp = ExtraSmallSpace,
     val small: Dp = SmallSpace,
     val smallMedium: Dp = SmallMediumSpace,

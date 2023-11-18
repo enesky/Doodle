@@ -80,7 +80,7 @@ private fun ProvideDoodleThemeDependencies(
         LocalRippleTheme provides DoodleRippleTheme
     ) {
         ProvideTextStyle(
-            value = DoodleTheme.typography.regular.h4,
+            value = DoodleTheme.typography.regular.h5,
             content = content
         )
     }
