@@ -41,6 +41,7 @@ appcompat                             = "1.6.1"
 material                              = "1.10.0"
 ktlint                                = "11.6.1"
 spotless                              = "6.22.0"
+credential-manager                    = "1.2.0"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
@@ -115,6 +116,8 @@ detekt-compose-rules                  = { module= "io.nlopez.compose.rules:detek
 coil-compose                          = { module= "io.coil-kt:coil-compose", version.ref= "coilCompose" }
 appcompat                             = { module= "androidx.appcompat:appcompat", version.ref = "appcompat" }
 material                              = { module= "com.google.android.material:material", version.ref = "material" }
+credential-manager                    = { module= "androidx.credentials:credentials", version.ref = "credential-manager" }
+credential-manager-play-services-auth = { module= "androidx.credentials:credentials-play-services-auth", version.ref = "credential-manager" }
 
 # Dependencies of the included build-logic
 android-gradle-plugin                 = { module= "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
