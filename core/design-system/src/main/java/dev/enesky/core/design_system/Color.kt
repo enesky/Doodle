@@ -16,112 +16,67 @@
  */
 package dev.enesky.core.design_system
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 
-object LightThemeColors {
-    val blazeOrange = Color(0xFFF96D00) // Main color
-    val ebonyClay = Color(0xFF2B323F) // Background color on dark mode
-    val white = Color.White // Text color on dark background
-    val soothingBreeze = Color(0xFFB2BEC3) // Second text or second background color on dark mode
-}
+private val BlazeOrange = Color(0xFFF96D00) // Main color
+private val EbonyClay = Color(0xFF2B323F) // Background color on dark mode
+private val White = Color(0xFFFFFFFF) // Text color on dark background
+private val Black = Color(0xFF171725) // Text color on light background
+private val Geyser = Color(0xFFDFE6E9) // Background color on light mode
+private val SoothingBreeze = Color(0xFFB2BEC3) // Second text or second background color
+private val Dark = Color(0xFF1F1D2B)
+private val Soft = Color(0xFF252836)
+private val BlueAccent = Color(0xFF12CDD9)
+private val Green = Color(0xFF22B07D)
+private val Orange = Color(0xFFFF8700)
+private val Red = Color(0xFFFB4141)
+private val Grey = Color(0xFF92929D)
+private val DarkGrey = Color(0xFF696974)
+private val WhiteGrey = Color(0xFFEBEBEF)
+private val LineDark = Color(0xFFEAEAEA)
 
-object DarkThemeColors {
-    val blazeOrange = Color(0xFFF96D00) // Main color
-    val geyser = Color(0xFFDFE6E9) // Background color on light mode
-    val black = Color.Black // Text color on light background
-    val soothingBreeze = Color(0xFFB2BEC3) // Second text or second background color on dark mode
-}
-
-private val lightColors = ImmutableList(
-    list = listOf(
-        "main color" to LightThemeColors.blazeOrange,
-        "background color" to LightThemeColors.ebonyClay,
-        "text color" to LightThemeColors.white,
-        "secondary background color" to LightThemeColors.soothingBreeze,
-    ),
+internal val DarkColorScheme = darkColorScheme(
+    primary = BlazeOrange,
+    secondary = White,
+    background = EbonyClay,
+    surface = SoothingBreeze,
 )
 
-private val darkColors = ImmutableList(
-    list = listOf(
-        "main color" to DarkThemeColors.blazeOrange,
-        "background color" to DarkThemeColors.geyser,
-        "text color" to DarkThemeColors.black,
-        "secondary background color" to DarkThemeColors.soothingBreeze,
-    ),
+internal val LightColorScheme = darkColorScheme(
+    primary = BlazeOrange,
+    secondary = Black,
+    background = Geyser,
+    surface = SoothingBreeze,
 )
 
 @Immutable
-data class ImmutableList<T>(
-    val list: List<T>,
+data class DoodleColors(
+    val isSystemInDarkTheme: Boolean = false,
+    val default: Color = Color.Unspecified,
+    val transparent: Color = Color.Transparent,
+    val main: Color = BlazeOrange,
+    val background: Color = if (isSystemInDarkTheme) EbonyClay else SoothingBreeze,
+    val backgroundDark: Color = EbonyClay,
+    val backgroundLight: Color = Geyser,
+    val text: Color = if (isSystemInDarkTheme) White else Black,
+    val textDark: Color = White,
+    val textLight: Color = Black,
+    val secondary: Color = SoothingBreeze,
+    val dark: Color = Dark,
+    val softDark: Color = Soft,
+    val blue: Color = BlueAccent,
+    val green: Color = Green,
+    val lightOrange: Color = Orange,
+    val red: Color = Red,
+    val white: Color = White,
+    val whiteGrey: Color = WhiteGrey,
+    val black: Color = Black,
+    val grey: Color = Grey,
+    val darkGrey: Color = DarkGrey,
+    val lineDark: Color = LineDark,
 )
 
-/**
- * To see the preview of the colors
- */
-@Suppress("LongMethod")
-@Composable
-private fun ColorPicker(
-    modifier: Modifier = Modifier,
-    colorList: ImmutableList<Pair<String, Color>> = darkColors,
-) {
-    Box(
-        modifier = modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center,
-    ) {
-        LazyColumn {
-            items(colorList.list.size) {
-                Surface(
-                    modifier = Modifier
-                        .width(250.dp)
-                        .padding(1.dp),
-                    color = colorList.list[it].second,
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(2.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                    ) {
-                        Text(
-                            text = it.toString() + " - " + colorList.list[it].first,
-                            color = colorList.list[2].second,
-                            style = MaterialTheme.typography.bodyMedium,
-                            textAlign = TextAlign.Center,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun LightThemeColorsPreview() {
-    ColorPicker(colorList = lightColors)
-}
-
-@Preview
-@Composable
-private fun DarkThemeColorsPreview() {
-    ColorPicker(colorList = darkColors)
-}
+internal val LocalDoodleColors = staticCompositionLocalOf { DoodleColors() }

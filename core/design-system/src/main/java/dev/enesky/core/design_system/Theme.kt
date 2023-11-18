@@ -17,64 +17,93 @@
 package dev.enesky.core.design_system
 
 import android.app.Activity
-import android.os.Build
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.ripple.LocalRippleTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.ProvideTextStyle
+import androidx.compose.material3.Shapes
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val LightColors = lightColorScheme(
-    primary = LightThemeColors.blazeOrange,
-    surface = LightThemeColors.ebonyClay,
-    onSurface = LightThemeColors.white,
-    secondary = LightThemeColors.soothingBreeze,
-)
-
-private val DarkColors = darkColorScheme(
-    primary = DarkThemeColors.blazeOrange,
-    surface = DarkThemeColors.geyser,
-    onSurface = DarkThemeColors.black,
-    secondary = DarkThemeColors.soothingBreeze,
-)
-
-/**
- * Dynamic color is available on Android 12+
- **/
 @Composable
 fun DoodleTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = false,
+    isDarkTheme: Boolean = isSystemInDarkTheme(),
+    shapes: Shapes = Shapes,
+    typography: Typography = Typography,
     content: @Composable () -> Unit,
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-        darkTheme -> DarkColors
-        else -> LightColors
-    }
+    val colorScheme: ColorScheme = if (isDarkTheme) DarkColorScheme else LightColorScheme
 
     val view = LocalView.current
-    if (!view.isInEditMode) {
+    if (view.isInEditMode.not()) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            window.statusBarColor = colorScheme.surface.toArgb()
+            window.navigationBarColor = colorScheme.surface.toArgb()
+            WindowCompat
+                .getInsetsController(window, view)
+                .isAppearanceLightStatusBars = isDarkTheme.not()
         }
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
-        content = content,
-    )
+        shapes = shapes,
+        typography = typography,
+    ) {
+        ProvideDoodleThemeDependencies(
+            isDarkTheme = isDarkTheme,
+            content = content,
+        )
+    }
+}
+
+@Composable
+private fun ProvideDoodleThemeDependencies(
+    isDarkTheme: Boolean,
+    content: @Composable () -> Unit,
+) {
+    CompositionLocalProvider(
+        LocalDoodleColors provides DoodleColors(isSystemInDarkTheme = isDarkTheme),
+        LocalDoodleShapes provides DoodleShapes(),
+        LocalDoodleTypography provides DoodleTypography(),
+        LocalDoodleSpacing provides DoodleSpacing(),
+        LocalIndication provides rememberDoodleRipple(),
+        LocalRippleTheme provides DoodleRippleTheme,
+    ) {
+        ProvideTextStyle(
+            value = DoodleTheme.typography.regular.h5,
+            content = content,
+        )
+    }
+}
+
+object DoodleTheme {
+    val colors: DoodleColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalDoodleColors.current
+
+    val shapes: DoodleShapes
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalDoodleShapes.current
+
+    val typography: DoodleTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalDoodleTypography.current
+
+    val spacing: DoodleSpacing
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalDoodleSpacing.current
 }

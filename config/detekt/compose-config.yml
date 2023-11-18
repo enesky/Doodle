@@ -1,8 +1,6 @@
 Compose:
   CompositionLocalAllowlist:
-    active: true
-    # You can optionally define a list of CompositionLocals that are allowed here
-    # allowedCompositionLocals: LocalSomething,LocalSomethingElse
+    active: false
   ContentEmitterReturningValues:
     active: true
     # You can optionally add your own composables here
