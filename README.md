@@ -2,7 +2,7 @@
 
 <p align="center">
   <a>
-    <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="Doodle App Icon">
+    <img width=400, src="https://github.com/enesky/Doodle/blob/main/core/design-system/src/main/res/drawable/doodle_icon.png" alt="Doodle Icon">
   </a>
 </p>
 
@@ -18,8 +18,6 @@
   <a><img alt="JVM" src="https://img.shields.io/badge/JVM-17-yellow.svg?style=flat"/></a>
   <a><img alt="AGP" src="https://img.shields.io/badge/AGP-8.3.0_alpha12-orange.svg?style=flat"/></a>
 </p>
-
-# Doodle
 
 Just doodling around
 
