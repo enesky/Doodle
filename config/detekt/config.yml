@@ -87,7 +87,7 @@ complexity:
     constructorThreshold: 7
     ignoreDefaultParameters: true
     ignoreDataClasses: true
-    ignoreAnnotated: ['Composable', 'Preview']
+    ignoreAnnotated: ['Composable', 'Preview', 'PreviewUiMode']
   MethodOverloading:
     active: false
     threshold: 6
@@ -443,7 +443,7 @@ style:
     ignoreNumbers: ['-1', '0', '1', '2']
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: true
-    ignoreLocalVariableDeclaration: false
+    ignoreLocalVariableDeclaration: true
     ignoreConstantDeclaration: true
     ignoreCompanionObjectPropertyDeclaration: true
     ignoreAnnotation: false
@@ -451,7 +451,7 @@ style:
     ignoreEnums: false
     ignoreRanges: false
     ignoreExtensionFunctions: true
-    ignoreAnnotated: ['Preview']
+    ignoreAnnotated: ['Preview', 'PreviewUiMode']
   BracesOnIfStatements:
     active: true
     singleLine: 'never'
@@ -539,7 +539,7 @@ style:
   UnusedPrivateMember:
     active: true
     allowedNames: '(_|ignored|expected|serialVersionUID)'
-    ignoreAnnotated: ['Preview']
+    ignoreAnnotated: ['Preview', 'PreviewUiMode']
   UseArrayLiteralsInAnnotations:
     active: false
   UseCheckNotNull:

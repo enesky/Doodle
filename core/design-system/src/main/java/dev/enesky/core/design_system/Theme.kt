@@ -38,7 +38,7 @@ fun DoodleTheme(
     isDarkTheme: Boolean = isSystemInDarkTheme(),
     shapes: Shapes = Shapes,
     typography: Typography = Typography,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme: ColorScheme = if (isDarkTheme) DarkColorScheme else LightColorScheme
 
@@ -57,11 +57,11 @@ fun DoodleTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         shapes = shapes,
-        typography = typography
+        typography = typography,
     ) {
         ProvideDoodleThemeDependencies(
             isDarkTheme = isDarkTheme,
-            content = content
+            content = content,
         )
     }
 }
@@ -69,7 +69,7 @@ fun DoodleTheme(
 @Composable
 private fun ProvideDoodleThemeDependencies(
     isDarkTheme: Boolean,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
         LocalDoodleColors provides DoodleColors(isSystemInDarkTheme = isDarkTheme),
@@ -77,11 +77,11 @@ private fun ProvideDoodleThemeDependencies(
         LocalDoodleTypography provides DoodleTypography(),
         LocalDoodleSpacing provides DoodleSpacing(),
         LocalIndication provides rememberDoodleRipple(),
-        LocalRippleTheme provides DoodleRippleTheme
+        LocalRippleTheme provides DoodleRippleTheme,
     ) {
         ProvideTextStyle(
             value = DoodleTheme.typography.regular.h5,
-            content = content
+            content = content,
         )
     }
 }
@@ -107,4 +107,3 @@ object DoodleTheme {
         @ReadOnlyComposable
         get() = LocalDoodleSpacing.current
 }
-

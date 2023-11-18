@@ -40,7 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import dev.enesky.core.design_system.DoodleTheme
-import dev.enesky.core.design_system.UiModePreview
+import dev.enesky.core.design_system.annotation.PreviewUiMode
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -77,6 +77,7 @@ private fun LoginScreen(
     }
 }
 
+@Suppress("LongMethod")
 @Composable
 private fun LoginContent(
     modifier: Modifier = Modifier,
@@ -85,8 +86,9 @@ private fun LoginContent(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var isPasswordVisible by remember { mutableStateOf(false) }
+    val maxPassLength = 7
     val isFormValid = remember {
-        derivedStateOf { email.isNotBlank() && password.length >= 7 }
+        derivedStateOf { email.isNotBlank() && password.length >= maxPassLength }
     }
     var needEmail by remember { mutableStateOf(false) }
 
@@ -100,38 +102,10 @@ private fun LoginContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        Image(
-            modifier = Modifier
-                .size(200.dp),
-            painter = painterResource(id = R.drawable.ic_launcher),
-            contentDescription = "App Logo",
-        )
-
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.Bottom,
-        ){
-            Column {
-                Text(
-                    text = "Welcome to ",
-                    color = DoodleTheme.colors.text,
-                    textAlign = TextAlign.Center,
-                    style = DoodleTheme.typography.bold.h2
-                )
-                Spacer(modifier = Modifier.height(3.dp))
-            }
-
-            Text(
-                text = "Doodle!",
-                color = DoodleTheme.colors.text,
-                textAlign = TextAlign.Center,
-                style = DoodleTheme.typography.pacifico.h2
-            )
-        }
+        LoginHeader()
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
+
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = email,
@@ -166,7 +140,7 @@ private fun LoginContent(
                 unfocusedLabelColor = DoodleTheme.colors.text,
             ),
             isError = needEmail,
-            )
+        )
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.small))
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -216,7 +190,7 @@ private fun LoginContent(
             border = BorderStroke(
                 width = DoodleTheme.spacing.border,
                 color = DoodleTheme.colors.main,
-                )
+            ),
         ) {
             Text(
                 text = "Sign Up/In",
@@ -276,10 +250,48 @@ private fun LoginContent(
             )
         }
     }
-
 }
 
-@UiModePreview
+@Composable
+private fun LoginHeader() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Image(
+            modifier = Modifier
+                .size(200.dp),
+            painter = painterResource(id = R.drawable.ic_launcher),
+            contentDescription = "App Logo",
+        )
+
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.Bottom,
+        ) {
+            Column {
+                Text(
+                    text = "Welcome to ",
+                    color = DoodleTheme.colors.text,
+                    textAlign = TextAlign.Center,
+                    style = DoodleTheme.typography.bold.h2,
+                )
+                Spacer(modifier = Modifier.height(3.dp))
+            }
+
+            Text(
+                text = "Doodle!",
+                color = DoodleTheme.colors.text,
+                textAlign = TextAlign.Center,
+                style = DoodleTheme.typography.pacifico.h2,
+            )
+        }
+    }
+}
+
+@PreviewUiMode
 @Composable
 private fun LoginScreenPreview() {
     LoginScreen(

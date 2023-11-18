@@ -43,7 +43,7 @@ data class DoodleSpacing(
     val extraMedium: Dp = ExtraMediumSpace,
     val large: Dp = LargeSpace,
     val extraLarge: Dp = ExtraLargeSpace,
-    val largest: Dp = LargestSpace
+    val largest: Dp = LargestSpace,
 )
 
 internal val LocalDoodleSpacing = staticCompositionLocalOf { DoodleSpacing() }

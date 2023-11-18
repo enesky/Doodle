@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 
 private val NunitoSans = FontFamily(
     Font(R.font.nunito_sans_regular, FontWeight.Normal),
-    Font(R.font.nunito_sans_bold, FontWeight.Bold)
+    Font(R.font.nunito_sans_bold, FontWeight.Bold),
 )
 
 private val Pacifico = FontFamily(
@@ -49,38 +49,38 @@ class DoodleTypography {
         val h1: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Normal,
             fontSize = H1FontSize,
-            lineHeight = H1LineHeight
+            lineHeight = H1LineHeight,
         ),
         val h2: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Normal,
             fontSize = H2FontSize,
-            lineHeight = H2LineHeight
+            lineHeight = H2LineHeight,
         ),
         val h3: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Normal,
             fontSize = H3FontSize,
-            lineHeight = H3LineHeight
+            lineHeight = H3LineHeight,
         ),
         val h4: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Normal,
             fontSize = H4FontSize,
-            lineHeight = H4LineHeight
+            lineHeight = H4LineHeight,
         ),
         val h5: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Normal,
             fontSize = H5FontSize,
-            lineHeight = H5LineHeight
+            lineHeight = H5LineHeight,
         ),
         val h6: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Normal,
             fontSize = H6FontSize,
-            lineHeight = H6LineHeight
+            lineHeight = H6LineHeight,
         ),
         val h7: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Normal,
             fontSize = H7FontSize,
-            lineHeight = H7LineHeight
-        )
+            lineHeight = H7LineHeight,
+        ),
     )
 
     @Immutable
@@ -89,38 +89,38 @@ class DoodleTypography {
         val h1: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = H1FontSize,
-            lineHeight = H1LineHeight
+            lineHeight = H1LineHeight,
         ),
         val h2: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = H2FontSize,
-            lineHeight = H2LineHeight
+            lineHeight = H2LineHeight,
         ),
         val h3: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = H3FontSize,
-            lineHeight = H3LineHeight
+            lineHeight = H3LineHeight,
         ),
         val h4: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = H4FontSize,
-            lineHeight = H4LineHeight
+            lineHeight = H4LineHeight,
         ),
         val h5: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = H5FontSize,
-            lineHeight = H5LineHeight
+            lineHeight = H5LineHeight,
         ),
         val h6: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = H6FontSize,
-            lineHeight = H6LineHeight
+            lineHeight = H6LineHeight,
         ),
         val h7: TextStyle = defaultTextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = H7FontSize,
-            lineHeight = H7LineHeight
-        )
+            lineHeight = H7LineHeight,
+        ),
     )
 
     @Immutable
@@ -129,17 +129,17 @@ class DoodleTypography {
         val h1: TextStyle = pacificoTextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = H1FontSize,
-            lineHeight = H1LineHeight
+            lineHeight = H1LineHeight,
         ),
         val h2: TextStyle = pacificoTextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = H2FontSize,
-            lineHeight = H2LineHeight
+            lineHeight = H2LineHeight,
         ),
         val h3: TextStyle = pacificoTextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = H3FontSize,
-            lineHeight = H3LineHeight
+            lineHeight = H3LineHeight,
         ),
     )
 }
@@ -148,40 +148,40 @@ private fun defaultTextStyle(
     fontWeight: FontWeight,
     fontSize: TextUnit,
     lineHeight: TextUnit,
-    letterSpacing: TextUnit = LetterSpacing
+    letterSpacing: TextUnit = LetterSpacing,
 ) = TextStyle(
     fontFamily = NunitoSans,
     fontWeight = fontWeight,
     fontSize = fontSize,
     lineHeight = lineHeight,
-    letterSpacing = letterSpacing
+    letterSpacing = letterSpacing,
 )
 
 private fun defaultTextStyle(
-    letterSpacing: TextUnit = LetterSpacing
+    letterSpacing: TextUnit = LetterSpacing,
 ) = TextStyle(
     fontFamily = NunitoSans,
-    letterSpacing = letterSpacing
+    letterSpacing = letterSpacing,
 )
 
 private fun pacificoTextStyle(
     fontWeight: FontWeight,
     fontSize: TextUnit,
     lineHeight: TextUnit,
-    letterSpacing: TextUnit = LetterSpacing
+    letterSpacing: TextUnit = LetterSpacing,
 ) = TextStyle(
     fontFamily = Pacifico,
     fontWeight = fontWeight,
     fontSize = fontSize,
     lineHeight = lineHeight,
-    letterSpacing = letterSpacing
+    letterSpacing = letterSpacing,
 )
 
 private fun pacificoTextStyle(
-    letterSpacing: TextUnit = LetterSpacing
+    letterSpacing: TextUnit = LetterSpacing,
 ) = TextStyle(
     fontFamily = Pacifico,
-    letterSpacing = letterSpacing
+    letterSpacing = letterSpacing,
 )
 
 private fun defaultTypography() = with(DoodleTypography()) {
@@ -201,14 +201,6 @@ private fun defaultTypography() = with(DoodleTypography()) {
         labelLarge = regular.h4,
         labelMedium = regular.h5,
         labelSmall = regular.h6,
-    )
-}
-
-private fun pacificoTypography() = with(DoodleTypography()) {
-    Typography(
-        titleLarge = pacifico.h1,
-        titleMedium = pacifico.h2,
-        titleSmall = pacifico.h3,
     )
 }
 

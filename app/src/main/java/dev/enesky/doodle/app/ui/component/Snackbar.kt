@@ -49,7 +49,6 @@ fun DoodleSnackbarHost(
     }
 }
 
-@Suppress("CompositionLocalAllowlist")
 val LocalSnackbarHostState = staticCompositionLocalOf<SnackbarHostState> {
     error(LOCAL_SNACKBAR_HOST_STATE_ERROR_MESSAGE)
 }

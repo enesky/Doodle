@@ -21,12 +21,12 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-private val BlazeOrange = Color(0xFFF96D00)     // Main color
-private val EbonyClay = Color(0xFF2B323F)       // Background color on dark mode
-private val White = Color(0xFFFFFFFF)           // Text color on dark background
-private val Black = Color(0xFF171725)           // Text color on light background
-private val Geyser = Color(0xFFDFE6E9)          // Background color on light mode
-private val SoothingBreeze = Color(0xFFB2BEC3)  // Second text or second background color
+private val BlazeOrange = Color(0xFFF96D00) // Main color
+private val EbonyClay = Color(0xFF2B323F) // Background color on dark mode
+private val White = Color(0xFFFFFFFF) // Text color on dark background
+private val Black = Color(0xFF171725) // Text color on light background
+private val Geyser = Color(0xFFDFE6E9) // Background color on light mode
+private val SoothingBreeze = Color(0xFFB2BEC3) // Second text or second background color
 private val Dark = Color(0xFF1F1D2B)
 private val Soft = Color(0xFF252836)
 private val BlueAccent = Color(0xFF12CDD9)
@@ -42,14 +42,14 @@ internal val DarkColorScheme = darkColorScheme(
     primary = BlazeOrange,
     secondary = White,
     background = EbonyClay,
-    surface = SoothingBreeze
+    surface = SoothingBreeze,
 )
 
 internal val LightColorScheme = darkColorScheme(
     primary = BlazeOrange,
     secondary = Black,
     background = Geyser,
-    surface = SoothingBreeze
+    surface = SoothingBreeze,
 )
 
 @Immutable
@@ -76,7 +76,7 @@ data class DoodleColors(
     val black: Color = Black,
     val grey: Color = Grey,
     val darkGrey: Color = DarkGrey,
-    val lineDark: Color = LineDark
+    val lineDark: Color = LineDark,
 )
 
 internal val LocalDoodleColors = staticCompositionLocalOf { DoodleColors() }

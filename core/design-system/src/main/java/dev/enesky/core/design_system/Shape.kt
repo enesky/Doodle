@@ -48,7 +48,7 @@ data class DoodleShapes(
     val medium: Shape = MediumShape,
     val extraMedium: Shape = ExtraMediumShape,
     val large: Shape = LargeShape,
-    val extraLarge: Shape = ExtraLargeShape
+    val extraLarge: Shape = ExtraLargeShape,
 )
 
 internal val LocalDoodleShapes = staticCompositionLocalOf { DoodleShapes() }

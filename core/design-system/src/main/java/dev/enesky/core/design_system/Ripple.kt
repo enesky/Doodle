@@ -39,7 +39,7 @@ internal object DoodleRippleTheme : RippleTheme {
 internal fun rememberDoodleRipple(
     bounded: Boolean = true,
     radius: Dp = Dp.Unspecified,
-    color: Color = RippleColor
+    color: Color = RippleColor,
 ) = rememberRipple(bounded = bounded, radius = radius, color = color)
 
 private val RippleColor: Color
@@ -49,5 +49,5 @@ private val RippleAlpha = RippleAlpha(
     draggedAlpha = 0.16f,
     focusedAlpha = 0.12f,
     hoveredAlpha = 0.08f,
-    pressedAlpha = 0.12f
+    pressedAlpha = 0.12f,
 )
