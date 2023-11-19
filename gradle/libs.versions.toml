@@ -46,15 +46,15 @@ credential-manager                    = "1.2.0"
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
 android-library                       = { id= "com.android.library", version.ref= "gradle-plugin" }
-android-test                          = { id= "com.android.test", version.ref = "gradle-plugin" }
+android-test                          = { id= "com.android.test", version.ref= "gradle-plugin" }
 kotlin-android                        = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin-plugin" }
 ksp-plugin                            = { id= "com.google.devtools.ksp", version.ref= "ksp-plugin"}
 google-services                       = { id= "com.google.gms.google-services", version.ref= "google-services-plugin"}
 firebase-crashlytics                  = { id= "com.google.firebase.crashlytics", version.ref= "crashlytics-plugin"}
 firebase-performance                  = { id= "com.google.firebase.firebase-perf", version.ref= "firebase-perf-plugin"}
-detekt-plugin                         = { id= "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-ktlint-plugin                         = { id= "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
-spotless-plugin                       = { id= "com.diffplug.spotless", version.ref = "spotless" }
+detekt-plugin                         = { id= "io.gitlab.arturbosch.detekt", version.ref= "detekt" }
+ktlint-plugin                         = { id= "org.jlleitschuh.gradle.ktlint", version.ref= "ktlint" }
+spotless-plugin                       = { id= "com.diffplug.spotless", version.ref= "spotless" }
 
 # Convention Plugins
 app-main                              = { id= "app.main", version= "unspecified" }
@@ -71,6 +71,7 @@ common-api-key-provider               = { id= "common.api.key.provider", version
 common-git-hooks                      = { id= "common.git.hooks", version= "unspecified" }
 common-detekt                         = { id= "common.detekt", version= "unspecified" }
 common-spotless                       = { id= "common.spotless", version= "unspecified" }
+common-authentication                 = { id= "common.authentication", version= "unspecified" }
 
 [libraries]
 core-ktx                              = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }
@@ -94,7 +95,7 @@ firebase-bom                          = { module= "com.google.firebase:firebase-
 firebase-analytics                    = { module= "com.google.firebase:firebase-analytics-ktx" }
 firebase-crashlytics                  = { module= "com.google.firebase:firebase-crashlytics-ktx" }
 firebase-performance                  = { module= "com.google.firebase:firebase-perf-ktx" }
-firebase-authentication               = { module= "com.google.firebase:firebase-crashlytics-ktx" }
+firebase-authentication               = { module= "com.google.firebase:firebase-auth" }
 firebase-remote-config                = { module= "com.google.firebase:firebase-config-ktx" }
 koin-bom                              = { module= "io.insert-koin:koin-bom", version.ref= "koin-bom" }
 koin-coroutines                       = { module= "io.insert-koin:koin-core-coroutines"}
