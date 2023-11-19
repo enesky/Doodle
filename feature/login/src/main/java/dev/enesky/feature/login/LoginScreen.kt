@@ -169,7 +169,7 @@ private fun LoginContent(
                 IconButton(
                     onClick = {
                         isPasswordVisible = !isPasswordVisible
-                    }
+                    },
                 ) {
                     // TODO add icon for password visible/invisible eye
                 }
@@ -206,9 +206,7 @@ private fun LoginContent(
         }
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
 
-
         // TODO: add google sign in
-
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
         TextButton(

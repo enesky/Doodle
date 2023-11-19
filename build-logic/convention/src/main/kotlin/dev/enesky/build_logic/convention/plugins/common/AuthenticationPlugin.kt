@@ -10,7 +10,6 @@ import org.gradle.kotlin.dsl.dependencies
  */
 class AuthenticationPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
-
         dependencies {
             // Firebase Authentication
             add("implementation", platform(libs.firebase.bom))
