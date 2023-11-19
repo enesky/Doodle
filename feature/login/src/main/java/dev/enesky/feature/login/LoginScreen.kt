@@ -32,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -39,6 +40,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.core.design_system.annotation.PreviewUiMode
 import org.koin.androidx.compose.koinViewModel
@@ -83,8 +85,8 @@ private fun LoginContent(
     modifier: Modifier = Modifier,
     onNavigateHomeClick: () -> Unit,
 ) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf(String.Empty) }
+    var password by remember { mutableStateOf(String.Empty) }
     var isPasswordVisible by remember { mutableStateOf(false) }
     val maxPassLength = 7
     val isFormValid = remember {
@@ -112,7 +114,7 @@ private fun LoginContent(
             onValueChange = { email = it },
             label = {
                 Text(
-                    text = "Email",
+                    text = stringResource(R.string.label_email),
                     style = DoodleTheme.typography.regular.h4,
                 )
             },
@@ -123,10 +125,10 @@ private fun LoginContent(
             ),
             trailingIcon = {
                 if (email.isNotBlank()) {
-                    IconButton(onClick = { email = "" }) {
+                    IconButton(onClick = { email = String.Empty }) {
                         Icon(
                             imageVector = Icons.Filled.Clear,
-                            contentDescription = "",
+                            contentDescription = String.Empty,
                         )
                     }
                 }
@@ -148,7 +150,7 @@ private fun LoginContent(
             onValueChange = { password = it },
             label = {
                 Text(
-                    text = "Password",
+                    text = stringResource(R.string.label_password),
                     style = DoodleTheme.typography.regular.h4,
                 )
             },
@@ -164,9 +166,11 @@ private fun LoginContent(
                 PasswordVisualTransformation()
             },
             trailingIcon = {
-                IconButton(onClick = {
-                    isPasswordVisible = !isPasswordVisible
-                }) {
+                IconButton(
+                    onClick = {
+                        isPasswordVisible = !isPasswordVisible
+                    }
+                ) {
                     // TODO add icon for password visible/invisible eye
                 }
             },
@@ -181,40 +185,30 @@ private fun LoginContent(
         )
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
         Button(
-            onClick = {
-                // TODO: add login
-            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = DoodleTheme.spacing.smallMedium),
             enabled = isFormValid.value,
-            modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(DoodleTheme.spacing.medium),
             border = BorderStroke(
                 width = DoodleTheme.spacing.border,
                 color = DoodleTheme.colors.main,
             ),
+            onClick = {
+                // TODO: add login
+            },
         ) {
             Text(
-                text = "Sign Up/In",
+                text = stringResource(R.string.label_login),
                 color = DoodleTheme.colors.text,
                 style = DoodleTheme.typography.regular.h4,
             )
         }
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
+
+
         // TODO: add google sign in
 
-        Button(
-            onClick = {
-                // TODO: add google sign in
-            },
-            enabled = isFormValid.value,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(DoodleTheme.spacing.medium),
-        ) {
-            Text(
-                text = "Google Sign In",
-                color = DoodleTheme.colors.text,
-                style = DoodleTheme.typography.regular.h4,
-            )
-        }
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
         TextButton(
@@ -225,7 +219,7 @@ private fun LoginContent(
             },
         ) {
             Text(
-                text = "Sign in anonymously",
+                text = stringResource(R.string.label_sign_in_anonymously),
                 color = DoodleTheme.colors.text,
                 textDecoration = TextDecoration.Underline,
                 style = DoodleTheme.typography.regular.h5,
@@ -244,7 +238,7 @@ private fun LoginContent(
             },
         ) {
             Text(
-                text = "Forgot password?",
+                text = stringResource(R.string.label_forgot_password),
                 color = DoodleTheme.colors.text,
                 style = DoodleTheme.typography.regular.h6,
             )
@@ -273,7 +267,7 @@ private fun LoginHeader() {
         ) {
             Column {
                 Text(
-                    text = "Welcome to ",
+                    text = stringResource(R.string.label_welcome_to),
                     color = DoodleTheme.colors.text,
                     textAlign = TextAlign.Center,
                     style = DoodleTheme.typography.bold.h2,
@@ -282,7 +276,7 @@ private fun LoginHeader() {
             }
 
             Text(
-                text = "Doodle!",
+                text = stringResource(R.string.label_doodle),
                 color = DoodleTheme.colors.text,
                 textAlign = TextAlign.Center,
                 style = DoodleTheme.typography.pacifico.h2,
