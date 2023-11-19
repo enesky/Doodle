@@ -42,6 +42,7 @@ material                              = "1.10.0"
 ktlint                                = "11.6.1"
 spotless                              = "6.22.0"
 credential-manager                    = "1.2.0"
+google-auth                           = "20.7.0"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
@@ -95,8 +96,9 @@ firebase-bom                          = { module= "com.google.firebase:firebase-
 firebase-analytics                    = { module= "com.google.firebase:firebase-analytics-ktx" }
 firebase-crashlytics                  = { module= "com.google.firebase:firebase-crashlytics-ktx" }
 firebase-performance                  = { module= "com.google.firebase:firebase-perf-ktx" }
-firebase-authentication               = { module= "com.google.firebase:firebase-auth" }
 firebase-remote-config                = { module= "com.google.firebase:firebase-config-ktx" }
+firebase-authentication               = { module= "com.google.firebase:firebase-auth" }
+google-auth                           = { module= "com.google.android.gms:play-services-auth", version.ref= "google-auth" }
 koin-bom                              = { module= "io.insert-koin:koin-bom", version.ref= "koin-bom" }
 koin-coroutines                       = { module= "io.insert-koin:koin-core-coroutines"}
 koin-navigation                       = { module= "io.insert-koin:koin-androidx-navigation"}

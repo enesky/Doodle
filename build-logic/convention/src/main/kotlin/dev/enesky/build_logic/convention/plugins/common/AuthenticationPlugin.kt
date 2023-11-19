@@ -15,6 +15,9 @@ class AuthenticationPlugin : Plugin<Project> {
             add("implementation", platform(libs.firebase.bom))
             add("implementation", libs.firebase.authentication)
 
+            // Google Sign In
+            add("implementation", libs.google.auth)
+
             // Credential Manager
             add("implementation", libs.credential.manager)
             add("implementation", libs.credential.manager.play.services.auth)
