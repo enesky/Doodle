@@ -17,7 +17,7 @@ detekt                                = "1.23.3"
 
 # Library Versions
 core-ktx                              = "1.12.0"
-lifecycle-runtime-ktx                 = "2.6.2"
+lifecycle-runtime                     = "2.6.2"
 activity-compose                      = "1.8.1"
 androidx-navigation                   = "2.7.5"
 retrofit                              = "2.9.0"
@@ -76,7 +76,8 @@ common-authentication                 = { id= "common.authentication", version= 
 
 [libraries]
 core-ktx                              = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }
-lifecycle-runtime-ktx                 = { module= "androidx.lifecycle:lifecycle-runtime-ktx", version.ref= "lifecycle-runtime-ktx" }
+lifecycle-runtime-ktx                 = { module= "androidx.lifecycle:lifecycle-runtime-ktx", version.ref= "lifecycle-runtime" }
+lifecycle-runtime-compose             = { module= "androidx.lifecycle:lifecycle-runtime-compose", version.ref= "lifecycle-runtime" }
 activity-compose                      = { module= "androidx.activity:activity-compose", version.ref= "activity-compose" }
 compose-bom                           = { module= "androidx.compose:compose-bom", version.ref= "compose-bom" }
 ui                                    = { module= "androidx.compose.ui:ui" }
@@ -117,10 +118,10 @@ junit                                 = { module= "junit:junit", version.ref= "j
 detekt-formatting-rules               = { module= "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref= "detekt" }
 detekt-compose-rules                  = { module= "io.nlopez.compose.rules:detekt", version.ref= "detekt-compose" }
 coil-compose                          = { module= "io.coil-kt:coil-compose", version.ref= "coilCompose" }
-appcompat                             = { module= "androidx.appcompat:appcompat", version.ref = "appcompat" }
-material                              = { module= "com.google.android.material:material", version.ref = "material" }
-credential-manager                    = { module= "androidx.credentials:credentials", version.ref = "credential-manager" }
-credential-manager-play-services-auth = { module= "androidx.credentials:credentials-play-services-auth", version.ref = "credential-manager" }
+appcompat                             = { module= "androidx.appcompat:appcompat", version.ref= "appcompat" }
+material                              = { module= "com.google.android.material:material", version.ref= "material" }
+credential-manager                    = { module= "androidx.credentials:credentials", version.ref= "credential-manager" }
+credential-manager-play-services-auth = { module= "androidx.credentials:credentials-play-services-auth", version.ref= "credential-manager" }
 
 # Dependencies of the included build-logic
 android-gradle-plugin                 = { module= "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
