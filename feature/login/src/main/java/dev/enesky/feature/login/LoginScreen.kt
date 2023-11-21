@@ -40,6 +40,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.core.design_system.annotation.PreviewUiMode
@@ -55,8 +56,11 @@ fun LoginScreenRoute(
     modifier: Modifier = Modifier,
     viewModel: LoginViewModel = koinViewModel(),
 ) {
+    val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     LoginScreen(
         modifier = modifier,
+        loginUiState = loginUiState,
         onNavigateHomeClick = onNavigateHomeClick,
     )
 }
@@ -64,6 +68,7 @@ fun LoginScreenRoute(
 @Composable
 private fun LoginScreen(
     modifier: Modifier = Modifier,
+    loginUiState: LoginUiState,
     onNavigateHomeClick: () -> Unit,
 ) {
     DoodleTheme {
@@ -73,6 +78,7 @@ private fun LoginScreen(
         ) {
             LoginContent(
                 modifier = Modifier.fillMaxWidth(),
+                loginUiState = loginUiState,
                 onNavigateHomeClick = onNavigateHomeClick,
             )
         }
@@ -83,6 +89,7 @@ private fun LoginScreen(
 @Composable
 private fun LoginContent(
     modifier: Modifier = Modifier,
+    loginUiState: LoginUiState,
     onNavigateHomeClick: () -> Unit,
 ) {
     var email by remember { mutableStateOf(String.Empty) }
@@ -208,6 +215,8 @@ private fun LoginContent(
 
         // TODO: add google sign in
 
+
+
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
         TextButton(
             modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
@@ -287,6 +296,6 @@ private fun LoginHeader() {
 @Composable
 private fun LoginScreenPreview() {
     LoginScreen(
-        onNavigateHomeClick = {},
-    )
+        loginUiState = LoginUiState()
+    ) {}
 }

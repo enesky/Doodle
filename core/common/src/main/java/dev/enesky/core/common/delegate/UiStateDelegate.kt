@@ -21,7 +21,7 @@ interface UiState<T> {
     /**
      * Main ui state flow
      **/
-    val uiState: StateFlow<IUiState>
+    val uiState: StateFlow<T>
 
     /**
      * Ui state value for ease of use
