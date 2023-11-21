@@ -28,6 +28,7 @@ class FeaturePlugin : Plugin<Project> {
         dependencies {
             add("implementation", project(":core:design-system"))
             add("implementation", project(":core:common"))
+            add("implementation", project(":core:data"))
         }
     }
 }
