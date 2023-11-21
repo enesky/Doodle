@@ -17,6 +17,7 @@
 package dev.enesky.build_logic.convention.plugins.common
 
 import com.android.build.gradle.LibraryExtension
+import dev.enesky.build_logic.convention.getLocalProperties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
@@ -28,14 +29,7 @@ import java.util.Properties
  */
 class ApiKeyProviderPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
-        val localProperties = Properties()
-        val localPropertiesFile = rootProject.file("local.properties") // It's ignored by git
-        if (localPropertiesFile.exists() && localPropertiesFile.isFile) {
-            localPropertiesFile.inputStream().use { input ->
-                localProperties.load(input)
-            }
-        }
-
+        val localProperties = getLocalProperties(rootProject)
         val doodleApiUrl: String = checkNotNull(
             localProperties.getProperty("doodle.api.url") ?: System.getenv("DOODLE_API_URL") ?: "\"\"",
         )

@@ -22,8 +22,20 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+import java.util.Properties
 
 internal val Project.libs get() = the<LibrariesForLibs>()
 
 internal fun CommonExtension<*, *, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) =
     (this as ExtensionAware).extensions.configure("kotlinOptions", block)
+
+internal fun getLocalProperties(rootProject: Project): Properties {
+    val localProperties = Properties()
+    val localPropertiesFile = rootProject.file("local.properties") // It's ignored by git
+    if (localPropertiesFile.exists() && localPropertiesFile.isFile) {
+        localPropertiesFile.inputStream().use { input ->
+            localProperties.load(input)
+        }
+    }
+    return localProperties
+}
