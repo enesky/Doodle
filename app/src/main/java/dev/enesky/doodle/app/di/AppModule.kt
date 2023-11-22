@@ -17,6 +17,9 @@
 package dev.enesky.doodle.app.di
 
 import dev.enesky.core.network.di.networkModule
+import dev.enesky.doodle.app.ui.main.MainActivity
+import dev.enesky.feature.login.di.loginManagerModule
+import dev.enesky.feature.login.manager.AuthManager
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.module.includes
 import org.koin.dsl.lazyModule
@@ -30,4 +33,17 @@ val appModule = lazyModule {
 
     // Includes all the lazy modules from the core modules
     includes(networkModule, viewModelModule)
+
+    // Includes all the lazy modules from the feature modules
+    includes(loginManagerModule)
+
+    // AuthManager added to the app module as MainActivity scoped
+    scope<MainActivity> {
+        scoped {
+            AuthManager(
+                activity = get<MainActivity>(),
+                oneTapClient = get()
+            )
+        }
+    }
 }
