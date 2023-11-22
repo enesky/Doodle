@@ -39,6 +39,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Empty
@@ -67,8 +68,8 @@ fun LoginScreenRoute(
 
 @Composable
 private fun LoginScreen(
-    modifier: Modifier = Modifier,
     loginUiState: LoginUiState,
+    modifier: Modifier = Modifier,
     onNavigateHomeClick: () -> Unit,
 ) {
     DoodleTheme {
@@ -88,8 +89,8 @@ private fun LoginScreen(
 @Suppress("LongMethod")
 @Composable
 private fun LoginContent(
-    modifier: Modifier = Modifier,
     loginUiState: LoginUiState,
+    modifier: Modifier = Modifier,
     onNavigateHomeClick: () -> Unit,
 ) {
     var email by remember { mutableStateOf(String.Empty) }
@@ -215,8 +216,6 @@ private fun LoginContent(
 
         // TODO: add google sign in
 
-
-
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
         TextButton(
             modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
@@ -292,10 +291,35 @@ private fun LoginHeader() {
     }
 }
 
+@Composable
+private fun GoogleButton() {
+    TextButton(onClick = {
+        /*
+        lifecycleScope.launch {
+            val intent = googleAuthUiClient.getSignInIntent()
+            launcher.launch(IntentSenderRequest.Builder(intent).build())
+        }
+        val authManager: AuthManager = getKoin().get<AuthManager>()
+         */
+    }) {
+        Text(
+            text = "Google Sign In",
+            color = DoodleTheme.colors.text,
+            style = DoodleTheme.typography.regular.h3,
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun GoogleButtonPreview() {
+    GoogleButton()
+}
+
 @PreviewUiMode
 @Composable
 private fun LoginScreenPreview() {
     LoginScreen(
-        loginUiState = LoginUiState()
+        loginUiState = LoginUiState(),
     ) {}
 }
