@@ -42,7 +42,7 @@ val appModule = lazyModule {
         scoped {
             AuthManager(
                 activity = get<MainActivity>(),
-                oneTapClient = get()
+                oneTapClient = get(),
             )
         }
     }

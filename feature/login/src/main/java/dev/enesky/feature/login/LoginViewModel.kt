@@ -13,7 +13,7 @@ class LoginViewModel : ViewModel(), UiState<LoginUiState> by UiStateDelegate() {
     init {
         println("@@@@@ LoginViewModel initialized")
     }
-    
+
     fun test() {
         setState {
             copy(loading = true)

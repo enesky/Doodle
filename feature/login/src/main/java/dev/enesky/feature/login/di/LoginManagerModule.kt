@@ -12,7 +12,7 @@ import org.koin.dsl.lazyModule
 
 @OptIn(KoinExperimentalAPI::class)
 val loginManagerModule = lazyModule {
-    
+
     /* It's generated in app/AppModule.kt
         single {
             AuthManager(
@@ -26,5 +26,4 @@ val loginManagerModule = lazyModule {
     single<SignInClient> {
         Identity.getSignInClient(androidApplication())
     }
-    
 }

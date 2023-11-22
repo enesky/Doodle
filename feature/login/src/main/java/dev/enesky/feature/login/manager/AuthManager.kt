@@ -11,6 +11,7 @@ import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import dev.enesky.core.common.utils.Logger
 import dev.enesky.feature.login.BuildConfig
 import kotlinx.coroutines.tasks.await
 
@@ -27,7 +28,7 @@ import kotlinx.coroutines.tasks.await
  */
 class AuthManager(
     private val activity: ComponentActivity,
-    private val oneTapClient: SignInClient
+    private val oneTapClient: SignInClient,
 ) {
 
     // ------------------ COMMON ------------------
@@ -56,7 +57,7 @@ class AuthManager(
             oneTapClient.signOut().await()
             auth.signOut()
         } catch (e: Exception) {
-            e.printStackTrace()
+            Logger.error("AuthManager", "signOut: ${e.message}", e)
         }
     }
 
@@ -72,7 +73,7 @@ class AuthManager(
         email: String,
         password: String,
         onSuccess: () -> Unit,
-        onError: () -> Unit
+        onError: () -> Unit,
     ) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(activity) { task ->
@@ -95,7 +96,7 @@ class AuthManager(
         email: String,
         password: String,
         onSuccess: () -> Unit,
-        onError: () -> Unit
+        onError: () -> Unit,
     ) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(activity) { task ->
@@ -119,7 +120,7 @@ class AuthManager(
      */
     suspend fun signInAnonymously(
         onSuccess: () -> Unit,
-        onError: () -> Unit
+        onError: () -> Unit,
     ) {
         auth.signInAnonymously()
             .addOnCompleteListener(activity) { task ->
@@ -144,7 +145,7 @@ class AuthManager(
         password: String? = null,
         googleIdToken: String? = null,
         onSuccess: () -> Unit,
-        onError: () -> Unit
+        onError: () -> Unit,
     ) {
         getFirebaseUser()?.let {
             it.linkWithCredential(linkAnonymousUser(email, password, googleIdToken))
@@ -191,10 +192,10 @@ class AuthManager(
     suspend fun signInGoogle(): IntentSender? {
         val result = try {
             oneTapClient.beginSignIn(
-                buildSignInRequest()
+                buildSignInRequest(),
             ).await()
         } catch (e: Exception) {
-            e.printStackTrace()
+            Logger.error("AuthManager", "signInGoogle: ${e.message}", e)
             null
         }
         return result?.pendingIntent?.intentSender
@@ -210,7 +211,7 @@ class AuthManager(
         return try {
             val user = auth.signInWithCredential(googleCredentials).await().user
         } catch (e: Exception) {
-            e.printStackTrace()
+            Logger.error("AuthManager", "signInGoogleWithIntent: ${e.message}", e)
         }
     }
 

@@ -21,7 +21,6 @@ import dev.enesky.build_logic.convention.getLocalProperties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
-import java.util.Properties
 
 /**
  * Configure Api Key Provider

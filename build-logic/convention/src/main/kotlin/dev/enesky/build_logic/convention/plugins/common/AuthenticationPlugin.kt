@@ -13,7 +13,6 @@ import org.gradle.kotlin.dsl.getByType
  */
 class AuthenticationPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
-
         val localProperties = getLocalProperties(rootProject)
         val googleApiKey: String = checkNotNull(
             localProperties.getProperty("doodle.google.api.key")

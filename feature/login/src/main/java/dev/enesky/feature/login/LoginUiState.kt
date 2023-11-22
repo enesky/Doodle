@@ -13,11 +13,11 @@ data class LoginUiState(
     val email: String? = null,
     val password: String? = null,
     val navigateToHome: Boolean = false,
-    val errorMessages: List<String> = listOf()
-): IUiState
+    val errorMessages: List<String> = listOf(),
+) : IUiState
 
 enum class AuthType {
     ANONYMOUS,
     GOOGLE,
-    EMAIL
+    EMAIL,
 }
