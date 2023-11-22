@@ -72,6 +72,3 @@ proguard/
 
 # AjCore files
 ajcore.*
-
-# Google Services Client ID's
-google-services.json
