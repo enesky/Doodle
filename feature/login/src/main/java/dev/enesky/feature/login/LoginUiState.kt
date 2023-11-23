@@ -10,6 +10,9 @@ data class LoginUiState(
     val isFirstTime: Boolean = true,
     val loading: Boolean = false,
     val authType: AuthType = AuthType.ANONYMOUS,
+    val signInResult: SignInResult? = null,
+    val isSignInSuccessful: Boolean = false,
+    val signInError: String? = null,
     val email: String? = null,
     val password: String? = null,
     val navigateToHome: Boolean = false,
@@ -21,3 +24,14 @@ enum class AuthType {
     GOOGLE,
     EMAIL,
 }
+
+data class SignInResult(
+    val data: UserData?,
+    val errorMessage: String?
+)
+
+data class UserData(
+    val userId: String,
+    val username: String?,
+    val profilePictureUrl: String?
+)
