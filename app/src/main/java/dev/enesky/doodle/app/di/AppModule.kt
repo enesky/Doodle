@@ -37,13 +37,4 @@ val appModule = lazyModule {
     // Includes all the lazy modules from the feature modules
     includes(loginManagerModule)
 
-    // AuthManager added to the app module as MainActivity scoped
-    scope<MainActivity> {
-        scoped {
-            AuthManager(
-                activity = get<MainActivity>(),
-                oneTapClient = get(),
-            )
-        }
-    }
 }
