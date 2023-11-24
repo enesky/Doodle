@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.feature.login.manager.AuthManager
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -18,20 +17,22 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val authManager: AuthManager
-) : ViewModel(), UiState<LoginUiState> by UiStateDelegate() {
+) : ViewModel(), UiState<LoginUiState> by UiStateDelegate({ LoginUiState() }) {
 
-    suspend fun clickSignInWithGoogle(
+    fun clickSignInWithGoogle(
         launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>
     ) {
-        val signInIntentSender = authManager.signInGoogleFinal()
-        launcher.launch(
-            IntentSenderRequest.Builder(
-                signInIntentSender ?: return
-            ).build()
-        )
+        viewModelScope.launch {
+            val signInIntentSender = authManager.signInGoogleFinal()
+            launcher.launch(
+                IntentSenderRequest.Builder(
+                    signInIntentSender ?: return@launch
+                ).build()
+            )
+        }
     }
     fun signInGoogleWithIntent(intent: Intent) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val signInResult = authManager.signInGoogleInitial(intent)
             onSignInResult(
                 result = signInResult,

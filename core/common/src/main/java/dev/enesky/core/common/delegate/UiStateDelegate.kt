@@ -29,18 +29,11 @@ interface UiState<T> {
     val currentState: IUiState
 
     /**
-     * Initialization function for first initialize of ui state
-     *  Usage:
-     *      override fun initialState(): LoginUiState = LoginUiState()
-     **/
-    fun initialState(): IUiState
-
-    /**
      * Setter function for updating the ui state
-     *  Usage:
-     *      setState {
-     *          copy(loading = false)
-     *      }
+     * Usage:
+     *     setState {
+     *         copy(loading = false)
+     *     }
      **/
     fun setState(reduce: T.() -> T)
 }
@@ -48,17 +41,17 @@ interface UiState<T> {
 /**
  * Delegation class for ui state usage
  **/
-class UiStateDelegate<State : IUiState> : UiState<State> {
+class UiStateDelegate<State : IUiState>(
+    initialState: () -> State
+) : UiState<State> {
 
-    private val initialState: State by lazy { initialState() }
+    private val lazyInitialState by lazy(initialState)
 
-    private val _uiState: MutableStateFlow<State> = MutableStateFlow(initialState)
+    private val _uiState: MutableStateFlow<State> = MutableStateFlow(lazyInitialState)
     override val uiState: StateFlow<State>
         get() = _uiState
 
     override val currentState: State = uiState.value
-
-    override fun initialState(): State = initialState
 
     override fun setState(reduce: State.() -> State) {
         _uiState.update { currentState.reduce() }
