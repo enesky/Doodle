@@ -69,6 +69,16 @@ fun LoginScreenRoute(
                 viewModel.signInGoogleWithIntent(
                     intent = result.data ?: return@rememberLauncherForActivityResult,
                 )
+            } else {
+                viewModel.setState {
+                    copy(
+                        authType = AuthType.GOOGLE,
+                        isSignInSuccessful = false,
+                        signInResult = SignInResult(
+                            errorMessage = "Google Sign In Failed with resultCode= " + result.resultCode,
+                        ),
+                    )
+                }
             }
         },
     )
@@ -78,7 +88,7 @@ fun LoginScreenRoute(
         loginUiState = loginUiState,
         onNavigateHomeClick = onNavigateHomeClick,
         onGoogleSignInClick = {
-            viewModel.clickSignInWithGoogle(launcher = launcher)
+            viewModel.clickSignInWithGoogle(launcher)
         },
     )
 }
@@ -223,7 +233,7 @@ private fun LoginContent(
                 color = DoodleTheme.colors.main,
             ),
             onClick = {
-                // TODO: add login
+                // TODO: add email and password sign in
             },
         ) {
             Text(
@@ -262,7 +272,7 @@ private fun LoginContent(
                     return@TextButton
                 }
                 needEmail = false
-                // TODO add forgot password
+                // TODO: add forgot password
             },
         ) {
             Text(

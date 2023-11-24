@@ -12,11 +12,7 @@ data class LoginUiState(
     val authType: AuthType = AuthType.ANONYMOUS,
     val signInResult: SignInResult? = null,
     val isSignInSuccessful: Boolean = false,
-    val signInError: String? = null,
-    val email: String? = null,
-    val password: String? = null,
-    val navigateToHome: Boolean = false,
-    val errorMessages: List<String> = listOf(),
+    val navigateToHome: Boolean = false
 ) : IUiState
 
 enum class AuthType {
@@ -26,12 +22,13 @@ enum class AuthType {
 }
 
 data class SignInResult(
-    val data: UserData?,
-    val errorMessage: String?,
+    val data: UserData? = null,
+    val errorMessage: String? = null,
 )
 
 data class UserData(
     val userId: String,
-    val username: String?,
-    val profilePictureUrl: String?,
+    val username: String? = null,
+    val email: String? = null,
+    val profilePictureUrl: String? = null,
 )

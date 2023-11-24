@@ -34,21 +34,13 @@ class LoginViewModel(
     fun signInGoogleWithIntent(intent: Intent) {
         viewModelScope.launch {
             val signInResult = authManager.signInGoogleInitial(intent)
-            onSignInResult(
-                result = signInResult,
-                authType = AuthType.GOOGLE,
-            )
-        }
-    }
-
-    private fun onSignInResult(result: SignInResult, authType: AuthType) {
-        setState {
-            copy(
-                authType = authType,
-                signInResult = result,
-                isSignInSuccessful = result.data != null,
-                signInError = result.errorMessage,
-            )
+            setState {
+                copy(
+                    authType = AuthType.GOOGLE,
+                    signInResult = signInResult,
+                    isSignInSuccessful = signInResult.data != null,
+                )
+            }
         }
     }
 }
