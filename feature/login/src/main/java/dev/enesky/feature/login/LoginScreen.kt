@@ -1,5 +1,8 @@
 package dev.enesky.feature.login
 
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -59,10 +62,24 @@ fun LoginScreenRoute(
 ) {
     val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartIntentSenderForResult(),
+        onResult = { result ->
+            if (result.resultCode == ComponentActivity.RESULT_OK) {
+                viewModel.signInGoogleWithIntent(
+                    intent = result.data ?: return@rememberLauncherForActivityResult,
+                )
+            }
+        },
+    )
+
     LoginScreen(
         modifier = modifier,
         loginUiState = loginUiState,
         onNavigateHomeClick = onNavigateHomeClick,
+        onGoogleSignInClick = {
+            viewModel.clickSignInWithGoogle(launcher = launcher)
+        },
     )
 }
 
@@ -71,6 +88,7 @@ private fun LoginScreen(
     loginUiState: LoginUiState,
     modifier: Modifier = Modifier,
     onNavigateHomeClick: () -> Unit,
+    onGoogleSignInClick: () -> Unit,
 ) {
     DoodleTheme {
         Surface(
@@ -81,6 +99,7 @@ private fun LoginScreen(
                 modifier = Modifier.fillMaxWidth(),
                 loginUiState = loginUiState,
                 onNavigateHomeClick = onNavigateHomeClick,
+                onGoogleSignInClick = onGoogleSignInClick,
             )
         }
     }
@@ -92,6 +111,7 @@ private fun LoginContent(
     loginUiState: LoginUiState,
     modifier: Modifier = Modifier,
     onNavigateHomeClick: () -> Unit,
+    onGoogleSignInClick: () -> Unit,
 ) {
     var email by remember { mutableStateOf(String.Empty) }
     var password by remember { mutableStateOf(String.Empty) }
@@ -214,7 +234,9 @@ private fun LoginContent(
         }
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
 
-        // TODO: add google sign in
+        GoogleButton {
+            onGoogleSignInClick()
+        }
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
         TextButton(
@@ -292,16 +314,10 @@ private fun LoginHeader() {
 }
 
 @Composable
-private fun GoogleButton() {
-    TextButton(onClick = {
-        /*
-        lifecycleScope.launch {
-            val intent = googleAuthUiClient.getSignInIntent()
-            launcher.launch(IntentSenderRequest.Builder(intent).build())
-        }
-        val authManager: AuthManager = getKoin().get<AuthManager>()
-         */
-    }) {
+private fun GoogleButton(
+    onGoogleSignInClick: () -> Unit
+) {
+    TextButton(onClick = onGoogleSignInClick) {
         Text(
             text = "Google Sign In",
             color = DoodleTheme.colors.text,
@@ -313,7 +329,7 @@ private fun GoogleButton() {
 @Preview
 @Composable
 private fun GoogleButtonPreview() {
-    GoogleButton()
+    GoogleButton {}
 }
 
 @PreviewUiMode
@@ -321,5 +337,7 @@ private fun GoogleButtonPreview() {
 private fun LoginScreenPreview() {
     LoginScreen(
         loginUiState = LoginUiState(),
-    ) {}
+        onNavigateHomeClick = {},
+        onGoogleSignInClick = {},
+    )
 }
