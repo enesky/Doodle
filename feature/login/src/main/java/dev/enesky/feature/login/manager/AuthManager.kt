@@ -2,7 +2,6 @@ package dev.enesky.feature.login.manager
 
 import android.content.Intent
 import android.content.IntentSender
-import androidx.activity.ComponentActivity
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.Firebase
@@ -13,7 +12,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.feature.login.BuildConfig
+import dev.enesky.feature.login.SignInResult
+import dev.enesky.feature.login.UserData
 import kotlinx.coroutines.tasks.await
+import java.util.concurrent.Executor
+import kotlin.coroutines.cancellation.CancellationException
 
 /**
  * Created by Enes Kamil YILMAZ on 19/11/2023
@@ -23,12 +26,12 @@ import kotlinx.coroutines.tasks.await
  * Authentication Manager
  * Handles all authentication related operations
  *
- * @param activity activity
- * @param oneTapClient one tap client
+ * @param executor Executor
+ * @param signInClient SignInClient
  */
 class AuthManager(
-    private val activity: ComponentActivity,
-    private val oneTapClient: SignInClient,
+    private val executor: Executor,
+    private val signInClient: SignInClient
 ) {
 
     // ------------------ COMMON ------------------
@@ -54,7 +57,7 @@ class AuthManager(
      */
     suspend fun signOut() {
         try {
-            oneTapClient.signOut().await()
+            signInClient.signOut().await()
             auth.signOut()
         } catch (e: Exception) {
             Logger.error("AuthManager", "signOut: ${e.message}", e)
@@ -76,7 +79,7 @@ class AuthManager(
         onError: () -> Unit,
     ) {
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(activity) { task ->
+            .addOnCompleteListener(executor) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     onSuccess()
@@ -99,7 +102,7 @@ class AuthManager(
         onError: () -> Unit,
     ) {
         auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(activity) { task ->
+            .addOnCompleteListener(executor) { task ->
                 if (task.isSuccessful) {
                     onSuccess()
                 } else {
@@ -123,7 +126,7 @@ class AuthManager(
         onError: () -> Unit,
     ) {
         auth.signInAnonymously()
-            .addOnCompleteListener(activity) { task ->
+            .addOnCompleteListener(executor) { task ->
                 if (task.isSuccessful) {
                     onSuccess()
                 } else {
@@ -149,7 +152,7 @@ class AuthManager(
     ) {
         getFirebaseUser()?.let {
             it.linkWithCredential(linkAnonymousUser(email, password, googleIdToken))
-                .addOnCompleteListener(activity) { task ->
+                .addOnCompleteListener(executor) { task ->
                     if (task.isSuccessful) {
                         onSuccess()
                     } else {
@@ -187,32 +190,44 @@ class AuthManager(
     // ------------------ GOOGLE SIGN IN ------------------
 
     /**
-     * Google Sign In with IntentSender
-     */
-    suspend fun signInGoogle(): IntentSender? {
-        val result = try {
-            oneTapClient.beginSignIn(
-                buildSignInRequest(),
-            ).await()
-        } catch (e: Exception) {
-            Logger.error("AuthManager", "signInGoogle: ${e.message}", e)
-            null
-        }
-        return result?.pendingIntent?.intentSender
-    }
-
-    /**
      * Google Sign In with Intent
      */
-    suspend fun signInGoogleWithIntent(intent: Intent) {
-        val credential = oneTapClient.getSignInCredentialFromIntent(intent)
+    suspend fun signInGoogleInitial(intent: Intent): SignInResult {
+        val credential = signInClient.getSignInCredentialFromIntent(intent)
         val googleIdToken = credential.googleIdToken
         val googleCredentials = GoogleAuthProvider.getCredential(googleIdToken, null)
         return try {
             val user = auth.signInWithCredential(googleCredentials).await().user
+            SignInResult(
+                data = user?.run {
+                    UserData(
+                        userId = uid,
+                        username = displayName,
+                        profilePictureUrl = photoUrl?.toString()
+                    )
+                },
+                errorMessage = null
+            )
         } catch (e: Exception) {
             Logger.error("AuthManager", "signInGoogleWithIntent: ${e.message}", e)
+            if(e is CancellationException) throw e
+            SignInResult(
+                data = null,
+                errorMessage = e.message
+            )
         }
+    }
+
+    /**
+     * Google Sign In with IntentSender
+     */
+    suspend fun signInGoogleFinal(): IntentSender? {
+        return try {
+            signInClient.beginSignIn(buildSignInRequest()).await()
+        } catch (e: Exception) {
+            Logger.error("AuthManager", "signInGoogle: ${e.message}", e)
+            null
+        }?.pendingIntent?.intentSender
     }
 
     /**
