@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.IntentSender
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.Firebase
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.EmailAuthProvider
@@ -203,16 +204,15 @@ class AuthManager(
                     UserData(
                         userId = uid,
                         username = displayName,
+                        email = email,
                         profilePictureUrl = photoUrl?.toString(),
                     )
-                },
-                errorMessage = null,
+                }
             )
         } catch (e: Exception) {
             Logger.error("AuthManager", "signInGoogleWithIntent: ${e.message}", e)
             if (e is CancellationException) throw e
             SignInResult(
-                data = null,
                 errorMessage = e.message,
             )
         }
@@ -226,7 +226,18 @@ class AuthManager(
             signInClient.beginSignIn(buildSignInRequest()).await()
         } catch (e: Exception) {
             Logger.error("AuthManager", "signInGoogle: ${e.message}", e)
-            null
+            when (e) {
+                is CancellationException -> throw e
+                is ApiException -> {
+                    if (e.statusCode.toString().startsWith("16")) {
+                        //16: Cannot find a matching credential.
+                        //Happens when user doesn't have any saved credentials -> didn't signed in with google before
+                        Logger.error("AuthManager", "User didn't signed in to any Google Account before")
+                    }
+                    null
+                }
+                else -> null
+            }
         }?.pendingIntent?.intentSender
     }
 
