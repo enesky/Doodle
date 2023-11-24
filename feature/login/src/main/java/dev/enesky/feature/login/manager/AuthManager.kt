@@ -31,7 +31,7 @@ import kotlin.coroutines.cancellation.CancellationException
  */
 class AuthManager(
     private val executor: Executor,
-    private val signInClient: SignInClient
+    private val signInClient: SignInClient,
 ) {
 
     // ------------------ COMMON ------------------
@@ -203,17 +203,17 @@ class AuthManager(
                     UserData(
                         userId = uid,
                         username = displayName,
-                        profilePictureUrl = photoUrl?.toString()
+                        profilePictureUrl = photoUrl?.toString(),
                     )
                 },
-                errorMessage = null
+                errorMessage = null,
             )
         } catch (e: Exception) {
             Logger.error("AuthManager", "signInGoogleWithIntent: ${e.message}", e)
-            if(e is CancellationException) throw e
+            if (e is CancellationException) throw e
             SignInResult(
                 data = null,
-                errorMessage = e.message
+                errorMessage = e.message,
             )
         }
     }

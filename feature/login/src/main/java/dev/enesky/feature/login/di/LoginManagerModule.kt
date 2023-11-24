@@ -19,7 +19,7 @@ val loginManagerModule = lazyModule {
     single {
         AuthManager(
             executor = get(),
-            signInClient = get()
+            signInClient = get(),
         )
     }
 

@@ -16,18 +16,18 @@ import kotlinx.coroutines.launch
  */
 
 class LoginViewModel(
-    private val authManager: AuthManager
+    private val authManager: AuthManager,
 ) : ViewModel(), UiState<LoginUiState> by UiStateDelegate({ LoginUiState() }) {
 
     fun clickSignInWithGoogle(
-        launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>
+        launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>,
     ) {
         viewModelScope.launch {
             val signInIntentSender = authManager.signInGoogleFinal()
             launcher.launch(
                 IntentSenderRequest.Builder(
-                    signInIntentSender ?: return@launch
-                ).build()
+                    signInIntentSender ?: return@launch,
+                ).build(),
             )
         }
     }
@@ -36,7 +36,7 @@ class LoginViewModel(
             val signInResult = authManager.signInGoogleInitial(intent)
             onSignInResult(
                 result = signInResult,
-                authType = AuthType.GOOGLE
+                authType = AuthType.GOOGLE,
             )
         }
     }
@@ -47,7 +47,7 @@ class LoginViewModel(
                 authType = authType,
                 signInResult = result,
                 isSignInSuccessful = result.data != null,
-                signInError = result.errorMessage
+                signInError = result.errorMessage,
             )
         }
     }

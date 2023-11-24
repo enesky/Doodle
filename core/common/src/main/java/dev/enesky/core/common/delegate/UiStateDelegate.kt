@@ -42,7 +42,7 @@ interface UiState<T> {
  * Delegation class for ui state usage
  **/
 class UiStateDelegate<State : IUiState>(
-    initialState: () -> State
+    initialState: () -> State,
 ) : UiState<State> {
 
     private val lazyInitialState by lazy(initialState)

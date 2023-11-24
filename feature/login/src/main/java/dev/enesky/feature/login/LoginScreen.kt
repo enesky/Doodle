@@ -315,7 +315,7 @@ private fun LoginHeader() {
 
 @Composable
 private fun GoogleButton(
-    onGoogleSignInClick: () -> Unit
+    onGoogleSignInClick: () -> Unit,
 ) {
     TextButton(onClick = onGoogleSignInClick) {
         Text(
