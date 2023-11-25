@@ -46,7 +46,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -62,7 +61,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun LoginScreenRoute(
-    onNavigateHomeClick: () -> Unit,
+    navigateHome: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: LoginViewModel = koinViewModel(),
 ) {
@@ -90,38 +89,24 @@ fun LoginScreenRoute(
         },
     )
 
-    LoginScreen(
-        modifier = modifier,
-        loginUiState = loginUiState,
-        onNavigateHomeClick = onNavigateHomeClick,
-        onGoogleSignInClick = {
-            viewModel.clickSignInWithGoogle(googleSignInLauncher)
-        },
-        onSignInAnonymouslyClick = {
-            viewModel.signInAnonymously()
-        },
-    )
-}
-
-@Composable
-private fun LoginScreen(
-    loginUiState: LoginUiState,
-    modifier: Modifier = Modifier,
-    onNavigateHomeClick: () -> Unit,
-    onGoogleSignInClick: () -> Unit,
-    onSignInAnonymouslyClick: () -> Unit,
-) {
     DoodleTheme {
         Surface(
             modifier = modifier.fillMaxSize(),
             color = DoodleTheme.colors.background,
         ) {
-            LoginContent(
+            LoginScreenContent(
                 modifier = Modifier.fillMaxWidth(),
                 loginUiState = loginUiState,
-                onNavigateHomeClick = onNavigateHomeClick,
-                onGoogleSignInClick = onGoogleSignInClick,
-                onSignInAnonymouslyClick = onSignInAnonymouslyClick,
+                navigateHome = navigateHome,
+                onSignInWithEmail = { email, password ->
+                    viewModel.clickSignInWithEmail(email, password)
+                },
+                onGoogleSignInClick = {
+                    viewModel.clickSignInWithGoogle(googleSignInLauncher)
+                },
+                onSignInAnonymouslyClick = {
+                    viewModel.signInAnonymously()
+                },
             )
         }
     }
@@ -129,31 +114,23 @@ private fun LoginScreen(
 
 @Suppress("LongMethod")
 @Composable
-private fun LoginContent(
+private fun LoginScreenContent(
     loginUiState: LoginUiState,
     modifier: Modifier = Modifier,
-    onNavigateHomeClick: () -> Unit,
+    navigateHome: () -> Unit,
+    onSignInWithEmail: (email: String, password: String) -> Unit,
     onGoogleSignInClick: () -> Unit,
     onSignInAnonymouslyClick: () -> Unit,
 ) {
-    var email by remember { mutableStateOf(String.Empty) }
-    var password by remember { mutableStateOf(String.Empty) }
-    var isPasswordVisible by remember { mutableStateOf(false) }
-    val maxPassLength = 7
-    val isFormValid = remember {
-        derivedStateOf { email.isNotBlank() && password.length >= maxPassLength }
-    }
-    var needEmail by remember { mutableStateOf(false) }
-
     // Navigate to home screen when sign in is successful
     LaunchedEffect(key1 = loginUiState.isSignInSuccessful) {
         if (loginUiState.isSignInSuccessful) {
-            onNavigateHomeClick()
+            navigateHome()
         }
     }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(
                 vertical = DoodleTheme.spacing.small,
@@ -166,126 +143,13 @@ private fun LoginContent(
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
 
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = email,
-            onValueChange = { email = it },
-            label = {
-                Text(
-                    text = stringResource(R.string.label_email),
-                    style = DoodleTheme.typography.regular.h4,
-                )
-            },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Email,
-                imeAction = ImeAction.Next,
-            ),
-            trailingIcon = {
-                if (email.isNotBlank()) {
-                    IconButton(onClick = { email = String.Empty }) {
-                        Icon(
-                            imageVector = Icons.Filled.Clear,
-                            contentDescription = String.Empty,
-                        )
-                    }
-                }
-            },
-            colors = OutlinedTextFieldDefaults.colors(
-                unfocusedTextColor = DoodleTheme.colors.text,
-                unfocusedBorderColor = DoodleTheme.colors.main,
-                focusedLabelColor = DoodleTheme.colors.text,
-                focusedBorderColor = DoodleTheme.colors.main,
-                unfocusedPlaceholderColor = DoodleTheme.colors.main,
-                unfocusedLabelColor = DoodleTheme.colors.text,
-            ),
-            isError = needEmail,
-        )
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.small))
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = password,
-            onValueChange = { password = it },
-            label = {
-                Text(
-                    text = stringResource(R.string.label_password),
-                    style = DoodleTheme.typography.regular.h4,
-                )
-            },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password,
-                imeAction = ImeAction.Done,
-            ),
-            visualTransformation =
-            if (isPasswordVisible) {
-                VisualTransformation.None
-            } else {
-                PasswordVisualTransformation()
-            },
-            trailingIcon = {
-                IconButton(
-                    onClick = {
-                        isPasswordVisible = !isPasswordVisible
-                    },
-                ) {
-                    // TODO add icon for password visible/invisible eye
-                }
-            },
-            colors = OutlinedTextFieldDefaults.colors(
-                unfocusedTextColor = DoodleTheme.colors.text,
-                unfocusedBorderColor = DoodleTheme.colors.main,
-                focusedLabelColor = DoodleTheme.colors.text,
-                focusedBorderColor = DoodleTheme.colors.main,
-                unfocusedPlaceholderColor = DoodleTheme.colors.main,
-                unfocusedLabelColor = DoodleTheme.colors.text,
-            ),
-        )
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
-        TextButton(
-            modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
-            onClick = {
-                if (email.isEmpty()) {
-                    needEmail = true
-                    return@TextButton
-                }
-                needEmail = false
-                // TODO: add forgot password
-            },
-        ) {
-            Text(
-                text = stringResource(R.string.label_forgot_password),
-                color = DoodleTheme.colors.text,
-                style = DoodleTheme.typography.regular.h6,
-            )
-        }
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = DoodleTheme.spacing.smallMedium),
-            enabled = isFormValid.value,
-            shape = RoundedCornerShape(DoodleTheme.spacing.medium),
-            border = BorderStroke(
-                width = DoodleTheme.spacing.border,
-                color = DoodleTheme.colors.main,
-            ),
-            onClick = {
-                // TODO: add email and password sign in
-            },
-        ) {
-            Text(
-                text = stringResource(R.string.label_login),
-                color = DoodleTheme.colors.text,
-                style = DoodleTheme.typography.regular.h5,
-            )
-        }
+        SignInWithEmail(onSignInWithEmail)
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.largest))
 
         LineWithTextMiddle()
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.largest))
 
         SignInButtonWithLogo {
             onGoogleSignInClick()
@@ -342,6 +206,143 @@ private fun LoginHeader() {
 }
 
 @Composable
+private fun SignInWithEmail(
+    onSignInWithEmail: (email: String, password: String) -> Unit
+) {
+    var email by remember { mutableStateOf(String.Empty) }
+    var password by remember { mutableStateOf(String.Empty) }
+    var isPasswordVisible by remember { mutableStateOf(false) }
+    val maxPassLength = 7
+    val isFormValid = remember {
+        derivedStateOf { email.isNotBlank() && password.length >= maxPassLength }
+    }
+    var needEmail by remember { mutableStateOf(false) }
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = email,
+            onValueChange = { email = it },
+            label = {
+                Text(
+                    text = stringResource(R.string.label_email),
+                    style = DoodleTheme.typography.regular.h4,
+                )
+            },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Next,
+            ),
+            trailingIcon = {
+                if (email.isNotBlank()) {
+                    IconButton(onClick = { email = String.Empty }) {
+                        Icon(
+                            imageVector = Icons.Filled.Clear,
+                            contentDescription = String.Empty,
+                        )
+                    }
+                }
+            },
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = DoodleTheme.colors.text,
+                unfocusedBorderColor = DoodleTheme.colors.main,
+                focusedLabelColor = DoodleTheme.colors.text,
+                focusedBorderColor = DoodleTheme.colors.main,
+                unfocusedPlaceholderColor = DoodleTheme.colors.main,
+                unfocusedLabelColor = DoodleTheme.colors.text,
+            ),
+            isError = needEmail,
+        )
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.small))
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = password,
+            onValueChange = { password = it },
+            label = {
+                Text(
+                    text = stringResource(R.string.label_password),
+                    style = DoodleTheme.typography.regular.h4,
+                )
+            },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+                imeAction = ImeAction.Done,
+            ),
+            visualTransformation = if (isPasswordVisible) {
+                    VisualTransformation.None
+                } else {
+                    PasswordVisualTransformation()
+                },
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                        isPasswordVisible = !isPasswordVisible
+                    },
+                ) {
+                    // TODO add icon for password visible/invisible eye
+                }
+            },
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = DoodleTheme.colors.text,
+                unfocusedBorderColor = DoodleTheme.colors.main,
+                focusedLabelColor = DoodleTheme.colors.text,
+                focusedBorderColor = DoodleTheme.colors.main,
+                unfocusedPlaceholderColor = DoodleTheme.colors.main,
+                unfocusedLabelColor = DoodleTheme.colors.text,
+            ),
+        )
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        TextButton(
+            modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
+            onClick = {
+                if (email.isEmpty()) {
+                    needEmail = true
+                    // TODO: Add snackbar with error message -> pls fill email section
+                    return@TextButton
+                }
+                needEmail = false
+                // TODO: add forgot password
+            },
+        ) {
+            Text(
+                text = stringResource(R.string.label_forgot_password),
+                color = DoodleTheme.colors.text,
+                style = DoodleTheme.typography.regular.h6,
+            )
+        }
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = DoodleTheme.spacing.smallMedium),
+            shape = RoundedCornerShape(DoodleTheme.spacing.medium),
+            border = BorderStroke(
+                width = DoodleTheme.spacing.border,
+                color = DoodleTheme.colors.main,
+            ),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = DoodleTheme.colors.white
+            ),
+            onClick = {
+                onSignInWithEmail(email, password)
+            },
+        ) {
+            Text(
+                text = stringResource(R.string.label_login),
+                color = DoodleTheme.colors.black,
+                style = DoodleTheme.typography.regular.h5,
+            )
+        }
+
+    }
+}
+
+@Composable
 private fun SignInButtonWithLogo(
     imageResource: Int = R.drawable.ic_google_logo,
     text: String = "Sign in with Google",
@@ -378,12 +379,6 @@ private fun SignInButtonWithLogo(
     }
 }
 
-@Preview
-@Composable
-private fun GoogleButtonPreview() {
-    SignInButtonWithLogo {}
-}
-
 @Composable
 private fun LineWithTextMiddle(
     text: String = "or",
@@ -418,6 +413,29 @@ private fun LineWithTextMiddle(
 
 @Preview
 @Composable
+private fun LoginHeaderPreview() {
+    Surface {
+        LoginHeader()
+    }
+}
+
+@Preview
+@Composable
+private fun SignInWithEmailPreview() {
+    Surface {
+        SignInWithEmail { _, _ -> }
+    }
+}
+
+@Preview
+@Composable
+private fun GoogleButtonPreview() {
+    SignInButtonWithLogo {}
+}
+
+
+@Preview
+@Composable
 private fun LineWithTextMiddlePreview() {
     LineWithTextMiddle()
 }
@@ -425,9 +443,10 @@ private fun LineWithTextMiddlePreview() {
 @PreviewUiMode
 @Composable
 private fun LoginScreenPreview() {
-    LoginScreen(
+    LoginScreenContent(
         loginUiState = LoginUiState(),
-        onNavigateHomeClick = {},
+        navigateHome = {},
+        onSignInWithEmail = { _, _ -> },
         onGoogleSignInClick = {},
         onSignInAnonymouslyClick = {},
     )

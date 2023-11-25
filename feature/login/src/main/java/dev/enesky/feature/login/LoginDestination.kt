@@ -17,6 +17,6 @@ fun NavGraphBuilder.loginGraph(
     onNavigateToHomeDestination: () -> Unit,
 ) = composable(route = LoginDestination.route) {
     LoginScreenRoute(
-        onNavigateHomeClick = onNavigateToHomeDestination,
+        navigateHome = onNavigateToHomeDestination,
     )
 }
