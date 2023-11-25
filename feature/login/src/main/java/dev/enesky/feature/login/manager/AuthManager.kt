@@ -11,13 +11,16 @@ import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.feature.login.BuildConfig
 import dev.enesky.feature.login.SignInResult
 import dev.enesky.feature.login.UserData
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
 import java.util.concurrent.Executor
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.coroutines.resume
 
 /**
  * Created by Enes Kamil YILMAZ on 19/11/2023
@@ -44,14 +47,14 @@ class AuthManager(
      *
      * @return true if user is logged in, false otherwise
      */
-    suspend fun isUserLoggedIn(): Boolean = auth.currentUser != null
+    fun isUserLoggedIn(): Boolean = auth.currentUser != null
 
     /**
      * Gets current user
      *
      * @return current user
      */
-    suspend fun getFirebaseUser(): FirebaseUser? = auth.currentUser
+    fun getFirebaseUser(): FirebaseUser? = auth.currentUser
 
     /**
      * Signs out user
@@ -122,18 +125,25 @@ class AuthManager(
     /**
      * Signs in user anonymously
      */
-    suspend fun signInAnonymously(
-        onSuccess: () -> Unit,
-        onError: () -> Unit,
-    ) {
-        auth.signInAnonymously()
-            .addOnCompleteListener(executor) { task ->
-                if (task.isSuccessful) {
-                    onSuccess()
-                } else {
-                    onError()
+    suspend fun signInAnonymously(): SignInResult {
+        return suspendCancellableCoroutine { continuation ->
+            auth.signInAnonymously()
+                .addOnCompleteListener(executor) { task ->
+                    if (task.isSuccessful) {
+                        continuation.resume(
+                            SignInResult(
+                                data =  UserData(
+                                    userId = auth.currentUser?.uid ?: String.Empty
+                                )
+                            )
+                        )
+                    } else {
+                        continuation.resume(
+                            SignInResult(errorMessage = task.exception?.message)
+                        )
+                    }
                 }
-            }
+        }
     }
 
     /**
