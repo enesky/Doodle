@@ -28,9 +28,9 @@ import dev.enesky.feature.main.navigation.HomeDestination
 import org.koin.compose.koinInject
 
 @OptIn(ExperimentalLayoutApi::class)
-@Suppress("ModifierMissing")
 @Composable
 fun DoodleApp(
+    modifier: Modifier = Modifier,
     appState: DoodleAppState = rememberDoodleAppState(),
     // TODO: add new parameter -> systemBarsColor: Color = DoodleTheme.colors.primaryDark
 ) {
@@ -75,6 +75,13 @@ fun DoodleApp(
                 if (authManager.isUserLoggedIn()) {
                     appState.startDestination = HomeDestination
                 }
+
+                /**
+                 * TODO: Loading screen
+                 * if (appState.showLoading) {
+                 *   LoadingWithTriangleDots()
+                 * }
+                 */
 
                 DoodleNavHost(
                     modifier = Modifier
