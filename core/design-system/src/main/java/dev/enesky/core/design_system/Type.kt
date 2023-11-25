@@ -141,6 +141,11 @@ class DoodleTypography {
             fontSize = H3FontSize,
             lineHeight = H3LineHeight,
         ),
+        val h5: TextStyle = pacificoTextStyle(
+            fontWeight = FontWeight.Normal,
+            fontSize = H5FontSize,
+            lineHeight = H5LineHeight,
+        ),
     )
 }
 

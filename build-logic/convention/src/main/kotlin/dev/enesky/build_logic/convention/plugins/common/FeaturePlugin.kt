@@ -27,6 +27,9 @@ class FeaturePlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         dependencies {
             add("implementation", project(":core:design-system"))
+            add("implementation", project(":core:common"))
+            add("implementation", project(":core:data"))
+            add("implementation", project(":core:ui"))
         }
     }
 }

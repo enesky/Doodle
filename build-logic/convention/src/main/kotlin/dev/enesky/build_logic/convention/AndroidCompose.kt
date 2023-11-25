@@ -41,7 +41,9 @@ internal fun Project.configureAndroidCompose(commonExtension: CommonExtension<*,
             val composeBomPlatform = platform(libs.compose.bom.get().toString())
             add("implementation", composeBomPlatform)
             add("implementation", libs.bundles.compose.materials)
-            add("implementation", libs.androidx.navigation.compose)
             add("androidTestImplementation", composeBomPlatform)
+
+            add("implementation", libs.androidx.navigation.compose)
+            add("implementation", libs.lifecycle.runtime.compose)
         }
     }

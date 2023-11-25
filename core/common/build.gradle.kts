@@ -21,3 +21,7 @@ plugins {
 }
 
 android.namespace = "dev.enesky.core.common"
+
+dependencies {
+    implementation(projects.core.data)
+}

@@ -23,11 +23,14 @@ import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.doodle.app.navigation.DoodleNavHost
 import dev.enesky.doodle.app.ui.component.DoodleSnackbarHost
 import dev.enesky.doodle.app.ui.component.LocalSnackbarHostState
+import dev.enesky.feature.login.manager.AuthManager
+import dev.enesky.feature.main.navigation.HomeDestination
+import org.koin.compose.koinInject
 
 @OptIn(ExperimentalLayoutApi::class)
-@Suppress("ModifierMissing")
 @Composable
 fun DoodleApp(
+    modifier: Modifier = Modifier,
     appState: DoodleAppState = rememberDoodleAppState(),
     // TODO: add new parameter -> systemBarsColor: Color = DoodleTheme.colors.primaryDark
 ) {
@@ -64,6 +67,22 @@ fun DoodleApp(
                 // Use this when you want to use all the screen
                 // contentWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp),
             ) { innerPadding ->
+
+                /**
+                 * Update the start destination according to the user's login status
+                 */
+                val authManager: AuthManager = koinInject<AuthManager>()
+                if (authManager.isUserLoggedIn()) {
+                    appState.startDestination = HomeDestination
+                }
+
+                /**
+                 * TODO: Loading screen
+                 * if (appState.showLoading) {
+                 *   LoadingWithTriangleDots()
+                 * }
+                 */
+
                 DoodleNavHost(
                     modifier = Modifier
                         .padding(paddingValues = innerPadding)

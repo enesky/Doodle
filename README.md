@@ -67,8 +67,8 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
 
 ```properties
   doodle.api.url="https://api.jikan.moe/v4/"
-  doodle.api.key="sample api key"
-  #Jikan API doesn't require an API key, but I'm using it as an example for later usages.
+  doodle.api.key="sample api key" #Jikan API doesn't require an API key, but I'm using it as an example for later usages.
+  doodle.google.api.key="sample google api ket" #Google API key is required for Google Authentication
 ```
 
 - <a href="https://github.com/pinterest/ktlint" target="_blank">Ktlint</a> should be added using brew

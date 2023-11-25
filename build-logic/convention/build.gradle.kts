@@ -126,6 +126,10 @@ gradlePlugin {
             id = libs.plugins.common.spotless.get().pluginId
             implementationClass = "$rootPath.common.SpotlessPlugin"
         }
+        register("authentication") {
+            id = libs.plugins.common.authentication.get().pluginId
+            implementationClass = "$rootPath.common.AuthenticationPlugin"
+        }
     }
 }
 

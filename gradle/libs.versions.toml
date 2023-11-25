@@ -4,12 +4,12 @@ jvm                                   = "17"
 compile-sdk                           = "34"
 min-sdk                               = "24"
 target-sdk                            = "34"
-compose-compiler                      = "1.5.3"
+compose-compiler                      = "1.5.4"
 
 # Plugin Versions
-gradle-plugin                         = "8.3.0-alpha13"
-kotlin-plugin                         = "1.9.10"
-ksp-plugin                            = "1.9.10-1.0.13"
+gradle-plugin                         = "8.3.0-alpha14"
+kotlin-plugin                         = "1.9.20"
+ksp-plugin                            = "1.9.20-1.0.14"
 google-services-plugin                = "4.4.0"
 crashlytics-plugin                    = "2.9.9"
 firebase-perf-plugin                  = "1.4.2"
@@ -17,8 +17,8 @@ detekt                                = "1.23.3"
 
 # Library Versions
 core-ktx                              = "1.12.0"
-lifecycle-runtime-ktx                 = "2.6.2"
-activity-compose                      = "1.8.0"
+lifecycle-runtime                     = "2.6.2"
+activity-compose                      = "1.8.1"
 androidx-navigation                   = "2.7.5"
 retrofit                              = "2.9.0"
 okhttp                                = "4.12.0"
@@ -29,31 +29,33 @@ compose-state-events                  = "2.1.0"
 data-store                            = "1.0.0"
 compose-bom                           = "2023.10.01"
 paging-compose                        = "3.2.1"
-firebase-bom                          = "32.5.0"
+firebase-bom                          = "32.6.0"
 koin-bom                              = "3.5.1"
 junit                                 = "4.13.2"
 androidx-test-ext-junit               = "1.1.5"
 espresso-core                         = "3.5.1"
 coilCompose                           = "2.4.0"
-desugar-jdk-libs                      = "2.0.3"
+desugar-jdk-libs                      = "2.0.4"
 jacoco                                = "0.8.7"
 appcompat                             = "1.6.1"
 material                              = "1.10.0"
 ktlint                                = "11.6.1"
 spotless                              = "6.22.0"
+credential-manager                    = "1.2.0"
+google-auth                           = "20.7.0"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
 android-library                       = { id= "com.android.library", version.ref= "gradle-plugin" }
-android-test                          = { id= "com.android.test", version.ref = "gradle-plugin" }
+android-test                          = { id= "com.android.test", version.ref= "gradle-plugin" }
 kotlin-android                        = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin-plugin" }
 ksp-plugin                            = { id= "com.google.devtools.ksp", version.ref= "ksp-plugin"}
 google-services                       = { id= "com.google.gms.google-services", version.ref= "google-services-plugin"}
 firebase-crashlytics                  = { id= "com.google.firebase.crashlytics", version.ref= "crashlytics-plugin"}
 firebase-performance                  = { id= "com.google.firebase.firebase-perf", version.ref= "firebase-perf-plugin"}
-detekt-plugin                         = { id= "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-ktlint-plugin                         = { id= "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
-spotless-plugin                       = { id= "com.diffplug.spotless", version.ref = "spotless" }
+detekt-plugin                         = { id= "io.gitlab.arturbosch.detekt", version.ref= "detekt" }
+ktlint-plugin                         = { id= "org.jlleitschuh.gradle.ktlint", version.ref= "ktlint" }
+spotless-plugin                       = { id= "com.diffplug.spotless", version.ref= "spotless" }
 
 # Convention Plugins
 app-main                              = { id= "app.main", version= "unspecified" }
@@ -70,10 +72,12 @@ common-api-key-provider               = { id= "common.api.key.provider", version
 common-git-hooks                      = { id= "common.git.hooks", version= "unspecified" }
 common-detekt                         = { id= "common.detekt", version= "unspecified" }
 common-spotless                       = { id= "common.spotless", version= "unspecified" }
+common-authentication                 = { id= "common.authentication", version= "unspecified" }
 
 [libraries]
 core-ktx                              = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }
-lifecycle-runtime-ktx                 = { module= "androidx.lifecycle:lifecycle-runtime-ktx", version.ref= "lifecycle-runtime-ktx" }
+lifecycle-runtime-ktx                 = { module= "androidx.lifecycle:lifecycle-runtime-ktx", version.ref= "lifecycle-runtime" }
+lifecycle-runtime-compose             = { module= "androidx.lifecycle:lifecycle-runtime-compose", version.ref= "lifecycle-runtime" }
 activity-compose                      = { module= "androidx.activity:activity-compose", version.ref= "activity-compose" }
 compose-bom                           = { module= "androidx.compose:compose-bom", version.ref= "compose-bom" }
 ui                                    = { module= "androidx.compose.ui:ui" }
@@ -93,8 +97,9 @@ firebase-bom                          = { module= "com.google.firebase:firebase-
 firebase-analytics                    = { module= "com.google.firebase:firebase-analytics-ktx" }
 firebase-crashlytics                  = { module= "com.google.firebase:firebase-crashlytics-ktx" }
 firebase-performance                  = { module= "com.google.firebase:firebase-perf-ktx" }
-firebase-authentication               = { module= "com.google.firebase:firebase-crashlytics-ktx" }
 firebase-remote-config                = { module= "com.google.firebase:firebase-config-ktx" }
+firebase-authentication               = { module= "com.google.firebase:firebase-auth" }
+google-auth                           = { module= "com.google.android.gms:play-services-auth", version.ref= "google-auth" }
 koin-bom                              = { module= "io.insert-koin:koin-bom", version.ref= "koin-bom" }
 koin-coroutines                       = { module= "io.insert-koin:koin-core-coroutines"}
 koin-navigation                       = { module= "io.insert-koin:koin-androidx-navigation"}
@@ -113,8 +118,10 @@ junit                                 = { module= "junit:junit", version.ref= "j
 detekt-formatting-rules               = { module= "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref= "detekt" }
 detekt-compose-rules                  = { module= "io.nlopez.compose.rules:detekt", version.ref= "detekt-compose" }
 coil-compose                          = { module= "io.coil-kt:coil-compose", version.ref= "coilCompose" }
-appcompat                             = { module= "androidx.appcompat:appcompat", version.ref = "appcompat" }
-material                              = { module= "com.google.android.material:material", version.ref = "material" }
+appcompat                             = { module= "androidx.appcompat:appcompat", version.ref= "appcompat" }
+material                              = { module= "com.google.android.material:material", version.ref= "material" }
+credential-manager                    = { module= "androidx.credentials:credentials", version.ref= "credential-manager" }
+credential-manager-play-services-auth = { module= "androidx.credentials:credentials-play-services-auth", version.ref= "credential-manager" }
 
 # Dependencies of the included build-logic
 android-gradle-plugin                 = { module= "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
