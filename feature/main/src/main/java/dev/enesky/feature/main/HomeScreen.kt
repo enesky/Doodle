@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.enesky.core.ui.LoadingWithTriangleDots
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -56,23 +57,28 @@ private fun HomeContent(
         modifier = modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center,
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Text(
-                text = "Welcome to Home Screen",
-                style = MaterialTheme.typography.headlineLarge,
-            )
-            Button(
-                modifier = Modifier.padding(16.dp),
-                onClick = {
-                    onNavigateDetailsClick("1")
-                },
+        Box {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
             ) {
-                Text(text = "Navigate to Details", color = Color.White)
+                Text(
+                    text = "Welcome to Home Screen",
+                    style = MaterialTheme.typography.headlineLarge,
+                )
+                Button(
+                    modifier = Modifier.padding(16.dp),
+                    onClick = {
+                        onNavigateDetailsClick("1")
+                    },
+                ) {
+                    Text(text = "Navigate to Details", color = Color.White)
+                }
             }
         }
+
+        LoadingWithTriangleDots()
+
     }
 }
 
