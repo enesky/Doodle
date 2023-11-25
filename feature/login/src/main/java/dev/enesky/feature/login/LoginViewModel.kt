@@ -10,7 +10,6 @@ import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.feature.login.manager.AuthManager
 import kotlinx.coroutines.launch
-import kotlin.coroutines.resume
 
 /**
  * Created by Enes Kamil YILMAZ on 11/11/2023
@@ -54,7 +53,7 @@ class LoginViewModel(
     private suspend fun signUpWithEmail(email: String, password: String) {
         val resultFromSignUp: SignInResult = authManager.signUpWithEmailAndPassword(
             email = email,
-            password = password
+            password = password,
         )
         if (resultFromSignUp.data != null) {
             signInEmailResult(resultFromSignUp, true)

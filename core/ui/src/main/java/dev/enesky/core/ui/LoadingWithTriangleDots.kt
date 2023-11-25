@@ -31,8 +31,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.enesky.core.design_system.DoodleTheme
 
-private const val DefaultAnimationDuration = 750
-private const val DefaultStartDelay = 0
+private const val ANIMATION_DURATION = 750
+private const val START_DELAY = 0
 
 private val DefaultWidth = 150.dp
 private val DefaultHeight = 120.dp
@@ -53,7 +53,7 @@ fun LoadingWithTriangleDots(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .background(Color.Gray.copy(alpha = 0.3f))
             .clickable(enabled = false, onClick = {}),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         BallTrianglePathProgressIndicator()
     }
@@ -63,8 +63,8 @@ fun LoadingWithTriangleDots(modifier: Modifier = Modifier) {
 fun BallTrianglePathProgressIndicator(
     modifier: Modifier = Modifier,
     color: Color = DoodleTheme.colors.main,
-    animationDuration: Int = DefaultAnimationDuration,
-    startDelay: Int = DefaultStartDelay,
+    animationDuration: Int = ANIMATION_DURATION,
+    startDelay: Int = START_DELAY,
     ballDiameter: Dp = DefaultBallDiameter,
     width: Dp = DefaultWidth,
     height: Dp = DefaultHeight,
@@ -74,7 +74,7 @@ fun BallTrianglePathProgressIndicator(
     val fraction by transition.fraction(
         durationMillis = animationDuration,
         delayMillis = startDelay,
-        easing = FastOutSlowInEasing
+        easing = FastOutSlowInEasing,
     )
 
     val offset = with(LocalDensity.current) {
@@ -93,7 +93,7 @@ fun BallTrianglePathProgressIndicator(
         drawIndeterminateBallTrianglePathIndicator(
             diameter = ballDiameter.toPx(),
             offset = offsetList,
-            color = color
+            color = color,
         )
     }
 }
@@ -101,7 +101,7 @@ fun BallTrianglePathProgressIndicator(
 private fun DrawScope.drawIndeterminateBallTrianglePathIndicator(
     diameter: Float,
     offset: List<Offset>,
-    color: Color
+    color: Color,
 ) {
     for (i in offset.indices) {
         drawCircle(
@@ -117,14 +117,14 @@ internal fun ProgressIndicator(
     modifier: Modifier = Modifier,
     width: Dp,
     height: Dp,
-    onDraw: DrawScope.() -> Unit
+    onDraw: DrawScope.() -> Unit,
 ) {
     Canvas(
         modifier = modifier
             .progressSemantics()
             .size(width, height)
             .focusable(),
-        onDraw = onDraw
+        onDraw = onDraw,
     )
 }
 
@@ -132,7 +132,7 @@ internal fun ProgressIndicator(
 internal fun InfiniteTransition.fraction(
     durationMillis: Int,
     delayMillis: Int = 0,
-    easing: Easing = LinearEasing
+    easing: Easing = LinearEasing,
 ): State<Float> {
     val duration = durationMillis + delayMillis
 
@@ -145,8 +145,8 @@ internal fun InfiniteTransition.fraction(
                 0f at delayMillis / 2 with easing
                 1f at durationMillis + (delayMillis / 2)
                 1f at duration
-            }
+            },
         ),
-        label = ""
+        label = "",
     )
 }

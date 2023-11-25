@@ -78,7 +78,7 @@ class AuthManager(
      */
     suspend fun signInWithEmailAndPassword(
         email: String,
-        password: String
+        password: String,
     ): SignInResult {
         return suspendCancellableCoroutine { continuation ->
             auth.signInWithEmailAndPassword(email, password)
@@ -88,13 +88,13 @@ class AuthManager(
                             SignInResult(
                                 data = UserData(
                                     userId = task.result.user?.uid ?: String.Empty,
-                                    email = email
-                                )
-                            )
+                                    email = email,
+                                ),
+                            ),
                         )
                     } else {
                         continuation.resume(
-                            SignInResult(errorMessage = task.exception?.message)
+                            SignInResult(errorMessage = task.exception?.message),
                         )
                     }
                 }
@@ -109,7 +109,7 @@ class AuthManager(
      */
     suspend fun signUpWithEmailAndPassword(
         email: String,
-        password: String
+        password: String,
     ): SignInResult {
         return suspendCancellableCoroutine { continuation ->
             auth.createUserWithEmailAndPassword(email, password)
@@ -119,13 +119,13 @@ class AuthManager(
                             SignInResult(
                                 data = UserData(
                                     userId = task.result.user?.uid ?: String.Empty,
-                                    email = email
-                                )
-                            )
+                                    email = email,
+                                ),
+                            ),
                         )
                     } else {
                         continuation.resume(
-                            SignInResult(errorMessage = task.exception?.message)
+                            SignInResult(errorMessage = task.exception?.message),
                         )
                     }
                 }
@@ -150,13 +150,13 @@ class AuthManager(
                         continuation.resume(
                             SignInResult(
                                 data = UserData(
-                                    userId =task.result.user?.uid ?: String.Empty
-                                )
-                            )
+                                    userId = task.result.user?.uid ?: String.Empty,
+                                ),
+                            ),
                         )
                     } else {
                         continuation.resume(
-                            SignInResult(errorMessage = task.exception?.message)
+                            SignInResult(errorMessage = task.exception?.message),
                         )
                     }
                 }
@@ -234,7 +234,7 @@ class AuthManager(
                         email = email,
                         profilePictureUrl = photoUrl?.toString(),
                     )
-                }
+                },
             )
         } catch (e: Exception) {
             Logger.error("AuthManager", "signInGoogleWithIntent: ${e.message}", e)
@@ -257,11 +257,11 @@ class AuthManager(
                 is CancellationException -> throw e
                 is ApiException -> {
                     if (e.statusCode.toString().startsWith("16")) {
-                        //16: Cannot find a matching credential.
-                        //Happens when user doesn't have any saved credentials -> didn't signed in with google before
+                        // 16: Cannot find a matching credential.
+                        // Happens when user doesn't have any saved credentials -> didn't signed in with google before
                         Logger.error(
                             "AuthManager",
-                            "User didn't signed in to any Google Account before"
+                            "User didn't signed in to any Google Account before",
                         )
                     }
                     null

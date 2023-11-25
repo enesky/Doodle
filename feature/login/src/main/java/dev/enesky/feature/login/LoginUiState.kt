@@ -12,7 +12,7 @@ data class LoginUiState(
     val authType: AuthType = AuthType.ANONYMOUS,
     val signInResult: SignInResult? = null,
     val isSignInSuccessful: Boolean = false,
-    val navigateToHome: Boolean = false
+    val navigateToHome: Boolean = false,
 ) : IUiState
 
 enum class AuthType {

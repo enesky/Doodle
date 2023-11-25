@@ -30,7 +30,7 @@ private fun PreviewRotateDotAnimation() {
     Surface(
         modifier = Modifier
             .fillMaxSize(),
-        color = DoodleTheme.colors.background
+        color = DoodleTheme.colors.background,
     ) {
         RotateDotAnimation()
     }
@@ -45,7 +45,8 @@ fun RotateDotAnimation(modifier: Modifier = Modifier) {
         targetValue = 360F,
         animationSpec = infiniteRepeatable(
             animation = tween(1000, easing = FastOutSlowInEasing),
-        ), label = ""
+        ),
+        label = "",
     )
     val color = DoodleTheme.colors.main
 
@@ -58,9 +59,10 @@ fun RotateDotAnimation(modifier: Modifier = Modifier) {
     ) {
         Canvas(modifier = Modifier.background(Color.Transparent)) {
             drawCircle(
-                color, center = center,
+                color,
+                center = center,
                 radius = 150f,
-                style = Stroke(width = 10f)
+                style = Stroke(width = 10f),
             )
 
             val x = (center.x + cos(Math.toRadians(rotation.toDouble())) * 120f).toFloat()
@@ -69,7 +71,7 @@ fun RotateDotAnimation(modifier: Modifier = Modifier) {
             drawCircle(
                 color,
                 center = Offset(x, y),
-                radius = 20f
+                radius = 20f,
             )
         }
     }

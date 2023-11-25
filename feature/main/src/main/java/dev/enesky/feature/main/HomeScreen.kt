@@ -78,7 +78,6 @@ private fun HomeContent(
         }
 
         LoadingWithTriangleDots()
-
     }
 }
 

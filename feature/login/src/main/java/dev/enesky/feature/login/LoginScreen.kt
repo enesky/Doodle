@@ -208,7 +208,7 @@ private fun LoginHeader() {
 @Suppress("LongMethod")
 @Composable
 private fun SignInWithEmail(
-    onSignInWithEmail: (email: String, password: String) -> Unit
+    onSignInWithEmail: (email: String, password: String) -> Unit,
 ) {
     var email by remember { mutableStateOf(String.Empty) }
     var password by remember { mutableStateOf(String.Empty) }
@@ -275,10 +275,10 @@ private fun SignInWithEmail(
                 imeAction = ImeAction.Done,
             ),
             visualTransformation = if (isPasswordVisible) {
-                    VisualTransformation.None
-                } else {
-                    PasswordVisualTransformation()
-                },
+                VisualTransformation.None
+            } else {
+                PasswordVisualTransformation()
+            },
             trailingIcon = {
                 IconButton(
                     onClick = {
@@ -327,7 +327,7 @@ private fun SignInWithEmail(
                 color = DoodleTheme.colors.main,
             ),
             colors = ButtonDefaults.buttonColors(
-                containerColor = DoodleTheme.colors.white
+                containerColor = DoodleTheme.colors.white,
             ),
             onClick = {
                 onSignInWithEmail(email, password)
@@ -339,7 +339,6 @@ private fun SignInWithEmail(
                 style = DoodleTheme.typography.regular.h5,
             )
         }
-
     }
 }
 
@@ -363,15 +362,15 @@ private fun SignInButtonWithLogo(
         ),
         onClick = action,
         colors = ButtonDefaults.buttonColors(
-            containerColor = DoodleTheme.colors.white
-        )
+            containerColor = DoodleTheme.colors.white,
+        ),
     ) {
         Image(
             modifier = Modifier
                 .size(DoodleTheme.spacing.extraMedium)
                 .weight(imageWeight),
             painter = painterResource(id = imageResource),
-            contentDescription = "Google Logo"
+            contentDescription = "Google Logo",
 
         )
         Text(
@@ -397,7 +396,7 @@ private fun LineWithTextMiddle(
         Divider(
             modifier = Modifier.weight(1f),
             color = DoodleTheme.colors.white,
-            thickness = 1.dp
+            thickness = 1.dp,
         )
         Spacer(modifier = Modifier.width(DoodleTheme.spacing.small))
         Text(
@@ -410,7 +409,7 @@ private fun LineWithTextMiddle(
         Divider(
             modifier = Modifier.weight(1f),
             color = DoodleTheme.colors.white,
-            thickness = 1.dp
+            thickness = 1.dp,
         )
     }
 }
@@ -436,7 +435,6 @@ private fun SignInWithEmailPreview() {
 private fun GoogleButtonPreview() {
     SignInButtonWithLogo {}
 }
-
 
 @Preview
 @Composable
