@@ -27,6 +27,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,6 +47,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Empty
+import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.core.design_system.annotation.PreviewUiMode
 import org.koin.androidx.compose.koinViewModel
@@ -79,6 +81,7 @@ fun LoginScreenRoute(
                         ),
                     )
                 }
+                Logger.error("LoginScreenRoute", "signInGoogleLauncher: ${result.resultCode}")
             }
         },
     )
@@ -90,6 +93,9 @@ fun LoginScreenRoute(
         onGoogleSignInClick = {
             viewModel.clickSignInWithGoogle(launcher)
         },
+        onSignInAnonymouslyClick = {
+            viewModel.signInAnonymously()
+        },
     )
 }
 
@@ -99,17 +105,22 @@ private fun LoginScreen(
     modifier: Modifier = Modifier,
     onNavigateHomeClick: () -> Unit,
     onGoogleSignInClick: () -> Unit,
+    onSignInAnonymouslyClick: () -> Unit,
 ) {
     DoodleTheme {
         Surface(
             modifier = modifier.fillMaxSize(),
             color = DoodleTheme.colors.background,
         ) {
+            if (loginUiState.loading) {
+                // TODO add loading
+            }
             LoginContent(
                 modifier = Modifier.fillMaxWidth(),
                 loginUiState = loginUiState,
                 onNavigateHomeClick = onNavigateHomeClick,
                 onGoogleSignInClick = onGoogleSignInClick,
+                onSignInAnonymouslyClick = onSignInAnonymouslyClick,
             )
         }
     }
@@ -122,6 +133,7 @@ private fun LoginContent(
     modifier: Modifier = Modifier,
     onNavigateHomeClick: () -> Unit,
     onGoogleSignInClick: () -> Unit,
+    onSignInAnonymouslyClick: () -> Unit,
 ) {
     var email by remember { mutableStateOf(String.Empty) }
     var password by remember { mutableStateOf(String.Empty) }
@@ -131,6 +143,13 @@ private fun LoginContent(
         derivedStateOf { email.isNotBlank() && password.length >= maxPassLength }
     }
     var needEmail by remember { mutableStateOf(false) }
+
+    // Navigate to home screen when sign in is successful
+    LaunchedEffect(key1 = loginUiState.isSignInSuccessful) {
+        if (loginUiState.isSignInSuccessful) {
+            onNavigateHomeClick()
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -252,8 +271,7 @@ private fun LoginContent(
         TextButton(
             modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
             onClick = {
-                // TODO: add sign in anonymously
-                onNavigateHomeClick()
+                onSignInAnonymouslyClick()
             },
         ) {
             Text(
@@ -349,5 +367,6 @@ private fun LoginScreenPreview() {
         loginUiState = LoginUiState(),
         onNavigateHomeClick = {},
         onGoogleSignInClick = {},
+        onSignInAnonymouslyClick = {},
     )
 }
