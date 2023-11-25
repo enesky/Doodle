@@ -43,4 +43,17 @@ class LoginViewModel(
             }
         }
     }
+
+    fun signInAnonymously() {
+        viewModelScope.launch {
+            val signInResult = authManager.signInAnonymously()
+            setState {
+                copy(
+                    authType = AuthType.ANONYMOUS,
+                    signInResult = signInResult,
+                    isSignInSuccessful = signInResult.data != null,
+                )
+            }
+        }
+    }
 }
