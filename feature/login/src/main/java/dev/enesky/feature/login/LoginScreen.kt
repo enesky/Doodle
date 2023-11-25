@@ -14,11 +14,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -64,7 +68,7 @@ fun LoginScreenRoute(
 ) {
     val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    val launcher = rememberLauncherForActivityResult(
+    val googleSignInLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartIntentSenderForResult(),
         onResult = { result ->
             if (result.resultCode == ComponentActivity.RESULT_OK) {
@@ -91,7 +95,7 @@ fun LoginScreenRoute(
         loginUiState = loginUiState,
         onNavigateHomeClick = onNavigateHomeClick,
         onGoogleSignInClick = {
-            viewModel.clickSignInWithGoogle(launcher)
+            viewModel.clickSignInWithGoogle(googleSignInLauncher)
         },
         onSignInAnonymouslyClick = {
             viewModel.signInAnonymously()
@@ -112,9 +116,6 @@ private fun LoginScreen(
             modifier = modifier.fillMaxSize(),
             color = DoodleTheme.colors.background,
         ) {
-            if (loginUiState.loading) {
-                // TODO add loading
-            }
             LoginContent(
                 modifier = Modifier.fillMaxWidth(),
                 loginUiState = loginUiState,
@@ -240,7 +241,25 @@ private fun LoginContent(
                 unfocusedLabelColor = DoodleTheme.colors.text,
             ),
         )
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        TextButton(
+            modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
+            onClick = {
+                if (email.isEmpty()) {
+                    needEmail = true
+                    return@TextButton
+                }
+                needEmail = false
+                // TODO: add forgot password
+            },
+        ) {
+            Text(
+                text = stringResource(R.string.label_forgot_password),
+                color = DoodleTheme.colors.text,
+                style = DoodleTheme.typography.regular.h6,
+            )
+        }
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
         Button(
             modifier = Modifier
                 .fillMaxWidth()
@@ -258,46 +277,27 @@ private fun LoginContent(
             Text(
                 text = stringResource(R.string.label_login),
                 color = DoodleTheme.colors.text,
-                style = DoodleTheme.typography.regular.h4,
-            )
-        }
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
-
-        GoogleButton {
-            onGoogleSignInClick()
-        }
-
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
-        TextButton(
-            modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
-            onClick = {
-                onSignInAnonymouslyClick()
-            },
-        ) {
-            Text(
-                text = stringResource(R.string.label_sign_in_anonymously),
-                color = DoodleTheme.colors.text,
-                textDecoration = TextDecoration.Underline,
                 style = DoodleTheme.typography.regular.h5,
             )
         }
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
-        TextButton(
-            modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
-            onClick = {
-                if (email.isEmpty()) {
-                    needEmail = true
-                    return@TextButton
-                }
-                needEmail = false
-                // TODO: add forgot password
-            },
+
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
+
+        LineWithTextMiddle()
+
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
+
+        SignInButtonWithLogo {
+            onGoogleSignInClick()
+        }
+
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+
+        SignInButtonWithLogo(
+            imageResource = R.drawable.ic_incognito,
+            text = "Sign in anonymously",
         ) {
-            Text(
-                text = stringResource(R.string.label_forgot_password),
-                color = DoodleTheme.colors.text,
-                style = DoodleTheme.typography.regular.h6,
-            )
+            onSignInAnonymouslyClick()
         }
     }
 }
@@ -342,14 +342,38 @@ private fun LoginHeader() {
 }
 
 @Composable
-private fun GoogleButton(
-    onGoogleSignInClick: () -> Unit,
+private fun SignInButtonWithLogo(
+    imageResource: Int = R.drawable.ic_google_logo,
+    text: String = "Sign in with Google",
+    action: () -> Unit,
 ) {
-    TextButton(onClick = onGoogleSignInClick) {
+    Button(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = DoodleTheme.spacing.smallMedium),
+        shape = RoundedCornerShape(DoodleTheme.spacing.medium),
+        border = BorderStroke(
+            width = DoodleTheme.spacing.border,
+            color = DoodleTheme.colors.main,
+        ),
+        onClick = action,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = DoodleTheme.colors.white
+        )
+    ) {
+        Image(
+            modifier = Modifier
+                .size(24.dp)
+                .weight(1.5f),
+            painter = painterResource(id = imageResource),
+            contentDescription = "Google Logo"
+
+        )
         Text(
-            text = "Google Sign In",
-            color = DoodleTheme.colors.text,
-            style = DoodleTheme.typography.regular.h3,
+            modifier = Modifier.weight(3f),
+            text = text,
+            color = DoodleTheme.colors.black,
+            style = DoodleTheme.typography.regular.h5,
         )
     }
 }
@@ -357,7 +381,45 @@ private fun GoogleButton(
 @Preview
 @Composable
 private fun GoogleButtonPreview() {
-    GoogleButton {}
+    SignInButtonWithLogo {}
+}
+
+@Composable
+private fun LineWithTextMiddle(
+    text: String = "or",
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = DoodleTheme.spacing.extraSmall),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Divider(
+            modifier = Modifier.weight(1f),
+            color = DoodleTheme.colors.white,
+            thickness = 1.dp
+        )
+        Spacer(modifier = Modifier.width(DoodleTheme.spacing.small))
+        Text(
+            modifier = Modifier.wrapContentHeight(Alignment.CenterVertically),
+            text = text,
+            color = DoodleTheme.colors.white,
+            style = DoodleTheme.typography.regular.h5,
+        )
+        Spacer(modifier = Modifier.width(DoodleTheme.spacing.small))
+        Divider(
+            modifier = Modifier.weight(1f),
+            color = DoodleTheme.colors.white,
+            thickness = 1.dp
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun LineWithTextMiddlePreview() {
+    LineWithTextMiddle()
 }
 
 @PreviewUiMode

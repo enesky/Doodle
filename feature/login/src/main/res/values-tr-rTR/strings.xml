@@ -4,7 +4,7 @@
     <string name="label_doodle">Doodle!</string>
     <string name="label_email">Email</string>
     <string name="label_password">Password</string>
-    <string name="label_login">Login</string>
+    <string name="label_login">Giriş Yap / Kaydol</string>
     <string name="label_sign_in_anonymously">Sign in anonymously</string>
     <string name="label_forgot_password">Forgot password?</string>
 </resources>
