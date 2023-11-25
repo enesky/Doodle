@@ -71,29 +71,6 @@ class AuthManager(
     // ------------------ EMAIL AUTH ------------------
 
     /**
-     * Creates user with email and password
-     *
-     * @param email email of the user
-     * @param password password of the user
-     */
-    suspend fun createUserWithEmailAndPassword(
-        email: String,
-        password: String,
-        onSuccess: () -> Unit,
-        onError: () -> Unit,
-    ) {
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(executor) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    onSuccess()
-                } else {
-                    onError()
-                }
-            }
-    }
-
-    /**
      * Signs in user with email and password
      *
      * @param email email of the user
@@ -101,18 +78,58 @@ class AuthManager(
      */
     suspend fun signInWithEmailAndPassword(
         email: String,
-        password: String,
-        onSuccess: () -> Unit,
-        onError: () -> Unit,
-    ) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(executor) { task ->
-                if (task.isSuccessful) {
-                    onSuccess()
-                } else {
-                    onError()
+        password: String
+    ): SignInResult {
+        return suspendCancellableCoroutine { continuation ->
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(executor) { task ->
+                    if (task.isSuccessful) {
+                        continuation.resume(
+                            SignInResult(
+                                data = UserData(
+                                    userId = task.result.user?.uid ?: String.Empty,
+                                    email = email
+                                )
+                            )
+                        )
+                    } else {
+                        continuation.resume(
+                            SignInResult(errorMessage = task.exception?.message)
+                        )
+                    }
                 }
-            }
+        }
+    }
+
+    /**
+     * Creates user with email and password
+     *
+     * @param email email of the user
+     * @param password password of the user
+     */
+    suspend fun signUpWithEmailAndPassword(
+        email: String,
+        password: String
+    ): SignInResult {
+        return suspendCancellableCoroutine { continuation ->
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(executor) { task ->
+                    if (task.isSuccessful) {
+                        continuation.resume(
+                            SignInResult(
+                                data = UserData(
+                                    userId = task.result.user?.uid ?: String.Empty,
+                                    email = email
+                                )
+                            )
+                        )
+                    } else {
+                        continuation.resume(
+                            SignInResult(errorMessage = task.exception?.message)
+                        )
+                    }
+                }
+        }
     }
 
     // ------------------ ANONYMOUS SIGN IN ------------------
@@ -132,8 +149,8 @@ class AuthManager(
                     if (task.isSuccessful) {
                         continuation.resume(
                             SignInResult(
-                                data =  UserData(
-                                    userId = auth.currentUser?.uid ?: String.Empty
+                                data = UserData(
+                                    userId =task.result.user?.uid ?: String.Empty
                                 )
                             )
                         )
@@ -242,10 +259,14 @@ class AuthManager(
                     if (e.statusCode.toString().startsWith("16")) {
                         //16: Cannot find a matching credential.
                         //Happens when user doesn't have any saved credentials -> didn't signed in with google before
-                        Logger.error("AuthManager", "User didn't signed in to any Google Account before")
+                        Logger.error(
+                            "AuthManager",
+                            "User didn't signed in to any Google Account before"
+                        )
                     }
                     null
                 }
+
                 else -> null
             }
         }?.pendingIntent?.intentSender
