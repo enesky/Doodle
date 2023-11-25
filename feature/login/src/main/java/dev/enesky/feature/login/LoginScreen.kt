@@ -205,6 +205,7 @@ private fun LoginHeader() {
     }
 }
 
+@Suppress("LongMethod")
 @Composable
 private fun SignInWithEmail(
     onSignInWithEmail: (email: String, password: String) -> Unit
@@ -348,6 +349,9 @@ private fun SignInButtonWithLogo(
     text: String = "Sign in with Google",
     action: () -> Unit,
 ) {
+    val imageWeight = 1.5f
+    val textWeight = 3f
+
     Button(
         modifier = Modifier
             .fillMaxWidth()
@@ -364,14 +368,14 @@ private fun SignInButtonWithLogo(
     ) {
         Image(
             modifier = Modifier
-                .size(24.dp)
-                .weight(1.5f),
+                .size(DoodleTheme.spacing.extraMedium)
+                .weight(imageWeight),
             painter = painterResource(id = imageResource),
             contentDescription = "Google Logo"
 
         )
         Text(
-            modifier = Modifier.weight(3f),
+            modifier = Modifier.weight(textWeight),
             text = text,
             color = DoodleTheme.colors.black,
             style = DoodleTheme.typography.regular.h5,

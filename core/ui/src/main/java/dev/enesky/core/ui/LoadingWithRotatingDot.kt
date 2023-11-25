@@ -1,7 +1,11 @@
 package dev.enesky.core.ui
 
 import android.content.res.Configuration
-import androidx.compose.animation.core.*
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,7 +26,7 @@ import kotlin.math.sin
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun PreviewRotateDotAnimation() {
+private fun PreviewRotateDotAnimation() {
     Surface(
         modifier = Modifier
             .fillMaxSize(),
@@ -33,7 +37,7 @@ fun PreviewRotateDotAnimation() {
 }
 
 @Composable
-fun RotateDotAnimation() {
+fun RotateDotAnimation(modifier: Modifier = Modifier) {
     val infiniteTransition = rememberInfiniteTransition(label = "")
 
     val rotation by infiniteTransition.animateFloat(
@@ -46,7 +50,7 @@ fun RotateDotAnimation() {
     val color = DoodleTheme.colors.main
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(Color.Gray.copy(alpha = 0.3f))
             .clickable(enabled = false, onClick = {}),

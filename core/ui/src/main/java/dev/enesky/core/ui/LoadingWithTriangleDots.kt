@@ -40,16 +40,16 @@ private val DefaultBallDiameter = 24.dp
 
 @Preview
 @Composable
-fun BallTrianglePathProgressIndicatorPreview() {
+private fun BallTrianglePathProgressIndicatorPreview() {
     DoodleTheme {
         LoadingWithTriangleDots()
     }
 }
 
 @Composable
-fun LoadingWithTriangleDots() {
+fun LoadingWithTriangleDots(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(Color.Gray.copy(alpha = 0.3f))
             .clickable(enabled = false, onClick = {}),
@@ -114,7 +114,7 @@ private fun DrawScope.drawIndeterminateBallTrianglePathIndicator(
 
 @Composable
 internal fun ProgressIndicator(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     width: Dp,
     height: Dp,
     onDraw: DrawScope.() -> Unit
