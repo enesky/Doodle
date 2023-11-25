@@ -29,6 +29,7 @@ class FeaturePlugin : Plugin<Project> {
             add("implementation", project(":core:design-system"))
             add("implementation", project(":core:common"))
             add("implementation", project(":core:data"))
+            add("implementation", project(":core:ui"))
         }
     }
 }
