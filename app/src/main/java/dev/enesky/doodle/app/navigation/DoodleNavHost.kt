@@ -1,7 +1,6 @@
 package dev.enesky.doodle.app.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -9,10 +8,8 @@ import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.feature.details.navigation.DetailsDestination
 import dev.enesky.feature.details.navigation.detailsGraph
 import dev.enesky.feature.login.loginGraph
-import dev.enesky.feature.login.manager.AuthManager
 import dev.enesky.feature.main.navigation.HomeDestination
 import dev.enesky.feature.main.navigation.homeGraph
-import org.koin.compose.koinInject
 
 /**
  * Created by Enes Kamil YILMAZ on 11/11/2023
@@ -27,24 +24,10 @@ fun DoodleNavHost(
     onShowMessage: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val authManager: AuthManager = koinInject<AuthManager>()
-    var startDest = startDestination.route
-
-    LaunchedEffect(key1 = authManager) {
-        if (authManager.isUserLoggedIn()) {
-            startDest = HomeDestination.route
-            navController.navigate(HomeDestination.route) {
-                popUpTo(startDestination.route) {
-                    inclusive = true
-                }
-            }
-        }
-    }
-
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = startDest,
+        startDestination = startDestination.route,
     ) {
         loginGraph(
             onNavigateToHomeDestination = {

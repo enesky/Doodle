@@ -25,8 +25,7 @@ fun rememberDoodleAppState(
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
-    // TODO: Check if user is logged in or not
-    startDestination: LoginDestination = LoginDestination,
+    startDestination: DoodleNavigationDestination = LoginDestination,
 ) = remember(
     snackbarHostState,
     coroutineScope,
@@ -46,7 +45,7 @@ class DoodleAppState(
     val snackbarHostState: SnackbarHostState,
     val coroutineScope: CoroutineScope,
     val navController: NavHostController,
-    val startDestination: LoginDestination,
+    var startDestination: DoodleNavigationDestination,
 ) {
     init {
         coroutineScope.launch {
@@ -61,7 +60,6 @@ class DoodleAppState(
             }
         }
     }
-
     val currentDestination: NavDestination?
         @Composable get() = navController.currentBackStackEntryAsState().value?.destination
 
