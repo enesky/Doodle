@@ -56,7 +56,7 @@ import kotlinx.coroutines.withContext
  *     }
  * }
  *
- * check: https://youtu.be/njchj9d_Lf8 for more info
+ * @see <a href="https://youtu.be/njchj9d_Lf8">https://youtu.be/njchj9d_Lf8 for more information</a>
  *
  * @param flow The flow to observe as events
  * @param onEvent The event callback

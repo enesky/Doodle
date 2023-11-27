@@ -6,6 +6,9 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dev.enesky.core.common.delegate.Event
+import dev.enesky.core.common.delegate.EventDelegate
+import dev.enesky.core.common.delegate.IEvent
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.feature.login.manager.AuthManager
@@ -17,7 +20,9 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val authManager: AuthManager,
-) : ViewModel(), UiState<LoginUiState> by UiStateDelegate({ LoginUiState() }) {
+) : ViewModel(),
+    UiState<LoginUiState> by UiStateDelegate(initialState = { LoginUiState() }),
+    Event<LoginEvents> by EventDelegate() {
 
     // ------------------ EMAIL ------------------
     fun clickSignInWithEmail(email: String, password: String) {
@@ -105,3 +110,9 @@ class LoginViewModel(
         }
     }
 }
+
+sealed class LoginEvents(
+    EmailSignInClick: (email: String, password: String) -> Unit,
+    GoogleSignInClick: (launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>) -> Unit,
+    AnonymousSignInClick: () -> Unit,
+): IEvent

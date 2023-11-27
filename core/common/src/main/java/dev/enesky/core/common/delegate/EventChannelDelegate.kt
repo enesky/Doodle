@@ -1,0 +1,53 @@
+package dev.enesky.core.common.delegate
+
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.receiveAsFlow
+
+/**
+ * Created by Enes Kamil YILMAZ on 27/11/2023
+ */
+
+/**
+ * Base interface for defining new Event data classes
+ */
+interface IEvent
+
+/**
+ * Base interface for event delegation
+ */
+interface Event<T> {
+
+    val event: Channel<T>
+    val eventFlow: Flow<T>
+
+    suspend fun Channel<T>.trigger(newEvent: T) {
+        send(newEvent)
+    }
+}
+
+/**
+ * Delegation class for event usage
+ *
+ * Usage:
+ *
+ *    class LoginViewModel : ViewModel(), Event<LoginEvents> by EventDelegate() {
+ *      viewModelScope.launch {
+ *          event.triggerEvent(LoginEvents.AnonymousSignInClick())
+ *      }
+ *    }
+ *
+ *    ObserveAsEvents(viewModel.eventFlow) { event ->
+ *      when (event) {
+ *          is LoginEvents.AnonymousSignInClick -> { }
+ *      }
+ *    }
+ *
+ * @check ObserveAsEvents in core/common/src/main/java/dev/enesky/core/common/utils/ObserveAsEvents.kt
+ */
+class EventDelegate<T: IEvent>: Event<T> {
+
+    override val event: Channel<T> = Channel()
+    override val eventFlow: Flow<T> = event.receiveAsFlow()
+
+}
