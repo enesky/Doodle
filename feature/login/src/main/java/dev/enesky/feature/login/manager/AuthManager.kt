@@ -220,7 +220,7 @@ class AuthManager(
     /**
      * Google Sign In with Intent
      */
-    suspend fun signInGoogleInitial(intent: Intent): SignInResult {
+    suspend fun signInWithGoogleResult(intent: Intent): SignInResult {
         val credential = signInClient.getSignInCredentialFromIntent(intent)
         val googleIdToken = credential.googleIdToken
         val googleCredentials = GoogleAuthProvider.getCredential(googleIdToken, null)
@@ -248,7 +248,7 @@ class AuthManager(
     /**
      * Google Sign In with IntentSender
      */
-    suspend fun signInGoogleFinal(): IntentSender? {
+    suspend fun signInWithGoogle(): IntentSender? {
         return try {
             signInClient.beginSignIn(buildSignInRequest()).await()
         } catch (e: Exception) {

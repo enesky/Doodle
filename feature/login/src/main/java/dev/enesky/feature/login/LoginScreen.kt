@@ -1,5 +1,6 @@
 package dev.enesky.feature.login
 
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -31,7 +32,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.common.utils.Logger
+import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.core.design_system.annotation.PreviewUiMode
 import org.koin.androidx.compose.koinViewModel
@@ -71,14 +72,13 @@ fun LoginScreenRoute(
         contract = ActivityResultContracts.StartIntentSenderForResult(),
         onResult = { result ->
             if (result.resultCode == ComponentActivity.RESULT_OK) {
-                viewModel.signInGoogleWithIntent(
+                viewModel.signInWithGoogleResult(
                     intent = result.data ?: return@rememberLauncherForActivityResult,
                 )
             } else {
                 viewModel.setState {
                     copy(
                         authType = AuthType.GOOGLE,
-                        isSignInSuccessful = false,
                         signInResult = SignInResult(
                             errorMessage = "Google Sign In Failed with resultCode= " + result.resultCode,
                         ),
@@ -89,6 +89,15 @@ fun LoginScreenRoute(
         },
     )
 
+    ObserveAsEvents(flow = viewModel.eventFlow) { loginEvents ->
+        when (loginEvents) {
+            is LoginEvents.OnError -> {
+                Log.d("LoginScreen", "LoginEvents.OnError: ${loginEvents.errorMessage}")
+            }
+            is LoginEvents.NavigateToHome -> navigateHome()
+        }
+    }
+
     DoodleTheme {
         Surface(
             modifier = modifier.fillMaxSize(),
@@ -97,16 +106,13 @@ fun LoginScreenRoute(
             LoginScreenContent(
                 modifier = Modifier.fillMaxWidth(),
                 loginUiState = loginUiState,
-                navigateHome = navigateHome,
                 onSignInWithEmail = { email, password ->
-                    viewModel.clickSignInWithEmail(email, password)
+                    viewModel.signInWithEmailAndPassword(email, password)
                 },
                 onGoogleSignInClick = {
-                    viewModel.clickSignInWithGoogle(googleSignInLauncher)
+                    viewModel.signInWithGoogle(googleSignInLauncher)
                 },
-                onSignInAnonymouslyClick = {
-                    viewModel.signInAnonymously()
-                },
+                onSignInAnonymouslyClick = viewModel::signInAnonymously,
             )
         }
     }
@@ -117,18 +123,10 @@ fun LoginScreenRoute(
 private fun LoginScreenContent(
     loginUiState: LoginUiState,
     modifier: Modifier = Modifier,
-    navigateHome: () -> Unit,
-    onSignInWithEmail: (email: String, password: String) -> Unit,
-    onGoogleSignInClick: () -> Unit,
-    onSignInAnonymouslyClick: () -> Unit,
+    onSignInWithEmail: (email: String, password: String) -> Unit = { _, _ -> },
+    onGoogleSignInClick: () -> Unit = {},
+    onSignInAnonymouslyClick: () -> Unit = {},
 ) {
-    // Navigate to home screen when sign in is successful
-    LaunchedEffect(key1 = loginUiState.isSignInSuccessful) {
-        if (loginUiState.isSignInSuccessful) {
-            navigateHome()
-        }
-    }
-
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -447,9 +445,5 @@ private fun LineWithTextMiddlePreview() {
 private fun LoginScreenPreview() {
     LoginScreenContent(
         loginUiState = LoginUiState(),
-        navigateHome = {},
-        onSignInWithEmail = { _, _ -> },
-        onGoogleSignInClick = {},
-        onSignInAnonymouslyClick = {},
     )
 }
