@@ -52,13 +52,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
+import dev.enesky.core.data.AuthType
+import dev.enesky.core.data.LoginResult
 import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.feature.login.R
-import dev.enesky.feature.login.signin.helpers.AuthType
 import dev.enesky.feature.login.signin.helpers.SignInEvents
-import dev.enesky.feature.login.signin.helpers.LoginUiState
-import dev.enesky.feature.login.signin.helpers.SignInResult
+import dev.enesky.feature.login.signin.helpers.SignInUiState
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -84,7 +84,7 @@ fun SignInScreenRoute(
                 viewModel.setState {
                     copy(
                         authType = AuthType.GOOGLE,
-                        signInResult = SignInResult(
+                        loginResult = LoginResult(
                             errorMessage = "Google Sign In Failed with resultCode= " + result.resultCode,
                         ),
                     )
@@ -127,7 +127,7 @@ fun SignInScreenRoute(
 @Composable
 private fun SignInScreenContent(
     modifier: Modifier = Modifier,
-    loginUiState: LoginUiState,
+    loginUiState: SignInUiState,
     onSignInWithEmail: (email: String, password: String) -> Unit = { _, _ -> },
     onGoogleSignInClick: () -> Unit = {},
     onSignInAnonymouslyClick: () -> Unit = {},
@@ -453,6 +453,6 @@ private fun LineWithTextMiddlePreview() {
 @Composable
 private fun SignInScreenPreview() {
     SignInScreenContent(
-        loginUiState = LoginUiState(),
+        loginUiState = SignInUiState(),
     )
 }
