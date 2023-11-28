@@ -12,7 +12,7 @@ import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.feature.login.signin.helpers.AuthType
-import dev.enesky.feature.login.signin.helpers.LoginEvents
+import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.LoginUiState
 import dev.enesky.feature.login.signin.helpers.SignInResult
 import dev.enesky.feature.login.manager.AuthManager
@@ -22,11 +22,11 @@ import kotlinx.coroutines.launch
  * Created by Enes Kamil YILMAZ on 11/11/2023
  */
 
-class LoginViewModel(
+class SignInViewModel(
     private val authManager: AuthManager,
 ) : ViewModel(),
     UiState<LoginUiState> by UiStateDelegate(initialState = { LoginUiState() }),
-    Event<LoginEvents> by EventDelegate() {
+    Event<SignInEvents> by EventDelegate() {
 
     // ------------------ EMAIL ------------------
 
@@ -122,9 +122,9 @@ class LoginViewModel(
         viewModelScope.launch {
             event.trigger(
                 if (isSignInSuccessful) {
-                    LoginEvents.NavigateToHome
+                    SignInEvents.NavigateToHome
                 } else {
-                    LoginEvents.OnError(currentState.signInResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR)
+                    SignInEvents.OnError(currentState.signInResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR)
                 }
             )
         }

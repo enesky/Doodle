@@ -56,7 +56,7 @@ import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.feature.login.R
 import dev.enesky.feature.login.signin.helpers.AuthType
-import dev.enesky.feature.login.signin.helpers.LoginEvents
+import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.LoginUiState
 import dev.enesky.feature.login.signin.helpers.SignInResult
 import org.koin.androidx.compose.koinViewModel
@@ -68,7 +68,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun SignInScreenRoute(
     modifier: Modifier = Modifier,
-    viewModel: LoginViewModel = koinViewModel(),
+    viewModel: SignInViewModel = koinViewModel(),
     navigateHome: () -> Unit,
 ) {
     val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -96,10 +96,10 @@ fun SignInScreenRoute(
 
     ObserveAsEvents(flow = viewModel.eventFlow) { loginEvents ->
         when (loginEvents) {
-            is LoginEvents.OnError -> {
+            is SignInEvents.OnError -> {
                 Log.d("LoginScreen", "LoginEvents.OnError: ${loginEvents.errorMessage}")
             }
-            is LoginEvents.NavigateToHome -> navigateHome()
+            is SignInEvents.NavigateToHome -> navigateHome()
         }
     }
 

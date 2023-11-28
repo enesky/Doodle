@@ -14,7 +14,7 @@ import java.util.concurrent.Executors
  */
 
 @OptIn(KoinExperimentalAPI::class)
-val loginManagerModule = lazyModule {
+val loginModule = lazyModule {
 
     single {
         AuthManager(

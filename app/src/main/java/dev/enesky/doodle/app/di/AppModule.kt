@@ -17,7 +17,7 @@
 package dev.enesky.doodle.app.di
 
 import dev.enesky.core.network.di.networkModule
-import dev.enesky.feature.login.di.loginManagerModule
+import dev.enesky.feature.login.di.loginModule
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.module.includes
 import org.koin.dsl.lazyModule
@@ -33,5 +33,5 @@ val appModule = lazyModule {
     includes(networkModule, viewModelModule)
 
     // Includes all the lazy modules from the feature modules
-    includes(loginManagerModule)
+    includes(loginModule)
 }
