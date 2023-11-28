@@ -1,6 +1,5 @@
-package dev.enesky.feature.login
+package dev.enesky.feature.login.helpers
 
-import dev.enesky.core.common.delegate.IEvent
 import dev.enesky.core.common.delegate.IUiState
 
 /**
@@ -30,8 +29,3 @@ data class UserData(
     val email: String? = null,
     val profilePictureUrl: String? = null,
 )
-
-sealed interface LoginEvents : IEvent {
-    data class OnError(val errorMessage: String) : LoginEvents
-    data object NavigateToHome : LoginEvents
-}

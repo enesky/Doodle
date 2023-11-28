@@ -1,8 +1,9 @@
-package dev.enesky.feature.login
+package dev.enesky.feature.login.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import dev.enesky.core.navigation.DoodleNavigationDestination
+import dev.enesky.feature.login.LoginScreenRoute
 
 /**
  * Created by Enes Kamil YILMAZ on 10/11/2023
