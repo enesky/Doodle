@@ -66,9 +66,9 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun LoginScreenRoute(
-    navigateHome: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: LoginViewModel = koinViewModel(),
+    navigateHome: () -> Unit,
 ) {
     val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -125,8 +125,8 @@ fun LoginScreenRoute(
 @Suppress("LongMethod")
 @Composable
 private fun LoginScreenContent(
-    loginUiState: LoginUiState,
     modifier: Modifier = Modifier,
+    loginUiState: LoginUiState,
     onSignInWithEmail: (email: String, password: String) -> Unit = { _, _ -> },
     onGoogleSignInClick: () -> Unit = {},
     onSignInAnonymouslyClick: () -> Unit = {},

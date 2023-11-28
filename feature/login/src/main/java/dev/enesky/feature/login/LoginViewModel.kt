@@ -32,7 +32,7 @@ class LoginViewModel(
 
     fun signInWithEmailAndPassword(email: String, password: String) {
         // Helper functions
-        fun signInEmailResult(
+        fun handleAuthResult(
             signInResult: SignInResult,
             isSignInSuccessful: Boolean,
         ) {
@@ -42,7 +42,7 @@ class LoginViewModel(
                     signInResult = signInResult,
                 )
             }
-            navigateToHome(isSignInSuccessful)
+            handleResults(isSignInSuccessful)
         }
 
         suspend fun signUpWithEmail(email: String, password: String) {
@@ -50,7 +50,7 @@ class LoginViewModel(
                 email = email,
                 password = password,
             )
-            signInEmailResult(resultFromSignUp, resultFromSignUp.data != null)
+            handleAuthResult(resultFromSignUp, resultFromSignUp.data != null)
         }
 
         // Main function
@@ -58,13 +58,14 @@ class LoginViewModel(
             val signInResult = authManager.signInWithEmailAndPassword(email, password)
             when {
                 signInResult.data != null -> {
-                    signInEmailResult(signInResult, true)
+                    handleAuthResult(signInResult, true)
                 }
-                signInResult.errorMessage?.contains("no user record") == true -> {
+                signInResult.errorMessage?.contains("no user record") == true
+                    || signInResult.errorMessage?.contains("The supplied auth credential is incorrect") == true -> {
                     signUpWithEmail(email, password)
                 }
                 else -> {
-                    signInEmailResult(signInResult, false)
+                    handleAuthResult(signInResult, false)
                 }
             }
         }
@@ -94,7 +95,7 @@ class LoginViewModel(
                     signInResult = signInResult,
                 )
             }
-            navigateToHome(isSignInSuccessful = signInResult.data != null)
+            handleResults(isSignInSuccessful = signInResult.data != null)
         }
     }
 
@@ -109,13 +110,13 @@ class LoginViewModel(
                     signInResult = signInResult,
                 )
             }
-            navigateToHome(isSignInSuccessful = signInResult.data != null)
+            handleResults(isSignInSuccessful = signInResult.data != null)
         }
     }
 
     // ------------------ EVENTS ------------------
 
-    private fun navigateToHome(
+    private fun handleResults(
         isSignInSuccessful: Boolean,
     ) {
         viewModelScope.launch {
@@ -124,7 +125,7 @@ class LoginViewModel(
                     LoginEvents.NavigateToHome
                 } else {
                     LoginEvents.OnError(currentState.signInResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR)
-                },
+                }
             )
         }
     }

@@ -9,5 +9,4 @@ object ErrorMessages {
 
     const val GENERAL_ERROR = "An error occurred. Please try again later."
     const val NO_INTERNET_CONNECTION = "No internet connection. Please try again later."
-
 }
