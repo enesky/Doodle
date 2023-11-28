@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
-import dev.enesky.core.common.delegate.IEvent
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.feature.login.manager.AuthManager
@@ -25,7 +24,31 @@ class LoginViewModel(
     Event<LoginEvents> by EventDelegate() {
 
     // ------------------ EMAIL ------------------
-    fun clickSignInWithEmail(email: String, password: String) {
+
+    fun signInWithEmailAndPassword(email: String, password: String) {
+        // Helper functions
+        fun signInEmailResult(
+            signInResult: SignInResult,
+            isSignInSuccessful: Boolean,
+        ) {
+            setState {
+                copy(
+                    authType = AuthType.EMAIL,
+                    signInResult = signInResult,
+                )
+            }
+            navigateToHome(isSignInSuccessful)
+        }
+
+        suspend fun signUpWithEmail(email: String, password: String) {
+            val resultFromSignUp: SignInResult = authManager.signUpWithEmailAndPassword(
+                email = email,
+                password = password,
+            )
+            signInEmailResult(resultFromSignUp, resultFromSignUp.data != null)
+        }
+
+        // Main function
         viewModelScope.launch {
             val signInResult = authManager.signInWithEmailAndPassword(email, password)
             when {
@@ -42,38 +65,13 @@ class LoginViewModel(
         }
     }
 
-    private fun signInEmailResult(
-        signInResult: SignInResult,
-        isSignInSuccessful: Boolean,
-    ) {
-        setState {
-            copy(
-                authType = AuthType.EMAIL,
-                signInResult = signInResult,
-                isSignInSuccessful = isSignInSuccessful,
-            )
-        }
-    }
-
-    private suspend fun signUpWithEmail(email: String, password: String) {
-        val resultFromSignUp: SignInResult = authManager.signUpWithEmailAndPassword(
-            email = email,
-            password = password,
-        )
-        if (resultFromSignUp.data != null) {
-            signInEmailResult(resultFromSignUp, true)
-        } else {
-            signInEmailResult(resultFromSignUp, false)
-        }
-    }
-
     // ------------------ GOOGLE ------------------
 
-    fun clickSignInWithGoogle(
+    fun signInWithGoogle(
         launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>,
     ) {
         viewModelScope.launch {
-            val signInIntentSender = authManager.signInGoogleFinal()
+            val signInIntentSender = authManager.signInWithGoogle()
             launcher.launch(
                 IntentSenderRequest.Builder(
                     signInIntentSender ?: return@launch,
@@ -82,16 +80,16 @@ class LoginViewModel(
         }
     }
 
-    fun signInGoogleWithIntent(intent: Intent) {
+    fun signInWithGoogleResult(intent: Intent) {
         viewModelScope.launch {
-            val signInResult = authManager.signInGoogleInitial(intent)
+            val signInResult = authManager.signInWithGoogleResult(intent)
             setState {
                 copy(
                     authType = AuthType.GOOGLE,
                     signInResult = signInResult,
-                    isSignInSuccessful = signInResult.data != null,
                 )
             }
+            navigateToHome(isSignInSuccessful = signInResult.data != null)
         }
     }
 
@@ -104,15 +102,26 @@ class LoginViewModel(
                 copy(
                     authType = AuthType.ANONYMOUS,
                     signInResult = signInResult,
-                    isSignInSuccessful = signInResult.data != null,
                 )
             }
+            navigateToHome(isSignInSuccessful = signInResult.data != null)
+        }
+    }
+
+    // ------------------ EVENTS ------------------
+
+    private fun navigateToHome(
+        isSignInSuccessful: Boolean,
+    ) {
+        viewModelScope.launch {
+            event.trigger(
+                newEvent =
+                if (isSignInSuccessful) {
+                    LoginEvents.NavigateToHome
+                } else {
+                    LoginEvents.OnError(currentState.signInResult?.errorMessage ?: "")
+                },
+            )
         }
     }
 }
-
-sealed class LoginEvents(
-    EmailSignInClick: (email: String, password: String) -> Unit,
-    GoogleSignInClick: (launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>) -> Unit,
-    AnonymousSignInClick: () -> Unit,
-): IEvent

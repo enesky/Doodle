@@ -1,5 +1,6 @@
 package dev.enesky.feature.login
 
+import dev.enesky.core.common.delegate.IEvent
 import dev.enesky.core.common.delegate.IUiState
 
 /**
@@ -7,12 +8,9 @@ import dev.enesky.core.common.delegate.IUiState
  */
 
 data class LoginUiState(
-    val isFirstTime: Boolean = true,
     val loading: Boolean = false,
     val authType: AuthType = AuthType.ANONYMOUS,
     val signInResult: SignInResult? = null,
-    val isSignInSuccessful: Boolean = false,
-    val navigateToHome: Boolean = false,
 ) : IUiState
 
 enum class AuthType {
@@ -32,3 +30,8 @@ data class UserData(
     val email: String? = null,
     val profilePictureUrl: String? = null,
 )
+
+sealed interface LoginEvents : IEvent {
+    data class OnError(val errorMessage: String) : LoginEvents
+    data object NavigateToHome : LoginEvents
+}
