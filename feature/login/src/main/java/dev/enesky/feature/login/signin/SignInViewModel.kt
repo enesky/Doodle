@@ -12,7 +12,6 @@ import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.core.data.AuthType
-import dev.enesky.core.data.LoginResult
 import dev.enesky.feature.login.manager.AuthManager
 import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.SignInUiState
@@ -31,43 +30,15 @@ class SignInViewModel(
     // ------------------ EMAIL ------------------
 
     fun signInWithEmailAndPassword(email: String, password: String) {
-        // Helper functions
-        fun handleAuthResult(
-            signInResult: LoginResult,
-            isSignInSuccessful: Boolean,
-        ) {
+        viewModelScope.launch {
+            val signInResult = authManager.signInWithEmailAndPassword(email, password)
             setState {
                 copy(
                     authType = AuthType.EMAIL,
                     loginResult = signInResult,
                 )
             }
-            handleResults(isSignInSuccessful)
-        }
-
-        suspend fun signUpWithEmail(email: String, password: String) {
-            val resultFromSignUp: LoginResult = authManager.signUpWithEmailAndPassword(
-                email = email,
-                password = password,
-            )
-            handleAuthResult(resultFromSignUp, resultFromSignUp.data != null)
-        }
-
-        // Main function
-        viewModelScope.launch {
-            val signInResult = authManager.signInWithEmailAndPassword(email, password)
-            when {
-                signInResult.data != null -> {
-                    handleAuthResult(signInResult, true)
-                }
-                signInResult.errorMessage?.contains("no user record") == true
-                    || signInResult.errorMessage?.contains("The supplied auth credential is incorrect") == true -> {
-                    signUpWithEmail(email, password)
-                }
-                else -> {
-                    handleAuthResult(signInResult, false)
-                }
-            }
+            handleResults(signInResult.data != null)
         }
     }
 
