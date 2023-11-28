@@ -36,6 +36,8 @@ class DoodleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initializeKoin()
+
+        // val isFirstTime: Boolean = true -> TODO: Use this with DataStore
     }
 
     /**
