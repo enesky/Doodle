@@ -16,7 +16,7 @@ interface IEvent
 /**
  * Base interface for event delegation
  */
-interface Event<T> {
+interface Event<T : IEvent> {
 
     val event: Channel<T>
     val eventFlow: Flow<T>
@@ -45,9 +45,8 @@ interface Event<T> {
  *
  * @check ObserveAsEvents in core/common/src/main/java/dev/enesky/core/common/utils/ObserveAsEvents.kt
  */
-class EventDelegate<T: IEvent>: Event<T> {
+class EventDelegate<T : IEvent> : Event<T> {
 
     override val event: Channel<T> = Channel()
     override val eventFlow: Flow<T> = event.receiveAsFlow()
-
 }
