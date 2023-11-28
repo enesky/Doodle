@@ -71,7 +71,7 @@ fun SignInScreenRoute(
     viewModel: SignInViewModel = koinViewModel(),
     navigateHome: () -> Unit,
 ) {
-    val loginUiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val signInUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val googleSignInLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartIntentSenderForResult(),
@@ -89,15 +89,15 @@ fun SignInScreenRoute(
                         ),
                     )
                 }
-                Logger.error("LoginScreenRoute", "signInGoogleLauncher: ${result.resultCode}")
+                Logger.error("SignInScreenRoute", "signInGoogleLauncher: ${result.resultCode}")
             }
         },
     )
 
-    ObserveAsEvents(flow = viewModel.eventFlow) { loginEvents ->
-        when (loginEvents) {
+    ObserveAsEvents(flow = viewModel.eventFlow) { signInEvents ->
+        when (signInEvents) {
             is SignInEvents.OnError -> {
-                Log.d("LoginScreen", "LoginEvents.OnError: ${loginEvents.errorMessage}")
+                Log.d("SignInScreen", "SignInEvents.OnError: ${signInEvents.errorMessage}")
             }
             is SignInEvents.NavigateToHome -> navigateHome()
         }
@@ -110,7 +110,7 @@ fun SignInScreenRoute(
         ) {
             SignInScreenContent(
                 modifier = Modifier.fillMaxWidth(),
-                loginUiState = loginUiState,
+                signInUiState = signInUiState,
                 onSignInWithEmail = { email, password ->
                     viewModel.signInWithEmailAndPassword(email, password)
                 },
@@ -127,7 +127,7 @@ fun SignInScreenRoute(
 @Composable
 private fun SignInScreenContent(
     modifier: Modifier = Modifier,
-    loginUiState: SignInUiState,
+    signInUiState: SignInUiState,
     onSignInWithEmail: (email: String, password: String) -> Unit = { _, _ -> },
     onGoogleSignInClick: () -> Unit = {},
     onSignInAnonymouslyClick: () -> Unit = {},
@@ -453,6 +453,6 @@ private fun LineWithTextMiddlePreview() {
 @Composable
 private fun SignInScreenPreview() {
     SignInScreenContent(
-        loginUiState = SignInUiState(),
+        signInUiState = SignInUiState(),
     )
 }
