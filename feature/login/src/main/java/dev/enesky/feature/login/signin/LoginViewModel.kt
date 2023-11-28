@@ -1,4 +1,4 @@
-package dev.enesky.feature.login
+package dev.enesky.feature.login.signin
 
 import android.content.Intent
 import androidx.activity.compose.ManagedActivityResultLauncher
@@ -11,10 +11,10 @@ import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
-import dev.enesky.feature.login.helpers.AuthType
-import dev.enesky.feature.login.helpers.LoginEvents
-import dev.enesky.feature.login.helpers.LoginUiState
-import dev.enesky.feature.login.helpers.SignInResult
+import dev.enesky.feature.login.signin.helpers.AuthType
+import dev.enesky.feature.login.signin.helpers.LoginEvents
+import dev.enesky.feature.login.signin.helpers.LoginUiState
+import dev.enesky.feature.login.signin.helpers.SignInResult
 import dev.enesky.feature.login.manager.AuthManager
 import kotlinx.coroutines.launch
 

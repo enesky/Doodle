@@ -1,4 +1,4 @@
-package dev.enesky.feature.login.helpers
+package dev.enesky.feature.login.signin.helpers
 
 import dev.enesky.core.common.delegate.IUiState
 

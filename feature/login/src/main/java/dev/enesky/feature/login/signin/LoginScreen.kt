@@ -1,4 +1,4 @@
-package dev.enesky.feature.login
+package dev.enesky.feature.login.signin
 
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -54,10 +54,11 @@ import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.core.design_system.annotation.PreviewUiMode
-import dev.enesky.feature.login.helpers.AuthType
-import dev.enesky.feature.login.helpers.LoginEvents
-import dev.enesky.feature.login.helpers.LoginUiState
-import dev.enesky.feature.login.helpers.SignInResult
+import dev.enesky.feature.login.R
+import dev.enesky.feature.login.signin.helpers.AuthType
+import dev.enesky.feature.login.signin.helpers.LoginEvents
+import dev.enesky.feature.login.signin.helpers.LoginUiState
+import dev.enesky.feature.login.signin.helpers.SignInResult
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -65,7 +66,7 @@ import org.koin.androidx.compose.koinViewModel
  */
 
 @Composable
-fun LoginScreenRoute(
+fun SignInScreenRoute(
     modifier: Modifier = Modifier,
     viewModel: LoginViewModel = koinViewModel(),
     navigateHome: () -> Unit,
@@ -107,7 +108,7 @@ fun LoginScreenRoute(
             modifier = modifier.fillMaxSize(),
             color = DoodleTheme.colors.background,
         ) {
-            LoginScreenContent(
+            SignInScreenContent(
                 modifier = Modifier.fillMaxWidth(),
                 loginUiState = loginUiState,
                 onSignInWithEmail = { email, password ->
@@ -124,7 +125,7 @@ fun LoginScreenRoute(
 
 @Suppress("LongMethod")
 @Composable
-private fun LoginScreenContent(
+private fun SignInScreenContent(
     modifier: Modifier = Modifier,
     loginUiState: LoginUiState,
     onSignInWithEmail: (email: String, password: String) -> Unit = { _, _ -> },
@@ -168,6 +169,7 @@ private fun LoginScreenContent(
     }
 }
 
+// TODO: Move it to design system or ui module
 @Composable
 private fun LoginHeader() {
     Column(
@@ -207,6 +209,7 @@ private fun LoginHeader() {
     }
 }
 
+// TODO: Move it to design system or ui module
 @Suppress("LongMethod")
 @Composable
 private fun SignInWithEmail(
@@ -344,6 +347,7 @@ private fun SignInWithEmail(
     }
 }
 
+// TODO: Move it to design system or ui module
 @Composable
 private fun SignInButtonWithLogo(
     imageResource: Int = R.drawable.ic_google_logo,
@@ -384,6 +388,7 @@ private fun SignInButtonWithLogo(
     }
 }
 
+// TODO: Move it to design system or ui module
 @Composable
 private fun LineWithTextMiddle(
     text: String = "or",
@@ -446,8 +451,8 @@ private fun LineWithTextMiddlePreview() {
 
 @PreviewUiMode
 @Composable
-private fun LoginScreenPreview() {
-    LoginScreenContent(
+private fun SignInScreenPreview() {
+    SignInScreenContent(
         loginUiState = LoginUiState(),
     )
 }

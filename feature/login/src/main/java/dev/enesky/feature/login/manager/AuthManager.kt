@@ -14,8 +14,8 @@ import com.google.firebase.auth.auth
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.feature.login.BuildConfig
-import dev.enesky.feature.login.helpers.SignInResult
-import dev.enesky.feature.login.helpers.UserData
+import dev.enesky.feature.login.signin.helpers.SignInResult
+import dev.enesky.feature.login.signin.helpers.UserData
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
 import java.util.concurrent.Executor
