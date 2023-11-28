@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dev.enesky.core.common.consts.ErrorMessages
 import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
@@ -122,8 +123,8 @@ class LoginViewModel(
                 if (isSignInSuccessful) {
                     LoginEvents.NavigateToHome
                 } else {
-                    LoginEvents.OnError(currentState.signInResult?.errorMessage ?: "")
-                }
+                    LoginEvents.OnError(currentState.signInResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR)
+                },
             )
         }
     }
