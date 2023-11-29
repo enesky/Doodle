@@ -1,7 +1,7 @@
 package dev.enesky.feature.login.signin.helpers
 
 import dev.enesky.core.common.delegate.IUiState
-import dev.enesky.core.data.AuthType
+import dev.enesky.core.data.LoginType
 import dev.enesky.core.data.LoginResult
 
 /**
@@ -10,6 +10,6 @@ import dev.enesky.core.data.LoginResult
 
 data class SignInUiState(
     val loading: Boolean = false,
-    val authType: AuthType = AuthType.ANONYMOUS,
+    val loginType: LoginType = LoginType.ANONYMOUS,
     val loginResult: LoginResult? = null,
 ) : IUiState

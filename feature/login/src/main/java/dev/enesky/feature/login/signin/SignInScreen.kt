@@ -83,7 +83,7 @@ fun SignInScreenRoute(
             } else {
                 viewModel.setState {
                     copy(
-                        authType = AuthType.GOOGLE,
+                        loginType = LoginType.GOOGLE,
                         loginResult = LoginResult(
                             errorMessage = "Google Sign In Failed with resultCode= " + result.resultCode,
                         ),

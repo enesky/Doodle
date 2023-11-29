@@ -16,7 +16,7 @@ data class UserData(
     val profilePictureUrl: String? = null,
 )
 
-enum class AuthType {
+enum class LoginType {
     ANONYMOUS,
     GOOGLE,
     EMAIL,

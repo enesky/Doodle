@@ -11,7 +11,7 @@ import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
-import dev.enesky.core.data.AuthType
+import dev.enesky.core.data.LoginType
 import dev.enesky.feature.login.manager.AuthManager
 import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.SignInUiState
@@ -34,7 +34,7 @@ class SignInViewModel(
             val signInResult = authManager.signInWithEmailAndPassword(email, password)
             setState {
                 copy(
-                    authType = AuthType.EMAIL,
+                    loginType = LoginType.EMAIL,
                     loginResult = signInResult,
                 )
             }
@@ -62,7 +62,7 @@ class SignInViewModel(
             val signInResult = authManager.signInWithGoogleResult(intent)
             setState {
                 copy(
-                    authType = AuthType.GOOGLE,
+                    loginType = LoginType.GOOGLE,
                     loginResult = signInResult,
                 )
             }
@@ -77,7 +77,7 @@ class SignInViewModel(
             val signInResult = authManager.signInAnonymously()
             setState {
                 copy(
-                    authType = AuthType.ANONYMOUS,
+                    loginType = LoginType.ANONYMOUS,
                     loginResult = signInResult,
                 )
             }
