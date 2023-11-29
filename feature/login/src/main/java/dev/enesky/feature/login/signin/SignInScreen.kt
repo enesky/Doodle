@@ -108,7 +108,7 @@ fun SignInScreenRoute(
             modifier = modifier.fillMaxSize(),
             color = DoodleTheme.colors.background,
         ) {
-            SignInScreenContent(
+            SignInScreen(
                 modifier = Modifier.fillMaxWidth(),
                 signInUiState = signInUiState,
                 onSignInWithEmail = { email, password ->
@@ -125,7 +125,7 @@ fun SignInScreenRoute(
 
 @Suppress("LongMethod")
 @Composable
-private fun SignInScreenContent(
+private fun SignInScreen(
     modifier: Modifier = Modifier,
     signInUiState: SignInUiState,
     onSignInWithEmail: (email: String, password: String) -> Unit = { _, _ -> },
@@ -146,7 +146,9 @@ private fun SignInScreenContent(
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
 
-        SignInWithEmail(onSignInWithEmail)
+        SignInWithEmail(
+            buttonAction = onSignInWithEmail,
+        )
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.largest))
 
@@ -171,8 +173,12 @@ private fun SignInScreenContent(
 
 // TODO: Move it to design system or ui module
 @Composable
-private fun LoginHeader() {
+fun LoginHeader(
+    modifier: Modifier = Modifier,
+    headerMessage: String = stringResource(R.string.label_welcome_to),
+) {
     Column(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
@@ -191,7 +197,7 @@ private fun LoginHeader() {
         ) {
             Column {
                 Text(
-                    text = stringResource(R.string.label_welcome_to),
+                    text = headerMessage,
                     color = DoodleTheme.colors.text,
                     textAlign = TextAlign.Center,
                     style = DoodleTheme.typography.bold.h2,
@@ -212,8 +218,11 @@ private fun LoginHeader() {
 // TODO: Move it to design system or ui module
 @Suppress("LongMethod")
 @Composable
-private fun SignInWithEmail(
-    onSignInWithEmail: (email: String, password: String) -> Unit,
+fun SignInWithEmail(
+    modifier: Modifier = Modifier,
+    isForgotPasswordVisible: Boolean = true,
+    buttonText: String = stringResource(R.string.label_login),
+    buttonAction: (email: String, password: String) -> Unit,
 ) {
     var email by remember { mutableStateOf(String.Empty) }
     var password by remember { mutableStateOf(String.Empty) }
@@ -302,26 +311,30 @@ private fun SignInWithEmail(
                 unfocusedLabelColor = DoodleTheme.colors.text,
             ),
         )
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
-        TextButton(
-            modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
-            onClick = {
-                if (email.isEmpty()) {
-                    needEmail = true
-                    // TODO: Add snackbar with error message -> pls fill email section
-                    return@TextButton
-                }
-                needEmail = false
-                // TODO: add forgot password
-            },
-        ) {
-            Text(
-                text = stringResource(R.string.label_forgot_password),
-                color = DoodleTheme.colors.text,
-                style = DoodleTheme.typography.regular.h6,
-            )
+        if (isForgotPasswordVisible) {
+            Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+            TextButton(
+                modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
+                onClick = {
+                    if (email.isEmpty()) {
+                        needEmail = true
+                        // TODO: Add snackbar with error message -> pls fill email section
+                        return@TextButton
+                    }
+                    needEmail = false
+                    // TODO: add forgot password
+                },
+            ) {
+                Text(
+                    text = stringResource(R.string.label_forgot_password),
+                    color = DoodleTheme.colors.text,
+                    style = DoodleTheme.typography.regular.h6,
+                )
+            }
+            Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        } else {
+            Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
         }
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
         Button(
             modifier = Modifier
                 .fillMaxWidth()
@@ -335,11 +348,11 @@ private fun SignInWithEmail(
                 containerColor = DoodleTheme.colors.white,
             ),
             onClick = {
-                onSignInWithEmail(email, password)
+                buttonAction(email, password)
             },
         ) {
             Text(
-                text = stringResource(R.string.label_login),
+                text = buttonText,
                 color = DoodleTheme.colors.black,
                 style = DoodleTheme.typography.regular.h5,
             )
@@ -452,7 +465,7 @@ private fun LineWithTextMiddlePreview() {
 @PreviewUiMode
 @Composable
 private fun SignInScreenPreview() {
-    SignInScreenContent(
+    SignInScreen(
         signInUiState = SignInUiState(),
     )
 }
