@@ -42,6 +42,19 @@ class SignInViewModel(
         }
     }
 
+    fun forgotPassword(email: String) {
+        viewModelScope.launch {
+            val forgotPasswordResult = authManager.forgotPassword(email)
+            setState {
+                copy(
+                    loginType = LoginType.EMAIL,
+                    loginResult = forgotPasswordResult,
+                )
+            }
+            handleResults(forgotPasswordResult.data != null)
+        }
+    }
+
     // ------------------ GOOGLE ------------------
 
     fun signInWithGoogle(

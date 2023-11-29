@@ -132,6 +132,28 @@ class AuthManager(
         }
     }
 
+    suspend fun forgotPassword(email: String): LoginResult {
+        return suspendCancellableCoroutine { continuation ->
+            auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(executor) { task ->
+                    if (task.isSuccessful) {
+                        continuation.resume(
+                            LoginResult(
+                                data = UserData(
+                                    userId = String.Empty,
+                                    email = email,
+                                ),
+                            ),
+                        )
+                    } else {
+                        continuation.resume(
+                            LoginResult(errorMessage = task.exception?.message),
+                        )
+                    }
+                }
+        }
+    }
+
     // ------------------ ANONYMOUS SIGN IN ------------------
 
     /**

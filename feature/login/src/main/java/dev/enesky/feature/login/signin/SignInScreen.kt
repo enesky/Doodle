@@ -1,6 +1,5 @@
 package dev.enesky.feature.login.signin
 
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -52,7 +51,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
-import dev.enesky.core.data.AuthType
+import dev.enesky.core.data.LoginType
 import dev.enesky.core.data.LoginResult
 import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.core.design_system.annotation.PreviewUiMode
@@ -70,6 +69,7 @@ fun SignInScreenRoute(
     modifier: Modifier = Modifier,
     viewModel: SignInViewModel = koinViewModel(),
     navigateHome: () -> Unit,
+    navigateSignUp: () -> Unit,
 ) {
     val signInUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -111,6 +111,9 @@ fun SignInScreenRoute(
             SignInScreen(
                 modifier = Modifier.fillMaxWidth(),
                 signInUiState = signInUiState,
+                forgotPasswordButtonAction = { email ->
+                    viewModel.forgotPassword(email)
+                },
                 onSignInWithEmail = { email, password ->
                     viewModel.signInWithEmailAndPassword(email, password)
                 },
@@ -118,6 +121,7 @@ fun SignInScreenRoute(
                     viewModel.signInWithGoogle(googleSignInLauncher)
                 },
                 onSignInAnonymouslyClick = viewModel::signInAnonymously,
+                navigateSignUp = navigateSignUp,
             )
         }
     }
@@ -128,9 +132,11 @@ fun SignInScreenRoute(
 private fun SignInScreen(
     modifier: Modifier = Modifier,
     signInUiState: SignInUiState,
+    forgotPasswordButtonAction: (email: String) -> Unit = {},
     onSignInWithEmail: (email: String, password: String) -> Unit = { _, _ -> },
     onGoogleSignInClick: () -> Unit = {},
     onSignInAnonymouslyClick: () -> Unit = {},
+    navigateSignUp: () -> Unit = {},
 ) {
     Column(
         modifier = modifier
@@ -147,7 +153,9 @@ private fun SignInScreen(
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
 
         SignInWithEmail(
-            buttonAction = onSignInWithEmail,
+            signInButtonAction = onSignInWithEmail,
+            forgotPasswordButtonAction = forgotPasswordButtonAction,
+            signUpButtonAction = navigateSignUp,
         )
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.largest))
@@ -221,8 +229,11 @@ fun LoginHeader(
 fun SignInWithEmail(
     modifier: Modifier = Modifier,
     isForgotPasswordVisible: Boolean = true,
-    buttonText: String = stringResource(R.string.label_login),
-    buttonAction: (email: String, password: String) -> Unit,
+    forgotPasswordButtonAction: (email: String) -> Unit = {},
+    signInButtonText: String = stringResource(R.string.label_sign_in),
+    signInButtonAction: (email: String, password: String) -> Unit,
+    signUpButtonText: String = stringResource(R.string.label_sign_up),
+    signUpButtonAction: () -> Unit,
 ) {
     var email by remember { mutableStateOf(String.Empty) }
     var password by remember { mutableStateOf(String.Empty) }
@@ -231,7 +242,7 @@ fun SignInWithEmail(
     val isFormValid = remember {
         derivedStateOf { email.isNotBlank() && password.length >= maxPassLength }
     }
-    var needEmail by remember { mutableStateOf(false) }
+    var isEmailRequired by remember { mutableStateOf(false) }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -270,7 +281,7 @@ fun SignInWithEmail(
                 unfocusedPlaceholderColor = DoodleTheme.colors.main,
                 unfocusedLabelColor = DoodleTheme.colors.text,
             ),
-            isError = needEmail,
+            isError = isEmailRequired,
         )
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.small))
         OutlinedTextField(
@@ -317,12 +328,12 @@ fun SignInWithEmail(
                 modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
                 onClick = {
                     if (email.isEmpty()) {
-                        needEmail = true
-                        // TODO: Add snackbar with error message -> pls fill email section
+                        isEmailRequired = true
+                        // TODO: Add snackbar with error message -> pls fill the email section first
                         return@TextButton
                     }
-                    needEmail = false
-                    // TODO: add forgot password
+                    isEmailRequired = false
+                    forgotPasswordButtonAction(email)
                 },
             ) {
                 Text(
@@ -348,11 +359,11 @@ fun SignInWithEmail(
                 containerColor = DoodleTheme.colors.white,
             ),
             onClick = {
-                buttonAction(email, password)
+                signInButtonAction(email, password)
             },
         ) {
             Text(
-                text = buttonText,
+                text = signInButtonText,
                 color = DoodleTheme.colors.black,
                 style = DoodleTheme.typography.regular.h5,
             )
@@ -446,7 +457,10 @@ private fun LoginHeaderPreview() {
 @Composable
 private fun SignInWithEmailPreview() {
     Surface {
-        SignInWithEmail { _, _ -> }
+        SignInWithEmail(
+            signInButtonAction = { _, _ -> },
+            signUpButtonAction = {},
+        )
     }
 }
 
