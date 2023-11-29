@@ -11,11 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.feature.login.R
 import dev.enesky.feature.login.signin.LoginHeader
 import dev.enesky.feature.login.signin.SignInWithEmail
 import dev.enesky.feature.login.signup.helpers.SignUpEvents
@@ -86,8 +88,10 @@ fun SignUpScreen(
 
         SignInWithEmail(
             isForgotPasswordVisible = false,
-            buttonText = "Sign Up",
-            buttonAction = onSignUpWithEmail,
+            signInButtonText = "Sign Up",
+            signInButtonAction = onSignUpWithEmail,
+            signUpButtonText = stringResource(R.string.label_sign_up),
+            signUpButtonAction = { /*TODO*/ }
         )
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.largest))
