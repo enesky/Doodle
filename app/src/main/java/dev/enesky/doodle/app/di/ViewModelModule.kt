@@ -3,6 +3,7 @@ package dev.enesky.doodle.app.di
 import dev.enesky.core.domain.di.useCaseModule
 import dev.enesky.feature.details.DetailsViewModel
 import dev.enesky.feature.login.signin.SignInViewModel
+import dev.enesky.feature.login.signup.SignUpViewModel
 import dev.enesky.feature.main.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -19,6 +20,7 @@ val viewModelModule = lazyModule {
     includes(useCaseModule)
 
     viewModelOf(::SignInViewModel)
+    viewModelOf(::SignUpViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::DetailsViewModel)
 }

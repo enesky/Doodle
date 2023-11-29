@@ -23,17 +23,19 @@ class SignUpViewModel(
     UiState<SignUpUiState> by UiStateDelegate(initialState = { SignUpUiState() }),
     Event<SignUpEvents> by EventDelegate() {
 
-    suspend fun signUpWithEmail(email: String, password: String) {
-        val resultFromSignUp: LoginResult = authManager.signUpWithEmailAndPassword(
-            email = email,
-            password = password,
-        )
-        setState {
-            copy(
-                loginResult = resultFromSignUp,
+    fun signUpWithEmail(email: String, password: String) {
+        viewModelScope.launch {
+            val resultFromSignUp: LoginResult = authManager.signUpWithEmailAndPassword(
+                email = email,
+                password = password,
             )
+            setState {
+                copy(
+                    loginResult = resultFromSignUp,
+                )
+            }
+            handleResults(resultFromSignUp.data != null)
         }
-        handleResults(resultFromSignUp.data != null)
     }
 
     // ------------------ EVENTS ------------------
@@ -51,5 +53,4 @@ class SignUpViewModel(
             )
         }
     }
-
 }
