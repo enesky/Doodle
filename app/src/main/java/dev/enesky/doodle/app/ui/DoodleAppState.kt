@@ -11,6 +11,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.feature.login.navigation.LoginDestination
+import dev.enesky.feature.login.navigation.SignInDestination
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update

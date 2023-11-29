@@ -30,6 +30,7 @@ fun DoodleNavHost(
         startDestination = startDestination.route,
     ) {
         loginGraph(
+            navController = navController,
             onNavigateToHomeDestination = {
                 onNavigateToDestination(
                     HomeDestination,

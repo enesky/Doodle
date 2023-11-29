@@ -158,11 +158,11 @@ private fun SignInScreen(
             signUpButtonAction = navigateSignUp,
         )
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.largest))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraMedium))
 
         LineWithTextMiddle()
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.largest))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraMedium))
 
         SignInButtonWithLogo {
             onGoogleSignInClick()
@@ -232,7 +232,7 @@ fun SignInWithEmail(
     forgotPasswordButtonAction: (email: String) -> Unit = {},
     signInButtonText: String = stringResource(R.string.label_sign_in),
     signInButtonAction: (email: String, password: String) -> Unit,
-    signUpButtonText: String = stringResource(R.string.label_sign_up),
+    signUpButtonText: String = stringResource(R.string.label_create_account),
     signUpButtonAction: () -> Unit,
 ) {
     var email by remember { mutableStateOf(String.Empty) }
@@ -364,6 +364,29 @@ fun SignInWithEmail(
         ) {
             Text(
                 text = signInButtonText,
+                color = DoodleTheme.colors.black,
+                style = DoodleTheme.typography.regular.h5,
+            )
+        }
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.small))
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = DoodleTheme.spacing.smallMedium),
+            shape = RoundedCornerShape(DoodleTheme.spacing.medium),
+            border = BorderStroke(
+                width = DoodleTheme.spacing.border,
+                color = DoodleTheme.colors.main,
+            ),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = DoodleTheme.colors.white,
+            ),
+            onClick = {
+                signUpButtonAction()
+            },
+        ) {
+            Text(
+                text = signUpButtonText,
                 color = DoodleTheme.colors.black,
                 style = DoodleTheme.typography.regular.h5,
             )
