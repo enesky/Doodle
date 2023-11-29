@@ -20,6 +20,15 @@ object Logger {
         Log.e(tag, message, e)
     }
 
+    fun debug(
+        tag: String,
+        message: String,
+        e: Throwable? = null,
+    ) {
+        if (!BuildConfig.DEBUG) return
+        Log.d(tag, message, e)
+    }
+
     fun info(
         tag: String,
         message: String,

@@ -1,6 +1,5 @@
 package dev.enesky.feature.login.signup
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.design_system.DoodleTheme
 import dev.enesky.feature.login.signin.LoginHeader
@@ -38,7 +38,7 @@ fun SignUpScreenRoute(
     ObserveAsEvents(flow = viewModel.eventFlow) { event ->
         when (event) {
             is SignUpEvents.OnError -> {
-                Log.d("SignUpScreen", "onError: ${event.errorMessage}")
+                Logger.debug("SignUpScreen", "onError: ${event.errorMessage}")
             }
 
             is SignUpEvents.NavigateToHome -> onNavigateToHome()
