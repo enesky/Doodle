@@ -21,4 +21,3 @@ enum class AuthType {
     GOOGLE,
     EMAIL,
 }
-

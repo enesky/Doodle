@@ -96,7 +96,7 @@ class SignInViewModel(
                     SignInEvents.NavigateToHome
                 } else {
                     SignInEvents.OnError(currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR)
-                }
+                },
             )
         }
     }
