@@ -36,7 +36,7 @@ fun NavGraphBuilder.loginGraph(
         startDestination = SignInDestination.route,
     ) {
         composableWithAnimation(
-            route = SignInDestination.route
+            route = SignInDestination.route,
         ) {
             SignInScreenRoute(
                 navigateHome = onNavigateToHomeDestination,

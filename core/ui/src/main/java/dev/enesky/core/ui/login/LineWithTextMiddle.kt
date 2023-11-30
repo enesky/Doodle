@@ -22,6 +22,7 @@ import dev.enesky.core.design_system.DoodleTheme
 
 @Composable
 fun LineWithTextMiddle(
+    modifier: Modifier = Modifier,
     text: String = "or",
 ) {
     Row(

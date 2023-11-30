@@ -132,7 +132,11 @@ fun EmailAuthComponent(
                         },
                     ) {
                         Icon(
-                            imageVector = if (isPasswordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff,
+                            imageVector = if (isPasswordVisible) {
+                                Icons.Filled.Visibility
+                            } else {
+                                Icons.Filled.VisibilityOff
+                            },
                             contentDescription = String.Empty,
                         )
                     }

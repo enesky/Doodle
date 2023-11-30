@@ -21,6 +21,7 @@ import dev.enesky.core.design_system.DoodleTheme
 
 @Composable
 fun ButtonWithImageAndText(
+    modifier: Modifier = Modifier,
     imageResource: Int,
     text: String,
     action: () -> Unit,
@@ -49,7 +50,7 @@ fun ButtonWithImageAndText(
             painter = painterResource(id = imageResource),
             contentDescription = "Google Logo",
 
-            )
+        )
         Text(
             modifier = Modifier.weight(textWeight),
             text = text,
@@ -64,6 +65,6 @@ fun ButtonWithImageAndText(
 private fun GoogleButtonPreview() {
     ButtonWithImageAndText(
         imageResource = dev.enesky.core.design_system.R.drawable.ic_launcher,
-        text = "Create new account"
+        text = "Create new account",
     ) {}
 }
