@@ -12,11 +12,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.core.ui.login.EmailAuthComponent
 import dev.enesky.core.ui.login.LoginHeader
 import dev.enesky.feature.login.R
@@ -96,7 +96,7 @@ fun SignUpScreen(
     }
 }
 
-@Preview
+@PreviewUiMode
 @Composable
 private fun SignUpScreenPreview() {
     DoodleTheme {

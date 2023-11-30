@@ -189,8 +189,11 @@ fun EmailAuthComponent(
             colors = ButtonDefaults.buttonColors(
                 containerColor = DoodleTheme.colors.white,
             ),
+            enabled = isFormValid.value,
             onClick = {
-                signInButtonAction(email, password)
+                if (isFormValid.value) {
+                    signInButtonAction(email, password)
+                }
             },
         ) {
             Text(
