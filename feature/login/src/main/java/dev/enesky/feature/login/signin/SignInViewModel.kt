@@ -113,4 +113,10 @@ class SignInViewModel(
             )
         }
     }
+
+    fun navigateToSignUp() {
+        viewModelScope.launch {
+            event.trigger(SignInEvents.NavigateToSignUp)
+        }
+    }
 }

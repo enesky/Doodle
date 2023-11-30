@@ -88,10 +88,8 @@ fun SignUpScreen(
 
         SignInWithEmail(
             isForgotPasswordVisible = false,
-            signInButtonText = "Sign Up",
+            signInButtonText = stringResource(id = R.string.label_sign_up),
             signInButtonAction = onSignUpWithEmail,
-            signUpButtonText = stringResource(R.string.label_sign_up),
-            signUpButtonAction = { /*TODO*/ },
         )
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.largest))

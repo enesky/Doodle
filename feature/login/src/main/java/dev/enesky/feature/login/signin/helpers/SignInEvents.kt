@@ -9,4 +9,5 @@ import dev.enesky.core.common.delegate.IEvent
 sealed interface SignInEvents : IEvent {
     data class OnError(val errorMessage: String) : SignInEvents
     data object NavigateToHome : SignInEvents
+    data object NavigateToSignUp : SignInEvents
 }

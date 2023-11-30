@@ -100,6 +100,7 @@ fun SignInScreenRoute(
                 Logger.debug("SignInScreen", "SignInEvents.OnError: ${signInEvents.errorMessage}")
             }
             is SignInEvents.NavigateToHome -> navigateHome()
+            is SignInEvents.NavigateToSignUp -> navigateSignUp()
         }
     }
 
@@ -121,7 +122,7 @@ fun SignInScreenRoute(
                     viewModel.signInWithGoogle(googleSignInLauncher)
                 },
                 onSignInAnonymouslyClick = viewModel::signInAnonymously,
-                navigateSignUp = navigateSignUp,
+                navigateSignUp = viewModel::navigateToSignUp,
             )
         }
     }
@@ -155,7 +156,6 @@ private fun SignInScreen(
         SignInWithEmail(
             signInButtonAction = onSignInWithEmail,
             forgotPasswordButtonAction = forgotPasswordButtonAction,
-            signUpButtonAction = navigateSignUp,
         )
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraMedium))
@@ -163,6 +163,14 @@ private fun SignInScreen(
         LineWithTextMiddle()
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraMedium))
+
+        SignInButtonWithLogo(
+            imageResource = R.drawable.ic_new_account,
+            text = stringResource(R.string.label_create_account),
+            action = navigateSignUp,
+        )
+
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
 
         SignInButtonWithLogo {
             onGoogleSignInClick()
@@ -232,8 +240,6 @@ fun SignInWithEmail(
     forgotPasswordButtonAction: (email: String) -> Unit = {},
     signInButtonText: String = stringResource(R.string.label_sign_in),
     signInButtonAction: (email: String, password: String) -> Unit,
-    signUpButtonText: String = stringResource(R.string.label_create_account),
-    signUpButtonAction: () -> Unit,
 ) {
     var email by remember { mutableStateOf(String.Empty) }
     var password by remember { mutableStateOf(String.Empty) }
@@ -368,29 +374,6 @@ fun SignInWithEmail(
                 style = DoodleTheme.typography.regular.h5,
             )
         }
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.small))
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = DoodleTheme.spacing.smallMedium),
-            shape = RoundedCornerShape(DoodleTheme.spacing.medium),
-            border = BorderStroke(
-                width = DoodleTheme.spacing.border,
-                color = DoodleTheme.colors.main,
-            ),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = DoodleTheme.colors.white,
-            ),
-            onClick = {
-                signUpButtonAction()
-            },
-        ) {
-            Text(
-                text = signUpButtonText,
-                color = DoodleTheme.colors.black,
-                style = DoodleTheme.typography.regular.h5,
-            )
-        }
     }
 }
 
@@ -482,7 +465,6 @@ private fun SignInWithEmailPreview() {
     Surface {
         SignInWithEmail(
             signInButtonAction = { _, _ -> },
-            signUpButtonAction = {},
         )
     }
 }
@@ -490,7 +472,10 @@ private fun SignInWithEmailPreview() {
 @Preview
 @Composable
 private fun GoogleButtonPreview() {
-    SignInButtonWithLogo {}
+    SignInButtonWithLogo(
+        imageResource = R.drawable.ic_new_account,
+        text = "Create new account"
+    ) {}
 }
 
 @Preview
