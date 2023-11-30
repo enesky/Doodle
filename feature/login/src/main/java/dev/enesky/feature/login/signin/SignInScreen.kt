@@ -20,6 +20,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -313,10 +315,13 @@ fun SignInWithEmail(
             trailingIcon = {
                 IconButton(
                     onClick = {
-                        isPasswordVisible = !isPasswordVisible
+                        isPasswordVisible = isPasswordVisible.not()
                     },
                 ) {
-                    // TODO add icon for password visible/invisible eye
+                    Icon(
+                        imageVector = if (isPasswordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff,
+                        contentDescription = String.Empty,
+                    )
                 }
             },
             colors = OutlinedTextFieldDefaults.colors(
