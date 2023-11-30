@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ui</string>
+    <string name="label_doodle">Doodle!</string>
+    <string name="lorem_ipsum_short">Lorem Ipsum</string>
+    <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="lorem_ipsum_full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <!-- Login -->
+    <string name="label_welcome_to">"Welcome to "</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="label_forgot_password">Forgot password?</string>
+    <string name="label_sign_in">Sign in</string>
+    <string name="label_sign_up">Sign up</string>
+
 </resources>

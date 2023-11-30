@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="label_welcome_to">"Welcome to "</string>
-    <string name="label_doodle">Doodle!</string>
     <string name="label_email">Email</string>
     <string name="label_password">Password</string>
     <string name="label_sign_in">Giriş Yap</string>
     <string name="label_sign_up">Sign up</string>
+    <string name="label_sign_in_with_google">Sign in with Google</string>
     <string name="label_sign_in_anonymously">Sign in anonymously</string>
     <string name="label_forgot_password">Forgot password?</string>
     <string name="label_create_account">Create new account</string>
