@@ -13,9 +13,9 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.common.utils.Logger
+import dev.enesky.core.data.LoginResult
+import dev.enesky.core.data.UserData
 import dev.enesky.feature.login.BuildConfig
-import dev.enesky.feature.login.SignInResult
-import dev.enesky.feature.login.UserData
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
 import java.util.concurrent.Executor
@@ -79,13 +79,13 @@ class AuthManager(
     suspend fun signInWithEmailAndPassword(
         email: String,
         password: String,
-    ): SignInResult {
+    ): LoginResult {
         return suspendCancellableCoroutine { continuation ->
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(executor) { task ->
                     if (task.isSuccessful) {
                         continuation.resume(
-                            SignInResult(
+                            LoginResult(
                                 data = UserData(
                                     userId = task.result.user?.uid ?: String.Empty,
                                     email = email,
@@ -94,7 +94,7 @@ class AuthManager(
                         )
                     } else {
                         continuation.resume(
-                            SignInResult(errorMessage = task.exception?.message),
+                            LoginResult(errorMessage = task.exception?.message),
                         )
                     }
                 }
@@ -110,13 +110,13 @@ class AuthManager(
     suspend fun signUpWithEmailAndPassword(
         email: String,
         password: String,
-    ): SignInResult {
+    ): LoginResult {
         return suspendCancellableCoroutine { continuation ->
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(executor) { task ->
                     if (task.isSuccessful) {
                         continuation.resume(
-                            SignInResult(
+                            LoginResult(
                                 data = UserData(
                                     userId = task.result.user?.uid ?: String.Empty,
                                     email = email,
@@ -125,7 +125,29 @@ class AuthManager(
                         )
                     } else {
                         continuation.resume(
-                            SignInResult(errorMessage = task.exception?.message),
+                            LoginResult(errorMessage = task.exception?.message),
+                        )
+                    }
+                }
+        }
+    }
+
+    suspend fun forgotPassword(email: String): LoginResult {
+        return suspendCancellableCoroutine { continuation ->
+            auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(executor) { task ->
+                    if (task.isSuccessful) {
+                        continuation.resume(
+                            LoginResult(
+                                data = UserData(
+                                    userId = String.Empty,
+                                    email = email,
+                                ),
+                            ),
+                        )
+                    } else {
+                        continuation.resume(
+                            LoginResult(errorMessage = task.exception?.message),
                         )
                     }
                 }
@@ -142,13 +164,13 @@ class AuthManager(
     /**
      * Signs in user anonymously
      */
-    suspend fun signInAnonymously(): SignInResult {
+    suspend fun signInAnonymously(): LoginResult {
         return suspendCancellableCoroutine { continuation ->
             auth.signInAnonymously()
                 .addOnCompleteListener(executor) { task ->
                     if (task.isSuccessful) {
                         continuation.resume(
-                            SignInResult(
+                            LoginResult(
                                 data = UserData(
                                     userId = task.result.user?.uid ?: String.Empty,
                                 ),
@@ -156,7 +178,7 @@ class AuthManager(
                         )
                     } else {
                         continuation.resume(
-                            SignInResult(errorMessage = task.exception?.message),
+                            LoginResult(errorMessage = task.exception?.message),
                         )
                     }
                 }
@@ -220,13 +242,13 @@ class AuthManager(
     /**
      * Google Sign In with Intent
      */
-    suspend fun signInGoogleInitial(intent: Intent): SignInResult {
+    suspend fun signInWithGoogleResult(intent: Intent): LoginResult {
         val credential = signInClient.getSignInCredentialFromIntent(intent)
         val googleIdToken = credential.googleIdToken
         val googleCredentials = GoogleAuthProvider.getCredential(googleIdToken, null)
         return try {
             val user = auth.signInWithCredential(googleCredentials).await().user
-            SignInResult(
+            LoginResult(
                 data = user?.run {
                     UserData(
                         userId = uid,
@@ -239,7 +261,7 @@ class AuthManager(
         } catch (e: Exception) {
             Logger.error("AuthManager", "signInGoogleWithIntent: ${e.message}", e)
             if (e is CancellationException) throw e
-            SignInResult(
+            LoginResult(
                 errorMessage = e.message,
             )
         }
@@ -248,7 +270,7 @@ class AuthManager(
     /**
      * Google Sign In with IntentSender
      */
-    suspend fun signInGoogleFinal(): IntentSender? {
+    suspend fun signInWithGoogle(): IntentSender? {
         return try {
             signInClient.beginSignIn(buildSignInRequest()).await()
         } catch (e: Exception) {

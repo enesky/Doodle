@@ -60,6 +60,7 @@ class AppMainPlugin : Plugin<Project> {
             add("implementation", libs.material)
             add("implementation", libs.appcompat)
             add("implementation", libs.lifecycle.runtime.ktx)
+            add("implementation", libs.splash.screen)
 
             add("debugImplementation", libs.leak.canary)
             add("debugImplementation", libs.chucker)

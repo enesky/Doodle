@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Doodle" parent="android:Theme.Material.Light.NoActionBar" />
 
     <style name="Theme.Doodle.Starting" parent="Theme.Doodle">
         <!-- Set the splash screen background, animated icon, and animation
@@ -17,5 +16,11 @@
         <!-- Set the theme of the Activity that directly follows your splash
         screen. This is required. -->
         <item name="postSplashScreenTheme">@style/Theme.Doodle</item>
+
+        <!--Android 12 specific styles (put this in values-v31) -->
+        <item name="android:windowSplashScreenBrandingImage">
+            @drawable/doodle_icon
+        </item>
+        <!--Android 12 specific styles (put this in values-v31) -->
     </style>
 </resources>

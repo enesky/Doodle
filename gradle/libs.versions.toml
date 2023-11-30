@@ -7,7 +7,7 @@ target-sdk                            = "34"
 compose-compiler                      = "1.5.4"
 
 # Plugin Versions
-gradle-plugin                         = "8.3.0-alpha14"
+gradle-plugin                         = "8.3.0-alpha15"
 kotlin-plugin                         = "1.9.20"
 ksp-plugin                            = "1.9.20-1.0.14"
 google-services-plugin                = "4.4.0"
@@ -43,6 +43,7 @@ ktlint                                = "11.6.1"
 spotless                              = "6.22.0"
 credential-manager                    = "1.2.0"
 google-auth                           = "20.7.0"
+splash-screen                         = "1.0.1"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
@@ -87,6 +88,7 @@ ui-tooling                            = { module= "androidx.compose.ui:ui-toolin
 ui-tooling-preview                    = { module= "androidx.compose.ui:ui-tooling-preview" }
 ui-test-manifest                      = { module= "androidx.compose.ui:ui-test-manifest" }
 material3                             = { module= "androidx.compose.material3:material3" }
+material-icons-extended               = { module= "androidx.compose.material:material-icons-extended" }
 androidx-navigation-compose           = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 androidx-paging-compose               = { module= "androidx.paging:paging-compose", version.ref= "paging-compose" }
 data-store                            = { module= "androidx.datastore:datastore", version.ref= "data-store" }
@@ -122,6 +124,7 @@ appcompat                             = { module= "androidx.appcompat:appcompat"
 material                              = { module= "com.google.android.material:material", version.ref= "material" }
 credential-manager                    = { module= "androidx.credentials:credentials", version.ref= "credential-manager" }
 credential-manager-play-services-auth = { module= "androidx.credentials:credentials-play-services-auth", version.ref= "credential-manager" }
+splash-screen                         = { module= "androidx.core:core-splashscreen", version.ref= "splash-screen" }
 
 # Dependencies of the included build-logic
 android-gradle-plugin                 = { module= "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
@@ -132,7 +135,7 @@ desugar-jdk-libs                      = { module= "com.android.tools:desugar_jdk
 spotless-gradle-plugin                = { module= "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
 [bundles]
-compose-materials                     = ["androidx-paging-compose", "ui", "ui-graphics", "ui-tooling", "ui-tooling-preview", "material3"]
+compose-materials                     = ["androidx-paging-compose", "ui", "ui-graphics", "ui-tooling", "ui-tooling-preview", "material3", "material-icons-extended"]
 debug-implementations                 = ["ui-tooling", "ui-test-manifest", "leak-canary", "chucker"]
 koin-materials                        = ["koin-coroutines", "koin-navigation", "koin-compose"]
 koin-test-materials                   = ["koin-test-junit-4", "koin-test-android"]

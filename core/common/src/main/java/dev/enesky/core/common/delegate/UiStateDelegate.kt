@@ -26,7 +26,7 @@ interface UiState<T> {
     /**
      * Ui state value for ease of use
      **/
-    val currentState: IUiState
+    val currentState: T
 
     /**
      * Setter function for updating the ui state

@@ -1,4 +1,4 @@
-package dev.enesky.core.ui
+package dev.enesky.core.ui.loading
 
 import android.content.res.Configuration
 import androidx.compose.animation.core.FastOutSlowInEasing

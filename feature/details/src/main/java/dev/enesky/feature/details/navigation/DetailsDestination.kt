@@ -1,8 +1,8 @@
 package dev.enesky.feature.details.navigation
 
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
 import dev.enesky.core.navigation.DoodleNavigationDestination
+import dev.enesky.core.navigation.composableWithAnimation
 import dev.enesky.feature.details.DetailsRoute
 
 /**
@@ -21,6 +21,6 @@ object DetailsDestination : DoodleNavigationDestination {
 
 fun NavGraphBuilder.detailsGraph(
     showSnackbar: () -> Unit,
-) = composable(route = DetailsDestination.routeWithArguments) {
+) = composableWithAnimation(route = DetailsDestination.routeWithArguments) {
     DetailsRoute()
 }
