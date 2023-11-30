@@ -17,9 +17,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.core.ui.login.EmailAuthComponent
+import dev.enesky.core.ui.login.LoginHeader
 import dev.enesky.feature.login.R
-import dev.enesky.feature.login.signin.LoginHeader
-import dev.enesky.feature.login.signin.SignInWithEmail
 import dev.enesky.feature.login.signup.helpers.SignUpEvents
 import dev.enesky.feature.login.signup.helpers.SignUpUiState
 import org.koin.androidx.compose.koinViewModel
@@ -86,7 +86,7 @@ fun SignUpScreen(
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
 
-        SignInWithEmail(
+        EmailAuthComponent(
             isForgotPasswordVisible = false,
             signInButtonText = stringResource(id = R.string.label_sign_up),
             signInButtonAction = onSignUpWithEmail,
