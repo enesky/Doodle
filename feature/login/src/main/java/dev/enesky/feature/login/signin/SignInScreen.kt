@@ -313,15 +313,17 @@ fun SignInWithEmail(
                 PasswordVisualTransformation()
             },
             trailingIcon = {
-                IconButton(
-                    onClick = {
-                        isPasswordVisible = isPasswordVisible.not()
-                    },
-                ) {
-                    Icon(
-                        imageVector = if (isPasswordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff,
-                        contentDescription = String.Empty,
-                    )
+                if (password.isNotBlank()) {
+                    IconButton(
+                        onClick = {
+                            isPasswordVisible = isPasswordVisible.not()
+                        },
+                    ) {
+                        Icon(
+                            imageVector = if (isPasswordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff,
+                            contentDescription = String.Empty,
+                        )
+                    }
                 }
             },
             colors = OutlinedTextFieldDefaults.colors(
