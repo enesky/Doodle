@@ -27,6 +27,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -53,14 +54,14 @@ fun EmailAuthComponent(
     signInButtonText: String = stringResource(R.string.label_sign_in),
     signInButtonAction: (email: String, password: String) -> Unit,
 ) {
-    var email by remember { mutableStateOf(String.Empty) }
-    var password by remember { mutableStateOf(String.Empty) }
-    var isPasswordVisible by remember { mutableStateOf(false) }
+    var email by rememberSaveable { mutableStateOf(String.Empty) }
+    var password by rememberSaveable { mutableStateOf(String.Empty) }
+    var isPasswordVisible by rememberSaveable { mutableStateOf(false) }
     val maxPassLength = 7
     val isFormValid = remember {
         derivedStateOf { email.isNotBlank() && password.length >= maxPassLength }
     }
-    var isEmailRequired by remember { mutableStateOf(false) }
+    var isEmailRequired by rememberSaveable { mutableStateOf(false) }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
