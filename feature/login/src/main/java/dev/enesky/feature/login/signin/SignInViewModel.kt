@@ -51,7 +51,10 @@ class SignInViewModel(
                     loginResult = forgotPasswordResult,
                 )
             }
-            handleResults(forgotPasswordResult.data != null)
+            handleResults(
+                isSignInSuccessful = forgotPasswordResult.data != null,
+                shouldNavigateToHome = false,
+            )
         }
     }
 
@@ -102,10 +105,12 @@ class SignInViewModel(
 
     private fun handleResults(
         isSignInSuccessful: Boolean,
+        shouldNavigateToHome: Boolean = true,
     ) {
         viewModelScope.launch {
             event.trigger(
                 if (isSignInSuccessful) {
+                    if (shouldNavigateToHome.not()) return@launch
                     SignInEvents.NavigateToHome
                 } else {
                     SignInEvents.OnError(currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR)
