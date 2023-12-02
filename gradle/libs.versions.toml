@@ -7,7 +7,7 @@ target-sdk                            = "34"
 compose-compiler                      = "1.5.4"
 
 # Plugin Versions
-gradle-plugin                         = "8.3.0-alpha15"
+gradle-plugin                         = "8.3.0-alpha16"
 kotlin-plugin                         = "1.9.20"
 ksp-plugin                            = "1.9.20-1.0.14"
 google-services-plugin                = "4.4.0"
@@ -89,7 +89,7 @@ ui-tooling-preview                    = { module= "androidx.compose.ui:ui-toolin
 ui-test-manifest                      = { module= "androidx.compose.ui:ui-test-manifest" }
 material3                             = { module= "androidx.compose.material3:material3" }
 material-icons-extended               = { module= "androidx.compose.material:material-icons-extended" }
-androidx-navigation-compose           = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+androidx-navigation-compose           = { module= "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 androidx-paging-compose               = { module= "androidx.paging:paging-compose", version.ref= "paging-compose" }
 data-store                            = { module= "androidx.datastore:datastore", version.ref= "data-store" }
 data-store-preferences                = { module= "androidx.datastore:datastore-preferences", version.ref= "data-store" }
