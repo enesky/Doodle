@@ -27,6 +27,19 @@ class SignInViewModel(
     UiState<SignInUiState> by UiStateDelegate(initialState = { SignInUiState() }),
     Event<SignInEvents> by EventDelegate() {
 
+    init {
+        viewModelScope.launch {
+            authManager.credentialApiManager.getCredentials(
+                onEmailSignIn = { email, password ->
+
+                },
+                onGoogleSignIn = { idToken ->
+
+                },
+            )
+        }
+    }
+
     // ------------------ EMAIL ------------------
 
     fun signInWithEmailAndPassword(email: String, password: String) {

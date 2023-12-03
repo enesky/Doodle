@@ -36,6 +36,7 @@ import kotlin.coroutines.resume
 class AuthManager(
     private val executor: Executor,
     private val signInClient: SignInClient,
+    val credentialApiManager: CredentialApiManager
 ) {
 
     // ------------------ COMMON ------------------

@@ -3,6 +3,7 @@ package dev.enesky.feature.login.di
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
 import dev.enesky.feature.login.manager.AuthManager
+import dev.enesky.feature.login.manager.CredentialApiManager
 import org.koin.android.ext.koin.androidApplication
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.dsl.lazyModule
@@ -20,7 +21,12 @@ val loginModule = lazyModule {
         AuthManager(
             executor = get(),
             signInClient = get(),
+            credentialApiManager = get(),
         )
+    }
+
+    single {
+        CredentialApiManager(context = androidApplication())
     }
 
     single<SignInClient> {
