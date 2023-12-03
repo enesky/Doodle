@@ -34,8 +34,7 @@ class AuthenticationPlugin : Plugin<Project> {
             add("implementation", libs.google.auth)
 
             // Credential Manager
-            add("implementation", libs.credential.manager)
-            add("implementation", libs.credential.manager.play.services.auth)
+            add("implementation", libs.bundles.credential.manager)
         }
     }
 }
