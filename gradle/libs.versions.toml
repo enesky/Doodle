@@ -44,7 +44,7 @@ spotless                              = "6.22.0"
 google-auth                           = "20.7.0"
 splash-screen                         = "1.0.1"
 credential-manager                    = "1.2.0"
-credential-manager-google             = "1.0.1"
+credential-manager-google             = "1.1.0"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
