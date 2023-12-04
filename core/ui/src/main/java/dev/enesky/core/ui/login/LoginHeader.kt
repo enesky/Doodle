@@ -20,7 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.enesky.core.theme.DoodleTheme
+import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.ui.R
 
 /**

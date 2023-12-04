@@ -15,7 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
-import dev.enesky.core.theme.DoodleTheme
+import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.core.ui.login.EmailAuthComponent
 import dev.enesky.core.ui.login.LoginHeader
