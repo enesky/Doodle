@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="label_welcome_to">"Welcome to "</string>
+    <string name="label_welcome_to">"Welcome to"</string>
     <string name="label_email">Email</string>
     <string name="label_password">Password</string>
     <string name="label_sign_in">Sign in</string>

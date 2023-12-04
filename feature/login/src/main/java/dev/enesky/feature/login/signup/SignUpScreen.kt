@@ -74,25 +74,26 @@ fun SignUpScreen(
         modifier = modifier
             .fillMaxSize()
             .padding(
-                vertical = DoodleTheme.spacing.small,
-                horizontal = DoodleTheme.spacing.large,
+                vertical = DoodleTheme.spacing.xSmall,
+                horizontal = DoodleTheme.spacing.xLarge,
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
         LoginHeader(
-            headerMessage = "Sign Up to ",
+            headerMessage = "Sign up to",
         )
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
 
         EmailAuthComponent(
             isForgotPasswordVisible = false,
+            isSignUoButtonVisible = false,
             signInButtonText = stringResource(id = R.string.label_sign_up),
             signInButtonAction = onSignUpWithEmail,
         )
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.largest))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxxLarge))
     }
 }
 

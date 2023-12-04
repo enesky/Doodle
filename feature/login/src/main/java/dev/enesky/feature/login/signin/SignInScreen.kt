@@ -91,7 +91,7 @@ fun SignInScreenRoute(
                     viewModel.signInWithEmailAndPassword(email, password)
                 },
                 onGoogleSignInClick = {
-                    viewModel.signInWithGoogle(googleSignInLauncher)
+                    viewModel.signInWithGoogleLauncher(googleSignInLauncher)
                 },
                 onSignInAnonymouslyClick = viewModel::signInAnonymously,
                 navigateSignUp = viewModel::navigateToSignUp,
@@ -115,8 +115,8 @@ private fun SignInScreen(
         modifier = modifier
             .fillMaxSize()
             .padding(
-                vertical = DoodleTheme.spacing.small,
-                horizontal = DoodleTheme.spacing.large,
+                vertical = DoodleTheme.spacing.xSmall,
+                horizontal = DoodleTheme.spacing.xLarge,
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -130,22 +130,16 @@ private fun SignInScreen(
         EmailAuthComponent(
             signInButtonText = stringResource(R.string.label_sign_in),
             signInButtonAction = onSignInWithEmail,
+            isForgotPasswordVisible = false,
             forgotPasswordButtonAction = forgotPasswordButtonAction,
+            signUpButtonAction = navigateSignUp,
         )
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraMedium))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
 
         LineWithTextMiddle()
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraMedium))
-
-        ButtonWithImageAndText(
-            imageResource = R.drawable.ic_new_account,
-            text = stringResource(R.string.label_create_account),
-            action = navigateSignUp,
-        )
-
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
 
         ButtonWithImageAndText(
             imageResource = R.drawable.ic_google_logo,
@@ -154,7 +148,7 @@ private fun SignInScreen(
             onGoogleSignInClick()
         }
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxSmall))
 
         ButtonWithImageAndText(
             imageResource = R.drawable.ic_incognito,
@@ -168,7 +162,9 @@ private fun SignInScreen(
 @PreviewUiMode
 @Composable
 private fun SignInScreenPreview() {
-    SignInScreen(
-        signInUiState = SignInUiState(),
-    )
+    DoodleTheme {
+        SignInScreen(
+            signInUiState = SignInUiState(),
+        )
+    }
 }

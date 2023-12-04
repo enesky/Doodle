@@ -15,6 +15,7 @@ import dev.enesky.core.data.LoginType
 import dev.enesky.feature.login.manager.AuthManager
 import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.SignInUiState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
@@ -26,6 +27,29 @@ class SignInViewModel(
 ) : ViewModel(),
     UiState<SignInUiState> by UiStateDelegate(initialState = { SignInUiState() }),
     Event<SignInEvents> by EventDelegate() {
+
+    init {
+        val initialDelay = 500L
+        viewModelScope.launch {
+            delay(initialDelay)
+            signInWithCredentialApi()
+        }
+    }
+
+    // ------------- CREDENTIAL API  -------------
+
+    private suspend fun signInWithCredentialApi() {
+        authManager.getCredentials(
+            onEmailSignIn = { email, password ->
+                signInWithEmailAndPassword(email, password)
+            },
+            onGoogleSignIn = { idToken ->
+                signInWithGoogleResult(
+                    idToken = idToken,
+                )
+            },
+        )
+    }
 
     // ------------------ EMAIL ------------------
 
@@ -51,17 +75,20 @@ class SignInViewModel(
                     loginResult = forgotPasswordResult,
                 )
             }
-            handleResults(forgotPasswordResult.data != null)
+            handleResults(
+                isSignInSuccessful = forgotPasswordResult.data != null,
+                shouldNavigateToHome = false,
+            )
         }
     }
 
     // ------------------ GOOGLE ------------------
 
-    fun signInWithGoogle(
+    fun signInWithGoogleLauncher(
         launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>,
     ) {
         viewModelScope.launch {
-            val signInIntentSender = authManager.signInWithGoogle()
+            val signInIntentSender = authManager.signInWithGoogleLauncher()
             launcher.launch(
                 IntentSenderRequest.Builder(
                     signInIntentSender ?: return@launch,
@@ -70,9 +97,12 @@ class SignInViewModel(
         }
     }
 
-    fun signInWithGoogleResult(intent: Intent) {
+    fun signInWithGoogleResult(
+        intent: Intent? = null,
+        idToken: String? = null,
+    ) {
         viewModelScope.launch {
-            val signInResult = authManager.signInWithGoogleResult(intent)
+            val signInResult = authManager.signInWithGoogleResult(intent, idToken)
             setState {
                 copy(
                     loginType = LoginType.GOOGLE,
@@ -102,13 +132,17 @@ class SignInViewModel(
 
     private fun handleResults(
         isSignInSuccessful: Boolean,
+        shouldNavigateToHome: Boolean = true,
     ) {
         viewModelScope.launch {
             event.trigger(
                 if (isSignInSuccessful) {
+                    if (shouldNavigateToHome.not()) return@launch
                     SignInEvents.NavigateToHome
                 } else {
-                    SignInEvents.OnError(currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR)
+                    SignInEvents.OnError(
+                        currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR,
+                    )
                 },
             )
         }

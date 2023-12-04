@@ -27,14 +27,19 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.design_system.DoodleTheme
@@ -48,19 +53,21 @@ import dev.enesky.core.ui.R
 @Composable
 fun EmailAuthComponent(
     modifier: Modifier = Modifier,
-    isForgotPasswordVisible: Boolean = true,
+    isForgotPasswordVisible: Boolean = false,
     forgotPasswordButtonAction: (email: String) -> Unit = {},
+    isSignUoButtonVisible: Boolean = true,
+    signUpButtonAction: () -> Unit = {},
     signInButtonText: String = stringResource(R.string.label_sign_in),
     signInButtonAction: (email: String, password: String) -> Unit,
 ) {
-    var email by remember { mutableStateOf(String.Empty) }
-    var password by remember { mutableStateOf(String.Empty) }
-    var isPasswordVisible by remember { mutableStateOf(false) }
+    var email by rememberSaveable { mutableStateOf(String.Empty) }
+    var password by rememberSaveable { mutableStateOf(String.Empty) }
+    var isPasswordVisible by rememberSaveable { mutableStateOf(false) }
     val maxPassLength = 7
     val isFormValid = remember {
         derivedStateOf { email.isNotBlank() && password.length >= maxPassLength }
     }
-    var isEmailRequired by remember { mutableStateOf(false) }
+    var isEmailRequired by rememberSaveable { mutableStateOf(false) }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -102,7 +109,7 @@ fun EmailAuthComponent(
             isError = isEmailRequired,
         )
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.small))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xSmall))
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -152,10 +159,11 @@ fun EmailAuthComponent(
             ),
         )
 
-        if (isForgotPasswordVisible) {
-            Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxSmall))
+
+        if (isForgotPasswordVisible) { // TODO: Make it visible when users password is incorrect
             TextButton(
-                modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
+                modifier = Modifier.padding(DoodleTheme.spacing.xxSmall),
                 onClick = {
                     if (email.isEmpty()) {
                         isEmailRequired = true
@@ -170,17 +178,45 @@ fun EmailAuthComponent(
                     text = stringResource(R.string.label_forgot_password),
                     color = DoodleTheme.colors.text,
                     style = DoodleTheme.typography.regular.h6,
+                    textDecoration = TextDecoration.Underline,
                 )
             }
-            Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
-        } else {
-            Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
+            Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxSmall))
         }
+
+        if (isSignUoButtonVisible) {
+            TextButton(
+                modifier = Modifier.padding(DoodleTheme.spacing.xxSmall),
+                onClick = { signUpButtonAction() },
+            ) {
+                val spannableString = buildAnnotatedString {
+                    append("Don't have an account? ")
+                    withStyle(
+                        style = SpanStyle(
+                            textDecoration = TextDecoration.Underline,
+                        ),
+                    ) {
+                        withStyle(
+                            style = DoodleTheme.typography.bold.h6.toSpanStyle(),
+                        ) {
+                            append("Sign up")
+                        }
+                    }
+                }
+                Text(
+                    text = spannableString,
+                    color = DoodleTheme.colors.text,
+                    style = DoodleTheme.typography.regular.h6,
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxSmall))
 
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = DoodleTheme.spacing.smallMedium),
+                .padding(horizontal = DoodleTheme.spacing.small),
             shape = RoundedCornerShape(DoodleTheme.spacing.medium),
             border = BorderStroke(
                 width = DoodleTheme.spacing.border,

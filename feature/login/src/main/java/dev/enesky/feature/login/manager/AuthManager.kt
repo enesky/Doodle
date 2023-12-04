@@ -30,12 +30,14 @@ import kotlin.coroutines.resume
  * Authentication Manager
  * Handles all authentication related operations
  *
- * @param executor Executor
- * @param signInClient SignInClient
+ * @param executor Executor for Google Sign In
+ * @param signInClient SignInClient for Google Sign In
+ * @param credentialApiManager CredentialApiManager
  */
 class AuthManager(
     private val executor: Executor,
     private val signInClient: SignInClient,
+    private val credentialApiManager: CredentialApiManager,
 ) {
 
     // ------------------ COMMON ------------------
@@ -85,7 +87,7 @@ class AuthManager(
                 .addOnCompleteListener(executor) { task ->
                     if (task.isSuccessful) {
                         continuation.resume(
-                            LoginResult(
+                            value = LoginResult(
                                 data = UserData(
                                     userId = task.result.user?.uid ?: String.Empty,
                                     email = email,
@@ -242,10 +244,17 @@ class AuthManager(
     /**
      * Google Sign In with Intent
      */
-    suspend fun signInWithGoogleResult(intent: Intent): LoginResult {
-        val credential = signInClient.getSignInCredentialFromIntent(intent)
-        val googleIdToken = credential.googleIdToken
+    suspend fun signInWithGoogleResult(
+        intent: Intent? = null,
+        idToken: String? = null,
+    ): LoginResult {
+        val googleIdToken = when {
+            intent != null -> signInClient.getSignInCredentialFromIntent(intent).googleIdToken
+            idToken != null -> idToken
+            else -> throw IllegalStateException("Google Id Token must be provided")
+        }
         val googleCredentials = GoogleAuthProvider.getCredential(googleIdToken, null)
+
         return try {
             val user = auth.signInWithCredential(googleCredentials).await().user
             LoginResult(
@@ -270,7 +279,7 @@ class AuthManager(
     /**
      * Google Sign In with IntentSender
      */
-    suspend fun signInWithGoogle(): IntentSender? {
+    suspend fun signInWithGoogleLauncher(): IntentSender? {
         return try {
             signInClient.beginSignIn(buildSignInRequest()).await()
         } catch (e: Exception) {
@@ -311,5 +320,27 @@ class AuthManager(
             .setGoogleIdTokenRequestOptions(getSignInRequestOptions)
             .setAutoSelectEnabled(true)
             .build()
+    }
+
+    // ------------------ CREDENTIALS ------------------
+
+    suspend fun getCredentials(
+        onEmailSignIn: (email: String, password: String) -> Unit,
+        onGoogleSignIn: (idToken: String) -> Unit,
+    ) {
+        credentialApiManager.getCredentials(
+            onEmailSignIn = onEmailSignIn,
+            onGoogleSignIn = onGoogleSignIn,
+        )
+    }
+
+    suspend fun saveCredentialForEmailAuth(
+        email: String,
+        password: String,
+    ) {
+        credentialApiManager.saveCredentialForEmailAuth(
+            email = email,
+            password = password,
+        )
     }
 }

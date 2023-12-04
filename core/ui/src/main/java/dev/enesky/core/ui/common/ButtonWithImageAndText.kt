@@ -32,7 +32,7 @@ fun ButtonWithImageAndText(
     Button(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = DoodleTheme.spacing.smallMedium),
+            .padding(horizontal = DoodleTheme.spacing.small),
         shape = RoundedCornerShape(DoodleTheme.spacing.medium),
         border = BorderStroke(
             width = DoodleTheme.spacing.border,
@@ -45,14 +45,15 @@ fun ButtonWithImageAndText(
     ) {
         Image(
             modifier = Modifier
-                .size(DoodleTheme.spacing.extraMedium)
+                .size(DoodleTheme.spacing.large)
                 .weight(imageWeight),
             painter = painterResource(id = imageResource),
             contentDescription = "Google Logo",
 
         )
         Text(
-            modifier = Modifier.weight(textWeight),
+            modifier = Modifier.weight(textWeight)
+                .padding(vertical = DoodleTheme.spacing.xxxSmall),
             text = text,
             color = DoodleTheme.colors.black,
             style = DoodleTheme.typography.regular.h5,

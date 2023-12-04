@@ -34,6 +34,9 @@ class SignUpViewModel(
                     loginResult = resultFromSignUp,
                 )
             }
+            if (resultFromSignUp.data != null) {
+                authManager.saveCredentialForEmailAuth(email, password)
+            }
             handleResults(resultFromSignUp.data != null)
         }
     }

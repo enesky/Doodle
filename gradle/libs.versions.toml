@@ -7,7 +7,7 @@ target-sdk                            = "34"
 compose-compiler                      = "1.5.4"
 
 # Plugin Versions
-gradle-plugin                         = "8.3.0-alpha15"
+gradle-plugin                         = "8.3.0-alpha16"
 kotlin-plugin                         = "1.9.20"
 ksp-plugin                            = "1.9.20-1.0.14"
 google-services-plugin                = "4.4.0"
@@ -41,9 +41,10 @@ appcompat                             = "1.6.1"
 material                              = "1.10.0"
 ktlint                                = "11.6.1"
 spotless                              = "6.22.0"
-credential-manager                    = "1.2.0"
 google-auth                           = "20.7.0"
 splash-screen                         = "1.0.1"
+credential-manager                    = "1.2.0"
+credential-manager-google             = "1.1.0"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
@@ -89,7 +90,7 @@ ui-tooling-preview                    = { module= "androidx.compose.ui:ui-toolin
 ui-test-manifest                      = { module= "androidx.compose.ui:ui-test-manifest" }
 material3                             = { module= "androidx.compose.material3:material3" }
 material-icons-extended               = { module= "androidx.compose.material:material-icons-extended" }
-androidx-navigation-compose           = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+androidx-navigation-compose           = { module= "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 androidx-paging-compose               = { module= "androidx.paging:paging-compose", version.ref= "paging-compose" }
 data-store                            = { module= "androidx.datastore:datastore", version.ref= "data-store" }
 data-store-preferences                = { module= "androidx.datastore:datastore-preferences", version.ref= "data-store" }
@@ -124,6 +125,7 @@ appcompat                             = { module= "androidx.appcompat:appcompat"
 material                              = { module= "com.google.android.material:material", version.ref= "material" }
 credential-manager                    = { module= "androidx.credentials:credentials", version.ref= "credential-manager" }
 credential-manager-play-services-auth = { module= "androidx.credentials:credentials-play-services-auth", version.ref= "credential-manager" }
+credential-manager-google-auth        = { module= "com.google.android.libraries.identity.googleid:googleid", version.ref= "credential-manager-google" }
 splash-screen                         = { module= "androidx.core:core-splashscreen", version.ref= "splash-screen" }
 
 # Dependencies of the included build-logic
@@ -144,3 +146,4 @@ network                               = ["retrofit", "retrofit-converter-gson", 
 firebase-materials                    = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
 third-party-libraries                 = ["compose-state-events", "coil-compose"]
 androidx-libraries                    = ["androidx-paging-compose", "data-store", "data-store-preferences"]
+credential-manager                    = ["credential-manager", "credential-manager-play-services-auth", "credential-manager-google-auth"]
