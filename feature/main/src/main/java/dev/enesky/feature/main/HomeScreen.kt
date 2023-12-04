@@ -17,6 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.enesky.core.design_system.common.loading.LoadingWithTriangleDots
+import dev.enesky.core.design_system.theme.DoodleTheme
+import dev.enesky.core.ui.annotation.PreviewUiMode
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -53,38 +55,32 @@ private fun HomeContent(
     modifier: Modifier = Modifier,
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
-    Box(
+    Column(
         modifier = modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
     ) {
-        Box {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-            ) {
-                Text(
-                    text = "Welcome to Home Screen",
-                    style = MaterialTheme.typography.headlineLarge,
-                )
-                Button(
-                    modifier = Modifier.padding(16.dp),
-                    onClick = {
-                        onNavigateDetailsClick("1")
-                    },
-                ) {
-                    Text(text = "Navigate to Details", color = Color.White)
-                }
-            }
+        Text(
+            text = "Welcome to Home Screen",
+            style = MaterialTheme.typography.headlineLarge,
+        )
+        Button(
+            modifier = Modifier.padding(16.dp),
+            onClick = {
+                onNavigateDetailsClick("1")
+            },
+        ) {
+            Text(text = "Navigate to Details", color = Color.White)
         }
-
-        LoadingWithTriangleDots()
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@PreviewUiMode
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen(
-        onNavigateDetailsClick = {},
-    )
+    DoodleTheme {
+        HomeScreen(
+            onNavigateDetailsClick = {},
+        )
+    }
 }

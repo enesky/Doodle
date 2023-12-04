@@ -71,40 +71,10 @@ fun DoodleApp(
                 /**
                  * Update the start destination according to the user's login status
                  */
-                /**
-                 * Update the start destination according to the user's login status
-                 */
-                /**
-                 * Update the start destination according to the user's login status
-                 */
-                /**
-                 * Update the start destination according to the user's login status
-                 */
                 val authManager: AuthManager = koinInject<AuthManager>()
                 if (authManager.isUserLoggedIn()) {
                     appState.startDestination = HomeDestination
                 }
-
-                /**
-                 * TODO: Loading screen
-                 * if (appState.showLoading) {
-                 *   LoadingWithTriangleDots()
-                 * }
-                 */
-
-                /**
-                 * TODO: Loading screen
-                 * if (appState.showLoading) {
-                 *   LoadingWithTriangleDots()
-                 * }
-                 */
-
-                /**
-                 * TODO: Loading screen
-                 * if (appState.showLoading) {
-                 *   LoadingWithTriangleDots()
-                 * }
-                 */
 
                 /**
                  * TODO: Loading screen
