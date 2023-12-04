@@ -21,7 +21,7 @@ import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.data.LoginResult
 import dev.enesky.core.data.LoginType
-import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.core.theme.DoodleTheme
 import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.core.ui.common.ButtonWithImageAndText
 import dev.enesky.core.ui.login.EmailAuthComponent

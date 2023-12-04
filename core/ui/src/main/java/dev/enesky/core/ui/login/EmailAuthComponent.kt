@@ -42,7 +42,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import dev.enesky.core.common.utils.Empty
-import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.core.theme.DoodleTheme
 import dev.enesky.core.ui.R
 
 /**
