@@ -1,4 +1,4 @@
-package dev.enesky.feature.main
+package dev.enesky.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

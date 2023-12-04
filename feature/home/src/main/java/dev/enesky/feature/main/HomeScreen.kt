@@ -1,4 +1,4 @@
-package dev.enesky.feature.main
+package dev.enesky.feature.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

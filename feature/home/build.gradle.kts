@@ -21,7 +21,7 @@ plugins {
     id(libs.plugins.common.feature.get().pluginId)
 }
 
-android.namespace = "dev.enesky.feature.main"
+android.namespace = "dev.enesky.feature.home"
 
 dependencies {
     implementation(projects.core.network)
