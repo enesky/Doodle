@@ -278,7 +278,7 @@ class AuthManager(
     /**
      * Google Sign In with IntentSender
      */
-    suspend fun signInWithGoogle(): IntentSender? {
+    suspend fun signInWithGoogleLauncher(): IntentSender? {
         return try {
             signInClient.beginSignIn(buildSignInRequest()).await()
         } catch (e: Exception) {

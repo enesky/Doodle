@@ -15,6 +15,7 @@ import dev.enesky.core.data.LoginType
 import dev.enesky.feature.login.manager.AuthManager
 import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.SignInUiState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
@@ -28,7 +29,10 @@ class SignInViewModel(
     Event<SignInEvents> by EventDelegate() {
 
     init {
+        val initialDelay = 1000L
+
         viewModelScope.launch {
+            delay(initialDelay)
             authManager.getCredentials(
                 onEmailSignIn = { email, password ->
                     signInWithEmailAndPassword(email, password)
@@ -75,11 +79,11 @@ class SignInViewModel(
 
     // ------------------ GOOGLE ------------------
 
-    fun signInWithGoogle(
+    fun signInWithGoogleLauncher(
         launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>,
     ) {
         viewModelScope.launch {
-            val signInIntentSender = authManager.signInWithGoogle()
+            val signInIntentSender = authManager.signInWithGoogleLauncher()
             launcher.launch(
                 IntentSenderRequest.Builder(
                     signInIntentSender ?: return@launch,

@@ -91,7 +91,7 @@ fun SignInScreenRoute(
                     viewModel.signInWithEmailAndPassword(email, password)
                 },
                 onGoogleSignInClick = {
-                    viewModel.signInWithGoogle(googleSignInLauncher)
+                    viewModel.signInWithGoogleLauncher(googleSignInLauncher)
                 },
                 onSignInAnonymouslyClick = viewModel::signInAnonymously,
                 navigateSignUp = viewModel::navigateToSignUp,
