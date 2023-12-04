@@ -17,8 +17,8 @@ import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.ui.annotation.PreviewUiMode
-import dev.enesky.core.ui.login.EmailAuthComponent
-import dev.enesky.core.ui.login.LoginHeader
+import dev.enesky.core.design_system.login.EmailAuthComponent
+import dev.enesky.core.design_system.login.LoginHeader
 import dev.enesky.feature.login.R
 import dev.enesky.feature.login.signup.helpers.SignUpEvents
 import dev.enesky.feature.login.signup.helpers.SignUpUiState

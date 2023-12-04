@@ -1,4 +1,4 @@
-package dev.enesky.core.ui.login
+package dev.enesky.core.design_system.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -20,8 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.enesky.core.design_system.R
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.ui.R
 
 /**
  * Created by Enes Kamil YILMAZ on 30/11/2023
@@ -40,7 +40,7 @@ fun LoginHeader(
         Image(
             modifier = Modifier
                 .size(200.dp),
-            painter = painterResource(id = dev.enesky.core.design_system.R.drawable.ic_launcher),
+            painter = painterResource(id = R.drawable.ic_launcher),
             contentDescription = "App Logo",
         )
 

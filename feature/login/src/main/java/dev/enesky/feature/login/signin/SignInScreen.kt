@@ -23,10 +23,10 @@ import dev.enesky.core.data.LoginResult
 import dev.enesky.core.data.LoginType
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.ui.annotation.PreviewUiMode
-import dev.enesky.core.ui.common.ButtonWithImageAndText
-import dev.enesky.core.ui.login.EmailAuthComponent
-import dev.enesky.core.ui.login.LineWithTextMiddle
-import dev.enesky.core.ui.login.LoginHeader
+import dev.enesky.core.design_system.common.ButtonWithImageAndText
+import dev.enesky.core.design_system.login.EmailAuthComponent
+import dev.enesky.core.design_system.login.LineWithTextMiddle
+import dev.enesky.core.design_system.login.LoginHeader
 import dev.enesky.feature.login.R
 import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.SignInUiState

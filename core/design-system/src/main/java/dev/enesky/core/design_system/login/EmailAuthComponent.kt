@@ -1,4 +1,4 @@
-package dev.enesky.core.ui.login
+package dev.enesky.core.design_system.login
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -42,8 +42,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import dev.enesky.core.common.utils.Empty
+import dev.enesky.core.design_system.R
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.ui.R
 
 /**
  * Created by Enes Kamil YILMAZ on 30/11/2023

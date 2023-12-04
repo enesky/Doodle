@@ -1,4 +1,4 @@
-package dev.enesky.core.ui.login
+package dev.enesky.core.design_system.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
