@@ -312,7 +312,7 @@ class AuthManager(
             .builder()
             .setSupported(true)
             .setFilterByAuthorizedAccounts(false)
-            .setServerClientId(BuildConfig.DOODLE_GOOGLE_API_KEY)
+            .setServerClientId(BuildConfig.DOODLE_GOOGLE_CLIENT_ID)
             .build()
 
         return BeginSignInRequest

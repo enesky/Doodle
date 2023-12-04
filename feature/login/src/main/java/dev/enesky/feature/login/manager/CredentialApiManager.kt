@@ -60,7 +60,7 @@ class CredentialApiManager(
         onGoogleSignIn: (idToken: String) -> Unit,
     ) {
         val googleIdCredentialOption = GetGoogleIdOption.Builder()
-            .setServerClientId(BuildConfig.DOODLE_GOOGLE_API_KEY)
+            .setServerClientId(BuildConfig.DOODLE_GOOGLE_CLIENT_ID)
             .build()
         try {
             val result = credentialManager.getCredential(
