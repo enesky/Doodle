@@ -29,12 +29,14 @@ class SignInViewModel(
 
     init {
         viewModelScope.launch {
-            authManager.credentialApiManager.getCredentials(
+            authManager.getCredentials(
                 onEmailSignIn = { email, password ->
-
+                    signInWithEmailAndPassword(email, password)
                 },
                 onGoogleSignIn = { idToken ->
-
+                    signInWithGoogleResult(
+                        idToken = idToken,
+                    )
                 },
             )
         }
@@ -86,9 +88,12 @@ class SignInViewModel(
         }
     }
 
-    fun signInWithGoogleResult(intent: Intent) {
+    fun signInWithGoogleResult(
+        intent: Intent? = null,
+        idToken: String? = null
+    ) {
         viewModelScope.launch {
-            val signInResult = authManager.signInWithGoogleResult(intent)
+            val signInResult = authManager.signInWithGoogleResult(intent, idToken)
             setState {
                 copy(
                     loginType = LoginType.GOOGLE,
