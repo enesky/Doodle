@@ -57,7 +57,7 @@ fun LoginHeader(
                 ) {
                     append(headerMessage)
                 }
-                append(" ")
+                append("  ")
                 withStyle(
                     style = DoodleTheme.typography.pacifico.h1.toSpanStyle(),
                 ) {

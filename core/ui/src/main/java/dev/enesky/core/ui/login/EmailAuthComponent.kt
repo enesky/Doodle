@@ -32,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -191,16 +192,21 @@ fun EmailAuthComponent(
                 val spannableString = buildAnnotatedString {
                     append("Don't have an account? ")
                     withStyle(
-                        style = DoodleTheme.typography.bold.h6.toSpanStyle(),
+                        style = SpanStyle(
+                            textDecoration = TextDecoration.Underline,
+                        ),
                     ) {
-                        append("Sign up")
+                        withStyle(
+                            style = DoodleTheme.typography.bold.h6.toSpanStyle(),
+                        ) {
+                            append("Sign up")
+                        }
                     }
                 }
                 Text(
                     text = spannableString,
                     color = DoodleTheme.colors.text,
                     style = DoodleTheme.typography.regular.h6,
-                    textDecoration = TextDecoration.Underline,
                 )
             }
         }
