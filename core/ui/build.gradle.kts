@@ -21,8 +21,3 @@ plugins {
 }
 
 android.namespace = "dev.enesky.core.ui"
-
-dependencies {
-    implementation(projects.core.designSystem)
-    implementation(projects.core.common)
-}
