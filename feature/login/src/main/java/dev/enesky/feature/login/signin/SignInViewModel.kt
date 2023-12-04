@@ -29,21 +29,26 @@ class SignInViewModel(
     Event<SignInEvents> by EventDelegate() {
 
     init {
-        val initialDelay = 1000L
-
+        val initialDelay = 500L
         viewModelScope.launch {
             delay(initialDelay)
-            authManager.getCredentials(
-                onEmailSignIn = { email, password ->
-                    signInWithEmailAndPassword(email, password)
-                },
-                onGoogleSignIn = { idToken ->
-                    signInWithGoogleResult(
-                        idToken = idToken,
-                    )
-                },
-            )
+            signInWithCredentialApi()
         }
+    }
+
+    // ------------- CREDENTIAL API  -------------
+
+    private suspend fun signInWithCredentialApi() {
+        authManager.getCredentials(
+            onEmailSignIn = { email, password ->
+                signInWithEmailAndPassword(email, password)
+            },
+            onGoogleSignIn = { idToken ->
+                signInWithGoogleResult(
+                    idToken = idToken,
+                )
+            },
+        )
     }
 
     // ------------------ EMAIL ------------------
@@ -94,7 +99,7 @@ class SignInViewModel(
 
     fun signInWithGoogleResult(
         intent: Intent? = null,
-        idToken: String? = null
+        idToken: String? = null,
     ) {
         viewModelScope.launch {
             val signInResult = authManager.signInWithGoogleResult(intent, idToken)
@@ -135,7 +140,9 @@ class SignInViewModel(
                     if (shouldNavigateToHome.not()) return@launch
                     SignInEvents.NavigateToHome
                 } else {
-                    SignInEvents.OnError(currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR)
+                    SignInEvents.OnError(
+                        currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR
+                    )
                 },
             )
         }

@@ -24,7 +24,7 @@ import dev.enesky.feature.login.BuildConfig
  */
 
 class CredentialApiManager(
-    private val context: Context
+    private val context: Context,
 ) {
 
     private val credentialManager by lazy { CredentialManager.create(context) }
@@ -69,7 +69,7 @@ class CredentialApiManager(
                     listOf(
                         GetPasswordOption(),
                         googleIdCredentialOption,
-                    )
+                    ),
                 ),
             )
             handleSignIn(result, onEmailSignIn, onGoogleSignIn)
@@ -111,7 +111,7 @@ class CredentialApiManager(
                         Logger.debug(
                             javaClass.simpleName,
                             "Received an invalid google id token response",
-                            e
+                            e,
                         )
                     }
                 } else {

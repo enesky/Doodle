@@ -30,13 +30,14 @@ import kotlin.coroutines.resume
  * Authentication Manager
  * Handles all authentication related operations
  *
- * @param executor Executor
- * @param signInClient SignInClient
+ * @param executor Executor for Google Sign In
+ * @param signInClient SignInClient for Google Sign In
+ * @param credentialApiManager CredentialApiManager
  */
 class AuthManager(
     private val executor: Executor,
     private val signInClient: SignInClient,
-    private val credentialApiManager: CredentialApiManager
+    private val credentialApiManager: CredentialApiManager,
 ) {
 
     // ------------------ COMMON ------------------
@@ -245,8 +246,8 @@ class AuthManager(
      */
     suspend fun signInWithGoogleResult(
         intent: Intent? = null,
-        idToken: String? = null
-    ) : LoginResult {
+        idToken: String? = null,
+    ): LoginResult {
         val googleIdToken = when {
             intent != null -> signInClient.getSignInCredentialFromIntent(intent).googleIdToken
             idToken != null -> idToken
@@ -342,6 +343,4 @@ class AuthManager(
             password = password,
         )
     }
-
-
 }
