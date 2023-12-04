@@ -19,7 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.doodle.app.navigation.DoodleNavHost
 import dev.enesky.doodle.app.ui.component.DoodleSnackbarHost
 import dev.enesky.doodle.app.ui.component.LocalSnackbarHostState
@@ -71,10 +71,40 @@ fun DoodleApp(
                 /**
                  * Update the start destination according to the user's login status
                  */
+                /**
+                 * Update the start destination according to the user's login status
+                 */
+                /**
+                 * Update the start destination according to the user's login status
+                 */
+                /**
+                 * Update the start destination according to the user's login status
+                 */
                 val authManager: AuthManager = koinInject<AuthManager>()
                 if (authManager.isUserLoggedIn()) {
                     appState.startDestination = HomeDestination
                 }
+
+                /**
+                 * TODO: Loading screen
+                 * if (appState.showLoading) {
+                 *   LoadingWithTriangleDots()
+                 * }
+                 */
+
+                /**
+                 * TODO: Loading screen
+                 * if (appState.showLoading) {
+                 *   LoadingWithTriangleDots()
+                 * }
+                 */
+
+                /**
+                 * TODO: Loading screen
+                 * if (appState.showLoading) {
+                 *   LoadingWithTriangleDots()
+                 * }
+                 */
 
                 /**
                  * TODO: Loading screen

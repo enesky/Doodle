@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.design_system
+package dev.enesky.core.design_system.theme
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Immutable

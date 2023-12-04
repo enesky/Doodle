@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="blaze_orange">#F96D00</color>
+    <color name="ebony_clay">#2B323F</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#171725</color>
+    <color name="geyser">#DFE6E9</color>
+    <color name="soothing_breeze">#B2BEC3</color>
+
+</resources>

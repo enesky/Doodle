@@ -1,4 +1,4 @@
-package dev.enesky.core.ui.loading
+package dev.enesky.core.design_system.common.loading
 
 import android.content.res.Configuration
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -20,7 +20,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
-import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.core.design_system.theme.DoodleTheme
 import kotlin.math.cos
 import kotlin.math.sin
 

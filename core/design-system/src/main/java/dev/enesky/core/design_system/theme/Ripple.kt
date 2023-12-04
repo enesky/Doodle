@@ -16,7 +16,7 @@
  */
 @file:Suppress("MatchingDeclarationName")
 
-package dev.enesky.core.design_system
+package dev.enesky.core.design_system.theme
 
 import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material.ripple.RippleTheme

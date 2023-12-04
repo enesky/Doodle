@@ -1,4 +1,4 @@
-package dev.enesky.core.ui.common
+package dev.enesky.core.design_system.common
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -13,7 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.core.design_system.R
+import dev.enesky.core.design_system.theme.DoodleTheme
 
 /**
  * Created by Enes Kamil YILMAZ on 30/11/2023
@@ -65,7 +66,7 @@ fun ButtonWithImageAndText(
 @Composable
 private fun GoogleButtonPreview() {
     ButtonWithImageAndText(
-        imageResource = dev.enesky.core.design_system.R.drawable.ic_launcher,
+        imageResource = R.drawable.ic_launcher,
         text = "Create new account",
     ) {}
 }

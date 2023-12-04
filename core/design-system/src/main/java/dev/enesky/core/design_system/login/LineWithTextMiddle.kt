@@ -1,4 +1,4 @@
-package dev.enesky.core.ui.login
+package dev.enesky.core.design_system.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.core.design_system.theme.DoodleTheme
 
 /**
  * Created by Enes Kamil YILMAZ on 30/11/2023

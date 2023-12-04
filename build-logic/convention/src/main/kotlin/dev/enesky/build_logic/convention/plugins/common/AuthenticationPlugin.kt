@@ -15,14 +15,14 @@ class AuthenticationPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         val localProperties = getLocalProperties(rootProject)
         val googleApiKey: String = checkNotNull(
-            localProperties.getProperty("doodle.google.api.key")
-                ?: System.getenv("DOODLE_GOOGLE_API_KEY")
+            localProperties.getProperty("doodle.google.client.id")
+                ?: System.getenv("DOODLE_GOOGLE_CLIENT_ID")
                 ?: "\"\"",
         )
 
         with(extensions.getByType<LibraryExtension>()) {
             buildFeatures.buildConfig = true
-            defaultConfig.buildConfigField("String", "DOODLE_GOOGLE_API_KEY", googleApiKey)
+            defaultConfig.buildConfigField("String", "DOODLE_GOOGLE_CLIENT_ID", googleApiKey)
         }
 
         dependencies {

@@ -1,4 +1,4 @@
-package dev.enesky.core.ui.loading
+package dev.enesky.core.design_system.common.loading
 
 import androidx.compose.animation.core.Easing
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -29,7 +29,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.core.design_system.theme.DoodleTheme
 
 private const val ANIMATION_DURATION = 750
 private const val START_DELAY = 0

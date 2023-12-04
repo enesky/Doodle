@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.design_system
+package dev.enesky.core.design_system.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Immutable
@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
+import dev.enesky.core.design_system.R
 
 private val NunitoSans = FontFamily(
     Font(R.font.nunito_sans_regular, FontWeight.Normal),
