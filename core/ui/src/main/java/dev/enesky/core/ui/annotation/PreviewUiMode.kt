@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.design_system.annotation
+package dev.enesky.core.ui.annotation
 
 import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview

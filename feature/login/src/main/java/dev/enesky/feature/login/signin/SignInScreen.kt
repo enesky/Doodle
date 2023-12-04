@@ -22,7 +22,7 @@ import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.data.LoginResult
 import dev.enesky.core.data.LoginType
 import dev.enesky.core.design_system.DoodleTheme
-import dev.enesky.core.design_system.annotation.PreviewUiMode
+import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.core.ui.common.ButtonWithImageAndText
 import dev.enesky.core.ui.login.EmailAuthComponent
 import dev.enesky.core.ui.login.LineWithTextMiddle
