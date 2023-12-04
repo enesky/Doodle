@@ -52,7 +52,8 @@ fun ButtonWithImageAndText(
 
         )
         Text(
-            modifier = Modifier.weight(textWeight),
+            modifier = Modifier.weight(textWeight)
+                .padding(vertical = DoodleTheme.spacing.smallest),
             text = text,
             color = DoodleTheme.colors.black,
             style = DoodleTheme.typography.regular.h5,

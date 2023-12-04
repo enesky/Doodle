@@ -88,6 +88,7 @@ fun SignUpScreen(
 
         EmailAuthComponent(
             isForgotPasswordVisible = false,
+            isSignUoButtonVisible = false,
             signInButtonText = stringResource(id = R.string.label_sign_up),
             signInButtonAction = onSignUpWithEmail,
         )

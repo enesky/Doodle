@@ -130,7 +130,9 @@ private fun SignInScreen(
         EmailAuthComponent(
             signInButtonText = stringResource(R.string.label_sign_in),
             signInButtonAction = onSignInWithEmail,
+            isForgotPasswordVisible = false,
             forgotPasswordButtonAction = forgotPasswordButtonAction,
+            signUpButtonAction = navigateSignUp,
         )
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraMedium))
@@ -138,14 +140,6 @@ private fun SignInScreen(
         LineWithTextMiddle()
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraMedium))
-
-        ButtonWithImageAndText(
-            imageResource = R.drawable.ic_new_account,
-            text = stringResource(R.string.label_create_account),
-            action = navigateSignUp,
-        )
-
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
 
         ButtonWithImageAndText(
             imageResource = R.drawable.ic_google_logo,
@@ -168,7 +162,9 @@ private fun SignInScreen(
 @PreviewUiMode
 @Composable
 private fun SignInScreenPreview() {
-    SignInScreen(
-        signInUiState = SignInUiState(),
-    )
+    DoodleTheme {
+        SignInScreen(
+            signInUiState = SignInUiState(),
+        )
+    }
 }

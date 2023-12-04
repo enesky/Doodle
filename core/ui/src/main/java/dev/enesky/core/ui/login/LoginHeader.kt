@@ -15,7 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.enesky.core.design_system.DoodleTheme
@@ -49,21 +51,23 @@ fun LoginHeader(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.Bottom,
         ) {
-            Column {
-                Text(
-                    text = headerMessage,
-                    color = DoodleTheme.colors.text,
-                    textAlign = TextAlign.Center,
-                    style = DoodleTheme.typography.bold.h2,
-                )
-                Spacer(modifier = Modifier.height(3.dp))
+            val annotatedString = buildAnnotatedString {
+                withStyle(
+                    style = DoodleTheme.typography.bold.h2.toSpanStyle(),
+                ) {
+                    append(headerMessage)
+                }
+                append(" ")
+                withStyle(
+                    style = DoodleTheme.typography.pacifico.h1.toSpanStyle(),
+                ) {
+                    append(stringResource(R.string.label_doodle))
+                }
             }
-
             Text(
-                text = stringResource(R.string.label_doodle),
+                text = annotatedString,
                 color = DoodleTheme.colors.text,
                 textAlign = TextAlign.Center,
-                style = DoodleTheme.typography.pacifico.h2,
             )
         }
     }

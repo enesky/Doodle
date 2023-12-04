@@ -32,13 +32,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.design_system.DoodleTheme
+import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.core.ui.R
 
 /**
@@ -49,8 +53,10 @@ import dev.enesky.core.ui.R
 @Composable
 fun EmailAuthComponent(
     modifier: Modifier = Modifier,
-    isForgotPasswordVisible: Boolean = true,
+    isForgotPasswordVisible: Boolean = false,
     forgotPasswordButtonAction: (email: String) -> Unit = {},
+    isSignUoButtonVisible: Boolean = true,
+    signUpButtonAction: () -> Unit = {},
     signInButtonText: String = stringResource(R.string.label_sign_in),
     signInButtonAction: (email: String, password: String) -> Unit,
 ) {
@@ -153,8 +159,9 @@ fun EmailAuthComponent(
             ),
         )
 
-        if (isForgotPasswordVisible) {
-            Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+
+        if (isForgotPasswordVisible) { // TODO: Make it visible when users password is incorrect
             TextButton(
                 modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
                 onClick = {
@@ -171,12 +178,35 @@ fun EmailAuthComponent(
                     text = stringResource(R.string.label_forgot_password),
                     color = DoodleTheme.colors.text,
                     style = DoodleTheme.typography.regular.h6,
+                    textDecoration = TextDecoration.Underline,
                 )
             }
             Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
-        } else {
-            Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
         }
+
+        if (isSignUoButtonVisible) {
+            TextButton(
+                modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
+                onClick = { signUpButtonAction() },
+            ) {
+                val spannableString = buildAnnotatedString {
+                    append("Don't have an account? ")
+                    withStyle(
+                        style = DoodleTheme.typography.bold.h6.toSpanStyle(),
+                    ) {
+                        append("Sign up")
+                    }
+                }
+                Text(
+                    text = spannableString,
+                    color = DoodleTheme.colors.text,
+                    style = DoodleTheme.typography.regular.h6,
+                    textDecoration = TextDecoration.Underline,
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
 
         Button(
             modifier = Modifier
