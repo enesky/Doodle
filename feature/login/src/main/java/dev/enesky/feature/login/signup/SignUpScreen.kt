@@ -81,7 +81,7 @@ fun SignUpScreen(
         verticalArrangement = Arrangement.Center,
     ) {
         LoginHeader(
-            headerMessage = "Sign Up to ",
+            headerMessage = "Sign up to",
         )
 
         Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
