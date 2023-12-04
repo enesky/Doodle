@@ -28,7 +28,7 @@ fun LineWithTextMiddle(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = DoodleTheme.spacing.extraSmall),
+            .padding(horizontal = DoodleTheme.spacing.xxSmall),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -37,14 +37,14 @@ fun LineWithTextMiddle(
             color = DoodleTheme.colors.white,
             thickness = 1.dp,
         )
-        Spacer(modifier = Modifier.width(DoodleTheme.spacing.small))
+        Spacer(modifier = Modifier.width(DoodleTheme.spacing.xSmall))
         Text(
             modifier = Modifier.wrapContentHeight(Alignment.CenterVertically),
             text = text,
             color = DoodleTheme.colors.white,
             style = DoodleTheme.typography.regular.h5,
         )
-        Spacer(modifier = Modifier.width(DoodleTheme.spacing.small))
+        Spacer(modifier = Modifier.width(DoodleTheme.spacing.xSmall))
         Divider(
             modifier = Modifier.weight(1f),
             color = DoodleTheme.colors.white,

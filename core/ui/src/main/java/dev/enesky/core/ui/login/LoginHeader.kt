@@ -44,7 +44,7 @@ fun LoginHeader(
             contentDescription = "App Logo",
         )
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xLarge))
 
         Row(
             modifier = Modifier.fillMaxWidth(),

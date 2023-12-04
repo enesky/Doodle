@@ -23,29 +23,29 @@ import androidx.compose.ui.unit.dp
 
 private val DefaultSpace = 0.dp
 private val BorderStroke = 1.dp
-private val SmallestSpace = 2.dp
-private val ExtraSmallSpace = 4.dp
-private val SmallSpace = 8.dp
-private val SmallMediumSpace = 12.dp
-private val MediumSpace = 16.dp
-private val ExtraMediumSpace = 24.dp
-private val LargeSpace = 32.dp
-private val ExtraLargeSpace = 40.dp
-private val LargestSpace = 64.dp
+private val XXXS = 2.dp
+private val XXS = 4.dp
+private val XS = 8.dp
+private val S = 12.dp
+private val M = 16.dp
+private val L = 24.dp
+private val XL = 32.dp
+private val XXL = 40.dp
+private val XXXL = 64.dp
 
 @Immutable
 data class DoodleSpacing(
     val default: Dp = DefaultSpace,
     val border: Dp = BorderStroke,
-    val smallest: Dp = SmallestSpace,
-    val extraSmall: Dp = ExtraSmallSpace,
-    val small: Dp = SmallSpace,
-    val smallMedium: Dp = SmallMediumSpace,
-    val medium: Dp = MediumSpace,
-    val extraMedium: Dp = ExtraMediumSpace,
-    val large: Dp = LargeSpace,
-    val extraLarge: Dp = ExtraLargeSpace,
-    val largest: Dp = LargestSpace,
+    val xxxSmall: Dp = XXXS,
+    val xxSmall: Dp = XXS,
+    val xSmall: Dp = XS,
+    val small: Dp = S,
+    val medium: Dp = M,
+    val large: Dp = L,
+    val xLarge: Dp = XL,
+    val xxLarge: Dp = XXL,
+    val xxxLarge: Dp = XXXL,
 )
 
 internal val LocalDoodleSpacing = staticCompositionLocalOf { DoodleSpacing() }

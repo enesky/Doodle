@@ -115,8 +115,8 @@ private fun SignInScreen(
         modifier = modifier
             .fillMaxSize()
             .padding(
-                vertical = DoodleTheme.spacing.small,
-                horizontal = DoodleTheme.spacing.large,
+                vertical = DoodleTheme.spacing.xSmall,
+                horizontal = DoodleTheme.spacing.xLarge,
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -135,11 +135,11 @@ private fun SignInScreen(
             signUpButtonAction = navigateSignUp,
         )
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraMedium))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
 
         LineWithTextMiddle()
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraMedium))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
 
         ButtonWithImageAndText(
             imageResource = R.drawable.ic_google_logo,
@@ -148,7 +148,7 @@ private fun SignInScreen(
             onGoogleSignInClick()
         }
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxSmall))
 
         ButtonWithImageAndText(
             imageResource = R.drawable.ic_incognito,

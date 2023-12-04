@@ -42,7 +42,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.design_system.DoodleTheme
-import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.core.ui.R
 
 /**
@@ -109,7 +108,7 @@ fun EmailAuthComponent(
             isError = isEmailRequired,
         )
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.small))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xSmall))
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -159,11 +158,11 @@ fun EmailAuthComponent(
             ),
         )
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxSmall))
 
         if (isForgotPasswordVisible) { // TODO: Make it visible when users password is incorrect
             TextButton(
-                modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
+                modifier = Modifier.padding(DoodleTheme.spacing.xxSmall),
                 onClick = {
                     if (email.isEmpty()) {
                         isEmailRequired = true
@@ -181,12 +180,12 @@ fun EmailAuthComponent(
                     textDecoration = TextDecoration.Underline,
                 )
             }
-            Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+            Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxSmall))
         }
 
         if (isSignUoButtonVisible) {
             TextButton(
-                modifier = Modifier.padding(DoodleTheme.spacing.extraSmall),
+                modifier = Modifier.padding(DoodleTheme.spacing.xxSmall),
                 onClick = { signUpButtonAction() },
             ) {
                 val spannableString = buildAnnotatedString {
@@ -206,12 +205,12 @@ fun EmailAuthComponent(
             }
         }
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.extraSmall))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxSmall))
 
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = DoodleTheme.spacing.smallMedium),
+                .padding(horizontal = DoodleTheme.spacing.small),
             shape = RoundedCornerShape(DoodleTheme.spacing.medium),
             border = BorderStroke(
                 width = DoodleTheme.spacing.border,

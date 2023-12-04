@@ -74,8 +74,8 @@ fun SignUpScreen(
         modifier = modifier
             .fillMaxSize()
             .padding(
-                vertical = DoodleTheme.spacing.small,
-                horizontal = DoodleTheme.spacing.large,
+                vertical = DoodleTheme.spacing.xSmall,
+                horizontal = DoodleTheme.spacing.xLarge,
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -93,7 +93,7 @@ fun SignUpScreen(
             signInButtonAction = onSignUpWithEmail,
         )
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.largest))
+        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxxLarge))
     }
 }
 
