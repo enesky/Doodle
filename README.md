@@ -13,10 +13,9 @@
 </p>
 
 <p align="center">
-  <a href="https://android-arsenal.com/api?level=24" target="_blank"><img alt="API" src="https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat"/></a>
-  <a><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-1.9.10-purple.svg?style=flat"/></a>
+  <a href="https://android-arsenal.com/api?level=24" target="_blank"><img alt="API" src="https://img.shields.io/badge/API-24%2B-orange.svg?style=flat"/></a>
+  <a><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-1.9.20-purple.svg?style=flat"/></a>
   <a><img alt="JVM" src="https://img.shields.io/badge/JVM-17-yellow.svg?style=flat"/></a>
-  <a><img alt="AGP" src="https://img.shields.io/badge/AGP-8.3.0_alpha12-orange.svg?style=flat"/></a>
 </p>
 
 Just doodling around
