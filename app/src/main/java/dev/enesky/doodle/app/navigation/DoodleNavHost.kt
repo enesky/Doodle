@@ -49,7 +49,7 @@ fun DoodleNavHost(
                 )
             },
         )
-        detailsGraph {  onShowMessage("Snackbar") }
+        detailsGraph { onShowMessage("Snackbar") }
         exploreGraph { onShowMessage("Snackbar") }
         myListsGraph { onShowMessage("Snackbar") }
         settingsGraph { onShowMessage("Snackbar") }

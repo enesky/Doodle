@@ -19,7 +19,7 @@ import dev.enesky.core.ui.annotation.PreviewUiMode
 
 @Composable
 fun MyListsRoute(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     MyListsScreen(modifier)
 }

@@ -47,12 +47,12 @@ fun DoodleApp(
                     AnimatedVisibility(
                         visible = appState.shouldShowBottomBar,
                         enter = BottomBarEnterTransition,
-                        exit = BottomBarExitTransition
+                        exit = BottomBarExitTransition,
                     ) {
                         DoodleBottomBar(
                             items = appState.bottomNavBarItems,
                             currentItem = appState.currentNavBarItem,
-                            onNavigateToDestination = appState::navigate
+                            onNavigateToDestination = appState::navigate,
                         )
                     }
                 },
@@ -63,7 +63,7 @@ fun DoodleApp(
                                 WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
                             } else {
                                 WindowInsets.safeDrawing
-                            }
+                            },
                         ),
                         snackbarHostState = appState.snackbarHostState,
                     )

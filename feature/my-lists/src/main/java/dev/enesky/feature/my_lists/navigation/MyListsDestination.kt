@@ -3,7 +3,6 @@ package dev.enesky.feature.my_lists.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import dev.enesky.core.navigation.DoodleNavigationDestination
-import dev.enesky.core.navigation.composableWithAnimation
 import dev.enesky.feature.my_lists.MyListsRoute
 
 /**

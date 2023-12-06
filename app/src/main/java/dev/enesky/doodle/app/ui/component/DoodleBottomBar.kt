@@ -45,6 +45,7 @@ import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.doodle.app.navigation.BottomNavBarItem
 
+@Suppress("LongMethod")
 @Composable
 fun DoodleBottomBar(
     modifier: Modifier = Modifier,
@@ -52,24 +53,22 @@ fun DoodleBottomBar(
     currentItem: BottomNavBarItem,
     onNavigateToDestination: (BottomNavBarItem) -> Unit,
 ) {
-
     Surface(
         modifier = modifier,
-        color = DoodleTheme.colors.background
+        color = DoodleTheme.colors.background,
     ) {
         val animationSpec = BottomBarAnimationSpec
         var previousSelectedItem: BottomNavBarItem = currentItem
-
         DoodleBottomNavLayout(
             modifier = Modifier.windowInsetsPadding(
                 WindowInsets.safeDrawing.only(
-                    WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
-                )
+                    WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom,
+                ),
             ),
             selectedIndex = currentItem.ordinal,
             itemCount = items.size,
             animationSpec = animationSpec,
-            indicator = { DoodleBottomNavIndicator() }
+            indicator = { DoodleBottomNavIndicator() },
         ) {
             items.forEach { bottomNavBarItem ->
                 val isSelected = bottomNavBarItem == currentItem
@@ -83,11 +82,9 @@ fun DoodleBottomBar(
                     } else {
                         DoodleTheme.colors.grey
                     },
-                    label = ""
+                    label = "",
                 )
-
                 val text = stringResource(id = bottomNavBarItem.textResourceId)
-
                 DoodleBottomNavigationItem(
                     modifier = Modifier
                         .padding(DoodleTheme.spacing.small)
@@ -96,7 +93,7 @@ fun DoodleBottomBar(
                         Icon(
                             imageVector = bottomNavBarItem.imageVector,
                             tint = tint,
-                            contentDescription = text
+                            contentDescription = text,
                         )
                     },
                     text = {
@@ -104,7 +101,7 @@ fun DoodleBottomBar(
                             text = text,
                             color = tint,
                             style = DoodleTheme.typography.regular.h5,
-                            maxLines = 1
+                            maxLines = 1,
                         )
                     },
                     selected = isSelected,
@@ -114,13 +111,14 @@ fun DoodleBottomBar(
                         }
                         onNavigateToDestination(bottomNavBarItem)
                     },
-                    animationSpec = animationSpec
+                    animationSpec = animationSpec,
                 )
             }
         }
     }
 }
 
+@Suppress("LongMethod")
 @Composable
 private fun DoodleBottomNavLayout(
     selectedIndex: Int,
@@ -128,7 +126,7 @@ private fun DoodleBottomNavLayout(
     animationSpec: AnimationSpec<Float>,
     indicator: @Composable BoxScope.() -> Unit,
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val selectionFractions = remember(itemCount) {
         List(itemCount) { index ->
@@ -141,7 +139,6 @@ private fun DoodleBottomNavLayout(
             selectionFraction.animateTo(targetValue = targetValue, animationSpec = animationSpec)
         }
     }
-
     val indicatorIndex = remember { Animatable(initialValue = 0f) }
     val targetIndicatorIndex = selectedIndex.toFloat()
     LaunchedEffect(key1 = targetIndicatorIndex) {
@@ -152,40 +149,38 @@ private fun DoodleBottomNavLayout(
         modifier = modifier.height(64.dp),
         content = {
             content()
-            Box(modifier = Modifier.layoutId(IndicatorLayoutId), content = indicator)
-        }
+            Box(modifier = Modifier.layoutId(INDICATOR_LAYOUT_ID), content = indicator)
+        },
     ) { measurables, constraints ->
         require(itemCount == (measurables.size - 1))
 
         val unselectedWidth = constraints.maxWidth / (itemCount + 1)
         val selectedWidth = 2 * unselectedWidth
-        val indicatorMeasurable = measurables.first { it.layoutId == IndicatorLayoutId }
-
+        val indicatorMeasurable = measurables.first { it.layoutId == INDICATOR_LAYOUT_ID }
         val itemPlaceables = measurables
             .filterNot { it == indicatorMeasurable }
             .mapIndexed { index, measurable ->
                 val width = lerp(
                     start = unselectedWidth,
                     stop = selectedWidth,
-                    fraction = selectionFractions[index].value
+                    fraction = selectionFractions[index].value,
                 )
                 measurable.measure(
                     constraints.copy(
                         minWidth = width,
-                        maxWidth = width
-                    )
+                        maxWidth = width,
+                    ),
                 )
             }
         val indicatorPlaceable = indicatorMeasurable.measure(
             constraints.copy(
                 minWidth = selectedWidth,
-                maxWidth = selectedWidth
-            )
+                maxWidth = selectedWidth,
+            ),
         )
-
         layout(
             width = constraints.maxWidth,
-            height = itemPlaceables.maxByOrNull { it.height }?.height ?: 0
+            height = itemPlaceables.maxByOrNull { it.height }?.height ?: 0,
         ) {
             val indicatorLeft = indicatorIndex.value * unselectedWidth
             indicatorPlaceable.placeRelative(x = indicatorLeft.toInt(), y = 0)
@@ -205,21 +200,21 @@ private fun DoodleBottomNavigationItem(
     selected: Boolean,
     onSelect: () -> Unit,
     animationSpec: AnimationSpec<Float>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier.selectable(selected = selected, onClick = onSelect),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         val animationProgress by animateFloatAsState(
             targetValue = if (selected) 1f else 0f,
             animationSpec = animationSpec,
-            label = ""
+            label = "",
         )
         DoodleBottomNavItemLayout(
             icon = icon,
             text = text,
-            animationProgress = animationProgress
+            animationProgress = animationProgress,
         )
     }
 }
@@ -231,26 +226,26 @@ private fun DoodleBottomNavItemLayout(
     @FloatRange(from = 0.0, to = 1.0) animationProgress: Float,
     modifier: Modifier = Modifier,
     defaultTransformOrigin: TransformOrigin = TransformOrigin(
-        TransformOriginPivotFractionX,
-        TransformOriginPivotFractionY
-    )
+        TRANSFORM_ORIGIN_PIVOT_FRACTION_X,
+        TRANSFORM_ORIGIN_PIVOT_FRACTION_Y,
+    ),
 ) {
     Layout(
         content = {
             Box(
                 modifier = Modifier
-                    .layoutId(IconLayoutId)
+                    .layoutId(ICON_LAYOUT_ID)
                     .padding(horizontal = DoodleTheme.spacing.xSmall),
-                content = icon
+                content = icon,
             )
             val scale = lerp(
-                start = BottomNavItemLayoutLerpStart,
-                stop = BottomNavItemLayoutLerpStop,
-                fraction = animationProgress
+                start = LERP_START,
+                stop = LERP_STOP,
+                fraction = animationProgress,
             )
             Box(
                 modifier = Modifier
-                    .layoutId(TextLayoutId)
+                    .layoutId(TEXT_LAYOUT_ID)
                     .padding(horizontal = DoodleTheme.spacing.xSmall)
                     .graphicsLayer {
                         alpha = animationProgress
@@ -258,20 +253,20 @@ private fun DoodleBottomNavItemLayout(
                         scaleY = scale
                         transformOrigin = defaultTransformOrigin
                     },
-                content = text
+                content = text,
             )
         },
-        modifier = modifier
+        modifier = modifier,
     ) { measurables, constraints ->
-        val iconPlaceable = measurables.first { it.layoutId == IconLayoutId }.measure(constraints)
-        val textPlaceable = measurables.first { it.layoutId == TextLayoutId }.measure(constraints)
+        val iconPlaceable = measurables.first { it.layoutId == ICON_LAYOUT_ID }.measure(constraints)
+        val textPlaceable = measurables.first { it.layoutId == TEXT_LAYOUT_ID }.measure(constraints)
 
         placeTextAndIcon(
             textPlaceable = textPlaceable,
             iconPlaceable = iconPlaceable,
             width = constraints.maxWidth,
             height = constraints.maxHeight,
-            animationProgress = animationProgress
+            animationProgress = animationProgress,
         )
     }
 }
@@ -281,12 +276,12 @@ private fun DoodleBottomNavIndicator(
     modifier: Modifier = Modifier,
     padding: Dp = DoodleTheme.spacing.medium,
     color: Color = DoodleTheme.colors.main,
-    shape: Shape = DoodleTheme.shapes.medium
+    shape: Shape = DoodleTheme.shapes.medium,
 ) {
     Spacer(
         modifier = modifier
             .padding(padding)
-            .background(color = color, shape = shape)
+            .background(color = color, shape = shape),
     )
 }
 
@@ -299,7 +294,7 @@ private fun DoodleBottomBarPreview() {
             currentItem = BottomNavBarItem.Home,
             onNavigateToDestination = { _ -> },
             modifier = Modifier
-                .background(DoodleTheme.colors.darkGrey)
+                .background(DoodleTheme.colors.darkGrey),
         )
     }
 }
@@ -309,7 +304,7 @@ private fun MeasureScope.placeTextAndIcon(
     iconPlaceable: Placeable,
     width: Int,
     height: Int,
-    @FloatRange(from = 0.0, to = 1.0) animationProgress: Float
+    @FloatRange(from = 0.0, to = 1.0) animationProgress: Float,
 ): MeasureResult {
     val iconY = (height - iconPlaceable.height) / 2
     val textY = (height - textPlaceable.height) / 2
@@ -326,14 +321,14 @@ private fun MeasureScope.placeTextAndIcon(
     }
 }
 
-private const val TextLayoutId = "text"
-private const val IconLayoutId = "icon"
-private const val IndicatorLayoutId = "indicator"
-private const val TransformOriginPivotFractionX = 0f
-private const val TransformOriginPivotFractionY = 0.5f
-private const val BottomNavItemLayoutLerpStart = 0.6f
-private const val BottomNavItemLayoutLerpStop = 1f
+private const val TEXT_LAYOUT_ID = "text"
+private const val ICON_LAYOUT_ID = "icon"
+private const val INDICATOR_LAYOUT_ID = "indicator"
+private const val TRANSFORM_ORIGIN_PIVOT_FRACTION_X = 0f
+private const val TRANSFORM_ORIGIN_PIVOT_FRACTION_Y = 0.5f
+private const val LERP_START = 0.6f
+private const val LERP_STOP = 1f
 private val BottomBarAnimationSpec = SpringSpec<Float>(
     stiffness = 800f,
-    dampingRatio = 0.8f
+    dampingRatio = 0.8f,
 )

@@ -19,7 +19,7 @@ import dev.enesky.core.ui.annotation.PreviewUiMode
 
 @Composable
 fun ExploreRoute(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     ExploreScreen(modifier)
 }

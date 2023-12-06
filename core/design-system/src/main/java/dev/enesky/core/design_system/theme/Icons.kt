@@ -48,5 +48,4 @@ object Icons {
     val Explore = Icons.Rounded.Search
     val MyLists = Icons.Rounded.Bookmarks
     val Settings = Icons.Rounded.Settings
-
 }

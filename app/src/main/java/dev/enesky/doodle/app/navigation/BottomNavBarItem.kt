@@ -17,30 +17,30 @@ enum class BottomNavBarItem(
     override val route: String,
     override val destination: String,
     val imageVector: ImageVector,
-    @StringRes val textResourceId: Int
-): DoodleNavigationDestination {
+    @StringRes val textResourceId: Int,
+) : DoodleNavigationDestination {
     Home(
         route = HomeDestination.route,
         destination = HomeDestination.destination,
         imageVector = Icons.Home,
-        textResourceId = dev.enesky.core.design_system.R.string.label_home
+        textResourceId = dev.enesky.core.design_system.R.string.label_home,
     ),
     Explore(
         route = ExploreDestination.route,
         destination = ExploreDestination.destination,
         imageVector = Icons.Explore,
-        textResourceId = dev.enesky.core.design_system.R.string.label_explore
+        textResourceId = dev.enesky.core.design_system.R.string.label_explore,
     ),
     MyLists(
         route = MyListsDestination.route,
         destination = MyListsDestination.destination,
         imageVector = Icons.MyLists,
-        textResourceId = dev.enesky.core.design_system.R.string.label_mylists
+        textResourceId = dev.enesky.core.design_system.R.string.label_mylists,
     ),
     Settings(
         route = SettingsDestination.route,
         destination = SettingsDestination.destination,
         imageVector = Icons.Settings,
-        textResourceId = dev.enesky.core.design_system.R.string.label_settings
-    )
+        textResourceId = dev.enesky.core.design_system.R.string.label_settings,
+    ),
 }
