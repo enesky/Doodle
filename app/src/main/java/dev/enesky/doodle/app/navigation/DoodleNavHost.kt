@@ -10,6 +10,7 @@ import dev.enesky.feature.details.navigation.detailsGraph
 import dev.enesky.feature.login.navigation.loginGraph
 import dev.enesky.feature.home.navigation.HomeDestination
 import dev.enesky.feature.home.navigation.homeGraph
+import dev.enesky.feature.settings.navigation.settingsGraph
 
 /**
  * Created by Enes Kamil YILMAZ on 11/11/2023
@@ -51,5 +52,8 @@ fun DoodleNavHost(
                 onShowMessage("Snackbar")
             },
         )
+        settingsGraph {
+             onShowMessage("Snackbar")
+        }
     }
 }
