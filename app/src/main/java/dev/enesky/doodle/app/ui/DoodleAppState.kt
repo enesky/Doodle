@@ -3,13 +3,17 @@ package dev.enesky.doodle.app.ui
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.enesky.core.navigation.DoodleNavigationDestination
+import dev.enesky.doodle.app.navigation.BottomNavBarDestinations
 import dev.enesky.feature.login.navigation.LoginDestination
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -60,10 +64,33 @@ class DoodleAppState(
             }
         }
     }
+
+    private val snackbarMessages = MutableStateFlow<List<String>>(emptyList())
+
+    fun showMessage(message: String) = snackbarMessages.update { it + message }
+
+    val shouldShowBottomBar: Boolean
+        @Composable get() = currentDestination?.route == currentNavigationDestination.route
+
     val currentDestination: NavDestination?
         @Composable get() = navController.currentBackStackEntryAsState().value?.destination
 
-    private val snackbarMessages = MutableStateFlow<List<String>>(emptyList())
+    /**
+     * Bottom nav bar destinations to be used in the BottomBar.
+     */
+    val bottomNavBarDestinations = BottomNavBarDestinations.entries.toTypedArray()
+
+    private var _currentBottomNavBarDestination by mutableStateOf(bottomNavBarDestinations.first())
+
+    val currentNavigationDestination: BottomNavBarDestinations
+        @Composable get() {
+            bottomNavBarDestinations.firstOrNull {
+                it.route == currentDestination?.route
+            }?.let {
+                _currentBottomNavBarDestination = it
+            }
+            return _currentBottomNavBarDestination
+        }
 
     /**
      * UI logic for navigating to a particular destination in the app. The NavigationOptions to
@@ -84,8 +111,6 @@ class DoodleAppState(
         }
 
     fun onBackClick() = navController.popBackStack()
-
-    fun showMessage(message: String) = snackbarMessages.update { it + message }
 
     // TODO: Add system ui color controller -> system bar & navigation bar
 }

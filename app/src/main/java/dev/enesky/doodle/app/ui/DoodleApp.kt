@@ -4,6 +4,7 @@ package dev.enesky.doodle.app.ui
  * Created by Enes Kamil YILMAZ on 11/11/2023
  */
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -21,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.doodle.app.navigation.DoodleNavHost
+import dev.enesky.doodle.app.ui.component.DoodleBottomBar
 import dev.enesky.doodle.app.ui.component.DoodleSnackbarHost
 import dev.enesky.doodle.app.ui.component.LocalSnackbarHostState
 import dev.enesky.feature.login.manager.AuthManager
@@ -39,19 +41,19 @@ fun DoodleApp(
             LocalSnackbarHostState provides appState.snackbarHostState,
         ) {
             Scaffold(
-                /*bottomBar = {
+                bottomBar = {
                     AnimatedVisibility(
                         visible = appState.shouldShowBottomBar,
                         enter = BottomBarEnterTransition,
                         exit = BottomBarExitTransition
                     ) {
-                        BottomBar(
-                            destinations = appState.topLevelDestinations,
-                            currentDestination = appState.currentTopLevelDestination,
+                        DoodleBottomBar(
+                            destinations = appState.bottomNavBarDestinations,
+                            currentDestination = appState.currentNavigationDestination,
                             onNavigateToDestination = appState::navigate
                         )
                     }
-                },*/
+                },
                 snackbarHost = {
                     DoodleSnackbarHost(
                         modifier = Modifier.windowInsetsPadding(
