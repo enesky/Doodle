@@ -1,19 +1,3 @@
-/*
- * Copyright 2022 Afig Aliyev
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package dev.enesky.doodle.app.ui.component
 
 import androidx.annotation.FloatRange
@@ -28,7 +12,6 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
@@ -54,28 +37,28 @@ import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.ui.layout.MeasureScope
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.layout.layoutId
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.ui.annotation.PreviewUiMode
-import dev.enesky.doodle.app.navigation.BottomNavBarDestinations
+import dev.enesky.doodle.app.navigation.BottomNavBarItem
 
 @Composable
 fun DoodleBottomBar(
-    destinations: Array<BottomNavBarDestinations>,
-    currentDestination: BottomNavBarDestinations,
-    onNavigateToDestination: (BottomNavBarDestinations) -> Unit,
     modifier: Modifier = Modifier,
-    color: Color = DoodleTheme.colors.darkGrey
+    items: Array<BottomNavBarItem>,
+    currentItem: BottomNavBarItem,
+    onNavigateToDestination: (BottomNavBarItem) -> Unit,
 ) {
+
     Surface(
         modifier = modifier,
-        color = color
+        color = DoodleTheme.colors.background
     ) {
         val animationSpec = BottomBarAnimationSpec
+        var previousSelectedItem: BottomNavBarItem = currentItem
 
         DoodleBottomNavLayout(
             modifier = Modifier.windowInsetsPadding(
@@ -83,31 +66,35 @@ fun DoodleBottomBar(
                     WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
                 )
             ),
-            selectedIndex = currentDestination.ordinal,
-            itemCount = destinations.size,
+            selectedIndex = currentItem.ordinal,
+            itemCount = items.size,
             animationSpec = animationSpec,
             indicator = { DoodleBottomNavIndicator() }
         ) {
-            destinations.forEach { destination ->
-                val selected = destination == currentDestination
+            items.forEach { bottomNavBarItem ->
+                val isSelected = bottomNavBarItem == currentItem
+                if (isSelected && previousSelectedItem != bottomNavBarItem) {
+                    previousSelectedItem = bottomNavBarItem
+                }
+
                 val tint by animateColorAsState(
-                    if (selected) {
+                    if (isSelected) {
                         DoodleTheme.colors.main
                     } else {
-                        DoodleTheme.colors.softDark
-                    }, label = ""
+                        DoodleTheme.colors.grey
+                    },
+                    label = ""
                 )
 
-                val icon = painterResource(id = destination.iconResourceId)
-                val text = stringResource(id = destination.textResourceId)
+                val text = stringResource(id = bottomNavBarItem.textResourceId)
 
                 DoodleBottomNavigationItem(
                     modifier = Modifier
-                        .padding(DoodleTheme.spacing.medium)
+                        .padding(DoodleTheme.spacing.small)
                         .clip(DoodleTheme.shapes.medium),
                     icon = {
                         Icon(
-                            painter = icon,
+                            imageVector = bottomNavBarItem.imageVector,
                             tint = tint,
                             contentDescription = text
                         )
@@ -116,12 +103,17 @@ fun DoodleBottomBar(
                         Text(
                             text = text,
                             color = tint,
-                            style = DoodleTheme.typography.regular.h6,
+                            style = DoodleTheme.typography.regular.h5,
                             maxLines = 1
                         )
                     },
-                    selected = selected,
-                    onSelect = { onNavigateToDestination(destination) },
+                    selected = isSelected,
+                    onSelect = {
+                        if (previousSelectedItem == bottomNavBarItem) {
+                            return@DoodleBottomNavigationItem
+                        }
+                        onNavigateToDestination(bottomNavBarItem)
+                    },
                     animationSpec = animationSpec
                 )
             }
@@ -157,7 +149,7 @@ private fun DoodleBottomNavLayout(
     }
 
     Layout(
-        modifier = modifier.height(72.dp),
+        modifier = modifier.height(64.dp),
         content = {
             content()
             Box(modifier = Modifier.layoutId(IndicatorLayoutId), content = indicator)
@@ -221,7 +213,8 @@ private fun DoodleBottomNavigationItem(
     ) {
         val animationProgress by animateFloatAsState(
             targetValue = if (selected) 1f else 0f,
-            animationSpec = animationSpec
+            animationSpec = animationSpec,
+            label = ""
         )
         DoodleBottomNavItemLayout(
             icon = icon,
@@ -287,12 +280,11 @@ private fun DoodleBottomNavItemLayout(
 private fun DoodleBottomNavIndicator(
     modifier: Modifier = Modifier,
     padding: Dp = DoodleTheme.spacing.medium,
-    color: Color = DoodleTheme.colors.secondary,
+    color: Color = DoodleTheme.colors.main,
     shape: Shape = DoodleTheme.shapes.medium
 ) {
     Spacer(
         modifier = modifier
-            .fillMaxSize()
             .padding(padding)
             .background(color = color, shape = shape)
     )
@@ -303,33 +295,12 @@ private fun DoodleBottomNavIndicator(
 private fun DoodleBottomBarPreview() {
     DoodleTheme {
         DoodleBottomBar(
-            destinations = BottomNavBarDestinations.values(),
-            currentDestination = BottomNavBarDestinations.Home,
-            onNavigateToDestination = {},
+            items = BottomNavBarItem.entries.toTypedArray(),
+            currentItem = BottomNavBarItem.Home,
+            onNavigateToDestination = { _ -> },
             modifier = Modifier
-                .fillMaxSize()
                 .background(DoodleTheme.colors.darkGrey)
         )
-    }
-}
-
-@PreviewUiMode
-@Composable
-private fun DoodleBottomNavItemLayoutPreview() {
-    DoodleTheme(isDarkTheme = true) {
-        DoodleBottomNavItemLayout(
-            icon = { Icon(painter = painterResource(id = BottomNavBarDestinations.Home.iconResourceId), contentDescription = "") },
-            text = { Text(text = stringResource(id = BottomNavBarDestinations.Home.textResourceId)) },
-            animationProgress = 1f
-        )
-    }
-}
-
-@PreviewUiMode
-@Composable
-private fun DoodleBottomNavIndicatorPreview() {
-    DoodleTheme {
-        DoodleBottomNavIndicator()
     }
 }
 
