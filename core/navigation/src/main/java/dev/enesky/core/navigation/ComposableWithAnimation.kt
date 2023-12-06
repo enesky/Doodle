@@ -21,7 +21,7 @@ fun NavGraphBuilder.composableWithAnimation(
     composable(
         route = route,
         content = content,
-        /*enterTransition = {
+        enterTransition = {
             slideIntoContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
                 animationSpec = tween(ANIMATION_DURATION),
@@ -44,6 +44,6 @@ fun NavGraphBuilder.composableWithAnimation(
                 towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
                 animationSpec = tween(ANIMATION_DURATION),
             )
-        },*/
+        },
     )
 }

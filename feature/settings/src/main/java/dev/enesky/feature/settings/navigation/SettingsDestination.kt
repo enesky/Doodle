@@ -1,6 +1,7 @@
 package dev.enesky.feature.settings.navigation
 
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.core.navigation.composableWithAnimation
 import dev.enesky.feature.settings.SettingsRoute
@@ -16,7 +17,7 @@ object SettingsDestination : DoodleNavigationDestination {
 
 fun NavGraphBuilder.settingsGraph(
     showSnackbar: () -> Unit,
-) = composableWithAnimation(route = SettingsDestination.route) {
+) = composable(route = SettingsDestination.route) {
     SettingsRoute()
 }
 

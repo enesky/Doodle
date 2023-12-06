@@ -1,6 +1,7 @@
 package dev.enesky.feature.main.navigation
 
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.core.navigation.composableWithAnimation
 import dev.enesky.feature.main.HomeRoute
@@ -16,7 +17,7 @@ object HomeDestination : DoodleNavigationDestination {
 
 fun NavGraphBuilder.homeGraph(
     onNavigateToDetailsDestination: (id: String) -> Unit,
-) = composableWithAnimation(route = HomeDestination.route) {
+) = composable(route = HomeDestination.route) {
     HomeRoute(
         onNavigateDetailsClick = onNavigateToDetailsDestination,
     )

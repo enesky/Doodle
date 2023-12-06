@@ -1,6 +1,7 @@
 package dev.enesky.feature.explore.navigation
 
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.core.navigation.composableWithAnimation
 import dev.enesky.feature.explore.ExploreRoute
@@ -16,6 +17,6 @@ object ExploreDestination : DoodleNavigationDestination {
 
 fun NavGraphBuilder.exploreGraph(
     showSnackbar: () -> Unit,
-) = composableWithAnimation(route = ExploreDestination.route) {
+) = composable(route = ExploreDestination.route) {
     ExploreRoute()
 }
