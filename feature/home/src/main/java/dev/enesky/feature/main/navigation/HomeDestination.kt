@@ -1,9 +1,9 @@
-package dev.enesky.feature.home.navigation
+package dev.enesky.feature.main.navigation
 
 import androidx.navigation.NavGraphBuilder
 import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.core.navigation.composableWithAnimation
-import dev.enesky.feature.home.HomeRoute
+import dev.enesky.feature.main.HomeRoute
 
 /**
  * Created by Enes Kamil YILMAZ on 11/11/2023

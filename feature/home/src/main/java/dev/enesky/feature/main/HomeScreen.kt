@@ -1,21 +1,18 @@
-package dev.enesky.feature.home
+package dev.enesky.feature.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.ui.annotation.PreviewUiMode
+import dev.enesky.feature.home.HomeViewModel
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -61,14 +58,6 @@ private fun HomeContent(
             text = "Welcome to Home Screen",
             style = MaterialTheme.typography.headlineLarge,
         )
-        Button(
-            modifier = Modifier.padding(16.dp),
-            onClick = {
-                onNavigateDetailsClick("1")
-            },
-        ) {
-            Text(text = "Navigate to Details", color = Color.White)
-        }
     }
 }
 
