@@ -3,7 +3,9 @@ package dev.enesky.doodle.app.navigation
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import dev.enesky.core.navigation.DoodleNavigationDestination
-import dev.enesky.feature.home.navigation.HomeDestination
+import dev.enesky.feature.explore.navigation.ExploreDestination
+import dev.enesky.feature.main.navigation.HomeDestination
+import dev.enesky.feature.my_lists.navigation.MyListsDestination
 import dev.enesky.feature.settings.navigation.SettingsDestination
 
 /**
@@ -11,32 +13,27 @@ import dev.enesky.feature.settings.navigation.SettingsDestination
  */
 
 enum class BottomNavBarDestinations(
-    override val route: String,
-    override val destination: String,
+    val destination: DoodleNavigationDestination,
     @DrawableRes val iconResourceId: Int,
     @StringRes val textResourceId: Int
-) : DoodleNavigationDestination {
+) {
     Home(
-        route = HomeDestination.route,
-        destination = HomeDestination.destination,
+        destination = HomeDestination,
         iconResourceId = dev.enesky.feature.login.R.drawable.ic_incognito,
         textResourceId = dev.enesky.core.design_system.R.string.label_home
     ),
-    /*Explore(
-        route = SearchDestination.route,
-        destination = SearchDestination.destination,
+    Explore(
+        destination = ExploreDestination,
         iconResourceId = dev.enesky.feature.login.R.drawable.ic_incognito,
         textResourceId = dev.enesky.core.design_system.R.string.label_explore
     ),
     MyLists(
-        route = WishlistDestination.route,
-        destination = WishlistDestination.destination,
+        destination = MyListsDestination,
         iconResourceId = dev.enesky.feature.login.R.drawable.ic_incognito,
         textResourceId = dev.enesky.core.design_system.R.string.label_mylists
-    ),*/
+    ),
     Settings(
-        route = SettingsDestination.route,
-        destination = SettingsDestination.destination,
+        destination = SettingsDestination,
         iconResourceId = dev.enesky.feature.login.R.drawable.ic_incognito,
         textResourceId = dev.enesky.core.design_system.R.string.label_settings
     )

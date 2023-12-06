@@ -44,5 +44,7 @@ dependencies {
     implementation(projects.feature.login)
     implementation(projects.feature.home)
     implementation(projects.feature.details)
+    implementation(projects.feature.explore)
+    implementation(projects.feature.myLists)
     implementation(projects.feature.settings)
 }
