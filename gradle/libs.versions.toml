@@ -114,7 +114,6 @@ retrofit                              = { module= "com.squareup.retrofit2:retrof
 retrofit-converter-gson               = { module= "com.squareup.retrofit2:converter-gson", version.ref= "retrofit" }
 okhttp                                = { module= "com.squareup.okhttp3:okhttp", version.ref= "okhttp" }
 okhttp-logging-interceptor            = { module= "com.squareup.okhttp3:logging-interceptor", version.ref= "okhttp" }
-compose-state-events                  = { module= "com.github.leonard-palm:compose-state-events", version.ref= "compose-state-events" }
 chucker                               = { module= "com.github.chuckerteam.chucker:library", version.ref= "chucker" }
 chucker-no-op                         = { module= "com.github.chuckerteam.chucker:library-no-op", version.ref= "chucker" }
 leak-canary                           = { module= "com.squareup.leakcanary:leakcanary-android", version.ref= "leak-canary" }
@@ -145,6 +144,5 @@ koin-test-materials                   = ["koin-test-junit-4", "koin-test-android
 testing                               = ["androidx-test-ext-junit", "espresso-core", "ui-test-junit4"]
 network                               = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
 firebase-materials                    = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
-third-party-libraries                 = ["compose-state-events", "coil-compose"]
 androidx-libraries                    = ["androidx-paging-compose", "data-store", "data-store-preferences"]
 credential-manager                    = ["credential-manager", "credential-manager-play-services-auth", "credential-manager-google-auth"]

@@ -27,7 +27,6 @@ android.namespace = "dev.enesky.core.network"
 
 dependencies {
     implementation(libs.bundles.network)
-    implementation(libs.bundles.third.party.libraries)
     implementation(libs.bundles.androidx.libraries)
 
     // Chucker
