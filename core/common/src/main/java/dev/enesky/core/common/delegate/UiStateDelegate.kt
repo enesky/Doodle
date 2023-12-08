@@ -11,7 +11,9 @@ import kotlinx.coroutines.flow.update
 /**
  * Base interface for defining new UiState data classes
  **/
-interface IUiState
+interface IUiState {
+    val loading: Boolean
+}
 
 /**
  * Base interface for ui state delegation
