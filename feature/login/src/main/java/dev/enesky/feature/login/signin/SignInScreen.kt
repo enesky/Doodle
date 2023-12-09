@@ -100,7 +100,7 @@ private fun SignInScreen(
             color = DoodleTheme.colors.background,
         ) {
             Column(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxSize()
                     .padding(
                         vertical = DoodleTheme.spacing.xSmall,

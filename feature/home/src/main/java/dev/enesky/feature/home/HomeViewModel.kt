@@ -43,7 +43,7 @@ class HomeViewModel(
                         updateUiState {
                             copy(
                                 loading = false,
-                                popularAnimes = resource.data
+                                popularAnimes = resource.data,
                             )
                         }
                     }
@@ -52,7 +52,7 @@ class HomeViewModel(
                         updateUiState { copy(loading = false) }
                         triggerEvent {
                             HomeEvents.OnError(
-                                resource.exception?.message ?: ErrorMessages.GENERAL_ERROR
+                                resource.exception?.message ?: ErrorMessages.GENERAL_ERROR,
                             )
                         }
                     }

@@ -25,7 +25,6 @@ interface Event<T : IEvent> {
      * Trigger event function for sending new events
      */
     suspend fun triggerEvent(newEvent: () -> T)
-
 }
 
 /**

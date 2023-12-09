@@ -52,7 +52,7 @@ class SignUpViewModel(
                     SignUpEvents.NavigateToHome
                 } else {
                     SignUpEvents.OnError(
-                        currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR
+                        currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR,
                     )
                 }
             }

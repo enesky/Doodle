@@ -54,7 +54,7 @@ fun HomeRoute(
     HomeScreen(
         modifier = modifier,
         uiState = uiState,
-        onNavigateDetailsClick = onNavigateDetailsClick
+        onNavigateDetailsClick = onNavigateDetailsClick,
     )
 }
 
@@ -70,7 +70,7 @@ private fun HomeScreen(
             color = MaterialTheme.colorScheme.background,
         ) {
             Column(
-                modifier = modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
             ) {
