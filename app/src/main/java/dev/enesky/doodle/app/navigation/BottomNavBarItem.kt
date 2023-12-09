@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import dev.enesky.core.design_system.theme.Icons
 import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.feature.explore.navigation.ExploreDestination
-import dev.enesky.feature.main.navigation.HomeDestination
+import dev.enesky.feature.home.navigation.HomeDestination
 import dev.enesky.feature.my_lists.navigation.MyListsDestination
 import dev.enesky.feature.settings.navigation.SettingsDestination
 

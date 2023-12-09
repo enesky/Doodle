@@ -1,4 +1,4 @@
-package dev.enesky.feature.main.helpers
+package dev.enesky.feature.home.helpers
 
 import dev.enesky.core.common.delegate.IUiState
 import dev.enesky.core.network.model.Anime

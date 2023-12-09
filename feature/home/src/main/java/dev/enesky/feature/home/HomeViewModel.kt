@@ -1,4 +1,4 @@
-package dev.enesky.feature.main
+package dev.enesky.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,8 +14,8 @@ import dev.enesky.core.domain.usecase.PopularAnimesUseCase
 import dev.enesky.core.network.model.Anime
 import dev.enesky.core.network.util.Resource
 import dev.enesky.core.network.util.asResource
-import dev.enesky.feature.main.helpers.HomeEvents
-import dev.enesky.feature.main.helpers.HomeUiState
+import dev.enesky.feature.home.helpers.HomeEvents
+import dev.enesky.feature.home.helpers.HomeUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
