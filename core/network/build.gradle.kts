@@ -28,6 +28,7 @@ android.namespace = "dev.enesky.core.network"
 dependencies {
     implementation(libs.bundles.network)
     implementation(libs.bundles.androidx.libraries)
+    implementation(libs.coil.compose)
 
     // Chucker
     debugImplementation(libs.chucker)

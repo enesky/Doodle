@@ -135,22 +135,23 @@ class SignInViewModel(
         shouldNavigateToHome: Boolean = true,
     ) {
         viewModelScope.launch {
-            event.trigger(
-                if (isSignInSuccessful) {
-                    if (shouldNavigateToHome.not()) return@launch
+            triggerEvent {
+                if (isSignInSuccessful && shouldNavigateToHome) {
                     SignInEvents.NavigateToHome
                 } else {
                     SignInEvents.OnError(
                         currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR,
                     )
-                },
-            )
+                }
+            }
         }
     }
 
     fun navigateToSignUp() {
         viewModelScope.launch {
-            event.trigger(SignInEvents.NavigateToSignUp)
+            triggerEvent {
+                SignInEvents.NavigateToSignUp
+            }
         }
     }
 }

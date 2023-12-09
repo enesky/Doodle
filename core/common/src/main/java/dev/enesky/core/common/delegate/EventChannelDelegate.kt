@@ -21,9 +21,11 @@ interface Event<T : IEvent> {
     val event: Channel<T>
     val eventFlow: Flow<T>
 
-    suspend fun Channel<T>.trigger(newEvent: T) {
-        send(newEvent)
-    }
+    /**
+     * Trigger event function for sending new events
+     */
+    suspend fun triggerEvent(newEvent: () -> T)
+
 }
 
 /**
@@ -33,7 +35,7 @@ interface Event<T : IEvent> {
  *
  *    class LoginViewModel : ViewModel(), Event<LoginEvents> by EventDelegate() {
  *      viewModelScope.launch {
- *          event.triggerEvent(LoginEvents.AnonymousSignInClick())
+ *          triggerEvent { LoginEvents.AnonymousSignInClick() }
  *      }
  *    }
  *
@@ -49,4 +51,8 @@ class EventDelegate<T : IEvent> : Event<T> {
 
     override val event: Channel<T> = Channel()
     override val eventFlow: Flow<T> = event.receiveAsFlow()
+
+    override suspend fun triggerEvent(newEvent: () -> T) {
+        event.send(newEvent.invoke())
+    }
 }

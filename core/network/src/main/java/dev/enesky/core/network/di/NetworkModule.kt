@@ -96,8 +96,6 @@ val networkModule = lazyModule {
 
     /** Jikan Api Related **/
 
-    /** Jikan Api Related **/
-
     single<JikanService> {
         get<Retrofit>()
             .create(JikanService::class.java)
