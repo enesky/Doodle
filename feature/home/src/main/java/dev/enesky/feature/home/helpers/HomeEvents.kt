@@ -8,5 +8,6 @@ import dev.enesky.core.common.delegate.IEvent
 
 sealed interface HomeEvents : IEvent {
     data class OnError(val errorMessage: String) : HomeEvents
-    data object NavigateToDetails : HomeEvents
+    data class OnItemOptionsClick(val animeId: String) : HomeEvents
+    data class NavigateToDetails(val animeId: String) : HomeEvents
 }

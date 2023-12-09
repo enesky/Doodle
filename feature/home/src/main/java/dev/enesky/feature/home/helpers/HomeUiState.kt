@@ -1,5 +1,6 @@
 package dev.enesky.feature.home.helpers
 
+import androidx.paging.PagingData
 import dev.enesky.core.common.delegate.IUiState
 import dev.enesky.core.network.model.Anime
 
@@ -9,7 +10,7 @@ import dev.enesky.core.network.model.Anime
 
 data class HomeUiState(
     override val loading: Boolean = false,
-    val popularAnimes : List<Anime>? = null,
+    val popularAnimes: PagingData<Anime>? = null,
     val selectedAnime: Anime? = null,
     val animeCharacters: List<Anime>? = null,
 ) : IUiState
