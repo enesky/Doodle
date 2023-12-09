@@ -53,7 +53,7 @@ fun SignInScreenRoute(
                     intent = result.data ?: return@rememberLauncherForActivityResult,
                 )
             } else {
-                viewModel.setState {
+                viewModel.updateUiState {
                     copy(
                         loginType = LoginType.GOOGLE,
                         loginResult = LoginResult(

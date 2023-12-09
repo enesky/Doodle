@@ -29,7 +29,7 @@ class SignUpViewModel(
                 email = email,
                 password = password,
             )
-            setState {
+            updateUiState {
                 copy(
                     loginResult = resultFromSignUp,
                 )
