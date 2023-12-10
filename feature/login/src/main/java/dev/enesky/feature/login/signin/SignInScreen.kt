@@ -83,7 +83,6 @@ fun SignInScreenRoute(
     )
 }
 
-@Suppress("LongMethod")
 @Composable
 private fun SignInScreen(
     modifier: Modifier = Modifier,
