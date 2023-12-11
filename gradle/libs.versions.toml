@@ -45,6 +45,7 @@ google-auth                           = "20.7.0"
 splash-screen                         = "1.0.1"
 credential-manager                    = "1.2.0"
 credential-manager-google             = "1.1.0"
+accompanist                           = "0.32.0"
 
 [plugins]
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
@@ -128,6 +129,10 @@ credential-manager-play-services-auth = { module= "androidx.credentials:credenti
 credential-manager-google-auth        = { module= "com.google.android.libraries.identity.googleid:googleid", version.ref= "credential-manager-google" }
 splash-screen                         = { module= "androidx.core:core-splashscreen", version.ref= "splash-screen" }
 
+accompanist-systemuicontroller        = { module= "com.google.accompanist:accompanist-systemuicontroller", version.ref= "accompanist" }
+accompanist-pager-indicators          = { module= "com.google.accompanist:accompanist-pager-indicators", version.ref= "accompanist" }
+accompanist-placeholder-material      = { module= "com.google.accompanist:accompanist-placeholder-material", version.ref= "accompanist" }
+
 # Dependencies of the included build-logic
 android-gradle-plugin                 = { module= "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
 kotlin-gradle-plugin                  = { module= "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-plugin" }
@@ -146,3 +151,4 @@ network                               = ["retrofit", "retrofit-converter-gson", 
 firebase-materials                    = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
 androidx-libraries                    = ["androidx-paging-compose", "data-store", "data-store-preferences"]
 credential-manager                    = ["credential-manager", "credential-manager-play-services-auth", "credential-manager-google-auth"]
+accompanist-materials                 = ["accompanist-systemuicontroller", "accompanist-pager-indicators", "accompanist-placeholder-material"]
