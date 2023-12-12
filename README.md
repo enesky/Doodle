@@ -22,7 +22,7 @@ Just doodling around
 
 Trying to apply best practices for later usages :)
 
-Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetpack (Compose, ViewModel, Room), and Material Design based on MVVM, Clean and Multi-Module architecture.
+Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetpack (Compose, ViewModel, Room, Credential Manager), and Material Design based on MVVM, Clean and Multi-Module architecture.
 
 ## Tech stack & Open-source libraries
 
@@ -43,6 +43,7 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
         - <a href="https://firebase.google.com/products/performance" target="_blank">Performance</a>: for tracking performance.
         - <a href="https://firebase.google.com/products/remote-config" target="_blank">Remote Config</a>: for remote configuration.
         - <a href="https://firebase.google.com/products/auth" target="_blank">Authentication</a>: for user authentication.
+    - Credential Manager API: Unifies the sign-in interface across authentication methods, making it clearer and easier for users to sign into apps, regardless of the method they choose.
     - Architecture
         - MVVM Architecture (View - DataBinding - ViewModel - Model)
         - Clean Architecture approach (Data - Domain - Presentation)
