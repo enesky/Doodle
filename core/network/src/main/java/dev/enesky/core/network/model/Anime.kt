@@ -26,16 +26,15 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Anime(
-    val mal_id: Int,
+    @SerializedName("mal_id") val id: Int,
     val url: String,
     val images: Images,
     val trailer: Trailer,
     val approved: Boolean,
     val titles: List<Title>,
     val title: String,
-    val title_english: String,
-    val title_japanese: String,
-    val title_synonyms: List<String>,
+    @SerializedName("title_english") val titleEnglish: String,
+    @SerializedName("title_japanese") val titleJapanese: String,
     val type: String,
     val source: String,
     val episodes: Int,
@@ -45,7 +44,7 @@ data class Anime(
     val duration: String,
     val rating: String,
     val score: Double,
-    val scored_by: Int,
+    @SerializedName("scored_by") val scoredBy: Int,
     val rank: Int,
     val popularity: Int,
     val members: Int,
@@ -57,43 +56,43 @@ data class Anime(
     val broadcast: Broadcast,
     val studios: List<Studio>,
     val genres: List<Genre>,
-    val explicit_genres: List<Genre>,
+    @SerializedName("explicit_genres") val explicitGenres: List<Genre>,
     val themes: List<Theme>,
 ) : Parcelable
 
 @Parcelize
 data class Trailer(
-    val youtube_id: String,
+    @SerializedName("youtube_id") val youtubeId: String,
     val url: String,
-    val embed_url: String,
-    val images: ImageList
+    @SerializedName("embed_url") val embedUrl: String,
+    val images: ImageList,
 ) : Parcelable
 
 @Parcelize
 data class Title(
     val type: String,
-    val title: String
+    val title: String,
 ) : Parcelable
-@Parcelize
 
+@Parcelize
 data class Aired(
     val from: String,
     val to: String,
     val prop: AiredProp,
-    val string: String
+    val string: String,
 ) : Parcelable
 
 @Parcelize
 data class AiredProp(
     val from: AiredDate,
-    val to: AiredDate
+    val to: AiredDate,
 ) : Parcelable
 
 @Parcelize
 data class AiredDate(
     val day: Int,
     val month: Int,
-    val year: Int
+    val year: Int,
 ) : Parcelable
 
 @Parcelize
@@ -101,53 +100,53 @@ data class Broadcast(
     val day: String,
     val time: String,
     val timezone: String,
-    val string: String
+    val string: String,
 ) : Parcelable
 
 @Parcelize
 data class Producer(
-    val mal_id: Int,
+    @SerializedName("mal_id") val id: Int,
     val type: String,
     val name: String,
-    val url: String
+    val url: String,
 ) : Parcelable
 
 @Parcelize
 data class Licensor(
-    val mal_id: Int,
+    @SerializedName("mal_id") val id: Int,
     val type: String,
     val name: String,
-    val url: String
+    val url: String,
 ) : Parcelable
 
 @Parcelize
 data class Studio(
-    val mal_id: Int,
+    @SerializedName("mal_id") val id: Int,
     val type: String,
     val name: String,
-    val url: String
+    val url: String,
 ) : Parcelable
 
 @Parcelize
 data class Genre(
-    val mal_id: Int,
+    @SerializedName("mal_id") val id: Int,
     val type: String,
     val name: String,
-    val url: String
+    val url: String,
 ) : Parcelable
 
 @Parcelize
 data class Theme(
-    val mal_id: Int,
+    @SerializedName("mal_id") val id: Int,
     val type: String,
     val name: String,
-    val url: String
+    val url: String,
 ) : Parcelable
 
 @Parcelize
 data class Demographic(
-    val mal_id: Int,
+    @SerializedName("mal_id") val id: Int,
     val type: String,
     val name: String,
-    val url: String
+    val url: String,
 ) : Parcelable

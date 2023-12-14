@@ -19,13 +19,13 @@ fun DoodleNetworkImage(
     model: Any?,
     contentDescription: String?,
     modifier: Modifier = Modifier,
-    contentScale: ContentScale = ContentScale.Crop
+    contentScale: ContentScale = ContentScale.Crop,
 ) {
     SubcomposeAsyncImage(
         modifier = modifier,
         model = model,
         contentDescription = contentDescription,
-        contentScale = contentScale
+        contentScale = contentScale,
     ) { SubcomposeAsyncImageHandler() }
 }
 
@@ -35,14 +35,14 @@ fun DoodleCardNetworkImage(
     contentDescription: String?,
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Crop,
-    shape: Shape = DoodleTheme.shapes.default
+    shape: Shape = DoodleTheme.shapes.default,
 ) {
     Card(modifier = modifier, shape = shape) {
         DoodleNetworkImage(
             modifier = Modifier.fillMaxSize(),
             model = model,
             contentDescription = contentDescription,
-            contentScale = contentScale
+            contentScale = contentScale,
         )
     }
 }
@@ -55,7 +55,7 @@ private fun SubcomposeAsyncImageScope.SubcomposeAsyncImageHandler() {
         AsyncImagePainter.State.Empty, is AsyncImagePainter.State.Error -> Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(DoodleTheme.colors.softDark)
+                .background(DoodleTheme.colors.softDark),
         )
     }
 }

@@ -13,12 +13,12 @@ import dev.enesky.core.design_system.theme.DoodleTheme
 @Composable
 fun DoodleImagePlaceholder(
     modifier: Modifier = Modifier,
-    color: Color = DoodleTheme.colors.softDark
+    color: Color = DoodleTheme.colors.softDark,
 ) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .doodlePlaceholder(color = color)
+            .doodlePlaceholder(color = color),
     )
 }
 
@@ -31,6 +31,6 @@ fun Modifier.doodlePlaceholder(color: Color) = composed {
     placeholder(
         visible = true,
         color = color,
-        shape = DoodleTheme.shapes.medium
+        shape = DoodleTheme.shapes.medium,
     )
 }

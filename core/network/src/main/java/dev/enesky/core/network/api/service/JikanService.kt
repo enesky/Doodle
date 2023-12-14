@@ -18,8 +18,8 @@ package dev.enesky.core.network.api.service
 
 import dev.enesky.core.network.model.Anime
 import dev.enesky.core.network.model.AnimeFilter
-import dev.enesky.core.network.model.AnimeRating
 import dev.enesky.core.network.model.AnimePagingResponse
+import dev.enesky.core.network.model.AnimeRating
 import dev.enesky.core.network.model.AnimeType
 import dev.enesky.core.network.model.Character
 import retrofit2.Response

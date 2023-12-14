@@ -75,9 +75,8 @@ private fun HomeScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(DoodleTheme.spacing.medium),
-                contentPadding = PaddingValues(DoodleTheme.spacing.large)
+                contentPadding = PaddingValues(DoodleTheme.spacing.large),
             ) {
-
                 when {
                     popularAnimes == null || popularAnimes.isEmpty() -> {
                         item {
