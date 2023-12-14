@@ -26,71 +26,74 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Anime(
-    @SerializedName("mal_id") val id: Int,
+    val mal_id: Int,
     val url: String,
     val images: Images,
     val trailer: Trailer,
     val approved: Boolean,
-    val titles: TitleList,
+    val titles: List<Title>,
     val title: String,
-    @SerializedName("title_english") val titleEnglish: String,
-    @SerializedName("title_japanese") val titleJapanese: String,
-    @SerializedName("title_synonyms") val titleSynonyms: List<String>,
+    val title_english: String,
+    val title_japanese: String,
+    val title_synonyms: List<String>,
     val type: String,
     val source: String,
     val episodes: Int,
     val status: String,
     val airing: Boolean,
-    val aired: AiredTime,
+    val aired: Aired,
     val duration: String,
     val rating: String,
-    val score: Float,
-    @SerializedName("scored_by") val scoredBy: Int,
+    val score: Double,
+    val scored_by: Int,
     val rank: Int,
     val popularity: Int,
     val members: Int,
     val favorites: Int,
     val synopsis: String,
-    val background: String,
+    val background: String?,
     val season: String,
     val year: Int,
     val broadcast: Broadcast,
-    val producers: List<InnerAnimeItem>,
-    val licencors: List<InnerAnimeItem>,
-    val studios: List<InnerAnimeItem>,
-    val genres: List<InnerAnimeItem>,
-    @SerializedName("explicit_genres") val explicitGenres: List<InnerAnimeItem>,
-    val themes: List<InnerAnimeItem>,
-    val demographics: List<InnerAnimeItem>,
+    val studios: List<Studio>,
+    val genres: List<Genre>,
+    val explicit_genres: List<Genre>,
+    val themes: List<Theme>,
 ) : Parcelable
 
 @Parcelize
 data class Trailer(
-    @SerializedName("youtube_id") val youtubeId: String,
+    val youtube_id: String,
     val url: String,
-    @SerializedName("emdeb_url") val embedUrl: String,
-    val images: Images,
+    val embed_url: String,
+    val images: ImageList
 ) : Parcelable
 
 @Parcelize
-data class TitleList(
+data class Title(
     val type: String,
-    val title: String,
+    val title: String
 ) : Parcelable
-
 @Parcelize
-data class AiredTime(
+
+data class Aired(
     val from: String,
     val to: String,
     val prop: AiredProp,
-    val string: String,
+    val string: String
 ) : Parcelable
 
 @Parcelize
 data class AiredProp(
+    val from: AiredDate,
+    val to: AiredDate
+) : Parcelable
+
+@Parcelize
+data class AiredDate(
     val day: Int,
     val month: Int,
-    val year: Int,
+    val year: Int
 ) : Parcelable
 
 @Parcelize
@@ -98,13 +101,53 @@ data class Broadcast(
     val day: String,
     val time: String,
     val timezone: String,
-    val string: String,
+    val string: String
 ) : Parcelable
 
 @Parcelize
-data class InnerAnimeItem(
-    @SerializedName("mal_id") val id: Int,
+data class Producer(
+    val mal_id: Int,
     val type: String,
     val name: String,
-    val url: String,
+    val url: String
+) : Parcelable
+
+@Parcelize
+data class Licensor(
+    val mal_id: Int,
+    val type: String,
+    val name: String,
+    val url: String
+) : Parcelable
+
+@Parcelize
+data class Studio(
+    val mal_id: Int,
+    val type: String,
+    val name: String,
+    val url: String
+) : Parcelable
+
+@Parcelize
+data class Genre(
+    val mal_id: Int,
+    val type: String,
+    val name: String,
+    val url: String
+) : Parcelable
+
+@Parcelize
+data class Theme(
+    val mal_id: Int,
+    val type: String,
+    val name: String,
+    val url: String
+) : Parcelable
+
+@Parcelize
+data class Demographic(
+    val mal_id: Int,
+    val type: String,
+    val name: String,
+    val url: String
 ) : Parcelable

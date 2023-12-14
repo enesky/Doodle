@@ -18,6 +18,7 @@ package dev.enesky.core.network.api.service
 
 import dev.enesky.core.network.model.Anime
 import dev.enesky.core.network.model.AnimeFilter
+import dev.enesky.core.network.model.AnimeRating
 import dev.enesky.core.network.model.AnimePagingResponse
 import dev.enesky.core.network.model.AnimeType
 import dev.enesky.core.network.model.Character
@@ -35,8 +36,10 @@ interface JikanService {
     @GET("top/anime")
     suspend fun getPopularAnimes(
         @Query("page") page: Int = 1,
+        @Query("limit") limit: Int = 25,
         @Query("type") type: String = AnimeType.TV.type,
-        @Query("filter") filter: String = AnimeFilter.G.filter,
+        @Query("filter") filter: String = AnimeFilter.POPULARITY.filter,
+        @Query("rating") rating: String = AnimeRating.PG13.rating,
         @Query("sfw") sfw: Boolean = true,
     ): AnimePagingResponse
 
