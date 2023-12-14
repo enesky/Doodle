@@ -94,6 +94,7 @@ material3                             = { module= "androidx.compose.material3:ma
 material-icons-extended               = { module= "androidx.compose.material:material-icons-extended" }
 androidx-navigation-compose           = { module= "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 androidx-paging-compose               = { module= "androidx.paging:paging-compose", version.ref= "paging-compose" }
+androidx-paging-runtime               = { module= "androidx.paging:paging-runtime", version.ref= "paging-compose" }
 data-store                            = { module= "androidx.datastore:datastore", version.ref= "data-store" }
 data-store-preferences                = { module= "androidx.datastore:datastore-preferences", version.ref= "data-store" }
 androidx-test-ext-junit               = { module= "androidx.test.ext:junit", version.ref= "androidx-test-ext-junit" }
@@ -142,7 +143,7 @@ desugar-jdk-libs                      = { module= "com.android.tools:desugar_jdk
 spotless-gradle-plugin                = { module= "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
 [bundles]
-compose-materials                     = ["androidx-paging-compose", "ui", "ui-graphics", "ui-tooling", "ui-tooling-preview", "ui-util", "material3", "material-icons-extended"]
+compose-materials                     = ["androidx-paging-compose", "androidx-paging-runtime", "ui", "ui-graphics", "ui-tooling", "ui-tooling-preview", "ui-util", "material3", "material-icons-extended"]
 debug-implementations                 = ["ui-tooling", "ui-test-manifest", "leak-canary", "chucker"]
 koin-materials                        = ["koin-coroutines", "koin-navigation", "koin-compose"]
 koin-test-materials                   = ["koin-test-junit-4", "koin-test-android"]

@@ -2,19 +2,15 @@ package dev.enesky.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.enesky.core.common.consts.ErrorMessages
+import androidx.paging.cachedIn
 import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.core.domain.usecase.PopularAnimesUseCase
-import dev.enesky.core.network.util.Resource
-import dev.enesky.core.network.util.asResource
 import dev.enesky.feature.home.helpers.HomeEvents
 import dev.enesky.feature.home.helpers.HomeUiState
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 /**
@@ -31,33 +27,16 @@ class HomeViewModel(
         getPopularAnimes()
     }
 
-    fun getPopularAnimes() {
+    private fun getPopularAnimes() {
         viewModelScope.launch(Dispatchers.IO) {
-            popularAnimesUseCase().asResource().onEach { resource ->
-                when (resource) {
-                    is Resource.Loading -> {
-                        updateUiState { copy(loading = true) }
-                    }
+            val popularAnimes = popularAnimesUseCase().cachedIn(viewModelScope)
 
-                    is Resource.Success -> {
-                        updateUiState {
-                            copy(
-                                loading = false,
-                                popularAnimes = resource.data,
-                            )
-                        }
-                    }
-
-                    is Resource.Error -> {
-                        updateUiState { copy(loading = false) }
-                        triggerEvent {
-                            HomeEvents.OnError(
-                                resource.exception?.message ?: ErrorMessages.GENERAL_ERROR,
-                            )
-                        }
-                    }
-                }
-            }.launchIn(this)
+            updateUiState {
+                copy(
+                    loading = false,
+                    popularAnimes = popularAnimes,
+                )
+            }
         }
     }
 }
