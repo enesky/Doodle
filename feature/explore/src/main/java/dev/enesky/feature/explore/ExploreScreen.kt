@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,7 +29,7 @@ private fun ExploreScreen(
 ) {
     Surface(
         modifier = modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background,
+        color = DoodleTheme.colors.background,
     ) {
         ExploreContent(
             modifier = Modifier.fillMaxWidth(),
@@ -49,7 +48,7 @@ private fun ExploreContent(
     ) {
         Text(
             text = "Welcome to Explore Screen",
-            style = MaterialTheme.typography.headlineLarge,
+            style = DoodleTheme.typography.regular.h3,
         )
     }
 }
