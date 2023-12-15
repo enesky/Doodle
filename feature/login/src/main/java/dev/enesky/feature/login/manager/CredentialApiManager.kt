@@ -16,8 +16,11 @@ import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import dev.enesky.core.common.consts.ErrorMessages
+import dev.enesky.core.common.consts.Values
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.feature.login.BuildConfig
+import org.koin.core.context.GlobalContext
+import org.koin.core.qualifier.named
 
 /**
  * Created by Enes Kamil YILMAZ on 01/12/2023
@@ -28,6 +31,9 @@ class CredentialApiManager(
 ) {
 
     private val credentialManager by lazy { CredentialManager.create(context) }
+    private val googleClientId by lazy {
+        GlobalContext.get() .get<String>(named(Values.GOOGLE_WEB_CLIENT_ID))
+    }
 
     /**
      * Sign up with credential manager
@@ -60,7 +66,7 @@ class CredentialApiManager(
         onGoogleSignIn: (idToken: String) -> Unit,
     ) {
         val googleIdCredentialOption = GetGoogleIdOption.Builder()
-            .setServerClientId(BuildConfig.DOODLE_GOOGLE_CLIENT_ID)
+            .setServerClientId(googleClientId)
             .build()
         try {
             val result = credentialManager.getCredential(

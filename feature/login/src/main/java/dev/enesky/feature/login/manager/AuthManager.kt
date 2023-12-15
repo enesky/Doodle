@@ -11,13 +11,15 @@ import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import dev.enesky.core.common.consts.Values
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.data.LoginResult
 import dev.enesky.core.data.UserData
-import dev.enesky.feature.login.BuildConfig
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
+import org.koin.core.context.GlobalContext.get
+import org.koin.core.qualifier.named
 import java.util.concurrent.Executor
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.coroutines.resume
@@ -43,6 +45,7 @@ class AuthManager(
     // ------------------ COMMON ------------------
 
     private val auth by lazy { Firebase.auth }
+    private val googleClientId by lazy { get().get<String>(named(Values.GOOGLE_WEB_CLIENT_ID)) }
 
     /**
      * Checks if user is logged in or not
@@ -312,7 +315,7 @@ class AuthManager(
             .builder()
             .setSupported(true)
             .setFilterByAuthorizedAccounts(false)
-            .setServerClientId(BuildConfig.DOODLE_GOOGLE_CLIENT_ID)
+            .setServerClientId(googleClientId)
             .build()
 
         return BeginSignInRequest
