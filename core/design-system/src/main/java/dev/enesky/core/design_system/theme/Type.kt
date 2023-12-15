@@ -16,13 +16,23 @@
  */
 package dev.enesky.core.design_system.theme
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.material3.Typography
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import dev.enesky.core.design_system.R
@@ -142,7 +152,7 @@ class DoodleTypography {
             fontSize = H3FontSize,
             lineHeight = H3LineHeight,
         ),
-        val h5: TextStyle = pacificoTextStyle(
+        val h4: TextStyle = pacificoTextStyle(
             fontWeight = FontWeight.Normal,
             fontSize = H5FontSize,
             lineHeight = H5LineHeight,
@@ -235,3 +245,79 @@ private val H6LineHeight = (14.63f).sp
 
 private val H7FontSize = 10.sp
 private val H7LineHeight = (12.19f).sp
+
+@Preview
+@Composable
+private fun TypographyPreview() {
+    DoodleTheme {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(DoodleTheme.spacing.medium),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(
+                text = "Lorem Ipsum - Bold - H1",
+                style = DoodleTheme.typography.bold.h1,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Bold - H2",
+                style = DoodleTheme.typography.bold.h2,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Bold - H3",
+                style = DoodleTheme.typography.bold.h3,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Regular - H1",
+                style = DoodleTheme.typography.regular.h1,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Regular - H2",
+                style = DoodleTheme.typography.regular.h2,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Regular - H3",
+                style = DoodleTheme.typography.regular.h3,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Regular - H4",
+                style = DoodleTheme.typography.regular.h4,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Regular - H5",
+                style = DoodleTheme.typography.regular.h5,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Regular - H6",
+                style = DoodleTheme.typography.regular.h6,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Pacifico - H1",
+                style = DoodleTheme.typography.pacifico.h1,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Pacifico - H2",
+                style = DoodleTheme.typography.pacifico.h2,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Pacifico - H3",
+                style = DoodleTheme.typography.pacifico.h3,
+            )
+
+            Text(
+                text = "Lorem Ipsum - Pacifico - H4",
+                style = DoodleTheme.typography.pacifico.h4,
+            )
+        }
+    }
+}
