@@ -45,6 +45,7 @@ fun DoodleApp(
             LocalSnackbarHostState provides appState.snackbarHostState,
         ) {
             Scaffold(
+                topBar = {}, // TODO: Add top bar with Doodle text on left and search icon on right
                 bottomBar = {
                     AnimatedVisibility(
                         visible = appState.shouldShowBottomBar,
@@ -70,7 +71,7 @@ fun DoodleApp(
                         snackbarHostState = appState.snackbarHostState,
                     )
                 },
-                contentWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp),
+                contentWindowInsets = WindowInsets(0.dp, top = 32.dp, 0.dp, 0.dp),
             ) { innerPadding ->
                 /**
                  * Update the start destination according to the user's login status

@@ -146,7 +146,7 @@ private fun DoodleBottomNavLayout(
     }
 
     Layout(
-        modifier = modifier.height(64.dp),
+        modifier = modifier.height(56.dp),
         content = {
             content()
             Box(modifier = Modifier.layoutId(INDICATOR_LAYOUT_ID), content = indicator)
