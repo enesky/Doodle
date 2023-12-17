@@ -34,7 +34,7 @@ import retrofit2.http.Query
 interface JikanService {
 
     @GET("top/anime")
-    suspend fun getPopularAnimes(
+    suspend fun getTopAnimePaging(
         @Query("page") page: Int = 1,
         @Query("limit") limit: Int = 25,
         @Query("type") type: String = AnimeType.TV.type,
