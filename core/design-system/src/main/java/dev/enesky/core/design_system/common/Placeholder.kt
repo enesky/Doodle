@@ -18,16 +18,16 @@ fun DoodleImagePlaceholder(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .doodlePlaceholder(color = color),
+            .placeholder(color = color),
     )
 }
 
-fun Modifier.doodlePlaceholder() = composed {
-    doodlePlaceholder(color = DoodleTheme.colors.softDark)
+fun Modifier.placeholder() = composed {
+    placeholder(color = DoodleTheme.colors.softDark)
 }
 
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
-fun Modifier.doodlePlaceholder(color: Color) = composed {
+fun Modifier.placeholder(color: Color) = composed {
     placeholder(
         visible = true,
         color = color,
