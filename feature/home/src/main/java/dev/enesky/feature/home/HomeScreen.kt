@@ -46,6 +46,7 @@ import dev.enesky.core.design_system.theme.Icons
 import dev.enesky.core.network.model.ImageList
 import dev.enesky.core.network.model.Images
 import dev.enesky.core.network.model.MiniAnime
+import dev.enesky.core.network.util.Constants
 import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.core.ui.util.error
 import dev.enesky.core.ui.util.isEmpty
@@ -111,7 +112,7 @@ private fun HomeScreen(
     SwipeRefresh(
         modifier = modifier,
         isRefreshing = popularPagingItems.loadState.refresh.isLoading,
-        onRefresh = popularPagingItems::refresh
+        onRefresh = popularPagingItems::refresh,
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -152,6 +153,7 @@ private fun HomeScreen(
     }
 }
 
+@Suppress("LongMethod", "MultipleEmitters")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun AnimeListRow(
@@ -169,12 +171,12 @@ private fun AnimeListRow(
         // CircularProgressIndicator()
     },
     errorContent: @Composable LazyItemScope.(errorMessage: String) -> Unit = { errorMessage ->
-        //Error(
+        // Error(
         //    modifier = Modifier.fillMaxWidth(),
         //    errorMessage = errorMessage,
         //    onRetry = tvShows::retry
-        //)
-    }
+        // )
+    },
 ) {
     Text(
         modifier = Modifier.padding(
@@ -201,7 +203,7 @@ private fun AnimeListRow(
             horizontal = DoodleTheme.spacing.medium,
         ),
         state = rowState,
-        flingBehavior = rememberSnapFlingBehavior(lazyListState = rowState)
+        flingBehavior = rememberSnapFlingBehavior(lazyListState = rowState),
     ) {
         when {
             pagingItems.isEmpty() -> {
@@ -229,21 +231,23 @@ private fun AnimeListRow(
                 }
             }
             pagingItems.loadState.refresh.isLoading -> {
-                items(10) { AnimeItem(
-                    anime = MiniAnime(
-                        id = 0,
-                        title = "",
-                        genres = emptyList(),
-                        trailer = null,
-                        url = "",
-                        images = Images(
-                            jpg = ImageList(
-                                imageUrl = "",
+                items(Constants.ITEMS_PER_PAGE) {
+                    AnimeItem(
+                        anime = MiniAnime(
+                            id = 0,
+                            title = "",
+                            genres = emptyList(),
+                            trailer = null,
+                            url = "",
+                            images = Images(
+                                jpg = ImageList(
+                                    imageUrl = "",
+                                ),
                             ),
                         ),
-                    ),
-                    isPlaceholder = true
-                ) }
+                        isPlaceholder = true,
+                    )
+                }
             }
             pagingItems.loadState.refresh.isFinished -> {
                 if (pagingItems.isEmpty()) {
@@ -258,12 +262,13 @@ private fun AnimeListRow(
             item { CenteredBox(modifier = Modifier.fillMaxWidth()) { loadingContent() } }
         }
         if (pagingItems.loadState.append.isError) {
-            item { errorContent(errorMessage = pagingItems.loadState.append.error.toString()) }
+            item { errorContent(pagingItems.loadState.append.error.toString()) }
         }
     }
     Spacer(modifier = Modifier.size(DoodleTheme.spacing.xSmall))
 }
 
+@Suppress("LongMethod")
 @Composable
 private fun AnimeItem(
     anime: MiniAnime,
@@ -282,8 +287,12 @@ private fun AnimeItem(
         .replace(", ", " | ")
 
     Column(
-        modifier = if (isPlaceholder) Modifier else Modifier.clickable {
-            onNavigateDetailsClick?.invoke(anime.id.toString())
+        modifier = if (isPlaceholder) {
+            Modifier
+        } else {
+            Modifier.clickable {
+                onNavigateDetailsClick?.invoke(anime.id.toString())
+            }
         },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -300,7 +309,7 @@ private fun AnimeItem(
                     .size(itemWidth, itemHeight)
                     .clip(DoodleTheme.shapes.small),
                 model = anime.images.jpg?.imageUrl,
-                contentDescription = anime.title
+                contentDescription = anime.title,
             )
         }
         Row(

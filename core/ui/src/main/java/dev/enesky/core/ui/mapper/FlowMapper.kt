@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 fun <T : Any, R : Any> Flow<PagingData<T>>.pagingMap(
-    transform: (T) -> R
+    transform: (T) -> R,
 ): Flow<PagingData<R>> = map { it.map(transform) }

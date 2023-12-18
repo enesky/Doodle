@@ -27,7 +27,7 @@ fun SwipeRefresh(
     indicatorPadding: PaddingValues = PaddingValues(0.dp),
     indicatorAlignment: Alignment = Alignment.TopCenter,
     scale: Boolean = true,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val state = rememberPullRefreshState(refreshing = isRefreshing, onRefresh = onRefresh)
     Box(modifier = modifier.pullRefresh(state = state)) {
@@ -41,7 +41,7 @@ fun SwipeRefresh(
             state = state,
             backgroundColor = backgroundColor,
             contentColor = contentColor,
-            scale = scale
+            scale = scale,
         )
     }
 }

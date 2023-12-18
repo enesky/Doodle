@@ -32,9 +32,10 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+// TODO: Update here with Theme Selector
 @Composable
 fun DoodleTheme(
-    isDarkTheme: Boolean = true, //TODO: Update here with Theme Selector
+    isDarkTheme: Boolean = true,
     shapes: Shapes = Shapes,
     typography: Typography = Typography,
     content: @Composable () -> Unit,

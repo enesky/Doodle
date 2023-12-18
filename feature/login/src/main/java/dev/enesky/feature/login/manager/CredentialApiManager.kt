@@ -18,7 +18,6 @@ import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingExcept
 import dev.enesky.core.common.consts.ErrorMessages
 import dev.enesky.core.common.consts.Values
 import dev.enesky.core.common.utils.Logger
-import dev.enesky.feature.login.BuildConfig
 import org.koin.core.context.GlobalContext
 import org.koin.core.qualifier.named
 
@@ -32,7 +31,7 @@ class CredentialApiManager(
 
     private val credentialManager by lazy { CredentialManager.create(context) }
     private val googleClientId by lazy {
-        GlobalContext.get() .get<String>(named(Values.GOOGLE_WEB_CLIENT_ID))
+        GlobalContext.get().get<String>(named(Values.GOOGLE_WEB_CLIENT_ID))
     }
 
     /**

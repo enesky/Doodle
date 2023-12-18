@@ -44,8 +44,9 @@ fun DoodleApp(
         CompositionLocalProvider(
             LocalSnackbarHostState provides appState.snackbarHostState,
         ) {
+            // TODO: Add top bar with Doodle text on left and search icon on right
             Scaffold(
-                topBar = {}, // TODO: Add top bar with Doodle text on left and search icon on right
+                topBar = {},
                 bottomBar = {
                     AnimatedVisibility(
                         visible = appState.shouldShowBottomBar,
@@ -82,7 +83,7 @@ fun DoodleApp(
                 }
 
                 Surface(
-                    modifier = modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     color = DoodleTheme.colors.background,
                 ) {
                     /**

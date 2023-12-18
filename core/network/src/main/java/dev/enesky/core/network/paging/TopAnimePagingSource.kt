@@ -42,7 +42,7 @@ class TopAnimePagingSource(
             val nextPage = params.key ?: 1
             val animePagingResponse = jikanService.getTopAnimePaging(
                 page = nextPage,
-                filter = animeFilter.filter
+                filter = animeFilter.filter,
             )
             LoadResult.Page(
                 data = animePagingResponse.data,

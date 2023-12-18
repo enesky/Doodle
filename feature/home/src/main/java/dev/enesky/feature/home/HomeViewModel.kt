@@ -27,7 +27,7 @@ class HomeViewModel(
     private val airingAnimePagingUseCase: AiringAnimePagingUseCase,
     private val upcomingAnimePagingUseCase: UpcomingAnimePagingUseCase,
     private val favoriteAnimePagingUseCase: FavoriteAnimePagingUseCase,
-    private val popularAnimePagingUseCase: PopularAnimePagingUseCase
+    private val popularAnimePagingUseCase: PopularAnimePagingUseCase,
 ) : ViewModel(),
     UiState<HomeUiState> by UiStateDelegate(initialState = { HomeUiState() }),
     Event<HomeEvents> by EventDelegate() {

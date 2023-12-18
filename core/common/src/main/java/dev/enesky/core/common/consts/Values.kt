@@ -8,5 +8,4 @@ object Values {
 
     const val GOOGLE_WEB_CLIENT_ID = "Google Web Client ID"
     const val GOOGLE_API_KEY = "Google API Key"
-
 }

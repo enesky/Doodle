@@ -18,16 +18,12 @@ package dev.enesky.core.design_system.theme
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -258,65 +254,49 @@ private fun TypographyPreview() {
                 text = "Lorem Ipsum - Bold - H1",
                 style = DoodleTheme.typography.bold.h1,
             )
-
             Text(
                 text = "Lorem Ipsum - Bold - H2",
                 style = DoodleTheme.typography.bold.h2,
             )
-
             Text(
                 text = "Lorem Ipsum - Bold - H3",
                 style = DoodleTheme.typography.bold.h3,
             )
-
             Text(
                 text = "Lorem Ipsum - Regular - H1",
                 style = DoodleTheme.typography.regular.h1,
             )
-
             Text(
                 text = "Lorem Ipsum - Regular - H2",
                 style = DoodleTheme.typography.regular.h2,
             )
-
             Text(
                 text = "Lorem Ipsum - Regular - H3",
                 style = DoodleTheme.typography.regular.h3,
             )
-
             Text(
                 text = "Lorem Ipsum - Regular - H4",
                 style = DoodleTheme.typography.regular.h4,
             )
-
             Text(
                 text = "Lorem Ipsum - Regular - H5",
                 style = DoodleTheme.typography.regular.h5,
             )
-
             Text(
                 text = "Lorem Ipsum - Regular - H6",
                 style = DoodleTheme.typography.regular.h6,
             )
-
             Text(
                 text = "Lorem Ipsum - Pacifico - H1",
                 style = DoodleTheme.typography.pacifico.h1,
             )
-
             Text(
                 text = "Lorem Ipsum - Pacifico - H2",
                 style = DoodleTheme.typography.pacifico.h2,
             )
-
             Text(
                 text = "Lorem Ipsum - Pacifico - H3",
                 style = DoodleTheme.typography.pacifico.h3,
-            )
-
-            Text(
-                text = "Lorem Ipsum - Pacifico - H4",
-                style = DoodleTheme.typography.pacifico.h4,
             )
         }
     }

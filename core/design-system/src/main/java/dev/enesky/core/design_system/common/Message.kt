@@ -26,24 +26,27 @@ import dev.enesky.core.design_system.theme.Icons
 fun Message(
     @StringRes messageResourceId: Int,
     @DrawableRes imageResourceId: Int? = null,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     CenteredBox(modifier = modifier.padding(horizontal = DoodleTheme.spacing.xLarge)) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(DoodleTheme.spacing.medium)
+            verticalArrangement = Arrangement.spacedBy(DoodleTheme.spacing.medium),
         ) {
             Image(
                 modifier = Modifier.size(72.dp),
-                painter = if (imageResourceId != null) painterResource(id = imageResourceId)
-                          else rememberVectorPainter(Icons.Error),
-                contentDescription = stringResource(id = messageResourceId)
+                painter = if (imageResourceId != null) {
+                    painterResource(id = imageResourceId)
+                } else {
+                    rememberVectorPainter(Icons.Error)
+                },
+                contentDescription = stringResource(id = messageResourceId),
             )
             Text(
                 text = stringResource(id = messageResourceId),
                 style = DoodleTheme.typography.regular.h3,
                 color = DoodleTheme.colors.white,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     }
@@ -55,7 +58,7 @@ private fun MessagePreview() {
     DoodleTheme {
         Message(
             modifier = Modifier.fillMaxSize(),
-            messageResourceId = R.string.label_no_anime_result
+            messageResourceId = R.string.label_no_anime_result,
         )
     }
 }
