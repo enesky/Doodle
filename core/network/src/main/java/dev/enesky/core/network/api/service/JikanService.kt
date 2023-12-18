@@ -22,6 +22,7 @@ import dev.enesky.core.network.model.AnimePagingResponse
 import dev.enesky.core.network.model.AnimeRating
 import dev.enesky.core.network.model.AnimeType
 import dev.enesky.core.network.model.Character
+import dev.enesky.core.network.util.Constants
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -36,7 +37,7 @@ interface JikanService {
     @GET("top/anime")
     suspend fun getTopAnimePaging(
         @Query("page") page: Int = 1,
-        @Query("limit") limit: Int = 25,
+        @Query("limit") limit: Int = Constants.ITEMS_PER_PAGE,
         @Query("type") type: String = AnimeType.TV.type,
         @Query("filter") filter: String = AnimeFilter.POPULARITY.filter,
         @Query("rating") rating: String = AnimeRating.PG13.rating,

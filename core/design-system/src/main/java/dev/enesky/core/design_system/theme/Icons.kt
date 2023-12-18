@@ -3,6 +3,7 @@ package dev.enesky.core.design_system.theme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Bookmarks
+import androidx.compose.material.icons.outlined.CancelPresentation
 import androidx.compose.material.icons.outlined.Upcoming
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.ArrowBack
@@ -34,6 +35,7 @@ object Icons {
     val Search = Icons.Rounded.Search
     val Upcoming = Icons.Rounded.Upcoming
     val UpcomingBorder = Icons.Outlined.Upcoming
+    val Error = Icons.Outlined.CancelPresentation
 
     // Bottom Navigation Bar Icons
     val Home = Icons.Rounded.Home

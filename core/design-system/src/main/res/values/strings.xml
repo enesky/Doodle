@@ -20,5 +20,6 @@
     <string name="label_forgot_password">Forgot password?</string>
     <string name="label_sign_in">Sign in</string>
     <string name="label_sign_up">Sign up</string>
+    <string name="label_no_anime_result">Sorry, we could not find any animes.</string>
 
 </resources>
