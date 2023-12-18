@@ -18,7 +18,7 @@ package dev.enesky.core.domain.di
 
 import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
 import dev.enesky.core.domain.usecase.AnimeUseCase
-import dev.enesky.core.domain.usecase.PopularAnimesUseCase
+import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
 import dev.enesky.core.network.repository.JikanRepository
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.dsl.lazyModule
@@ -30,8 +30,8 @@ import org.koin.dsl.lazyModule
 @OptIn(KoinExperimentalAPI::class)
 val useCaseModule = lazyModule {
 
-    single<PopularAnimesUseCase> {
-        PopularAnimesUseCase(get<JikanRepository>()::getPopularAnimes)
+    single<TopAnimePagingUseCase> {
+        TopAnimePagingUseCase(get<JikanRepository>()::getTopAnimePagingData)
     }
 
     single<AnimeUseCase> {

@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface JikanDataSource {
 
-    fun getPopularAnimes(): Flow<PagingData<Anime>>
+    fun getTopAnimePagingData(): Flow<PagingData<Anime>>
     suspend fun getAnimeById(animeId: Int): Result<Anime>
     suspend fun getCharactersByAnimeId(animeId: Int): Result<List<Character>>
 }

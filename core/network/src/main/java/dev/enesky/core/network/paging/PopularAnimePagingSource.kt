@@ -20,6 +20,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import dev.enesky.core.network.api.service.JikanService
 import dev.enesky.core.network.model.Anime
+import dev.enesky.core.network.model.AnimeFilter
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -27,7 +28,7 @@ import java.io.IOException
  * Created by Enes Kamil YILMAZ on 28/10/2023
  */
 
-class PopularAnimesPagingSource(
+class PopularAnimePagingSource(
     private val jikanService: JikanService,
 ) : PagingSource<Int, Anime>() {
 
@@ -38,15 +39,18 @@ class PopularAnimesPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Anime> {
         return try {
             val nextPage = params.key ?: 1
-            val popularAnimes = jikanService.getPopularAnimes(nextPage)
+            val animePagingResponse = jikanService.getTopAnimePaging(
+                page = nextPage,
+                filter = AnimeFilter.POPULARITY.filter
+            )
             LoadResult.Page(
-                data = popularAnimes.data,
+                data = animePagingResponse.data,
                 prevKey = if (nextPage == 1) null else nextPage - 1,
                 nextKey =
-                if (popularAnimes.data.isEmpty() || popularAnimes.pagination.hasNextPage.not()) {
+                if (animePagingResponse.data.isEmpty() || animePagingResponse.pagination.hasNextPage.not()) {
                     null
                 } else {
-                    popularAnimes.pagination.currentPage.plus(1)
+                    animePagingResponse.pagination.currentPage.plus(1)
                 },
             )
         } catch (e: IOException) {

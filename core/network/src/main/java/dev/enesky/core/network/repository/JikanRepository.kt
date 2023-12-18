@@ -29,8 +29,8 @@ class JikanRepository(
     private val jikanDataSource: JikanDataSource,
 ) {
 
-    fun getPopularAnimes(): Flow<PagingData<Anime>> {
-        return jikanDataSource.getPopularAnimes()
+    fun getTopAnimePagingData(): Flow<PagingData<Anime>> {
+        return jikanDataSource.getTopAnimePagingData()
     }
 
     suspend fun getAnimeById(animeId: Int): Result<Anime> {
