@@ -28,8 +28,9 @@ import java.io.IOException
  * Created by Enes Kamil YILMAZ on 28/10/2023
  */
 
-class PopularAnimePagingSource(
+class TopAnimePagingSource(
     private val jikanService: JikanService,
+    private val animeFilter: AnimeFilter = AnimeFilter.POPULARITY,
 ) : PagingSource<Int, Anime>() {
 
     override fun getRefreshKey(state: PagingState<Int, Anime>): Int? {
@@ -41,7 +42,7 @@ class PopularAnimePagingSource(
             val nextPage = params.key ?: 1
             val animePagingResponse = jikanService.getTopAnimePaging(
                 page = nextPage,
-                filter = AnimeFilter.POPULARITY.filter
+                filter = animeFilter.filter
             )
             LoadResult.Page(
                 data = animePagingResponse.data,

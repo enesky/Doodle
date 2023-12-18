@@ -29,7 +29,7 @@ import kotlinx.coroutines.flow.Flow
  *
  * Check: https://betterprogramming.pub/how-to-avoid-use-cases-boilerplate-in-android-d0c9aa27ef27
 */
-fun interface TopAnimePagingUseCase : () -> Flow<PagingData<Anime>>
+fun interface UpcomingAnimePagingUseCase : () -> Flow<PagingData<Anime>>
 
 /**
  * Use this approach if the usecase has a logic inside

@@ -16,9 +16,13 @@
  */
 package dev.enesky.core.domain.di
 
+import dev.enesky.core.domain.usecase.AiringAnimePagingUseCase
 import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
 import dev.enesky.core.domain.usecase.AnimeUseCase
-import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
+import dev.enesky.core.domain.usecase.FavoriteAnimePagingUseCase
+import dev.enesky.core.domain.usecase.PopularAnimePagingUseCase
+import dev.enesky.core.domain.usecase.UpcomingAnimePagingUseCase
+import dev.enesky.core.network.model.AnimeFilter
 import dev.enesky.core.network.repository.JikanRepository
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.dsl.lazyModule
@@ -30,8 +34,22 @@ import org.koin.dsl.lazyModule
 @OptIn(KoinExperimentalAPI::class)
 val useCaseModule = lazyModule {
 
-    single<TopAnimePagingUseCase> {
-        TopAnimePagingUseCase(get<JikanRepository>()::getTopAnimePagingData)
+    single<AiringAnimePagingUseCase> {
+        // If it doesn't have a parameter use it like this
+        //TopAnimePagingUseCase(get<JikanRepository>()::getTopAnimePagingData)
+        AiringAnimePagingUseCase { get<JikanRepository>().getTopAnimePagingData(AnimeFilter.AIRING) }
+    }
+
+    single<UpcomingAnimePagingUseCase> {
+        UpcomingAnimePagingUseCase { get<JikanRepository>().getTopAnimePagingData(AnimeFilter.UPCOMING) }
+    }
+
+    single<PopularAnimePagingUseCase> {
+        PopularAnimePagingUseCase { get<JikanRepository>().getTopAnimePagingData(AnimeFilter.POPULARITY) }
+    }
+
+    single<FavoriteAnimePagingUseCase> {
+        FavoriteAnimePagingUseCase { get<JikanRepository>().getTopAnimePagingData(AnimeFilter.FAVORITE) }
     }
 
     single<AnimeUseCase> {
