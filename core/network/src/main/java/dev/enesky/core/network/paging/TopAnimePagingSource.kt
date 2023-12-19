@@ -16,6 +16,7 @@
  */
 package dev.enesky.core.network.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import dev.enesky.core.network.api.service.JikanService
@@ -44,6 +45,7 @@ class TopAnimePagingSource(
                 page = nextPage,
                 filter = animeFilter.filter,
             )
+            Log.d("TopAnimePagingSource", "filter: ${animeFilter.filter}")
             LoadResult.Page(
                 data = animePagingResponse.data,
                 prevKey = if (nextPage == 1) null else nextPage - 1,

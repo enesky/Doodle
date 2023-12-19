@@ -30,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -69,10 +70,10 @@ fun HomeRoute(
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val airingAnimes = (uiState.airingAnimes ?: emptyFlow()).collectAsLazyPagingItems()
-    val upcomingAnimes = (uiState.upcomingAnimes ?: emptyFlow()).collectAsLazyPagingItems()
-    val popularAnimes = (uiState.popularAnimes ?: emptyFlow()).collectAsLazyPagingItems()
-    val favoriteAnimes = (uiState.favoriteAnimes ?: emptyFlow()).collectAsLazyPagingItems()
+    val airingAnimes = uiState.airingAnimes?.collectAsLazyPagingItems()
+    val upcomingAnimes = uiState.upcomingAnimes?.collectAsLazyPagingItems()
+    val popularAnimes = uiState.popularAnimes?.collectAsLazyPagingItems()
+    val favoriteAnimes = uiState.favoriteAnimes?.collectAsLazyPagingItems()
 
     ObserveAsEvents(flow = viewModel.eventFlow) { homeEvents ->
         when (homeEvents) {
@@ -103,16 +104,27 @@ fun HomeRoute(
 @Composable
 private fun HomeScreen(
     modifier: Modifier = Modifier,
-    airingPagingItems: LazyPagingItems<MiniAnime> = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
-    upcomingPagingItems: LazyPagingItems<MiniAnime> = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
-    popularPagingItems: LazyPagingItems<MiniAnime> = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
-    favoritePagingItems: LazyPagingItems<MiniAnime> = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
+    airingPagingItems: LazyPagingItems<MiniAnime>? = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
+    upcomingPagingItems: LazyPagingItems<MiniAnime>? = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
+    popularPagingItems: LazyPagingItems<MiniAnime>? = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
+    favoritePagingItems: LazyPagingItems<MiniAnime>? = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
+    fun isRefreshing() =
+        popularPagingItems?.loadState?.refresh?.isLoading == true ||
+            airingPagingItems?.loadState?.refresh?.isLoading == true ||
+            upcomingPagingItems?.loadState?.refresh?.isLoading == true ||
+            favoritePagingItems?.loadState?.refresh?.isLoading == true
+    fun refresh() {
+        airingPagingItems?.refresh()
+        upcomingPagingItems?.refresh()
+        popularPagingItems?.refresh()
+        favoritePagingItems?.refresh()
+    }
     SwipeRefresh(
         modifier = modifier,
-        isRefreshing = popularPagingItems.loadState.refresh.isLoading,
-        onRefresh = popularPagingItems::refresh,
+        isRefreshing = isRefreshing(),
+        onRefresh = { refresh() }
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -159,7 +171,7 @@ private fun HomeScreen(
 private fun AnimeListRow(
     modifier: Modifier = Modifier,
     title: String = stringResource(id = dev.enesky.core.design_system.R.string.lorem_ipsum_medium),
-    pagingItems: LazyPagingItems<MiniAnime>,
+    pagingItems: LazyPagingItems<MiniAnime>?,
     onNavigateDetailsClick: (id: String) -> Unit,
     emptyContent: @Composable LazyItemScope.() -> Unit = {
         Message(
@@ -206,15 +218,7 @@ private fun AnimeListRow(
         flingBehavior = rememberSnapFlingBehavior(lazyListState = rowState),
     ) {
         when {
-            pagingItems.isEmpty() -> {
-                item {
-                    Text(
-                        text = "Loading...",
-                        style = DoodleTheme.typography.regular.h1,
-                    )
-                }
-            }
-            pagingItems.isNotEmpty() -> {
+            pagingItems?.isNotEmpty() == true -> {
                 items(pagingItems.itemCount) { index ->
                     val anime = pagingItems[index]
                     if (anime != null) {
@@ -230,7 +234,7 @@ private fun AnimeListRow(
                     }
                 }
             }
-            pagingItems.loadState.refresh.isLoading -> {
+            pagingItems?.loadState?.refresh?.isLoading == true -> {
                 items(Constants.ITEMS_PER_PAGE) {
                     AnimeItem(
                         anime = MiniAnime(
@@ -249,20 +253,23 @@ private fun AnimeListRow(
                     )
                 }
             }
-            pagingItems.loadState.refresh.isFinished -> {
+            pagingItems?.loadState?.refresh?.isFinished == true -> {
                 if (pagingItems.isEmpty()) {
                     item(content = emptyContent)
                 }
             }
-            pagingItems.loadState.refresh.isError -> {
+            pagingItems?.loadState?.refresh?.isError == true -> {
                 item(content = emptyContent)
             }
         }
-        if (pagingItems.loadState.append.isLoading) {
-            item { CenteredBox(modifier = Modifier.fillMaxWidth()) { loadingContent() } }
-        }
-        if (pagingItems.loadState.append.isError) {
-            item { errorContent(pagingItems.loadState.append.error.toString()) }
+        when(pagingItems?.loadState?.append) {
+            is LoadState.Loading -> {
+                item { CenteredBox(modifier = Modifier.fillMaxWidth()) { loadingContent() } }
+            }
+            is LoadState.Error -> {
+                item { errorContent(pagingItems.loadState.append.error.toString()) }
+            }
+            else -> { }
         }
     }
     Spacer(modifier = Modifier.size(DoodleTheme.spacing.xSmall))
