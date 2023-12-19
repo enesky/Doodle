@@ -33,69 +33,37 @@ class HomeViewModel(
     Event<HomeEvents> by EventDelegate() {
 
     init {
-        getAiringAnimes()
-        getUpcomingAnimes()
-        getPopularAnimes()
-        getFavoriteAnimes()
+        getAllAnimes()
     }
 
-    private fun getPopularAnimes() {
+    private fun getAllAnimes() {
         viewModelScope.launch(Dispatchers.IO) {
-            val popularAnimes = popularAnimePagingUseCase()
+            val airingAnimesFlow = airingAnimePagingUseCase()
+                .pagingMap(Anime::asMiniAnime)
+                .cachedIn(viewModelScope)
+
+            val upcomingAnimesFlow = upcomingAnimePagingUseCase()
+                .pagingMap(Anime::asMiniAnime)
+                .cachedIn(viewModelScope)
+
+            val popularAnimesFlow = popularAnimePagingUseCase()
+                .pagingMap(Anime::asMiniAnime)
+                .cachedIn(viewModelScope)
+
+            val favoriteAnimesFlow = favoriteAnimePagingUseCase()
                 .pagingMap(Anime::asMiniAnime)
                 .cachedIn(viewModelScope)
 
             updateUiState {
                 copy(
                     loading = false,
-                    popularAnimes = popularAnimes,
+                    airingAnimes = airingAnimesFlow,
+                    upcomingAnimes = upcomingAnimesFlow,
+                    popularAnimes = popularAnimesFlow,
+                    favoriteAnimes = favoriteAnimesFlow
                 )
             }
         }
     }
 
-    private fun getAiringAnimes() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val airingAnimes = airingAnimePagingUseCase()
-                .pagingMap(Anime::asMiniAnime)
-                .cachedIn(viewModelScope)
-
-            updateUiState {
-                copy(
-                    loading = false,
-                    airingAnimes = airingAnimes,
-                )
-            }
-        }
-    }
-
-    private fun getUpcomingAnimes() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val upcomingAnimes = upcomingAnimePagingUseCase()
-                .pagingMap(Anime::asMiniAnime)
-                .cachedIn(viewModelScope)
-
-            updateUiState {
-                copy(
-                    loading = false,
-                    upcomingAnimes = upcomingAnimes,
-                )
-            }
-        }
-    }
-
-    private fun getFavoriteAnimes() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val favoriteAnimes = favoriteAnimePagingUseCase()
-                .pagingMap(Anime::asMiniAnime)
-                .cachedIn(viewModelScope)
-
-            updateUiState {
-                copy(
-                    loading = false,
-                    favoriteAnimes = favoriteAnimes,
-                )
-            }
-        }
-    }
 }
