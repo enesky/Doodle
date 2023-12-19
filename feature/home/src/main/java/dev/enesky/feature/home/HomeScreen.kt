@@ -124,7 +124,7 @@ private fun HomeScreen(
     SwipeRefresh(
         modifier = modifier,
         isRefreshing = isRefreshing(),
-        onRefresh = { refresh() }
+        onRefresh = { refresh() },
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -262,7 +262,7 @@ private fun AnimeListRow(
                 item(content = emptyContent)
             }
         }
-        when(pagingItems?.loadState?.append) {
+        when (pagingItems?.loadState?.append) {
             is LoadState.Loading -> {
                 item { CenteredBox(modifier = Modifier.fillMaxWidth()) { loadingContent() } }
             }

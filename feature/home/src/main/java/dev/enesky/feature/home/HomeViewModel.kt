@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
  */
 
 class HomeViewModel(
-    private val topAnimePagingUseCase: TopAnimePagingUseCase
+    private val topAnimePagingUseCase: TopAnimePagingUseCase,
 ) : ViewModel(),
     UiState<HomeUiState> by UiStateDelegate(initialState = { HomeUiState() }),
     Event<HomeEvents> by EventDelegate() {
@@ -55,7 +55,7 @@ class HomeViewModel(
                     airingAnimes = airingAnimesFlow,
                     upcomingAnimes = upcomingAnimesFlow,
                     popularAnimes = popularAnimesFlow,
-                    favoriteAnimes = favoriteAnimesFlow
+                    favoriteAnimes = favoriteAnimesFlow,
                 )
             }
         }
