@@ -36,6 +36,7 @@ fun TopAnimePreview(
     modifier: Modifier = Modifier,
     anime: MiniAnime?,
     isLoading: Boolean = false,
+    onNavigateDetailsClick: (id: String) -> Unit,
 ) {
     val config = LocalConfiguration.current
     val screenWidth = config.screenWidthDp.dp
@@ -51,6 +52,7 @@ fun TopAnimePreview(
             .also {
                 if (anime != null) {
                     it.clickable {
+                        onNavigateDetailsClick(anime.id.toString())
                     }
                 }
             },
@@ -132,6 +134,6 @@ private fun TopAnimePreviewPreview() {
                     ),
                 ),
             ),
-        )
+        ) {}
     }
 }

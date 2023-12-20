@@ -43,7 +43,8 @@ fun HomeRoute(
             }
 
             is HomeEvents.NavigateToDetails -> {
-                onNavigateDetailsClick(homeEvents.animeId)
+                Logger.debug("HomeScreen", "onNavigateDetailsClick: ${homeEvents.animeId}")
+                // TODO -> onNavigateDetailsClick(homeEvents.animeId)
             }
 
             is HomeEvents.OnItemOptionsClick -> {
@@ -55,7 +56,7 @@ fun HomeRoute(
     HomeScreen(
         modifier = modifier,
         uiState = uiState,
-        onNavigateDetailsClick = onNavigateDetailsClick,
+        onNavigateDetailsClick = {},
     )
 }
 
@@ -97,6 +98,7 @@ private fun HomeScreen(
                 TopAnimePreview(
                     anime = uiState.previewAnime,
                     isLoading = uiState.loading,
+                    onNavigateDetailsClick = onNavigateDetailsClick,
                 )
             }
             item {
