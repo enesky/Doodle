@@ -19,9 +19,9 @@ package dev.enesky.core.network.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import dev.enesky.core.network.api.JikanService
 import dev.enesky.core.data.Anime
 import dev.enesky.core.data.AnimeFilter
+import dev.enesky.core.network.api.JikanService
 import retrofit2.HttpException
 import java.io.IOException
 

@@ -61,7 +61,7 @@ fun AnimeListRow(
         )
     },
 ) {
-    AnimeRowTitle(title)
+    AnimeRowTitle(Modifier,title)
 
     Spacer(modifier = Modifier.size(DoodleTheme.spacing.small))
 
@@ -117,8 +117,13 @@ fun AnimeListRow(
 }
 
 @Composable
-fun AnimeRowTitle(title: String) {
-    Column {
+fun AnimeRowTitle(
+    modifier: Modifier = Modifier,
+    title: String,
+) {
+    Column(
+        modifier = modifier,
+    ) {
         Text(
             modifier = Modifier.padding(
                 horizontal = DoodleTheme.spacing.medium,
@@ -161,7 +166,7 @@ fun PlaceholderItem() {
 private fun AnimeListRowPreview() {
     DoodleTheme {
         Column(
-            modifier = Modifier.size(450.dp, 200.dp)
+            modifier = Modifier.size(450.dp, 200.dp),
         ) {
             AnimeListRow(
                 title = "Most Popular",

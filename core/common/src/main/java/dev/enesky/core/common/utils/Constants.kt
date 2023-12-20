@@ -22,5 +22,4 @@ package dev.enesky.core.common.utils
 object Constants {
 
     const val ITEMS_PER_PAGE = 20
-
 }

@@ -30,7 +30,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface JikanDataSource {
 
-    fun getTopAnimePagingData(animeFilter: dev.enesky.core.data.AnimeFilter): Flow<PagingData<dev.enesky.core.data.Anime>>
-    suspend fun getAnimeById(animeId: Int): Result<dev.enesky.core.data.BaseResponse<dev.enesky.core.data.FullAnime>>
-    suspend fun getCharactersByAnimeId(animeId: Int): Result<List<dev.enesky.core.data.Character>>
+    fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<Anime>>
+    suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>>
+    suspend fun getCharactersByAnimeId(animeId: Int): Result<List<Character>>
 }

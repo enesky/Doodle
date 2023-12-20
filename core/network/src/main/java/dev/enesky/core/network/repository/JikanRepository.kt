@@ -32,15 +32,15 @@ class JikanRepository(
     private val jikanDataSource: JikanDataSource,
 ) {
 
-    fun getTopAnimePagingData(animeFilter: dev.enesky.core.data.AnimeFilter): Flow<PagingData<dev.enesky.core.data.Anime>> {
+    fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<Anime>> {
         return jikanDataSource.getTopAnimePagingData(animeFilter)
     }
 
-    suspend fun getAnimeById(animeId: Int): Result<dev.enesky.core.data.BaseResponse<dev.enesky.core.data.FullAnime>> {
+    suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>> {
         return jikanDataSource.getAnimeById(animeId)
     }
 
-    suspend fun getCharactersByAnimeId(animeId: Int): Result<List<dev.enesky.core.data.Character>> {
+    suspend fun getCharactersByAnimeId(animeId: Int): Result<List<Character>> {
         return jikanDataSource.getCharactersByAnimeId(animeId)
     }
 }
