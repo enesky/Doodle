@@ -20,13 +20,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import dev.enesky.core.network.api.JikanService
-import dev.enesky.core.data.Anime
-import dev.enesky.core.data.AnimeFilter
-import dev.enesky.core.data.BaseResponse
-import dev.enesky.core.data.Character
-import dev.enesky.core.data.FullAnime
 import dev.enesky.core.network.paging.TopAnimePagingSource
-import dev.enesky.core.network.util.Constants.ITEMS_PER_PAGE
+import dev.enesky.core.common.utils.Constants.ITEMS_PER_PAGE
 import dev.enesky.core.network.util.getBodyOrThrowError
 import kotlinx.coroutines.flow.Flow
 

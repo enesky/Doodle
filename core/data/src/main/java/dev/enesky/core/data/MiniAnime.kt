@@ -15,7 +15,7 @@ data class MiniAnime(
     val images: Images,
     val trailer: Trailer? = null,
     val title: String,
-    val genres: List<Genre>,
+    val genres: String,
 ) : Parcelable
 
 fun Anime.asMiniAnime(): MiniAnime {
@@ -25,7 +25,7 @@ fun Anime.asMiniAnime(): MiniAnime {
         images = images,
         trailer = trailer,
         title = title,
-        genres = genres,
+        genres = toGenreString(genres),
     )
 }
 
@@ -35,5 +35,13 @@ fun FullAnime.asMiniAnime() = MiniAnime(
     images = images,
     trailer = trailer,
     title = title,
-    genres = genres,
+    genres = toGenreString(genres),
 )
+
+fun toGenreString(genres: List<Genre>): String {
+    val genreList = genres.map { it.name }.take(2).toString()
+    return genreList
+        .replace("[", "")
+        .replace("]", "")
+        .replace(", ", " | ")
+}

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.network.util
+package dev.enesky.core.common.utils
 
 /**
  * Created by Enes Kamil YILMAZ on 28/10/2023
@@ -22,4 +22,5 @@ package dev.enesky.core.network.util
 object Constants {
 
     const val ITEMS_PER_PAGE = 20
+
 }

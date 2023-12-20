@@ -16,14 +16,7 @@
  */
 package dev.enesky.core.network.api
 
-import dev.enesky.core.data.AnimeFilter
-import dev.enesky.core.data.AnimePagingResponse
-import dev.enesky.core.data.AnimeRating
-import dev.enesky.core.data.AnimeType
-import dev.enesky.core.data.BaseResponse
-import dev.enesky.core.data.Character
-import dev.enesky.core.data.FullAnime
-import dev.enesky.core.network.util.Constants
+import dev.enesky.core.common.utils.Constants
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
