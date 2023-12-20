@@ -40,6 +40,7 @@ import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.design_system.common.DoodleImagePlaceholder
 import dev.enesky.core.design_system.common.DoodleNetworkImage
+import dev.enesky.core.design_system.common.Error
 import dev.enesky.core.design_system.common.Message
 import dev.enesky.core.design_system.common.SwipeRefresh
 import dev.enesky.core.design_system.common.placeholder
@@ -215,22 +216,24 @@ private fun TopAnimePreview(
             DoodleNetworkImage(
                 modifier = Modifier
                     .height(itemHeight)
-                    .clip(DoodleTheme.shapes.small)
-                    ,
+                    .clip(DoodleTheme.shapes.small),
                 model = anime.images.jpg?.imageUrl,
                 contentDescription = anime.title,
             )
         }
-        Box( // Background gradient
+        Box(
+            // Background gradient
             modifier = Modifier
                 .matchParentSize()
-                .background(Brush.verticalGradient(
-                    listOf(
-                        DoodleTheme.colors.transparent,
-                        DoodleTheme.colors.transparent,
-                        DoodleTheme.colors.softDark
+                .background(
+                    Brush.verticalGradient(
+                        listOf(
+                            DoodleTheme.colors.transparent,
+                            DoodleTheme.colors.transparent,
+                            DoodleTheme.colors.softDark
+                        )
                     )
-                )),
+                ),
         )
 
         Column(
@@ -242,7 +245,8 @@ private fun TopAnimePreview(
         ) {
             Text(
                 modifier = Modifier,
-                text = anime?.title ?: stringResource(id = dev.enesky.core.design_system.R.string.lorem_ipsum_short),
+                text = anime?.title
+                    ?: stringResource(id = dev.enesky.core.design_system.R.string.lorem_ipsum_short),
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.bold.h3,
             )
@@ -275,11 +279,11 @@ private fun AnimeListRow(
         )
     },
     errorContent: @Composable LazyItemScope.(errorMessage: String) -> Unit = { errorMessage ->
-        // Error(
-        //    modifier = Modifier.fillMaxWidth(),
-        //    errorMessage = errorMessage,
-        //    onRetry = tvShows::retry
-        // )
+        Error(
+            modifier = Modifier.fillMaxWidth(),
+            errorMessage = errorMessage,
+            onRetry = { pagingItems?.retry() }
+        )
     },
 ) {
     AnimeRowTitle(title)
