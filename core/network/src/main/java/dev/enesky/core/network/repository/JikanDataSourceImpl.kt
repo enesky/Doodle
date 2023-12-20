@@ -22,7 +22,9 @@ import androidx.paging.PagingData
 import dev.enesky.core.network.api.service.JikanService
 import dev.enesky.core.network.model.Anime
 import dev.enesky.core.network.model.AnimeFilter
+import dev.enesky.core.network.model.BaseResponse
 import dev.enesky.core.network.model.Character
+import dev.enesky.core.network.model.FullAnime
 import dev.enesky.core.network.paging.TopAnimePagingSource
 import dev.enesky.core.network.util.Constants.ITEMS_PER_PAGE
 import dev.enesky.core.network.util.getBodyOrThrowError
@@ -45,7 +47,7 @@ class JikanDataSourceImpl(
         ).flow
     }
 
-    override suspend fun getAnimeById(animeId: Int): Result<Anime> {
+    override suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>> {
         return kotlin.runCatching {
             jikanService.getAnimeById(animeId).getBodyOrThrowError()
         }

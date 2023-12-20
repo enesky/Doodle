@@ -28,7 +28,7 @@ import org.koin.dsl.lazyModule
  */
 
 @OptIn(KoinExperimentalAPI::class)
-val repositoryModule = lazyModule {
+internal val repositoryModule = lazyModule {
 
     single<JikanRepository> {
         JikanRepository(get<JikanDataSource>())

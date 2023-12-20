@@ -23,6 +23,7 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
 import dev.enesky.core.network.BuildConfig
 import dev.enesky.core.network.api.service.JikanService
+import dev.enesky.core.network.interceptor.RateLimitInterceptor
 import dev.enesky.core.network.repository.JikanDataSource
 import dev.enesky.core.network.repository.JikanDataSourceImpl
 import okhttp3.OkHttpClient
@@ -59,6 +60,7 @@ val networkModule = lazyModule {
         OkHttpClient.Builder()
             .addInterceptor(get<HttpLoggingInterceptor>())
             .addInterceptor(get<ChuckerInterceptor>())
+            .addInterceptor(get<RateLimitInterceptor>())
             .build()
     }
 
@@ -66,6 +68,10 @@ val networkModule = lazyModule {
         HttpLoggingInterceptor().apply {
             setLevel(HttpLoggingInterceptor.Level.BODY)
         }
+    }
+
+    single {
+        RateLimitInterceptor()
     }
 
     single<ChuckerInterceptor> {

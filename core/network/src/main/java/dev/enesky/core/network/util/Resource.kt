@@ -29,9 +29,7 @@ sealed interface Resource<out T> {
 
 fun <T> Flow<T>.asResource(): Flow<Resource<T>> {
     return this
-        .map<T, Resource<T>> {
-            Resource.Success(it)
-        }
+        .map<T, Resource<T>> { Resource.Success(it) }
         .onStart { emit(Resource.Loading) }
         .catch { emit(Resource.Error(it)) }
 }
