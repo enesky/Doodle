@@ -37,7 +37,7 @@ interface UiState<T> {
      *         copy(loading = false)
      *     }
      **/
-    fun updateUiState(reduce: T.() -> T)
+    suspend fun updateUiState(reduce: T.() -> T)
 }
 
 /**
@@ -55,7 +55,8 @@ class UiStateDelegate<State : IUiState>(
 
     override val currentState: State = uiState.value
 
-    override fun updateUiState(reduce: State.() -> State) {
-        _uiState.update { currentState.reduce() }
+    override suspend fun updateUiState(reduce: State.() -> State) {
+        val updatedState = _uiState.value.reduce()
+        _uiState.emit(updatedState)
     }
 }
