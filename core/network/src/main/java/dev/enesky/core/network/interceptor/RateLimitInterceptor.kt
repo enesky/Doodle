@@ -26,17 +26,19 @@ class RateLimitInterceptor : Interceptor {
 
         var tryCount = 0
         val maxLimit = 3
+        val sleepTime = 2000L
+        val tooManyRequestsHttpCode = 429
 
-        while (!response.isSuccessful && response.code == 429 && tryCount < maxLimit) {
+        while (!response.isSuccessful && response.code == tooManyRequestsHttpCode && tryCount < maxLimit) {
             Logger.debug(this.javaClass.simpleName, "Rate limit exceeded. Waiting 2 seconds...")
-            Logger.debug(this.javaClass.simpleName,"Intercepted ${tryCount+1} time")
+            Logger.debug(this.javaClass.simpleName, "Intercepted ${tryCount + 1} time")
 
             tryCount++
             response.close()
             try {
-                Thread.sleep(2000)
+                Thread.sleep(sleepTime)
             } catch (e: InterruptedException) {
-                e.printStackTrace()
+                Logger.debug(this.javaClass.simpleName, "Exception: ${e.message}")
             }
             response = chain.proceed(request)
         }

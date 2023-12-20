@@ -2,7 +2,6 @@ package dev.enesky.core.common.delegate
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 
 /**
  * Created by Enes Kamil YILMAZ on 21/11/2023

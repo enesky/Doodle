@@ -48,13 +48,13 @@ data class FullAnime(
     val relations: List<Relation>,
     val theme: AnimeTheme,
     val external: List<External>,
-    val streaming: List<Streaming>
+    val streaming: List<Streaming>,
 ) : Parcelable
 
 @Parcelize
 data class Relation(
     val relation: String,
-    val entry: List<RelationEntry>
+    val entry: List<RelationEntry>,
 ) : Parcelable
 
 @Parcelize
@@ -62,23 +62,23 @@ data class RelationEntry(
     @SerializedName("mal_id") val id: Int,
     val type: String,
     val name: String,
-    val url: String
+    val url: String,
 ) : Parcelable
 
 @Parcelize
 data class AnimeTheme(
     val openings: List<String>,
-    val endings: List<String>
+    val endings: List<String>,
 ) : Parcelable
 
 @Parcelize
 data class External(
     val name: String,
-    val url: String
+    val url: String,
 ) : Parcelable
 
 @Parcelize
 data class Streaming(
     val name: String,
-    val url: String
+    val url: String,
 ) : Parcelable

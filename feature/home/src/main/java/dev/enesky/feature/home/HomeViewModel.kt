@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val topAnimePagingUseCase: TopAnimePagingUseCase,
-    private val animeUseCase: AnimeUseCase
+    private val animeUseCase: AnimeUseCase,
 ) : ViewModel(),
     UiState<HomeUiState> by UiStateDelegate(initialState = { HomeUiState() }),
     Event<HomeEvents> by EventDelegate() {
@@ -79,7 +79,7 @@ class HomeViewModel(
                             updateUiState {
                                 copy(
                                     loading = true,
-                                    previewAnime = null
+                                    previewAnime = null,
                                 )
                             }
                         }
@@ -89,7 +89,7 @@ class HomeViewModel(
                                 updateUiState {
                                     copy(
                                         loading = false,
-                                        previewAnime = null
+                                        previewAnime = null,
                                     )
                                 }
                                 return@onEach
@@ -98,7 +98,7 @@ class HomeViewModel(
                             updateUiState {
                                 copy(
                                     loading = false,
-                                    previewAnime = miniAnime
+                                    previewAnime = miniAnime,
                                 )
                             }
                         }
@@ -107,7 +107,7 @@ class HomeViewModel(
                             updateUiState {
                                 copy(
                                     loading = false,
-                                    previewAnime = null
+                                    previewAnime = null,
                                 )
                             }
                         }
@@ -115,5 +115,4 @@ class HomeViewModel(
                 }.launchIn(this)
         }
     }
-
 }

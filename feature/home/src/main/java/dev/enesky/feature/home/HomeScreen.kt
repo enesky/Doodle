@@ -112,9 +112,9 @@ private fun HomeScreen(
     val favoritePagingItems = uiState.favoriteAnimes?.collectAsLazyPagingItems()
 
     fun isRefreshing() = popularPagingItems?.loadState?.refresh?.isLoading == true ||
-            airingPagingItems?.loadState?.refresh?.isLoading == true ||
-            upcomingPagingItems?.loadState?.refresh?.isLoading == true ||
-            favoritePagingItems?.loadState?.refresh?.isLoading == true
+        airingPagingItems?.loadState?.refresh?.isLoading == true ||
+        upcomingPagingItems?.loadState?.refresh?.isLoading == true ||
+        favoritePagingItems?.loadState?.refresh?.isLoading == true
 
     fun refresh() {
         airingPagingItems?.refresh()
@@ -172,11 +172,12 @@ private fun HomeScreen(
     }
 }
 
+@Suppress("LongMethod")
 @Composable
 private fun TopAnimePreview(
     modifier: Modifier = Modifier,
     anime: MiniAnime?,
-    isLoading: Boolean = false
+    isLoading: Boolean = false,
 ) {
     val config = LocalConfiguration.current
     val screenWidth = config.screenWidthDp.dp
@@ -193,7 +194,6 @@ private fun TopAnimePreview(
             .also {
                 if (anime != null) {
                     it.clickable {
-
                     }
                 }
             },
@@ -207,9 +207,9 @@ private fun TopAnimePreview(
                         Brush.verticalGradient(
                             listOf(
                                 DoodleTheme.colors.transparent,
-                                DoodleTheme.colors.softDark
-                            )
-                        )
+                                DoodleTheme.colors.softDark,
+                            ),
+                        ),
                     ),
             )
         } else {
@@ -230,9 +230,9 @@ private fun TopAnimePreview(
                         listOf(
                             DoodleTheme.colors.transparent,
                             DoodleTheme.colors.transparent,
-                            DoodleTheme.colors.softDark
-                        )
-                    )
+                            DoodleTheme.colors.softDark,
+                        ),
+                    ),
                 ),
         )
 
@@ -282,7 +282,7 @@ private fun AnimeListRow(
         Error(
             modifier = Modifier.fillMaxWidth(),
             errorMessage = errorMessage,
-            onRetry = { pagingItems?.retry() }
+            onRetry = { pagingItems?.retry() },
         )
     },
 ) {
@@ -343,21 +343,23 @@ private fun AnimeListRow(
 
 @Composable
 private fun AnimeRowTitle(title: String) {
-    Text(
-        modifier = Modifier.padding(
-            horizontal = DoodleTheme.spacing.medium,
-        ),
-        text = title,
-        color = DoodleTheme.colors.white,
-        style = DoodleTheme.typography.regular.h5,
-    )
-    Divider(
-        modifier = Modifier.padding(
-            horizontal = DoodleTheme.spacing.medium,
-        ),
-        color = DoodleTheme.colors.white,
-        thickness = 1.dp,
-    )
+    Box {
+        Text(
+            modifier = Modifier.padding(
+                horizontal = DoodleTheme.spacing.medium,
+            ),
+            text = title,
+            color = DoodleTheme.colors.white,
+            style = DoodleTheme.typography.regular.h5,
+        )
+        Divider(
+            modifier = Modifier.padding(
+                horizontal = DoodleTheme.spacing.medium,
+            ),
+            color = DoodleTheme.colors.white,
+            thickness = 1.dp,
+        )
+    }
 }
 
 @Composable
@@ -423,13 +425,17 @@ private fun AnimeItem(
                 contentDescription = anime.title,
             )
         }
+
+        val textWeight = 5f
+        val iconWeight = 1f
+
         Row(
             modifier = Modifier
                 .width(itemWidth),
         ) {
             Column(
                 modifier = Modifier
-                    .weight(5f),
+                    .weight(textWeight),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -466,7 +472,7 @@ private fun AnimeItem(
                         .padding(
                             top = DoodleTheme.spacing.xSmall,
                         )
-                        .weight(1f),
+                        .weight(iconWeight),
                     imageVector = Icons.MoreVert,
                     tint = DoodleTheme.colors.white,
                     contentDescription = anime.title + "options",

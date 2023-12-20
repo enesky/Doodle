@@ -31,7 +31,7 @@ fun OutlinedButton(
     containerColor: Color = DoodleTheme.colors.softDark,
     contentColor: Color = DoodleTheme.colors.white,
     borderColor: Color = contentColor,
-    textStyle: TextStyle = DoodleTheme.typography.regular.h5
+    textStyle: TextStyle = DoodleTheme.typography.regular.h5,
 ) {
     OutlinedButton(
         onClick = onClick,
@@ -39,9 +39,9 @@ fun OutlinedButton(
         shape = shape,
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = containerColor,
-            contentColor = contentColor
+            contentColor = contentColor,
         ),
-        border = ButtonDefaults.outlinedButtonBorder.copy(brush = SolidColor(borderColor))
+        border = ButtonDefaults.outlinedButtonBorder.copy(brush = SolidColor(borderColor)),
     ) {
         Text(text = stringResource(id = textResourceId), style = textStyle)
     }
@@ -53,16 +53,16 @@ fun IconButton(
     contentDescription: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    tint: Color = LocalContentColor.current
+    tint: Color = LocalContentColor.current,
 ) {
     IconButtonContent(
         modifier = modifier,
-        onClick = onClick
+        onClick = onClick,
     ) {
         Icon(
             painter = painterResource(id = iconResourceId),
             contentDescription = contentDescription,
-            tint = tint
+            tint = tint,
         )
     }
 }
@@ -73,16 +73,16 @@ fun IconButton(
     contentDescription: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    tint: Color = LocalContentColor.current
+    tint: Color = LocalContentColor.current,
 ) {
     IconButtonContent(
         modifier = modifier,
-        onClick = onClick
+        onClick = onClick,
     ) {
         Icon(
             imageVector = imageVector,
             contentDescription = contentDescription,
-            tint = tint
+            tint = tint,
         )
     }
 }
@@ -93,10 +93,10 @@ fun IconButton(
 private fun IconButtonContent(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
-        LocalMinimumInteractiveComponentEnforcement provides false
+        LocalMinimumInteractiveComponentEnforcement provides false,
     ) {
         IconButton(modifier = modifier, onClick = onClick, content = content)
     }
