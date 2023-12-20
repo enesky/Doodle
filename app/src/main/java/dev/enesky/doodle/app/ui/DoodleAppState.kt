@@ -3,13 +3,18 @@ package dev.enesky.doodle.app.ui
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.navigation.NavDestination
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.enesky.core.navigation.DoodleNavigationDestination
+import dev.enesky.doodle.app.navigation.BottomNavBarItem
 import dev.enesky.feature.login.navigation.LoginDestination
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -47,6 +52,8 @@ class DoodleAppState(
     val navController: NavHostController,
     var startDestination: DoodleNavigationDestination,
 ) {
+
+    // Snackbar related properties and functions
     init {
         coroutineScope.launch {
             snackbarMessages.collect { messages ->
@@ -60,11 +67,28 @@ class DoodleAppState(
             }
         }
     }
-    val currentDestination: NavDestination?
-        @Composable get() = navController.currentBackStackEntryAsState().value?.destination
 
     private val snackbarMessages = MutableStateFlow<List<String>>(emptyList())
 
+    fun showMessage(message: String) = snackbarMessages.update { it + message }
+
+    // Bottom nav bar related properties and functions
+    val shouldShowBottomBar: Boolean
+        @Composable get() = currentDestination?.route == currentNavBarItem.route
+
+    val bottomNavBarItems = BottomNavBarItem.entries.toTypedArray()
+
+    private val currentDestination: NavDestination?
+        @Composable get() = navController.currentBackStackEntryAsState().value?.destination
+    private var _currentNavBarItem by mutableStateOf(bottomNavBarItems.first())
+    val currentNavBarItem: BottomNavBarItem
+        @Composable get() {
+            bottomNavBarItems.firstOrNull { it.route == currentDestination?.route }
+                ?.let { _currentNavBarItem = it }
+            return _currentNavBarItem
+        }
+
+    // Navigation related functions
     /**
      * UI logic for navigating to a particular destination in the app. The NavigationOptions to
      * navigate with are based on the type of destination, which could be a top level destination or
@@ -80,12 +104,22 @@ class DoodleAppState(
      */
     fun navigate(destination: DoodleNavigationDestination, route: String? = null) =
         with(navController) {
-            navigate(route ?: destination.route)
+            navigate(route ?: destination.route) {
+                if (destination is BottomNavBarItem) {
+                    // Pop up to the start destination of the graph to avoid building up
+                    // a large stack of destinations on the back stack as users select items.
+                    popUpTo(graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    // Avoid multiple copies of the same destination when reselecting the same item.
+                    launchSingleTop = true
+                    // Restore state when reselecting a previously selected item.
+                    restoreState = true
+                }
+            }
         }
 
     fun onBackClick() = navController.popBackStack()
-
-    fun showMessage(message: String) = snackbarMessages.update { it + message }
 
     // TODO: Add system ui color controller -> system bar & navigation bar
 }

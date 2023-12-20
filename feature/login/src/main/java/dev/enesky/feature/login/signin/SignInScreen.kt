@@ -19,8 +19,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
-import dev.enesky.core.data.LoginResult
-import dev.enesky.core.data.LoginType
 import dev.enesky.core.design_system.common.ButtonWithImageAndText
 import dev.enesky.core.design_system.login.EmailAuthComponent
 import dev.enesky.core.design_system.login.LineWithTextMiddle
@@ -53,15 +51,7 @@ fun SignInScreenRoute(
                     intent = result.data ?: return@rememberLauncherForActivityResult,
                 )
             } else {
-                viewModel.setState {
-                    copy(
-                        loginType = LoginType.GOOGLE,
-                        loginResult = LoginResult(
-                            errorMessage = "Google Sign In Failed with resultCode= " + result.resultCode,
-                        ),
-                    )
-                }
-                Logger.error("SignInScreenRoute", "signInGoogleLauncher: ${result.resultCode}")
+                Logger.error("SignInScreen", "signInGoogleLauncher: ${result.resultCode}")
             }
         },
     )
@@ -76,31 +66,23 @@ fun SignInScreenRoute(
         }
     }
 
-    DoodleTheme {
-        Surface(
-            modifier = modifier.fillMaxSize(),
-            color = DoodleTheme.colors.background,
-        ) {
-            SignInScreen(
-                modifier = Modifier.fillMaxWidth(),
-                signInUiState = signInUiState,
-                forgotPasswordButtonAction = { email ->
-                    viewModel.forgotPassword(email)
-                },
-                onSignInWithEmail = { email, password ->
-                    viewModel.signInWithEmailAndPassword(email, password)
-                },
-                onGoogleSignInClick = {
-                    viewModel.signInWithGoogleLauncher(googleSignInLauncher)
-                },
-                onSignInAnonymouslyClick = viewModel::signInAnonymously,
-                navigateSignUp = viewModel::navigateToSignUp,
-            )
-        }
-    }
+    SignInScreen(
+        modifier = modifier.fillMaxWidth(),
+        signInUiState = signInUiState,
+        forgotPasswordButtonAction = { email ->
+            viewModel.forgotPassword(email)
+        },
+        onSignInWithEmail = { email, password ->
+            viewModel.signInWithEmailAndPassword(email, password)
+        },
+        onGoogleSignInClick = {
+            viewModel.signInWithGoogleLauncher(googleSignInLauncher)
+        },
+        onSignInAnonymouslyClick = viewModel::signInAnonymously,
+        navigateSignUp = viewModel::navigateToSignUp,
+    )
 }
 
-@Suppress("LongMethod")
 @Composable
 private fun SignInScreen(
     modifier: Modifier = Modifier,
@@ -111,50 +93,57 @@ private fun SignInScreen(
     onSignInAnonymouslyClick: () -> Unit = {},
     navigateSignUp: () -> Unit = {},
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(
-                vertical = DoodleTheme.spacing.xSmall,
-                horizontal = DoodleTheme.spacing.xLarge,
-            ),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        LoginHeader(
-            headerMessage = stringResource(id = R.string.label_welcome_to),
-        )
-
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
-
-        EmailAuthComponent(
-            signInButtonText = stringResource(R.string.label_sign_in),
-            signInButtonAction = onSignInWithEmail,
-            isForgotPasswordVisible = false,
-            forgotPasswordButtonAction = forgotPasswordButtonAction,
-            signUpButtonAction = navigateSignUp,
-        )
-
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
-
-        LineWithTextMiddle()
-
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
-
-        ButtonWithImageAndText(
-            imageResource = R.drawable.ic_google_logo,
-            text = stringResource(R.string.label_sign_in_with_google),
+    DoodleTheme {
+        Surface(
+            modifier = modifier.fillMaxSize(),
+            color = DoodleTheme.colors.background,
         ) {
-            onGoogleSignInClick()
-        }
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(
+                        vertical = DoodleTheme.spacing.xSmall,
+                        horizontal = DoodleTheme.spacing.xLarge,
+                    ),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                LoginHeader(
+                    headerMessage = stringResource(id = R.string.label_welcome_to),
+                )
 
-        Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxSmall))
+                Spacer(modifier = Modifier.height(DoodleTheme.spacing.medium))
 
-        ButtonWithImageAndText(
-            imageResource = R.drawable.ic_incognito,
-            text = "Sign in anonymously",
-        ) {
-            onSignInAnonymouslyClick()
+                EmailAuthComponent(
+                    signInButtonText = stringResource(R.string.label_sign_in),
+                    signInButtonAction = onSignInWithEmail,
+                    isForgotPasswordVisible = false,
+                    forgotPasswordButtonAction = forgotPasswordButtonAction,
+                    signUpButtonAction = navigateSignUp,
+                )
+
+                Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
+
+                LineWithTextMiddle()
+
+                Spacer(modifier = Modifier.height(DoodleTheme.spacing.large))
+
+                ButtonWithImageAndText(
+                    imageResource = R.drawable.ic_google_logo,
+                    text = stringResource(R.string.label_sign_in_with_google),
+                ) {
+                    onGoogleSignInClick()
+                }
+
+                Spacer(modifier = Modifier.height(DoodleTheme.spacing.xxSmall))
+
+                ButtonWithImageAndText(
+                    imageResource = R.drawable.ic_incognito,
+                    text = "Sign in anonymously",
+                ) {
+                    onSignInAnonymouslyClick()
+                }
+            }
         }
     }
 }
@@ -162,9 +151,7 @@ private fun SignInScreen(
 @PreviewUiMode
 @Composable
 private fun SignInScreenPreview() {
-    DoodleTheme {
-        SignInScreen(
-            signInUiState = SignInUiState(),
-        )
-    }
+    SignInScreen(
+        signInUiState = SignInUiState(),
+    )
 }

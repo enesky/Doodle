@@ -29,7 +29,7 @@ class SignUpViewModel(
                 email = email,
                 password = password,
             )
-            setState {
+            updateUiState {
                 copy(
                     loginResult = resultFromSignUp,
                 )
@@ -47,13 +47,15 @@ class SignUpViewModel(
         isSignInSuccessful: Boolean,
     ) {
         viewModelScope.launch {
-            event.trigger(
+            triggerEvent {
                 if (isSignInSuccessful) {
                     SignUpEvents.NavigateToHome
                 } else {
-                    SignUpEvents.OnError(currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR)
-                },
-            )
+                    SignUpEvents.OnError(
+                        currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR,
+                    )
+                }
+            }
         }
     }
 }

@@ -52,7 +52,9 @@ include(
 )
 include(
     ":feature:login",
-    ":feature:main",
+    ":feature:home",
     ":feature:details",
+    ":feature:explore",
+    ":feature:my-lists",
     ":feature:settings"
 )

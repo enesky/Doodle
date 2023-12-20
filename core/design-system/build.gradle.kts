@@ -23,6 +23,9 @@ plugins {
 android.namespace = "dev.enesky.core.design_system"
 
 dependencies {
+    implementation(libs.coil.compose)
+    implementation(libs.bundles.accompanist.materials)
     implementation(projects.core.ui)
     implementation(projects.core.common)
+    implementation(projects.core.data)
 }

@@ -23,3 +23,7 @@ plugins {
 }
 
 android.namespace = "dev.enesky.core.data"
+
+dependencies {
+    implementation(libs.bundles.network)
+}

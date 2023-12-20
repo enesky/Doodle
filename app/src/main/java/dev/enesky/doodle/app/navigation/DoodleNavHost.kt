@@ -7,9 +7,12 @@ import androidx.navigation.compose.NavHost
 import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.feature.details.navigation.DetailsDestination
 import dev.enesky.feature.details.navigation.detailsGraph
+import dev.enesky.feature.explore.navigation.exploreGraph
+import dev.enesky.feature.home.navigation.HomeDestination
+import dev.enesky.feature.home.navigation.homeGraph
 import dev.enesky.feature.login.navigation.loginGraph
-import dev.enesky.feature.main.navigation.HomeDestination
-import dev.enesky.feature.main.navigation.homeGraph
+import dev.enesky.feature.my_lists.navigation.myListsGraph
+import dev.enesky.feature.settings.navigation.settingsGraph
 
 /**
  * Created by Enes Kamil YILMAZ on 11/11/2023
@@ -46,10 +49,9 @@ fun DoodleNavHost(
                 )
             },
         )
-        detailsGraph(
-            showSnackbar = {
-                onShowMessage("Snackbar")
-            },
-        )
+        detailsGraph { onShowMessage("Snackbar") }
+        exploreGraph { onShowMessage("Snackbar") }
+        myListsGraph { onShowMessage("Snackbar") }
+        settingsGraph { onShowMessage("Snackbar") }
     }
 }

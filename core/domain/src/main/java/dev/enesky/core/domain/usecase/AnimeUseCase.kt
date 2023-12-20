@@ -16,7 +16,7 @@
  */
 package dev.enesky.core.domain.usecase
 
-import dev.enesky.core.network.model.Anime
+import dev.enesky.core.data.FullAnime
 import dev.enesky.core.network.repository.JikanRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -28,11 +28,11 @@ import kotlinx.coroutines.flow.flow
 class AnimeUseCase(
     private val jikanRepository: JikanRepository,
 ) {
-    operator fun invoke(animeId: Int): Flow<Anime> {
+    operator fun invoke(animeId: Int): Flow<FullAnime> {
         return flow {
             val result = jikanRepository.getAnimeById(animeId)
             (result.getOrNull() ?: result.getOrThrow()).also {
-                emit(it)
+                emit(it.data)
             }
         }
     }

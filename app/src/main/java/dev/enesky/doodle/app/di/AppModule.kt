@@ -16,10 +16,14 @@
  */
 package dev.enesky.doodle.app.di
 
+import dev.enesky.core.common.consts.Values
 import dev.enesky.core.network.di.networkModule
+import dev.enesky.doodle.R
 import dev.enesky.feature.login.di.loginModule
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.module.includes
+import org.koin.core.qualifier.named
 import org.koin.dsl.lazyModule
 
 /**
@@ -34,4 +38,13 @@ val appModule = lazyModule {
 
     // Includes all the lazy modules from the feature modules
     includes(loginModule)
+
+    // Google Services values
+    single<String>(named(Values.GOOGLE_WEB_CLIENT_ID)) {
+        androidContext().getString(R.string.default_web_client_id)
+    }
+
+    single<String>(named(Values.GOOGLE_API_KEY)) {
+        androidContext().getString(R.string.google_api_key)
+    }
 }

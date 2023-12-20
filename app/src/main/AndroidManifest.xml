@@ -13,12 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.Doodle.Starting"
-        tools:targetApi="31">
+        android:enableOnBackInvokedCallback="true"
+        tools:targetApi="33">
 
         <activity
             android:name=".app.ui.main.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Doodle.Starting" >
+            android:theme="@style/Theme.Doodle.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

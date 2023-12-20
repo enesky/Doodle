@@ -42,7 +42,9 @@ dependencies {
     implementation(projects.core.navigation)
     implementation(projects.core.ui)
     implementation(projects.feature.login)
-    implementation(projects.feature.main)
+    implementation(projects.feature.home)
     implementation(projects.feature.details)
+    implementation(projects.feature.explore)
+    implementation(projects.feature.myLists)
     implementation(projects.feature.settings)
 }

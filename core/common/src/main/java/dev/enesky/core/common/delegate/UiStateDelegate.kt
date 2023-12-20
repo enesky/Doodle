@@ -2,7 +2,6 @@ package dev.enesky.core.common.delegate
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 
 /**
  * Created by Enes Kamil YILMAZ on 21/11/2023
@@ -11,7 +10,10 @@ import kotlinx.coroutines.flow.update
 /**
  * Base interface for defining new UiState data classes
  **/
-interface IUiState
+interface IUiState {
+    val loading: Boolean
+    var errorMessage: String?
+}
 
 /**
  * Base interface for ui state delegation
@@ -35,7 +37,7 @@ interface UiState<T> {
      *         copy(loading = false)
      *     }
      **/
-    fun setState(reduce: T.() -> T)
+    suspend fun updateUiState(reduce: T.() -> T)
 }
 
 /**
@@ -53,7 +55,8 @@ class UiStateDelegate<State : IUiState>(
 
     override val currentState: State = uiState.value
 
-    override fun setState(reduce: State.() -> State) {
-        _uiState.update { currentState.reduce() }
+    override suspend fun updateUiState(reduce: State.() -> State) {
+        val updatedState = _uiState.value.reduce()
+        _uiState.emit(updatedState)
     }
 }

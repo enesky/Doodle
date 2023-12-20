@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "553106997185-laa726e611gohuncckh3un3k5c87g68v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.enesky.doodle",
+            "certificate_hash": "660f03a88e2f83dbc4d4d32893ec82b6adc4caa8"
+          }
+        },
+        {
           "client_id": "553106997185-ajekuvkorclhd9eoj10ks5eev6vth0te.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,9 +37,6 @@
       "api_key": [
         {
           "current_key": "AIzaSyAGd3e4gg1HrUbHqBHWDiAFj_iqN4P_Hf4"
-        },
-        {
-          "current_key": "AIzaSyAFs09_-yOtdWuK7olSYjQdgGQxjQOIrfs"
         }
       ],
       "services": {
@@ -54,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "553106997185-5fu47ugouq91ipi8g32tcdbv09c6ravi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.enesky.doodle.dev.premium",
+            "certificate_hash": "660f03a88e2f83dbc4d4d32893ec82b6adc4caa8"
+          }
+        },
+        {
           "client_id": "553106997185-m08bg59pk95uvgm73edgm6ap1hk8hebc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -69,9 +82,6 @@
       "api_key": [
         {
           "current_key": "AIzaSyAGd3e4gg1HrUbHqBHWDiAFj_iqN4P_Hf4"
-        },
-        {
-          "current_key": "AIzaSyAFs09_-yOtdWuK7olSYjQdgGQxjQOIrfs"
         }
       ],
       "services": {
@@ -94,6 +104,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "553106997185-5ikbjclgucql0670tgih4mn16h5v4s2v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.enesky.doodle.dev.trial",
+            "certificate_hash": "660f03a88e2f83dbc4d4d32893ec82b6adc4caa8"
+          }
+        },
+        {
           "client_id": "553106997185-da9r7cbqtet68fl8bungnjqm84onv0l7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -109,9 +127,6 @@
       "api_key": [
         {
           "current_key": "AIzaSyAGd3e4gg1HrUbHqBHWDiAFj_iqN4P_Hf4"
-        },
-        {
-          "current_key": "AIzaSyAFs09_-yOtdWuK7olSYjQdgGQxjQOIrfs"
         }
       ],
       "services": {
@@ -142,6 +157,14 @@
           }
         },
         {
+          "client_id": "553106997185-maeo98h5i4jv1a0kt2agouj374t5dd9r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.enesky.doodle.prod.premium",
+            "certificate_hash": "660f03a88e2f83dbc4d4d32893ec82b6adc4caa8"
+          }
+        },
+        {
           "client_id": "553106997185-ajekuvkorclhd9eoj10ks5eev6vth0te.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -149,9 +172,6 @@
       "api_key": [
         {
           "current_key": "AIzaSyAGd3e4gg1HrUbHqBHWDiAFj_iqN4P_Hf4"
-        },
-        {
-          "current_key": "AIzaSyAFs09_-yOtdWuK7olSYjQdgGQxjQOIrfs"
         }
       ],
       "services": {
@@ -182,6 +202,14 @@
           }
         },
         {
+          "client_id": "553106997185-vnom61sikkvbbn1jrpqp6fo5kg59m8ho.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.enesky.doodle.prod.trial",
+            "certificate_hash": "660f03a88e2f83dbc4d4d32893ec82b6adc4caa8"
+          }
+        },
+        {
           "client_id": "553106997185-ajekuvkorclhd9eoj10ks5eev6vth0te.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -189,9 +217,6 @@
       "api_key": [
         {
           "current_key": "AIzaSyAGd3e4gg1HrUbHqBHWDiAFj_iqN4P_Hf4"
-        },
-        {
-          "current_key": "AIzaSyAFs09_-yOtdWuK7olSYjQdgGQxjQOIrfs"
         }
       ],
       "services": {

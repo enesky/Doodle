@@ -18,7 +18,6 @@ package dev.enesky.core.design_system.theme
 
 import android.app.Activity
 import androidx.compose.foundation.LocalIndication
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -33,24 +32,25 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+// TODO: Update here with Theme Selector
 @Composable
 fun DoodleTheme(
-    isDarkTheme: Boolean = isSystemInDarkTheme(),
+    isDarkTheme: Boolean = true,
     shapes: Shapes = Shapes,
     typography: Typography = Typography,
     content: @Composable () -> Unit,
 ) {
     val colorScheme: ColorScheme = if (isDarkTheme) DarkColorScheme else LightColorScheme
-
     val view = LocalView.current
     if (view.isInEditMode.not()) {
         SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.background.toArgb()
-            window.navigationBarColor = colorScheme.background.toArgb()
-            WindowCompat
-                .getInsetsController(window, view)
-                .isAppearanceLightStatusBars = isDarkTheme.not()
+            with((view.context as Activity).window) {
+                statusBarColor = colorScheme.background.toArgb()
+                navigationBarColor = colorScheme.background.toArgb()
+                WindowCompat
+                    .getInsetsController(this, view)
+                    .isAppearanceLightStatusBars = isDarkTheme.not()
+            }
         }
     }
 

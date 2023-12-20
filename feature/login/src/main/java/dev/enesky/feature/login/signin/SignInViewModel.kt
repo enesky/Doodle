@@ -56,7 +56,7 @@ class SignInViewModel(
     fun signInWithEmailAndPassword(email: String, password: String) {
         viewModelScope.launch {
             val signInResult = authManager.signInWithEmailAndPassword(email, password)
-            setState {
+            updateUiState {
                 copy(
                     loginType = LoginType.EMAIL,
                     loginResult = signInResult,
@@ -69,7 +69,7 @@ class SignInViewModel(
     fun forgotPassword(email: String) {
         viewModelScope.launch {
             val forgotPasswordResult = authManager.forgotPassword(email)
-            setState {
+            updateUiState {
                 copy(
                     loginType = LoginType.EMAIL,
                     loginResult = forgotPasswordResult,
@@ -103,7 +103,7 @@ class SignInViewModel(
     ) {
         viewModelScope.launch {
             val signInResult = authManager.signInWithGoogleResult(intent, idToken)
-            setState {
+            updateUiState {
                 copy(
                     loginType = LoginType.GOOGLE,
                     loginResult = signInResult,
@@ -118,7 +118,7 @@ class SignInViewModel(
     fun signInAnonymously() {
         viewModelScope.launch {
             val signInResult = authManager.signInAnonymously()
-            setState {
+            updateUiState {
                 copy(
                     loginType = LoginType.ANONYMOUS,
                     loginResult = signInResult,
@@ -135,22 +135,23 @@ class SignInViewModel(
         shouldNavigateToHome: Boolean = true,
     ) {
         viewModelScope.launch {
-            event.trigger(
-                if (isSignInSuccessful) {
-                    if (shouldNavigateToHome.not()) return@launch
+            triggerEvent {
+                if (isSignInSuccessful && shouldNavigateToHome) {
                     SignInEvents.NavigateToHome
                 } else {
                     SignInEvents.OnError(
                         currentState.loginResult?.errorMessage ?: ErrorMessages.GENERAL_ERROR,
                     )
-                },
-            )
+                }
+            }
         }
     }
 
     fun navigateToSignUp() {
         viewModelScope.launch {
-            event.trigger(SignInEvents.NavigateToSignUp)
+            triggerEvent {
+                SignInEvents.NavigateToSignUp
+            }
         }
     }
 }

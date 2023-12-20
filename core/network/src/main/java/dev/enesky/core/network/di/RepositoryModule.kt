@@ -16,8 +16,8 @@
  */
 package dev.enesky.core.network.di
 
-import dev.enesky.core.network.api.service.JikanService
-import dev.enesky.core.network.paging.PopularAnimesPagingSource
+import dev.enesky.core.network.api.JikanService
+import dev.enesky.core.network.paging.TopAnimePagingSource
 import dev.enesky.core.network.repository.JikanDataSource
 import dev.enesky.core.network.repository.JikanRepository
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -28,13 +28,13 @@ import org.koin.dsl.lazyModule
  */
 
 @OptIn(KoinExperimentalAPI::class)
-val repositoryModule = lazyModule {
+internal val repositoryModule = lazyModule {
 
     single<JikanRepository> {
         JikanRepository(get<JikanDataSource>())
     }
 
-    single<PopularAnimesPagingSource> {
-        PopularAnimesPagingSource(get<JikanService>())
+    factory<TopAnimePagingSource> {
+        TopAnimePagingSource(get<JikanService>())
     }
 }

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.enesky.core.design_system.theme.DoodleTheme
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -38,7 +38,7 @@ private fun DetailsScreen(
 ) {
     Surface(
         modifier = modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background,
+        color = DoodleTheme.colors.background,
     ) {
         DetailsContent(
             modifier = Modifier.fillMaxWidth(),
@@ -60,7 +60,7 @@ private fun DetailsContent(
         ) {
             Text(
                 text = "Welcome to Details Screen",
-                style = MaterialTheme.typography.headlineLarge,
+                style = DoodleTheme.typography.regular.h3,
             )
             Button(
                 modifier = Modifier.padding(32.dp),

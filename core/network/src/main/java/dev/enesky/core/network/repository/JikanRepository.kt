@@ -17,8 +17,11 @@
 package dev.enesky.core.network.repository
 
 import androidx.paging.PagingData
-import dev.enesky.core.network.model.Anime
-import dev.enesky.core.network.model.Character
+import dev.enesky.core.data.Anime
+import dev.enesky.core.data.AnimeFilter
+import dev.enesky.core.data.BaseResponse
+import dev.enesky.core.data.Character
+import dev.enesky.core.data.FullAnime
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -29,11 +32,11 @@ class JikanRepository(
     private val jikanDataSource: JikanDataSource,
 ) {
 
-    fun getPopularAnimes(): Flow<PagingData<Anime>> {
-        return jikanDataSource.getPopularAnimes()
+    fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<Anime>> {
+        return jikanDataSource.getTopAnimePagingData(animeFilter)
     }
 
-    suspend fun getAnimeById(animeId: Int): Result<Anime> {
+    suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>> {
         return jikanDataSource.getAnimeById(animeId)
     }
 

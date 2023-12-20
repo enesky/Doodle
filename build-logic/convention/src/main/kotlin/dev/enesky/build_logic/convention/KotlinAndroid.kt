@@ -25,7 +25,7 @@ import org.gradle.kotlin.dsl.dependencies
  * Configure base Kotlin with Android options
  */
 internal fun Project.configureKotlinAndroid(
-    commonExtension: CommonExtension<*, *, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) = with(commonExtension) {
     compileSdk = libs.versions.compile.sdk.get().toString().toInt()
 
