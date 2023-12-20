@@ -25,27 +25,6 @@ import kotlinx.parcelize.Parcelize
  */
 
 @Parcelize
-data class MiniAnime(
-    @SerializedName("mal_id") val id: Int,
-    val url: String,
-    val images: Images,
-    val trailer: Trailer? = null,
-    val title: String,
-    val genres: List<Genre>,
-) : Parcelable
-
-fun Anime.asMiniAnime(): MiniAnime {
-    return MiniAnime(
-        id = id,
-        url = url,
-        images = images,
-        trailer = trailer,
-        title = title,
-        genres = genres,
-    )
-}
-
-@Parcelize
 data class Anime(
     @SerializedName("mal_id") val id: Int,
     val url: String,
