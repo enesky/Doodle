@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.update
  **/
 interface IUiState {
     val loading: Boolean
+    var errorMessage: String?
 }
 
 /**

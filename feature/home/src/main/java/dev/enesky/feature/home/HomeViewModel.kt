@@ -35,7 +35,7 @@ class HomeViewModel(
 
     init {
         getAllAnimes()
-        getBestAnime()
+        getPreviewAnime()
     }
 
     private fun getAllAnimes() {
@@ -68,9 +68,10 @@ class HomeViewModel(
         }
     }
 
-    private fun getBestAnime() {
+    private fun getPreviewAnime() {
+        val jjkAnimeId = 40748
         viewModelScope.launch(Dispatchers.IO) {
-            animeUseCase(40748)
+            animeUseCase(animeId = jjkAnimeId)
                 .asResource()
                 .onEach { resource ->
                     when (resource) {
@@ -84,7 +85,7 @@ class HomeViewModel(
                         }
 
                         is Resource.Success -> {
-                            if (resource.data == null || resource.data.id == 0) {
+                            if (resource.data.id == 0) {
                                 updateUiState {
                                     copy(
                                         loading = false,

@@ -72,6 +72,10 @@ fun HomeRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
+    if (uiState.errorMessage != null) {
+        Logger.debug("HomeScreen", "onError: ${uiState.errorMessage}")
+    }
+
     ObserveAsEvents(flow = viewModel.eventFlow) { homeEvents ->
         when (homeEvents) {
             is HomeEvents.OnError -> {
@@ -130,7 +134,7 @@ private fun HomeScreen(
             ),
         ) {
             item {
-                BestAnimePreview(
+                TopAnimePreview(
                     anime = uiState.previewAnime,
                     isLoading = uiState.loading,
                 )
@@ -168,7 +172,7 @@ private fun HomeScreen(
 }
 
 @Composable
-private fun BestAnimePreview(
+private fun TopAnimePreview(
     modifier: Modifier = Modifier,
     anime: MiniAnime?,
     isLoading: Boolean = false
@@ -217,7 +221,7 @@ private fun BestAnimePreview(
                 contentDescription = anime.title,
             )
         }
-        Box(
+        Box( // Background gradient
             modifier = Modifier
                 .matchParentSize()
                 .background(Brush.verticalGradient(

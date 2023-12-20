@@ -10,6 +10,7 @@ import dev.enesky.core.data.LoginType
 
 data class SignInUiState(
     override val loading: Boolean = false,
+    override var errorMessage: String? = null,
     val loginType: LoginType = LoginType.ANONYMOUS,
     val loginResult: LoginResult? = null,
 ) : IUiState
