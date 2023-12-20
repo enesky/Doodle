@@ -44,7 +44,7 @@ fun Message(
             )
             Text(
                 text = stringResource(id = messageResourceId),
-                style = DoodleTheme.typography.regular.h3,
+                style = DoodleTheme.typography.regular.h5,
                 color = DoodleTheme.colors.white,
                 textAlign = TextAlign.Center,
             )

@@ -1,15 +1,18 @@
 package dev.enesky.feature.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -25,18 +28,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
-import dev.enesky.core.design_system.common.CenteredBox
 import dev.enesky.core.design_system.common.DoodleImagePlaceholder
 import dev.enesky.core.design_system.common.DoodleNetworkImage
 import dev.enesky.core.design_system.common.Message
@@ -56,7 +57,7 @@ import dev.enesky.core.ui.util.isFinished
 import dev.enesky.core.ui.util.isLoading
 import dev.enesky.core.ui.util.isNotEmpty
 import dev.enesky.feature.home.helpers.HomeEvents
-import kotlinx.coroutines.flow.emptyFlow
+import dev.enesky.feature.home.helpers.HomeUiState
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -70,10 +71,6 @@ fun HomeRoute(
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val airingAnimes = uiState.airingAnimes?.collectAsLazyPagingItems()
-    val upcomingAnimes = uiState.upcomingAnimes?.collectAsLazyPagingItems()
-    val popularAnimes = uiState.popularAnimes?.collectAsLazyPagingItems()
-    val favoriteAnimes = uiState.favoriteAnimes?.collectAsLazyPagingItems()
 
     ObserveAsEvents(flow = viewModel.eventFlow) { homeEvents ->
         when (homeEvents) {
@@ -93,10 +90,7 @@ fun HomeRoute(
 
     HomeScreen(
         modifier = modifier,
-        airingPagingItems = airingAnimes,
-        upcomingPagingItems = upcomingAnimes,
-        popularPagingItems = popularAnimes,
-        favoritePagingItems = favoriteAnimes,
+        uiState = uiState,
         onNavigateDetailsClick = onNavigateDetailsClick,
     )
 }
@@ -104,23 +98,26 @@ fun HomeRoute(
 @Composable
 private fun HomeScreen(
     modifier: Modifier = Modifier,
-    airingPagingItems: LazyPagingItems<MiniAnime>? = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
-    upcomingPagingItems: LazyPagingItems<MiniAnime>? = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
-    popularPagingItems: LazyPagingItems<MiniAnime>? = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
-    favoritePagingItems: LazyPagingItems<MiniAnime>? = emptyFlow<PagingData<MiniAnime>>().collectAsLazyPagingItems(),
+    uiState: HomeUiState,
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
-    fun isRefreshing() =
-        popularPagingItems?.loadState?.refresh?.isLoading == true ||
+    val airingPagingItems = uiState.airingAnimes?.collectAsLazyPagingItems()
+    val upcomingPagingItems = uiState.upcomingAnimes?.collectAsLazyPagingItems()
+    val popularPagingItems = uiState.popularAnimes?.collectAsLazyPagingItems()
+    val favoritePagingItems = uiState.favoriteAnimes?.collectAsLazyPagingItems()
+
+    fun isRefreshing() = popularPagingItems?.loadState?.refresh?.isLoading == true ||
             airingPagingItems?.loadState?.refresh?.isLoading == true ||
             upcomingPagingItems?.loadState?.refresh?.isLoading == true ||
             favoritePagingItems?.loadState?.refresh?.isLoading == true
+
     fun refresh() {
         airingPagingItems?.refresh()
         upcomingPagingItems?.refresh()
         popularPagingItems?.refresh()
         favoritePagingItems?.refresh()
     }
+
     SwipeRefresh(
         modifier = modifier,
         isRefreshing = isRefreshing(),
@@ -129,10 +126,15 @@ private fun HomeScreen(
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
-                vertical = DoodleTheme.spacing.medium,
+                vertical = DoodleTheme.spacing.xSmall,
             ),
         ) {
-            // TODO: Preview most popular anime
+            item {
+                BestAnimePreview(
+                    anime = uiState.previewAnime,
+                    isLoading = uiState.loading,
+                )
+            }
             item {
                 AnimeListRow(
                     title = "Most Popular",
@@ -165,6 +167,95 @@ private fun HomeScreen(
     }
 }
 
+@Composable
+private fun BestAnimePreview(
+    modifier: Modifier = Modifier,
+    anime: MiniAnime?,
+    isLoading: Boolean = false
+) {
+    val config = LocalConfiguration.current
+    val screenWidth = config.screenWidthDp.dp
+    val itemHeight = screenWidth * 0.75f
+
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(
+                bottom = DoodleTheme.spacing.medium,
+                start = DoodleTheme.spacing.medium,
+                end = DoodleTheme.spacing.medium,
+            )
+            .also {
+                if (anime != null) {
+                    it.clickable {
+
+                    }
+                }
+            },
+    ) {
+        if (isLoading || anime == null || anime?.images?.jpg?.imageUrl == null) {
+            DoodleImagePlaceholder(
+                modifier = Modifier
+                    .height(itemHeight)
+                    .clip(DoodleTheme.shapes.small)
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(
+                                DoodleTheme.colors.transparent,
+                                DoodleTheme.colors.softDark
+                            )
+                        )
+                    ),
+            )
+        } else {
+            DoodleNetworkImage(
+                modifier = Modifier
+                    .height(itemHeight)
+                    .clip(DoodleTheme.shapes.small)
+                    ,
+                model = anime.images.jpg?.imageUrl,
+                contentDescription = anime.title,
+            )
+        }
+        Box(
+            modifier = Modifier
+                .matchParentSize()
+                .background(Brush.verticalGradient(
+                    listOf(
+                        DoodleTheme.colors.transparent,
+                        DoodleTheme.colors.transparent,
+                        DoodleTheme.colors.softDark
+                    )
+                )),
+        )
+
+        Column(
+            modifier = Modifier
+                .padding(DoodleTheme.spacing.medium)
+                .matchParentSize(),
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.Bottom,
+        ) {
+            Text(
+                modifier = Modifier,
+                text = anime?.title ?: stringResource(id = dev.enesky.core.design_system.R.string.lorem_ipsum_short),
+                color = DoodleTheme.colors.white,
+                style = DoodleTheme.typography.bold.h3,
+            )
+            Text(
+                modifier = Modifier,
+                text = anime?.genres?.map { it.name }?.take(2)?.toString()
+                    ?.replace("[", "")
+                    ?.replace("]", "")
+                    ?.replace(", ", " | ")
+                    ?: stringResource(id = dev.enesky.core.design_system.R.string.lorem_ipsum_medium),
+                color = DoodleTheme.colors.white,
+                style = DoodleTheme.typography.bold.h5,
+            )
+        }
+    }
+}
+
 @Suppress("LongMethod", "MultipleEmitters")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -179,9 +270,6 @@ private fun AnimeListRow(
             messageResourceId = dev.enesky.core.design_system.R.string.label_no_anime_result,
         )
     },
-    loadingContent: @Composable LazyItemScope.() -> Unit = {
-        // CircularProgressIndicator()
-    },
     errorContent: @Composable LazyItemScope.(errorMessage: String) -> Unit = { errorMessage ->
         // Error(
         //    modifier = Modifier.fillMaxWidth(),
@@ -190,6 +278,63 @@ private fun AnimeListRow(
         // )
     },
 ) {
+    AnimeRowTitle(title)
+
+    Spacer(modifier = Modifier.size(DoodleTheme.spacing.small))
+
+    val rowState = rememberLazyListState()
+    LazyRow(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(DoodleTheme.spacing.medium),
+        contentPadding = PaddingValues(
+            horizontal = DoodleTheme.spacing.medium,
+        ),
+        state = rowState,
+        flingBehavior = rememberSnapFlingBehavior(lazyListState = rowState),
+    ) {
+        when {
+            pagingItems == null || pagingItems.loadState.refresh.isError -> {
+                item(content = emptyContent)
+            }
+
+            pagingItems.isNotEmpty() -> {
+                items(pagingItems.itemCount) { index ->
+                    pagingItems[index]?.let {
+                        AnimeItem(
+                            anime = it,
+                            onNavigateDetailsClick = onNavigateDetailsClick,
+                        )
+                    }
+                }
+            }
+
+            pagingItems.loadState.refresh.isLoading || pagingItems.loadState.append.isLoading -> {
+                items(Constants.ITEMS_PER_PAGE) {
+                    PlaceholderItem()
+                }
+            }
+
+            pagingItems.loadState.append.isError -> {
+                item { errorContent(pagingItems.loadState.append.error.toString()) }
+            }
+
+            pagingItems.loadState.refresh.isFinished -> {
+                if (pagingItems.isEmpty()) {
+                    item(content = emptyContent)
+                }
+            }
+
+            else -> {
+                item(content = emptyContent)
+            }
+        }
+    }
+
+    Spacer(modifier = Modifier.size(DoodleTheme.spacing.xSmall))
+}
+
+@Composable
+private fun AnimeRowTitle(title: String) {
     Text(
         modifier = Modifier.padding(
             horizontal = DoodleTheme.spacing.medium,
@@ -205,74 +350,25 @@ private fun AnimeListRow(
         color = DoodleTheme.colors.white,
         thickness = 1.dp,
     )
-    Spacer(modifier = Modifier.size(DoodleTheme.spacing.xSmall))
+}
 
-    val rowState = rememberLazyListState()
-    LazyRow(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(DoodleTheme.spacing.medium),
-        contentPadding = PaddingValues(
-            horizontal = DoodleTheme.spacing.medium,
+@Composable
+private fun PlaceholderItem() {
+    AnimeItem(
+        anime = MiniAnime(
+            id = 0,
+            title = "",
+            genres = emptyList(),
+            trailer = null,
+            url = "",
+            images = Images(
+                jpg = ImageList(
+                    imageUrl = "",
+                ),
+            ),
         ),
-        state = rowState,
-        flingBehavior = rememberSnapFlingBehavior(lazyListState = rowState),
-    ) {
-        when {
-            pagingItems?.isNotEmpty() == true -> {
-                items(pagingItems.itemCount) { index ->
-                    val anime = pagingItems[index]
-                    if (anime != null) {
-                        AnimeItem(
-                            anime = anime,
-                            onNavigateDetailsClick = onNavigateDetailsClick,
-                        )
-                    } else {
-                        Text(
-                            text = "Anime not found...",
-                            style = DoodleTheme.typography.regular.h1,
-                        )
-                    }
-                }
-            }
-            pagingItems?.loadState?.refresh?.isLoading == true -> {
-                items(Constants.ITEMS_PER_PAGE) {
-                    AnimeItem(
-                        anime = MiniAnime(
-                            id = 0,
-                            title = "",
-                            genres = emptyList(),
-                            trailer = null,
-                            url = "",
-                            images = Images(
-                                jpg = ImageList(
-                                    imageUrl = "",
-                                ),
-                            ),
-                        ),
-                        isPlaceholder = true,
-                    )
-                }
-            }
-            pagingItems?.loadState?.refresh?.isFinished == true -> {
-                if (pagingItems.isEmpty()) {
-                    item(content = emptyContent)
-                }
-            }
-            pagingItems?.loadState?.refresh?.isError == true -> {
-                item(content = emptyContent)
-            }
-        }
-        when (pagingItems?.loadState?.append) {
-            is LoadState.Loading -> {
-                item { CenteredBox(modifier = Modifier.fillMaxWidth()) { loadingContent() } }
-            }
-            is LoadState.Error -> {
-                item { errorContent(pagingItems.loadState.append.error.toString()) }
-            }
-            else -> { }
-        }
-    }
-    Spacer(modifier = Modifier.size(DoodleTheme.spacing.xSmall))
+        isPlaceholder = true,
+    )
 }
 
 @Suppress("LongMethod")
@@ -325,7 +421,7 @@ private fun AnimeItem(
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .weight(5f),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -360,11 +456,9 @@ private fun AnimeItem(
                     modifier = Modifier
                         .size(24.dp)
                         .padding(
-                            start = DoodleTheme.spacing.xxxSmall,
-                            end = DoodleTheme.spacing.default,
-                            top = DoodleTheme.spacing.xxSmall,
-                            bottom = DoodleTheme.spacing.xxSmall,
-                        ),
+                            top = DoodleTheme.spacing.xSmall,
+                        )
+                        .weight(1f),
                     imageVector = Icons.MoreVert,
                     tint = DoodleTheme.colors.white,
                     contentDescription = anime.title + "options",
@@ -377,5 +471,7 @@ private fun AnimeItem(
 @PreviewUiMode
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen { }
+    HomeScreen(
+        uiState = HomeUiState(),
+    ) { }
 }

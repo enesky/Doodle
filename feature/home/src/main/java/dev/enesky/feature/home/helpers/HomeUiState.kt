@@ -16,5 +16,6 @@ data class HomeUiState(
     val popularAnimes: Flow<PagingData<MiniAnime>>? = null,
     val favoriteAnimes: Flow<PagingData<MiniAnime>>? = null,
     val selectedAnime: MiniAnime? = null,
+    val previewAnime: MiniAnime? = null,
     val animeCharacters: List<MiniAnime>? = null,
 ) : IUiState
