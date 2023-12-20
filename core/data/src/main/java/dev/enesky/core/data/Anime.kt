@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.network.model
+package dev.enesky.core.data
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

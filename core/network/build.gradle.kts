@@ -30,6 +30,7 @@ dependencies {
     implementation(libs.bundles.androidx.libraries)
     implementation(libs.coil.compose)
     implementation(projects.core.common)
+    implementation(projects.core.data)
 
     // Chucker
     debugImplementation(libs.chucker)

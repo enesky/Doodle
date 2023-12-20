@@ -2,7 +2,7 @@ package dev.enesky.feature.home.helpers
 
 import androidx.paging.PagingData
 import dev.enesky.core.common.delegate.IUiState
-import dev.enesky.core.network.model.MiniAnime
+import dev.enesky.core.data.MiniAnime
 import kotlinx.coroutines.flow.Flow
 
 /**

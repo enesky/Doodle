@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.network.model
+package dev.enesky.core.data
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -23,17 +23,25 @@ import kotlinx.parcelize.Parcelize
 /**
  * Created by Enes Kamil YILMAZ on 28/10/2023
  */
+
 @Parcelize
-data class Images(
-    val jpg: ImageList? = null,
-    val webp: ImageList? = null,
+data class Character(
+    val character: Person,
+    val role: String,
+    val favorites: Int,
+    val voiceActors: List<VoiceActor>,
 ) : Parcelable
 
 @Parcelize
-data class ImageList(
-    @SerializedName("image_url") val imageUrl: String? = null,
-    @SerializedName("small_image_url") val smallImageUrl: String? = null,
-    @SerializedName("medium_image_url") val mediumImageUrl: String? = null,
-    @SerializedName("large_image_url") val largeImageUrl: String? = null,
-    @SerializedName("maximum_image_url") val maximumImageUrl: String? = null,
+data class Person(
+    @SerializedName("mal_id") val id: Int,
+    val url: String,
+    val images: Images,
+    val name: String,
+) : Parcelable
+
+@Parcelize
+data class VoiceActor(
+    val person: Person,
+    val language: String,
 ) : Parcelable

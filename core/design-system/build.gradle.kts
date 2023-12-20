@@ -27,4 +27,5 @@ dependencies {
     implementation(libs.bundles.accompanist.materials)
     implementation(projects.core.ui)
     implementation(projects.core.common)
+    implementation(projects.core.data)
 }

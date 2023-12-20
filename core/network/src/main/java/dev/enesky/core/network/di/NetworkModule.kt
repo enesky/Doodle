@@ -22,7 +22,7 @@ import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
 import dev.enesky.core.network.BuildConfig
-import dev.enesky.core.network.api.service.JikanService
+import dev.enesky.core.network.api.JikanService
 import dev.enesky.core.network.interceptor.RateLimitInterceptor
 import dev.enesky.core.network.repository.JikanDataSource
 import dev.enesky.core.network.repository.JikanDataSourceImpl

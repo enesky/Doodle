@@ -19,12 +19,12 @@ package dev.enesky.core.network.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import dev.enesky.core.network.api.service.JikanService
-import dev.enesky.core.network.model.Anime
-import dev.enesky.core.network.model.AnimeFilter
-import dev.enesky.core.network.model.BaseResponse
-import dev.enesky.core.network.model.Character
-import dev.enesky.core.network.model.FullAnime
+import dev.enesky.core.network.api.JikanService
+import dev.enesky.core.data.Anime
+import dev.enesky.core.data.AnimeFilter
+import dev.enesky.core.data.BaseResponse
+import dev.enesky.core.data.Character
+import dev.enesky.core.data.FullAnime
 import dev.enesky.core.network.paging.TopAnimePagingSource
 import dev.enesky.core.network.util.Constants.ITEMS_PER_PAGE
 import dev.enesky.core.network.util.getBodyOrThrowError
@@ -38,7 +38,7 @@ class JikanDataSourceImpl(
     private val jikanService: JikanService,
 ) : JikanDataSource {
 
-    override fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<Anime>> {
+    override fun getTopAnimePagingData(animeFilter: dev.enesky.core.data.AnimeFilter): Flow<PagingData<dev.enesky.core.data.Anime>> {
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE),
             pagingSourceFactory = {
@@ -47,13 +47,13 @@ class JikanDataSourceImpl(
         ).flow
     }
 
-    override suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>> {
+    override suspend fun getAnimeById(animeId: Int): Result<dev.enesky.core.data.BaseResponse<dev.enesky.core.data.FullAnime>> {
         return kotlin.runCatching {
             jikanService.getAnimeById(animeId).getBodyOrThrowError()
         }
     }
 
-    override suspend fun getCharactersByAnimeId(animeId: Int): Result<List<Character>> {
+    override suspend fun getCharactersByAnimeId(animeId: Int): Result<List<dev.enesky.core.data.Character>> {
         return kotlin.runCatching {
             jikanService.getCharactersByAnimeId(animeId).getBodyOrThrowError()
         }

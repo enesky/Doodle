@@ -1,4 +1,4 @@
-package dev.enesky.core.network.model
+package dev.enesky.core.data
 
 /**
  * Created by Enes Kamil YILMAZ on 20/12/2023

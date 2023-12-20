@@ -14,15 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.network.api.service
+package dev.enesky.core.network.api
 
-import dev.enesky.core.network.model.AnimeFilter
-import dev.enesky.core.network.model.AnimePagingResponse
-import dev.enesky.core.network.model.AnimeRating
-import dev.enesky.core.network.model.AnimeType
-import dev.enesky.core.network.model.BaseResponse
-import dev.enesky.core.network.model.Character
-import dev.enesky.core.network.model.FullAnime
+import dev.enesky.core.data.AnimeFilter
+import dev.enesky.core.data.AnimePagingResponse
+import dev.enesky.core.data.AnimeRating
+import dev.enesky.core.data.AnimeType
+import dev.enesky.core.data.BaseResponse
+import dev.enesky.core.data.Character
+import dev.enesky.core.data.FullAnime
 import dev.enesky.core.network.util.Constants
 import retrofit2.Response
 import retrofit2.http.GET
@@ -39,19 +39,19 @@ interface JikanService {
     suspend fun getTopAnimePaging(
         @Query("page") page: Int = 1,
         @Query("limit") limit: Int = Constants.ITEMS_PER_PAGE,
-        @Query("type") type: String = AnimeType.TV.type,
-        @Query("filter") filter: String = AnimeFilter.POPULARITY.filter,
-        @Query("rating") rating: String = AnimeRating.PG13.rating,
+        @Query("type") type: String = dev.enesky.core.data.AnimeType.TV.type,
+        @Query("filter") filter: String = dev.enesky.core.data.AnimeFilter.POPULARITY.filter,
+        @Query("rating") rating: String = dev.enesky.core.data.AnimeRating.PG13.rating,
         @Query("sfw") sfw: Boolean = true,
-    ): AnimePagingResponse
+    ): dev.enesky.core.data.AnimePagingResponse
 
     @GET("anime/{id}/full")
     suspend fun getAnimeById(
         @Path("id") animeId: Int,
-    ): Response<BaseResponse<FullAnime>>
+    ): Response<dev.enesky.core.data.BaseResponse<dev.enesky.core.data.FullAnime>>
 
     @GET("anime/{anime-id}/characters")
     suspend fun getCharactersByAnimeId(
         @Path("anime-id") animeId: Int,
-    ): Response<List<Character>>
+    ): Response<List<dev.enesky.core.data.Character>>
 }

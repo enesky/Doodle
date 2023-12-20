@@ -16,7 +16,7 @@
  */
 package dev.enesky.core.domain.usecase
 
-import dev.enesky.core.network.model.FullAnime
+import dev.enesky.core.data.FullAnime
 import dev.enesky.core.network.repository.JikanRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

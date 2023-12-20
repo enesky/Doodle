@@ -17,11 +17,11 @@
 package dev.enesky.core.network.repository
 
 import androidx.paging.PagingData
-import dev.enesky.core.network.model.Anime
-import dev.enesky.core.network.model.AnimeFilter
-import dev.enesky.core.network.model.BaseResponse
-import dev.enesky.core.network.model.Character
-import dev.enesky.core.network.model.FullAnime
+import dev.enesky.core.data.Anime
+import dev.enesky.core.data.AnimeFilter
+import dev.enesky.core.data.BaseResponse
+import dev.enesky.core.data.Character
+import dev.enesky.core.data.FullAnime
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -32,15 +32,15 @@ class JikanRepository(
     private val jikanDataSource: JikanDataSource,
 ) {
 
-    fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<Anime>> {
+    fun getTopAnimePagingData(animeFilter: dev.enesky.core.data.AnimeFilter): Flow<PagingData<dev.enesky.core.data.Anime>> {
         return jikanDataSource.getTopAnimePagingData(animeFilter)
     }
 
-    suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>> {
+    suspend fun getAnimeById(animeId: Int): Result<dev.enesky.core.data.BaseResponse<dev.enesky.core.data.FullAnime>> {
         return jikanDataSource.getAnimeById(animeId)
     }
 
-    suspend fun getCharactersByAnimeId(animeId: Int): Result<List<Character>> {
+    suspend fun getCharactersByAnimeId(animeId: Int): Result<List<dev.enesky.core.data.Character>> {
         return jikanDataSource.getCharactersByAnimeId(animeId)
     }
 }
