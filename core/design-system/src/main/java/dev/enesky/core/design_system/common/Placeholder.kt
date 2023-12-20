@@ -31,6 +31,6 @@ fun Modifier.placeholder(color: Color) = composed {
     placeholder(
         visible = true,
         color = color,
-        shape = DoodleTheme.shapes.medium,
+        shape = DoodleTheme.shapes.small,
     )
 }
