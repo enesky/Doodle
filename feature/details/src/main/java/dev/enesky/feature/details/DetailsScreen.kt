@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.enesky.core.design_system.home.TopAnimePreview
 import dev.enesky.core.design_system.theme.DoodleTheme
 import org.koin.androidx.compose.koinViewModel
 
