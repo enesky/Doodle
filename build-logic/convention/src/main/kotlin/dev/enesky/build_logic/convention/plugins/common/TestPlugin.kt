@@ -17,8 +17,10 @@
 package dev.enesky.build_logic.convention.plugins.common
 
 import com.android.build.gradle.TestExtension
+import dev.enesky.build_logic.convention.androidTestImplementation
 import dev.enesky.build_logic.convention.configureKotlinAndroid
 import dev.enesky.build_logic.convention.libs
+import dev.enesky.build_logic.convention.testImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -41,11 +43,11 @@ class TestPlugin : Plugin<Project> {
         }
 
         dependencies {
-            add("testImplementation", libs.junit)
-            add("androidTestImplementation", libs.bundles.testing)
-            add("androidTestImplementation", platform(libs.compose.bom))
-            add("testImplementation", platform(libs.koin.bom))
-            add("testImplementation", libs.bundles.koin.test.materials)
+            androidTestImplementation(libs.bundles.testing)
+            androidTestImplementation(platform(libs.compose.bom))
+            testImplementation(libs.junit)
+            testImplementation(platform(libs.koin.bom))
+            testImplementation(libs.bundles.koin.test.materials)
         }
     }
 }

@@ -18,6 +18,7 @@ package dev.enesky.build_logic.convention.plugins.library
 
 import com.android.build.gradle.LibraryExtension
 import dev.enesky.build_logic.convention.configureKotlinAndroid
+import dev.enesky.build_logic.convention.implementation
 import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -42,14 +43,14 @@ class LibraryMainPlugin : Plugin<Project> {
             }
 
             dependencies {
-                add("implementation", libs.core.ktx)
-                add("implementation", libs.material)
-                add("implementation", libs.appcompat)
-                add("implementation", libs.lifecycle.runtime.ktx)
+                implementation(libs.core.ktx)
+                implementation(libs.material)
+                implementation(libs.appcompat)
+                implementation(libs.lifecycle.runtime.ktx)
 
                 val koinBom = platform(libs.koin.bom)
-                add("implementation", koinBom)
-                add("implementation", libs.bundles.koin.materials)
+                implementation(koinBom)
+                implementation(libs.bundles.koin.materials)
             }
         }
     }

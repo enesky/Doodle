@@ -54,7 +54,7 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        val rootPath = "dev.enesky.build_logic.convention.plugins"
+        val rootPath = "$group.plugins"
 
         /**
          * App Related Convention Plugins

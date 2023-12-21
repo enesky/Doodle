@@ -16,6 +16,7 @@
  */
 package dev.enesky.build_logic.convention.plugins.common
 
+import dev.enesky.build_logic.convention.implementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -26,11 +27,11 @@ import org.gradle.kotlin.dsl.dependencies
 class FeaturePlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         dependencies {
-            add("implementation", project(":core:design-system"))
-            add("implementation", project(":core:common"))
-            add("implementation", project(":core:navigation"))
-            add("implementation", project(":core:data"))
-            add("implementation", project(":core:ui"))
+            implementation(project(":core:design-system"))
+            implementation(project(":core:common"))
+            implementation(project(":core:navigation"))
+            implementation(project(":core:data"))
+            implementation(project(":core:ui"))
         }
     }
 }

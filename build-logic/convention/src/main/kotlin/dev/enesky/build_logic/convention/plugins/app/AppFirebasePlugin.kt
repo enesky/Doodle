@@ -16,6 +16,7 @@
  */
 package dev.enesky.build_logic.convention.plugins.app
 
+import dev.enesky.build_logic.convention.implementation
 import dev.enesky.build_logic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -32,8 +33,8 @@ class AppFirebasePlugin : Plugin<Project> {
 
             dependencies {
                 val firebaseBom = platform(libs.firebase.bom)
-                add("implementation", firebaseBom)
-                add("implementation", libs.bundles.firebase.materials)
+                implementation(firebaseBom)
+                implementation(libs.bundles.firebase.materials)
             }
         }
     }

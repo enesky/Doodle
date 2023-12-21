@@ -37,11 +37,11 @@ internal fun Project.configureAndroidCompose(commonExtension: CommonExtension<*,
 
         dependencies {
             val composeBomPlatform = platform(libs.compose.bom.get().toString())
-            add("implementation", composeBomPlatform)
-            add("implementation", libs.bundles.compose.materials)
-            add("androidTestImplementation", composeBomPlatform)
+            implementation(composeBomPlatform)
+            implementation(libs.bundles.compose.materials)
+            androidTestImplementation(composeBomPlatform)
 
-            add("implementation", libs.androidx.navigation.compose)
-            add("implementation", libs.lifecycle.runtime.compose)
+            implementation(libs.androidx.navigation.compose)
+            implementation(libs.lifecycle.runtime.compose)
         }
     }

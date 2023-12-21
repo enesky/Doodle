@@ -18,10 +18,13 @@ package dev.enesky.build_logic.convention.plugins.app
 
 import com.android.build.api.dsl.ApplicationExtension
 import dev.enesky.build_logic.convention.configureKotlinAndroid
+import dev.enesky.build_logic.convention.debugImplementation
 import dev.enesky.build_logic.convention.getBuildTypes
 import dev.enesky.build_logic.convention.getGeneralBuildConfigs
 import dev.enesky.build_logic.convention.getProductFlavors
+import dev.enesky.build_logic.convention.implementation
 import dev.enesky.build_logic.convention.libs
+import dev.enesky.build_logic.convention.releaseImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -55,20 +58,20 @@ class AppMainPlugin : Plugin<Project> {
         }
 
         dependencies {
-            add("implementation", libs.core.ktx)
-            add("implementation", libs.activity.compose)
-            add("implementation", libs.material)
-            add("implementation", libs.appcompat)
-            add("implementation", libs.lifecycle.runtime.ktx)
-            add("implementation", libs.splash.screen)
+            implementation(libs.core.ktx)
+            implementation(libs.activity.compose)
+            implementation(libs.material)
+            implementation(libs.appcompat)
+            implementation(libs.lifecycle.runtime.ktx)
+            implementation(libs.splash.screen)
 
-            add("debugImplementation", libs.leak.canary)
-            add("debugImplementation", libs.chucker)
-            add("releaseImplementation", libs.chucker.no.op)
+            debugImplementation(libs.leak.canary)
+            debugImplementation(libs.chucker)
+            releaseImplementation(libs.chucker.no.op)
 
             val koinBom = platform(libs.koin.bom)
-            add("implementation", koinBom)
-            add("implementation", libs.bundles.koin.materials)
+            implementation(koinBom)
+            implementation(libs.bundles.koin.materials)
         }
     }
 }
