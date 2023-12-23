@@ -1,4 +1,4 @@
-package dev.enesky.core.design_system.home
+package dev.enesky.core.ui.components.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior

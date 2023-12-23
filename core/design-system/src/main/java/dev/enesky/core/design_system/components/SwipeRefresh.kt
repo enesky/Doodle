@@ -1,4 +1,4 @@
-package dev.enesky.core.design_system.common
+package dev.enesky.core.design_system.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues

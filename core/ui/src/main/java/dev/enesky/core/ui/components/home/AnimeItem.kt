@@ -1,4 +1,4 @@
-package dev.enesky.core.design_system.home
+package dev.enesky.core.ui.components.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

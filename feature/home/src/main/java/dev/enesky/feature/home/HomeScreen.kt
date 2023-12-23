@@ -10,9 +10,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
-import dev.enesky.core.design_system.common.SwipeRefresh
-import dev.enesky.core.design_system.home.AnimeListRow
-import dev.enesky.core.design_system.home.TopAnimePreview
+import dev.enesky.core.design_system.components.SwipeRefresh
+import dev.enesky.core.ui.components.home.AnimeListRow
+import dev.enesky.core.ui.components.home.TopAnimePreview
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.core.domain.utils.isLoading
