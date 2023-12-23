@@ -26,13 +26,14 @@ plugins {
 android.namespace = "dev.enesky.core.network"
 
 dependencies {
+    // Libraries
     implementation(libs.bundles.network)
-    implementation(libs.bundles.androidx.libraries)
+    implementation(libs.androidx.paging.compose)
     implementation(libs.coil.compose)
-    implementation(projects.core.common)
-    implementation(projects.core.data)
-
-    // Chucker
     debugImplementation(libs.chucker)
     releaseImplementation(libs.chucker.no.op)
+
+    // Modules
+    implementation(projects.core.common)
+    implementation(projects.core.data)
 }
