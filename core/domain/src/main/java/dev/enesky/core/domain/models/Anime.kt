@@ -16,16 +16,15 @@ data class Anime(
     val trailer: Trailer? = null,
     val title: String,
     val genres: String,
-    val imageUrl: String
+    val imageUrl: String,
 ) : Parcelable
 
 // Placeholder Anime for preview
-val placeholderAnime: Anime
-    get() = Anime(
-        id = 0,
-        title = "Jujutsu Kaisen",
-        genres = "Action | Adventure",
-        trailer = null,
-        url = "",
-        imageUrl = "",
-    )
+val placeholderAnime = Anime(
+    id = 0,
+    title = "Jujutsu Kaisen",
+    genres = "Action | Adventure",
+    trailer = null,
+    url = "",
+    imageUrl = "",
+)

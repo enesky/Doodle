@@ -19,12 +19,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.common.utils.ObserveAsEvents
+import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.core.design_system.components.ButtonWithImageAndText
+import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.ui.components.login.EmailAuthComponent
 import dev.enesky.core.ui.components.login.LineWithTextMiddle
 import dev.enesky.core.ui.components.login.LoginHeader
-import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.feature.login.R
 import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.SignInUiState
