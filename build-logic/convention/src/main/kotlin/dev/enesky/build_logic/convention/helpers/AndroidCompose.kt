@@ -41,6 +41,9 @@ internal fun Project.configureAndroidCompose(commonExtension: CommonExtension<*,
             implementation(libs.bundles.compose.materials)
             androidTestImplementation(composeBomPlatform)
 
+            implementation(libs.coil.compose)
+            implementation(libs.bundles.accompanist.materials)
+
             implementation(libs.androidx.navigation.compose)
             implementation(libs.lifecycle.runtime.compose)
         }
