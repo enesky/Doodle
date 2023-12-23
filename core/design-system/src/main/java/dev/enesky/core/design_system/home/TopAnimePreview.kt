@@ -18,13 +18,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.enesky.core.data.ImageList
-import dev.enesky.core.data.Images
-import dev.enesky.core.data.MiniAnime
+import dev.enesky.core.data.models.ImageList
+import dev.enesky.core.data.models.Images
 import dev.enesky.core.design_system.R
 import dev.enesky.core.design_system.common.DoodleImagePlaceholder
 import dev.enesky.core.design_system.common.DoodleNetworkImage
 import dev.enesky.core.design_system.theme.DoodleTheme
+import dev.enesky.core.domain.models.Anime
 
 /**
  * Created by Enes Kamil YILMAZ on 20/12/2023
@@ -34,7 +34,7 @@ import dev.enesky.core.design_system.theme.DoodleTheme
 @Composable
 fun TopAnimePreview(
     modifier: Modifier = Modifier,
-    anime: MiniAnime?,
+    anime: Anime?,
     isLoading: Boolean = false,
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
@@ -122,7 +122,7 @@ fun TopAnimePreview(
 private fun TopAnimePreviewPreview() {
     DoodleTheme {
         TopAnimePreview(
-            anime = MiniAnime(
+            anime = Anime(
                 id = 0,
                 title = "Jujutsu Kaisen",
                 genres = "Action | Adventure",

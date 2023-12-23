@@ -21,13 +21,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import dev.enesky.core.common.utils.Constants
-import dev.enesky.core.data.ImageList
-import dev.enesky.core.data.Images
-import dev.enesky.core.data.MiniAnime
+import dev.enesky.core.data.models.ImageList
+import dev.enesky.core.data.models.Images
 import dev.enesky.core.design_system.R
 import dev.enesky.core.design_system.common.Error
 import dev.enesky.core.design_system.common.Message
 import dev.enesky.core.design_system.theme.DoodleTheme
+import dev.enesky.core.domain.models.Anime
 import dev.enesky.core.ui.util.error
 import dev.enesky.core.ui.util.isEmpty
 import dev.enesky.core.ui.util.isError
@@ -45,7 +45,7 @@ import dev.enesky.core.ui.util.isNotEmpty
 fun AnimeListRow(
     modifier: Modifier = Modifier,
     title: String = stringResource(id = R.string.lorem_ipsum_medium),
-    pagingItems: LazyPagingItems<MiniAnime>?,
+    pagingItems: LazyPagingItems<Anime>?,
     onNavigateDetailsClick: (id: String) -> Unit,
     emptyContent: @Composable LazyItemScope.() -> Unit = {
         Message(
@@ -61,7 +61,7 @@ fun AnimeListRow(
         )
     },
 ) {
-    AnimeRowTitle(Modifier,title)
+    AnimeRowTitle(Modifier, title)
 
     Spacer(modifier = Modifier.size(DoodleTheme.spacing.small))
 
@@ -145,7 +145,7 @@ fun AnimeRowTitle(
 @Composable
 fun PlaceholderItem() {
     AnimeItem(
-        anime = MiniAnime(
+        anime = Anime(
             id = 0,
             title = "Jujutsu Kaisen",
             genres = "Action | Adventure",
