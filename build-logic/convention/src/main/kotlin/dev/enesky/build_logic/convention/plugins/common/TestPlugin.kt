@@ -17,10 +17,10 @@
 package dev.enesky.build_logic.convention.plugins.common
 
 import com.android.build.gradle.TestExtension
-import dev.enesky.build_logic.convention.androidTestImplementation
-import dev.enesky.build_logic.convention.configureKotlinAndroid
-import dev.enesky.build_logic.convention.libs
-import dev.enesky.build_logic.convention.testImplementation
+import dev.enesky.build_logic.convention.helpers.androidTestImplementation
+import dev.enesky.build_logic.convention.helpers.configureKotlinAndroid
+import dev.enesky.build_logic.convention.helpers.libs
+import dev.enesky.build_logic.convention.helpers.testImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

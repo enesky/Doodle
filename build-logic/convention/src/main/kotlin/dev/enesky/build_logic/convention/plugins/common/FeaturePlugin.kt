@@ -16,7 +16,7 @@
  */
 package dev.enesky.build_logic.convention.plugins.common
 
-import dev.enesky.build_logic.convention.implementation
+import dev.enesky.build_logic.convention.helpers.implementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

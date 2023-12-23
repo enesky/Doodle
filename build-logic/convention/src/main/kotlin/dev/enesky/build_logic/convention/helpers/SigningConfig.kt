@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.build_logic.convention
+package dev.enesky.build_logic.convention.helpers
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.dsl.SigningConfig

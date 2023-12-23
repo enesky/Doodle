@@ -16,7 +16,7 @@
  */
 package dev.enesky.build_logic.convention.plugins.common
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import dev.enesky.build_logic.convention.createSigningConfigFromProperties
+import dev.enesky.build_logic.convention.helpers.createSigningConfigFromProperties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

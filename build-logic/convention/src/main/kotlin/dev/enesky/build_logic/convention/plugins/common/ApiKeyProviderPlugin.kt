@@ -17,7 +17,7 @@
 package dev.enesky.build_logic.convention.plugins.common
 
 import com.android.build.gradle.LibraryExtension
-import dev.enesky.build_logic.convention.getLocalProperties
+import dev.enesky.build_logic.convention.helpers.getLocalProperties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType

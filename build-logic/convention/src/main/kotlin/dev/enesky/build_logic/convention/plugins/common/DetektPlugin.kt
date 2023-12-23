@@ -16,8 +16,8 @@
  */
 package dev.enesky.build_logic.convention.plugins.common
 
-import dev.enesky.build_logic.convention.detektPlugins
-import dev.enesky.build_logic.convention.libs
+import dev.enesky.build_logic.convention.helpers.detektPlugins
+import dev.enesky.build_logic.convention.helpers.libs
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension

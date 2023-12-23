@@ -17,14 +17,14 @@
 package dev.enesky.build_logic.convention.plugins.app
 
 import com.android.build.api.dsl.ApplicationExtension
-import dev.enesky.build_logic.convention.configureKotlinAndroid
-import dev.enesky.build_logic.convention.debugImplementation
-import dev.enesky.build_logic.convention.getBuildTypes
-import dev.enesky.build_logic.convention.getGeneralBuildConfigs
-import dev.enesky.build_logic.convention.getProductFlavors
-import dev.enesky.build_logic.convention.implementation
-import dev.enesky.build_logic.convention.libs
-import dev.enesky.build_logic.convention.releaseImplementation
+import dev.enesky.build_logic.convention.helpers.configureKotlinAndroid
+import dev.enesky.build_logic.convention.helpers.debugImplementation
+import dev.enesky.build_logic.convention.helpers.getBuildTypes
+import dev.enesky.build_logic.convention.helpers.getGeneralBuildConfigs
+import dev.enesky.build_logic.convention.helpers.getProductFlavors
+import dev.enesky.build_logic.convention.helpers.implementation
+import dev.enesky.build_logic.convention.helpers.libs
+import dev.enesky.build_logic.convention.helpers.releaseImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
