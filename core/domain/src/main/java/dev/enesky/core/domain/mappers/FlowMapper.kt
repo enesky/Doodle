@@ -1,4 +1,4 @@
-package dev.enesky.core.ui.mapper
+package dev.enesky.core.domain.mappers
 
 import androidx.paging.PagingData
 import androidx.paging.map

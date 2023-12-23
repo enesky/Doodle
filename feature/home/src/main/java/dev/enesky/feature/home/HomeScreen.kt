@@ -15,7 +15,7 @@ import dev.enesky.core.design_system.home.AnimeListRow
 import dev.enesky.core.design_system.home.TopAnimePreview
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.ui.annotation.PreviewUiMode
-import dev.enesky.core.ui.util.isLoading
+import dev.enesky.core.domain.utils.isLoading
 import dev.enesky.feature.home.helpers.HomeEvents
 import dev.enesky.feature.home.helpers.HomeUiState
 import org.koin.androidx.compose.koinViewModel

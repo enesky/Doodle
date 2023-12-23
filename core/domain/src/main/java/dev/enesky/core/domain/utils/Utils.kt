@@ -1,4 +1,4 @@
-package dev.enesky.core.domain.mappers
+package dev.enesky.core.domain.utils
 
 import dev.enesky.core.common.utils.Constants
 import dev.enesky.core.data.models.Images

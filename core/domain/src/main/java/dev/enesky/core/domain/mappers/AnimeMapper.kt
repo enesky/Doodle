@@ -3,6 +3,8 @@ package dev.enesky.core.domain.mappers
 import dev.enesky.core.data.response.AnimeResponse
 import dev.enesky.core.data.response.FullAnime
 import dev.enesky.core.domain.models.Anime
+import dev.enesky.core.domain.utils.getImageUrl
+import dev.enesky.core.domain.utils.toGenreString
 
 /**
  * Created by Enes Kamil YILMAZ on 23/12/2023

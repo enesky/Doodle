@@ -1,4 +1,4 @@
-package dev.enesky.core.ui.util
+package dev.enesky.core.domain.utils
 
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems

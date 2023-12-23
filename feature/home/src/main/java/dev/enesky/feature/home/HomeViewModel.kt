@@ -14,7 +14,7 @@ import dev.enesky.core.domain.usecase.AnimeUseCase
 import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
 import dev.enesky.core.common.result.Result
 import dev.enesky.core.common.result.asResult
-import dev.enesky.core.ui.mapper.pagingMap
+import dev.enesky.core.domain.mappers.pagingMap
 import dev.enesky.feature.home.helpers.HomeEvents
 import dev.enesky.feature.home.helpers.HomeUiState
 import kotlinx.coroutines.Dispatchers

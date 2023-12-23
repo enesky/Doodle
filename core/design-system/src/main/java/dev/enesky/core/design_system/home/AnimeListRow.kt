@@ -27,12 +27,12 @@ import dev.enesky.core.design_system.common.Message
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.domain.models.Anime
 import dev.enesky.core.domain.models.placeholderAnime
-import dev.enesky.core.ui.util.error
-import dev.enesky.core.ui.util.isEmpty
-import dev.enesky.core.ui.util.isError
-import dev.enesky.core.ui.util.isFinished
-import dev.enesky.core.ui.util.isLoading
-import dev.enesky.core.ui.util.isNotEmpty
+import dev.enesky.core.domain.utils.error
+import dev.enesky.core.domain.utils.isEmpty
+import dev.enesky.core.domain.utils.isError
+import dev.enesky.core.domain.utils.isFinished
+import dev.enesky.core.domain.utils.isLoading
+import dev.enesky.core.domain.utils.isNotEmpty
 
 /**
  * Created by Enes Kamil YILMAZ on 21/12/2023
