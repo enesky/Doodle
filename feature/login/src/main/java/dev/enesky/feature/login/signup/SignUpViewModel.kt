@@ -7,7 +7,7 @@ import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
-import dev.enesky.core.data.LoginResult
+import dev.enesky.core.data.response.LoginResponse
 import dev.enesky.feature.login.manager.AuthManager
 import dev.enesky.feature.login.signup.helpers.SignUpEvents
 import dev.enesky.feature.login.signup.helpers.SignUpUiState
@@ -25,7 +25,7 @@ class SignUpViewModel(
 
     fun signUpWithEmail(email: String, password: String) {
         viewModelScope.launch {
-            val resultFromSignUp: LoginResult = authManager.signUpWithEmailAndPassword(
+            val resultFromSignUp: LoginResponse = authManager.signUpWithEmailAndPassword(
                 email = email,
                 password = password,
             )
@@ -34,10 +34,10 @@ class SignUpViewModel(
                     loginResult = resultFromSignUp,
                 )
             }
-            if (resultFromSignUp.data != null) {
+            if (resultFromSignUp.user != null) {
                 authManager.saveCredentialForEmailAuth(email, password)
             }
-            handleResults(resultFromSignUp.data != null)
+            handleResults(resultFromSignUp.user != null)
         }
     }
 

@@ -11,7 +11,7 @@ import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
-import dev.enesky.core.data.LoginType
+import dev.enesky.core.data.response.LoginType
 import dev.enesky.feature.login.manager.AuthManager
 import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.SignInUiState
@@ -62,7 +62,7 @@ class SignInViewModel(
                     loginResult = signInResult,
                 )
             }
-            handleResults(signInResult.data != null)
+            handleResults(signInResult.user != null)
         }
     }
 
@@ -76,7 +76,7 @@ class SignInViewModel(
                 )
             }
             handleResults(
-                isSignInSuccessful = forgotPasswordResult.data != null,
+                isSignInSuccessful = forgotPasswordResult.user != null,
                 shouldNavigateToHome = false,
             )
         }
@@ -109,7 +109,7 @@ class SignInViewModel(
                     loginResult = signInResult,
                 )
             }
-            handleResults(isSignInSuccessful = signInResult.data != null)
+            handleResults(isSignInSuccessful = signInResult.user != null)
         }
     }
 
@@ -124,7 +124,7 @@ class SignInViewModel(
                     loginResult = signInResult,
                 )
             }
-            handleResults(isSignInSuccessful = signInResult.data != null)
+            handleResults(isSignInSuccessful = signInResult.user != null)
         }
     }
 
