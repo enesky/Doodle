@@ -11,7 +11,7 @@ import dev.enesky.core.domain.usecase.AnimeUseCase
 import dev.enesky.core.network.util.Resource
 import dev.enesky.core.network.util.asResource
 import dev.enesky.feature.details.helpers.DetailsUiState
-import dev.enesky.feature.home.helpers.DetailsEvents
+import dev.enesky.feature.details.helpers.DetailsEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

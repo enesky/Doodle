@@ -1,4 +1,4 @@
-package dev.enesky.feature.home.helpers
+package dev.enesky.feature.details.helpers
 
 import dev.enesky.core.common.delegate.IEvent
 
