@@ -24,7 +24,5 @@ plugins {
 android.namespace = "dev.enesky.feature.home"
 
 dependencies {
-    implementation(projects.core.network)
     implementation(projects.core.domain)
-    implementation(projects.core.data)
 }

@@ -8,8 +8,8 @@ import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
 import dev.enesky.core.domain.usecase.AnimeUseCase
-import dev.enesky.core.network.util.Resource
-import dev.enesky.core.network.util.asResource
+import dev.enesky.core.common.result.Result
+import dev.enesky.core.common.result.asResult
 import dev.enesky.feature.details.helpers.DetailsUiState
 import dev.enesky.feature.details.helpers.DetailsEvents
 import kotlinx.coroutines.Dispatchers
@@ -36,10 +36,10 @@ class DetailsViewModel(
         val jjkAnimeId = 40748
         viewModelScope.launch(Dispatchers.IO) {
             animeUseCase(animeId = jjkAnimeId)
-                .asResource()
+                .asResult()
                 .onEach { resource ->
                     when (resource) {
-                        is Resource.Loading -> {
+                        is Result.Loading -> {
                             updateUiState {
                                 copy(
                                     loading = true,
@@ -48,7 +48,7 @@ class DetailsViewModel(
                             }
                         }
 
-                        is Resource.Success -> {
+                        is Result.Success -> {
                             if (resource.data.id == 0) {
                                 updateUiState {
                                     copy(
@@ -66,7 +66,7 @@ class DetailsViewModel(
                             }
                         }
 
-                        is Resource.Error -> {
+                        is Result.Error -> {
                             updateUiState {
                                 copy(
                                     loading = false,

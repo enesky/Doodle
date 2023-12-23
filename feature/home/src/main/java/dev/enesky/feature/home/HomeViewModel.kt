@@ -12,8 +12,8 @@ import dev.enesky.core.data.response.AnimeResponse
 import dev.enesky.core.domain.mappers.asAnime
 import dev.enesky.core.domain.usecase.AnimeUseCase
 import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
-import dev.enesky.core.network.util.Resource
-import dev.enesky.core.network.util.asResource
+import dev.enesky.core.common.result.Result
+import dev.enesky.core.common.result.asResult
 import dev.enesky.core.ui.mapper.pagingMap
 import dev.enesky.feature.home.helpers.HomeEvents
 import dev.enesky.feature.home.helpers.HomeUiState
@@ -72,10 +72,10 @@ class HomeViewModel(
         val jjkAnimeId = 40748
         viewModelScope.launch(Dispatchers.IO) {
             animeUseCase(animeId = jjkAnimeId)
-                .asResource()
+                .asResult()
                 .onEach { resource ->
                     when (resource) {
-                        is Resource.Loading -> {
+                        is Result.Loading -> {
                             updateUiState {
                                 copy(
                                     loading = true,
@@ -84,7 +84,7 @@ class HomeViewModel(
                             }
                         }
 
-                        is Resource.Success -> {
+                        is Result.Success -> {
                             if (resource.data.id == 0) {
                                 updateUiState {
                                     copy(
@@ -103,7 +103,7 @@ class HomeViewModel(
                             }
                         }
 
-                        is Resource.Error -> {
+                        is Result.Error -> {
                             updateUiState {
                                 copy(
                                     loading = false,

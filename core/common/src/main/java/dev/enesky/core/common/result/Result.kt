@@ -14,22 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.network.util
+package dev.enesky.core.common.result
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 
-sealed interface Resource<out T> {
-    data class Success<T>(val data: T) : Resource<T>
-    data class Error(val exception: Throwable? = null) : Resource<Nothing>
-    object Loading : Resource<Nothing>
+sealed interface Result<out T> {
+    data class Success<T>(val data: T) : Result<T>
+    data class Error(val exception: Throwable? = null) : Result<Nothing>
+    data object Loading : Result<Nothing>
 }
 
-fun <T> Flow<T>.asResource(): Flow<Resource<T>> {
+fun <T> Flow<T>.asResult(): Flow<Result<T>> {
     return this
-        .map<T, Resource<T>> { Resource.Success(it) }
-        .onStart { emit(Resource.Loading) }
-        .catch { emit(Resource.Error(it)) }
+        .map<T, Result<T>> { Result.Success(it) }
+        .onStart { emit(Result.Loading) }
+        .catch { emit(Result.Error(it)) }
 }
