@@ -1,15 +1,15 @@
-package dev.enesky.core.data
+package dev.enesky.core.data.response
 
 /**
  * Created by Enes Kamil YILMAZ on 29/11/2023
  */
 
-data class LoginResult(
-    val data: UserData? = null,
+data class LoginResponse(
+    val user: User? = null,
     val errorMessage: String? = null,
 )
 
-data class UserData(
+data class User(
     val userId: String,
     val username: String? = null,
     val email: String? = null,
