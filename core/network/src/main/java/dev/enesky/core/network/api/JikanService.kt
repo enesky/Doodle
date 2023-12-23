@@ -22,9 +22,9 @@ import dev.enesky.core.data.models.AnimeRating
 import dev.enesky.core.data.models.AnimeType
 import dev.enesky.core.data.models.Character
 import dev.enesky.core.data.response.AnimeResponse
+import dev.enesky.core.data.response.FullAnime
 import dev.enesky.core.data.response.base.BasePagingResponse
 import dev.enesky.core.data.response.base.BaseResponse
-import dev.enesky.core.data.response.FullAnime
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -55,5 +55,4 @@ interface JikanService {
     suspend fun getCharactersByAnimeId(
         @Path("anime-id") animeId: Int,
     ): Response<List<Character>>
-
 }

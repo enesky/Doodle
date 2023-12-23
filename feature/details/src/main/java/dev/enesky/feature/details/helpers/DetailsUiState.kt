@@ -11,8 +11,4 @@ data class DetailsUiState(
     override val loading: Boolean = false,
     override var errorMessage: String? = null,
     val anime: FullAnime? = null,
-) : IUiState {
-
-
-
-}
+) : IUiState

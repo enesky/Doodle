@@ -8,5 +8,5 @@ import dev.enesky.core.common.delegate.IEvent
 
 sealed interface DetailsEvents : IEvent {
     data class OnError(val errorMessage: String) : DetailsEvents
-    data class onTrailerPlayClick(val animeId: String) : DetailsEvents
+    data class OnTrailerPlayClick(val animeId: String) : DetailsEvents
 }

@@ -21,10 +21,10 @@ package dev.enesky.core.data.models
  */
 
 enum class AnimeRating(val rating: String) {
-    G("g"),        // All ages
-    PG("pg"),      // Children
-    PG13("pg13"),  // Teens 13 or older
-    R17("r17"),    // +17 (Violence & Profanity)
-    R("r"),        // Mild Nudity
-    RX("rx"),      // Hentai
+    G("g"), // All ages
+    PG("pg"), // Children
+    PG13("pg13"), // Teens 13 or older
+    R17("r17"), // +17 (Violence & Profanity)
+    R("r"), // Mild Nudity
+    RX("rx"), // Hentai
 }

@@ -1,8 +1,8 @@
 package dev.enesky.core.domain.usecase
 
 import androidx.paging.PagingData
-import dev.enesky.core.data.response.AnimeResponse
 import dev.enesky.core.data.models.AnimeFilter
+import dev.enesky.core.data.response.AnimeResponse
 import kotlinx.coroutines.flow.Flow
 
 /**

@@ -10,8 +10,8 @@ import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
 import dev.enesky.core.domain.usecase.AnimeUseCase
 import dev.enesky.core.network.util.Resource
 import dev.enesky.core.network.util.asResource
-import dev.enesky.feature.home.helpers.DetailsEvents
 import dev.enesky.feature.details.helpers.DetailsUiState
+import dev.enesky.feature.home.helpers.DetailsEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 
 class DetailsViewModel(
     val animeUseCase: AnimeUseCase,
-    val animeCharactersUseCase: AnimeCharactersUseCase
+    val animeCharactersUseCase: AnimeCharactersUseCase,
 ) : ViewModel(),
     UiState<DetailsUiState> by UiStateDelegate(initialState = { DetailsUiState() }),
     Event<DetailsEvents> by EventDelegate() {
@@ -61,7 +61,7 @@ class DetailsViewModel(
                             updateUiState {
                                 copy(
                                     loading = false,
-                                    anime = resource.data
+                                    anime = resource.data,
                                 )
                             }
                         }
@@ -78,5 +78,4 @@ class DetailsViewModel(
                 }.launchIn(this)
         }
     }
-
 }
