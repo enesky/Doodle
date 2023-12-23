@@ -14,7 +14,7 @@ import dev.enesky.core.design_system.components.SwipeRefresh
 import dev.enesky.core.ui.components.home.AnimeListRow
 import dev.enesky.core.ui.components.home.TopAnimePreview
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.ui.annotation.PreviewUiMode
+import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.core.domain.utils.isLoading
 import dev.enesky.feature.home.helpers.HomeEvents
 import dev.enesky.feature.home.helpers.HomeUiState

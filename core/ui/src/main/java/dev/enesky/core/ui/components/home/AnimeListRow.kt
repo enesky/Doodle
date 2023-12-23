@@ -22,8 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import dev.enesky.core.common.utils.Constants
 import dev.enesky.core.design_system.R
-import dev.enesky.core.design_system.common.Error
-import dev.enesky.core.design_system.common.Message
+import dev.enesky.core.design_system.components.Error
+import dev.enesky.core.design_system.components.Message
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.domain.models.Anime
 import dev.enesky.core.domain.models.placeholderAnime

@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.ui.annotation.PreviewUiMode
+import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.doodle.app.navigation.BottomNavBarItem
 
 @Suppress("LongMethod")

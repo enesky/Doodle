@@ -24,7 +24,7 @@ import dev.enesky.core.ui.components.login.EmailAuthComponent
 import dev.enesky.core.ui.components.login.LineWithTextMiddle
 import dev.enesky.core.ui.components.login.LoginHeader
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.ui.annotation.PreviewUiMode
+import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.feature.login.R
 import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.SignInUiState

@@ -17,9 +17,9 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.enesky.core.design_system.common.DoodleImagePlaceholder
-import dev.enesky.core.design_system.common.DoodleNetworkImage
-import dev.enesky.core.design_system.common.placeholder
+import dev.enesky.core.design_system.components.DoodleImagePlaceholder
+import dev.enesky.core.design_system.components.DoodleNetworkImage
+import dev.enesky.core.design_system.components.placeholder
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.design_system.theme.Icons
 import dev.enesky.core.domain.models.Anime

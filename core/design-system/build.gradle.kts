@@ -24,7 +24,6 @@ android.namespace = "dev.enesky.core.design_system"
 
 dependencies {
     // Modules
-    implementation(projects.core.ui)
     implementation(projects.core.common)
     implementation(projects.core.domain)
 }

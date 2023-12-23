@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.ui.annotation.PreviewUiMode
+import dev.enesky.core.design_system.annotation.PreviewUiMode
 
 /**
  * Created by Enes Kamil YILMAZ on 06/12/2023

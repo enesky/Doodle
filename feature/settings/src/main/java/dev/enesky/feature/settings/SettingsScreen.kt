@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.ui.annotation.PreviewUiMode
+import dev.enesky.core.design_system.annotation.PreviewUiMode
 
 /**
  * Created by Enes Kamil YILMAZ on 05/12/2023
