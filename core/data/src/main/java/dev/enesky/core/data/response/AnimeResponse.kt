@@ -14,10 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.data
+package dev.enesky.core.data.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import dev.enesky.core.data.models.ImageList
+import dev.enesky.core.data.models.Images
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -25,7 +27,7 @@ import kotlinx.parcelize.Parcelize
  */
 
 @Parcelize
-data class Anime(
+data class AnimeResponse(
     @SerializedName("mal_id") val id: Int,
     val url: String,
     val images: Images,
