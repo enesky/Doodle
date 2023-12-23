@@ -21,13 +21,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import dev.enesky.core.common.utils.Constants
-import dev.enesky.core.data.models.ImageList
-import dev.enesky.core.data.models.Images
 import dev.enesky.core.design_system.R
 import dev.enesky.core.design_system.common.Error
 import dev.enesky.core.design_system.common.Message
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.domain.models.Anime
+import dev.enesky.core.domain.models.placeholderAnime
 import dev.enesky.core.ui.util.error
 import dev.enesky.core.ui.util.isEmpty
 import dev.enesky.core.ui.util.isError
@@ -145,18 +144,7 @@ fun AnimeRowTitle(
 @Composable
 fun PlaceholderItem() {
     AnimeItem(
-        anime = Anime(
-            id = 0,
-            title = "Jujutsu Kaisen",
-            genres = "Action | Adventure",
-            trailer = null,
-            url = "",
-            images = Images(
-                jpg = ImageList(
-                    imageUrl = "",
-                ),
-            ),
-        ),
+        anime = placeholderAnime,
         isPlaceholder = true,
     )
 }

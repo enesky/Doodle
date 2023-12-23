@@ -26,6 +26,5 @@ dependencies {
     // Modules
     implementation(projects.core.ui)
     implementation(projects.core.common)
-    implementation(projects.core.data)
     implementation(projects.core.domain)
 }
