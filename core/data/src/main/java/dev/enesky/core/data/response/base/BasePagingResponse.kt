@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.data
+package dev.enesky.core.data.response.base
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * Created by Enes Kamil YILMAZ on 28/10/2023
  */
-data class AnimePagingResponse(
+data class BasePagingResponse<T>(
     val pagination: Pagination,
-    val data: List<Anime>,
+    val data: List<T>,
 )
 
 data class Pagination(
