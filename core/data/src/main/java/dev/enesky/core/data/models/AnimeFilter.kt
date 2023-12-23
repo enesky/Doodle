@@ -14,19 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.data
+package dev.enesky.core.data.models
 
 /**
  * Created by Enes Kamil YILMAZ on 28/10/2023
  */
 
-@Suppress("unused")
-enum class AnimeType(val type: String) {
-
-    TV("tv"),
-    MOVIE("movie"),
-    OVA("ova"),
-    SPECIAL("special"),
-    ONA("ona"),
-    MUSIC("music"),
+enum class AnimeFilter(val filter: String) {
+    AIRING("airing"),
+    UPCOMING("upcoming"),
+    POPULARITY("bypopularity"),
+    FAVORITE("favorite"),
 }

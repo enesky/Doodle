@@ -14,17 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.data
+package dev.enesky.core.data.models
 
 /**
- * Created by Enes Kamil YILMAZ on 04/12/2023
+ * Created by Enes Kamil YILMAZ on 28/10/2023
  */
 
-enum class AnimeRating(val rating: String) {
-    G("g"), // All ages
-    PG("pg"), // Children
-    PG13("pg13"), // Teens 13 or older
-    R17("r17"), // +17 (Violence & Profanity)
-    R("r"), // Mild Nudity
-    RX("rx"), // Hentai
+@Suppress("unused")
+enum class AnimeType(val type: String) {
+    TV("tv"),
+    MOVIE("movie"),
+    OVA("ova"),
+    SPECIAL("special"),
+    ONA("ona"),
+    MUSIC("music"),
 }
