@@ -1,7 +1,8 @@
-package dev.enesky.core.data
+package dev.enesky.core.data.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import dev.enesky.core.data.models.Images
 import kotlinx.parcelize.Parcelize
 
 /**
