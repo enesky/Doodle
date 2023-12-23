@@ -17,7 +17,6 @@
 plugins {
     // Convention Plugins
     id(libs.plugins.library.main.get().pluginId)
-    id(libs.plugins.common.feature.get().pluginId)
 
     // Kotlin Plugins
     id("kotlin-parcelize")
