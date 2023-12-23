@@ -20,11 +20,11 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import dev.enesky.core.common.utils.Constants.ITEMS_PER_PAGE
-import dev.enesky.core.data.Anime
-import dev.enesky.core.data.AnimeFilter
-import dev.enesky.core.data.BaseResponse
-import dev.enesky.core.data.Character
-import dev.enesky.core.data.FullAnime
+import dev.enesky.core.data.response.AnimeResponse
+import dev.enesky.core.data.models.AnimeFilter
+import dev.enesky.core.data.response.base.BaseResponse
+import dev.enesky.core.data.models.Character
+import dev.enesky.core.data.response.FullAnime
 import dev.enesky.core.network.api.JikanService
 import dev.enesky.core.network.paging.TopAnimePagingSource
 import dev.enesky.core.network.util.getBodyOrThrowError
@@ -38,7 +38,7 @@ class JikanDataSourceImpl(
     private val jikanService: JikanService,
 ) : JikanDataSource {
 
-    override fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<Anime>> {
+    override fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<AnimeResponse>> {
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE),
             pagingSourceFactory = {

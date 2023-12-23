@@ -7,9 +7,9 @@ import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
-import dev.enesky.core.data.Anime
-import dev.enesky.core.data.AnimeFilter
-import dev.enesky.core.data.asMiniAnime
+import dev.enesky.core.data.models.AnimeFilter
+import dev.enesky.core.data.response.AnimeResponse
+import dev.enesky.core.domain.mappers.asAnime
 import dev.enesky.core.domain.usecase.AnimeUseCase
 import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
 import dev.enesky.core.network.util.Resource
@@ -41,19 +41,19 @@ class HomeViewModel(
     private fun getAllAnimes() {
         viewModelScope.launch(Dispatchers.IO) {
             val airingAnimesFlow = topAnimePagingUseCase(AnimeFilter.AIRING)
-                .pagingMap(Anime::asMiniAnime)
+                .pagingMap(AnimeResponse::asAnime)
                 .cachedIn(viewModelScope)
 
             val upcomingAnimesFlow = topAnimePagingUseCase(AnimeFilter.UPCOMING)
-                .pagingMap(Anime::asMiniAnime)
+                .pagingMap(AnimeResponse::asAnime)
                 .cachedIn(viewModelScope)
 
             val popularAnimesFlow = topAnimePagingUseCase(AnimeFilter.POPULARITY)
-                .pagingMap(Anime::asMiniAnime)
+                .pagingMap(AnimeResponse::asAnime)
                 .cachedIn(viewModelScope)
 
             val favoriteAnimesFlow = topAnimePagingUseCase(AnimeFilter.FAVORITE)
-                .pagingMap(Anime::asMiniAnime)
+                .pagingMap(AnimeResponse::asAnime)
                 .cachedIn(viewModelScope)
 
             updateUiState {
@@ -94,11 +94,11 @@ class HomeViewModel(
                                 }
                                 return@onEach
                             }
-                            val miniAnime = resource.data.asMiniAnime()
+                            val anime = resource.data.asAnime()
                             updateUiState {
                                 copy(
                                     loading = false,
-                                    previewAnime = miniAnime,
+                                    previewAnime = anime,
                                 )
                             }
                         }

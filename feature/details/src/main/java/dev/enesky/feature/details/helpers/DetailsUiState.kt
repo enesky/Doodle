@@ -1,10 +1,7 @@
-package dev.enesky.feature.home.helpers
+package dev.enesky.feature.details.helpers
 
-import androidx.paging.PagingData
 import dev.enesky.core.common.delegate.IUiState
-import dev.enesky.core.data.FullAnime
-import dev.enesky.core.data.MiniAnime
-import kotlinx.coroutines.flow.Flow
+import dev.enesky.core.data.response.FullAnime
 
 /**
  * Created by Enes Kamil YILMAZ on 07/12/2023

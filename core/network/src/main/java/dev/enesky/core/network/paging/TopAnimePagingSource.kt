@@ -19,8 +19,8 @@ package dev.enesky.core.network.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import dev.enesky.core.data.Anime
-import dev.enesky.core.data.AnimeFilter
+import dev.enesky.core.data.models.AnimeFilter
+import dev.enesky.core.data.response.AnimeResponse
 import dev.enesky.core.network.api.JikanService
 import retrofit2.HttpException
 import java.io.IOException
@@ -31,14 +31,14 @@ import java.io.IOException
 
 class TopAnimePagingSource(
     private val jikanService: JikanService,
-    private val animeFilter: dev.enesky.core.data.AnimeFilter = dev.enesky.core.data.AnimeFilter.POPULARITY,
-) : PagingSource<Int, dev.enesky.core.data.Anime>() {
+    private val animeFilter: AnimeFilter = AnimeFilter.POPULARITY,
+) : PagingSource<Int, AnimeResponse>() {
 
-    override fun getRefreshKey(state: PagingState<Int, dev.enesky.core.data.Anime>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, AnimeResponse>): Int? {
         return state.anchorPosition
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, dev.enesky.core.data.Anime> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, AnimeResponse> {
         return try {
             val nextPage = params.key ?: 1
             val animePagingResponse = jikanService.getTopAnimePaging(

@@ -6,13 +6,12 @@ import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
-import dev.enesky.core.data.asMiniAnime
 import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
 import dev.enesky.core.domain.usecase.AnimeUseCase
 import dev.enesky.core.network.util.Resource
 import dev.enesky.core.network.util.asResource
 import dev.enesky.feature.home.helpers.DetailsEvents
-import dev.enesky.feature.home.helpers.DetailsUiState
+import dev.enesky.feature.details.helpers.DetailsUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
