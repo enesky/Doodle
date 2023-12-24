@@ -1,9 +1,9 @@
-package dev.enesky.feature.login.di
+package dev.enesky.core.domain.di
 
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
-import dev.enesky.feature.login.manager.AuthManager
-import dev.enesky.feature.login.manager.CredentialApiManager
+import dev.enesky.core.domain.manager.AuthManager
+import dev.enesky.core.domain.manager.CredentialApiManager
 import org.koin.android.ext.koin.androidApplication
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.dsl.lazyModule

@@ -15,9 +15,3 @@ data class User(
     val email: String? = null,
     val profilePictureUrl: String? = null,
 )
-
-enum class LoginType {
-    ANONYMOUS,
-    GOOGLE,
-    EMAIL,
-}

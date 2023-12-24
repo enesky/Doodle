@@ -31,7 +31,7 @@ import dev.enesky.doodle.app.ui.component.DoodleBottomBar
 import dev.enesky.doodle.app.ui.component.DoodleSnackbarHost
 import dev.enesky.doodle.app.ui.component.LocalSnackbarHostState
 import dev.enesky.feature.home.navigation.HomeDestination
-import dev.enesky.feature.login.manager.AuthManager
+import dev.enesky.core.domain.manager.AuthManager
 import org.koin.compose.koinInject
 
 @OptIn(ExperimentalLayoutApi::class)

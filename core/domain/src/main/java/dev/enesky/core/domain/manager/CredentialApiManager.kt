@@ -1,4 +1,4 @@
-package dev.enesky.feature.login.manager
+package dev.enesky.core.domain.manager
 
 import android.content.Context
 import androidx.credentials.CreatePasswordRequest

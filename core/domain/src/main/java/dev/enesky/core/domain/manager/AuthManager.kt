@@ -1,4 +1,4 @@
-package dev.enesky.feature.login.manager
+package dev.enesky.core.domain.manager
 
 import android.content.Intent
 import android.content.IntentSender
@@ -16,6 +16,8 @@ import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.data.response.LoginResponse
 import dev.enesky.core.data.response.User
+import dev.enesky.core.domain.mappers.asLoginResult
+import dev.enesky.core.domain.models.LoginResult
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
 import org.koin.core.context.GlobalContext.get
@@ -84,7 +86,7 @@ class AuthManager(
     suspend fun signInWithEmailAndPassword(
         email: String,
         password: String,
-    ): LoginResponse {
+    ): LoginResult {
         return suspendCancellableCoroutine { continuation ->
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(executor) { task ->
@@ -95,11 +97,11 @@ class AuthManager(
                                     userId = task.result.user?.uid ?: String.Empty,
                                     email = email,
                                 ),
-                            ),
+                            ).asLoginResult(),
                         )
                     } else {
                         continuation.resume(
-                            LoginResponse(errorMessage = task.exception?.message),
+                            LoginResponse(errorMessage = task.exception?.message).asLoginResult(),
                         )
                     }
                 }
@@ -115,7 +117,7 @@ class AuthManager(
     suspend fun signUpWithEmailAndPassword(
         email: String,
         password: String,
-    ): LoginResponse {
+    ): LoginResult {
         return suspendCancellableCoroutine { continuation ->
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(executor) { task ->
@@ -126,18 +128,18 @@ class AuthManager(
                                     userId = task.result.user?.uid ?: String.Empty,
                                     email = email,
                                 ),
-                            ),
+                            ).asLoginResult(),
                         )
                     } else {
                         continuation.resume(
-                            LoginResponse(errorMessage = task.exception?.message),
+                            LoginResponse(errorMessage = task.exception?.message).asLoginResult(),
                         )
                     }
                 }
         }
     }
 
-    suspend fun forgotPassword(email: String): LoginResponse {
+    suspend fun forgotPassword(email: String): LoginResult {
         return suspendCancellableCoroutine { continuation ->
             auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(executor) { task ->
@@ -148,11 +150,11 @@ class AuthManager(
                                     userId = String.Empty,
                                     email = email,
                                 ),
-                            ),
+                            ).asLoginResult(),
                         )
                     } else {
                         continuation.resume(
-                            LoginResponse(errorMessage = task.exception?.message),
+                            LoginResponse(errorMessage = task.exception?.message).asLoginResult(),
                         )
                     }
                 }
@@ -169,7 +171,7 @@ class AuthManager(
     /**
      * Signs in user anonymously
      */
-    suspend fun signInAnonymously(): LoginResponse {
+    suspend fun signInAnonymously(): LoginResult {
         return suspendCancellableCoroutine { continuation ->
             auth.signInAnonymously()
                 .addOnCompleteListener(executor) { task ->
@@ -179,11 +181,11 @@ class AuthManager(
                                 user = User(
                                     userId = task.result.user?.uid ?: String.Empty,
                                 ),
-                            ),
+                            ).asLoginResult(),
                         )
                     } else {
                         continuation.resume(
-                            LoginResponse(errorMessage = task.exception?.message),
+                            LoginResponse(errorMessage = task.exception?.message).asLoginResult(),
                         )
                     }
                 }
@@ -250,7 +252,7 @@ class AuthManager(
     suspend fun signInWithGoogleResult(
         intent: Intent? = null,
         idToken: String? = null,
-    ): LoginResponse {
+    ): LoginResult {
         val googleIdToken = when {
             intent != null -> signInClient.getSignInCredentialFromIntent(intent).googleIdToken
             idToken != null -> idToken
@@ -269,13 +271,13 @@ class AuthManager(
                         profilePictureUrl = photoUrl?.toString(),
                     )
                 },
-            )
+            ).asLoginResult()
         } catch (e: Exception) {
             Logger.error("AuthManager", "signInGoogleWithIntent: ${e.message}", e)
             if (e is CancellationException) throw e
             LoginResponse(
                 errorMessage = e.message,
-            )
+            ).asLoginResult()
         }
     }
 
