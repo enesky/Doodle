@@ -26,7 +26,7 @@ class DependencyGraphPlugin : Plugin<Project> {
 
             // Generate dot file for graphviz
             val dotDigraphFile = File("$rootDir/tools/dependency-graph/project_digraph.dot")
-            dotDigraphFile.generateDigraphDotFile(dependencyTree, rootProject.name)
+            dotDigraphFile.generateDigraphDotFile(dependencyTree)
 
             println("------------------------------------------------------------------------------------")
             println("Dependency Graph Results:")
@@ -88,15 +88,34 @@ private fun File.generateDotFile(treeMap: MutableMap<String, ElementNode>) {
     }
 }
 
-private fun File.generateDigraphDotFile(treeMap: MutableMap<String, ElementNode>, projectName: String) {
+private fun File.generateDigraphDotFile(treeMap: MutableMap<String, ElementNode>) {
     parentFile.mkdirs()
-    writeText("digraph {\n")
-    appendText("  graph [label=\"${projectName}\\n \",labelloc=t,fontsize=42,ranksep=1.4];\n")
-    appendText("  node [style=filled, fillcolor=\"#F96D00\", fontsize=24];\n")
-    appendText("  rankdir=TB;\n\n  # Dependencies\n\n")
+    writeText("digraph {\n" +
+            "\n" +
+            "    // General settings\n" +
+            "    graph [fontsize=42, ranksep=1.25, bgcolor=\"#2B323F\", fontcolor=white];\n" +
+            "    node [style=bold, color=\"#F96D00\", fontsize=24, fontcolor=white];\n" +
+            "    edge [color=white];\n" +
+            "    rankdir=TB; # Top to bottom\n" +
+            "\n" +
+            "    // Main module settings\n" +
+            "    \"app\", \"data\", \"domain\" [shape=box, height=\"1\", width=\"1\"];\n" +
+            "\n" +
+            "    // Helper module setters\n" +
+            "    \"common\", \"design-system\", \"ui\", \"network\", \"navigation\" [shape=hexagon];\n" +
+            "\n" +
+            "    subgraph cluster_feature {\n" +
+            "        label=\"feature:\";\n" +
+            "        color=orange;\n" +
+            "        \"login\", \"home\", \"details\", \"explore\", \"settings\", \"my-lists\";\n" +
+            "    }\n" +
+            "\n" +
+            "    # Dependencies" +
+            "\n"
+    )
     treeMap.forEach { (_, element) ->
         element.dependencyNode.forEach { childElement ->
-            appendText("  \"${element.moduleName}\" -> \"${childElement.moduleName}\"\n")
+            appendText("    \"${element.moduleName}\" -> \"${childElement.moduleName}\"\n")
         }
     }
     appendText("}\n")
