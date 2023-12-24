@@ -18,13 +18,12 @@ class TopAnimePagingUseCase(
     private val jikanRepository: JikanRepository,
 ) {
     operator fun invoke(animeFilter: AnimeFilter): Flow<PagingData<Anime>> {
-        return flow {
-            val result = jikanRepository.getTopAnimePagingData(animeFilter)
-            result.map { pagingData ->
-                pagingData.map { fullAnime ->
-                    fullAnime.asAnime()
-                }
+        val response = jikanRepository.getTopAnimePagingData(animeFilter)
+        val animePagingData: Flow<PagingData<Anime>> = response.map { pagingData ->
+            pagingData.map { animeResponse ->
+                animeResponse.asAnime()
             }
         }
+        return animePagingData
     }
 }

@@ -48,7 +48,9 @@ class TopAnimePagingSource(
                 data = animePagingResponse.data,
                 prevKey = if (nextPage == 1) null else nextPage - 1,
                 nextKey =
-                if (animePagingResponse.data.isEmpty() || animePagingResponse.pagination.hasNextPage.not()) {
+                if (animePagingResponse?.data == null
+                    || animePagingResponse.data.isEmpty()
+                    || animePagingResponse.pagination.hasNextPage.not()) {
                     null
                 } else {
                     animePagingResponse.pagination.currentPage.plus(1)

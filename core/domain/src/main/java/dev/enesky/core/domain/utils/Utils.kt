@@ -33,9 +33,7 @@ fun toGenreString(genres: List<Genre>): String {
  * @return [String] image url
  */
 fun getImageUrl(images: Images): String {
-    return when {
-        images.webp != null -> images.webp?.imageUrl ?: Constants.PLACEHOLDER_IMG_URL
-        images.jpg != null -> images.jpg?.imageUrl ?: Constants.PLACEHOLDER_IMG_URL
-        else -> Constants.PLACEHOLDER_IMG_URL
+    return with(images.webp ?: images.jpg) {
+        this?.largeImageUrl ?: this?.imageUrl ?: Constants.PLACEHOLDER_IMG_URL
     }
 }
