@@ -76,6 +76,7 @@ common-git-hooks                      = { id= "common.git.hooks", version= "unsp
 common-detekt                         = { id= "common.detekt", version= "unspecified" }
 common-spotless                       = { id= "common.spotless", version= "unspecified" }
 common-authentication                 = { id= "common.authentication", version= "unspecified" }
+common-dependency-graph               = { id= "common.dependency.graph", version= "unspecified" }
 
 [libraries]
 core-ktx                              = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }

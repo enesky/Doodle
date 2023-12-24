@@ -130,6 +130,10 @@ gradlePlugin {
             id = libs.plugins.common.authentication.get().pluginId
             implementationClass = "$rootPath.common.AuthenticationPlugin"
         }
+        register("dependencyGraph") {
+            id = libs.plugins.common.dependency.graph.get().pluginId
+            implementationClass = "$rootPath.common.DependencyGraphPlugin"
+        }
     }
 }
 
