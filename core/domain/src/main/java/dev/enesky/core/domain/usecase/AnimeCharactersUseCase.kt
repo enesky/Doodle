@@ -16,7 +16,7 @@
  */
 package dev.enesky.core.domain.usecase
 
-import dev.enesky.core.data.Character
+import dev.enesky.core.data.models.Character
 
 /**
  * Created by Enes Kamil YILMAZ on 29/10/2023

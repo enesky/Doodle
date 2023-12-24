@@ -16,7 +16,15 @@
  */
 package dev.enesky.core.network.api
 
+import dev.enesky.core.common.enums.AnimeFilter
+import dev.enesky.core.common.enums.AnimeRating
+import dev.enesky.core.common.enums.AnimeType
 import dev.enesky.core.common.utils.Constants
+import dev.enesky.core.data.models.Character
+import dev.enesky.core.data.response.AnimeResponse
+import dev.enesky.core.data.response.FullAnime
+import dev.enesky.core.data.response.base.BasePagingResponse
+import dev.enesky.core.data.response.base.BaseResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -32,19 +40,19 @@ interface JikanService {
     suspend fun getTopAnimePaging(
         @Query("page") page: Int = 1,
         @Query("limit") limit: Int = Constants.ITEMS_PER_PAGE,
-        @Query("type") type: String = dev.enesky.core.data.AnimeType.TV.type,
-        @Query("filter") filter: String = dev.enesky.core.data.AnimeFilter.POPULARITY.filter,
-        @Query("rating") rating: String = dev.enesky.core.data.AnimeRating.PG13.rating,
+        @Query("type") type: String = AnimeType.TV.type,
+        @Query("filter") filter: String = AnimeFilter.POPULARITY.filter,
+        @Query("rating") rating: String = AnimeRating.PG13.rating,
         @Query("sfw") sfw: Boolean = true,
-    ): dev.enesky.core.data.AnimePagingResponse
+    ): BasePagingResponse<AnimeResponse>
 
     @GET("anime/{id}/full")
     suspend fun getAnimeById(
         @Path("id") animeId: Int,
-    ): Response<dev.enesky.core.data.BaseResponse<dev.enesky.core.data.FullAnime>>
+    ): Response<BaseResponse<FullAnime>>
 
     @GET("anime/{anime-id}/characters")
     suspend fun getCharactersByAnimeId(
         @Path("anime-id") animeId: Int,
-    ): Response<List<dev.enesky.core.data.Character>>
+    ): Response<List<Character>>
 }

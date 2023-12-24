@@ -74,8 +74,10 @@ private fun DetailsContent(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview
 @Composable
 private fun DetailsScreenPreview() {
-    DetailsScreen()
+    DoodleTheme {
+        DetailsScreen()
+    }
 }

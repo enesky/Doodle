@@ -17,9 +17,9 @@
 package dev.enesky.doodle.app.di
 
 import dev.enesky.core.common.consts.Values
+import dev.enesky.core.domain.di.loginModule
 import dev.enesky.core.network.di.networkModule
 import dev.enesky.doodle.R
-import dev.enesky.feature.login.di.loginModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.module.includes

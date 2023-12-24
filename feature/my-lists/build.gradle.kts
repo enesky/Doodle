@@ -21,6 +21,4 @@ plugins {
     id(libs.plugins.common.feature.get().pluginId)
 }
 
-android {
-    namespace = "dev.enesky.feature.my_lists"
-}
+android.namespace = "dev.enesky.feature.my_lists"

@@ -54,7 +54,7 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        val rootPath = "dev.enesky.build_logic.convention.plugins"
+        val rootPath = "$group.plugins"
 
         /**
          * App Related Convention Plugins
@@ -129,6 +129,10 @@ gradlePlugin {
         register("authentication") {
             id = libs.plugins.common.authentication.get().pluginId
             implementationClass = "$rootPath.common.AuthenticationPlugin"
+        }
+        register("dependencyGraph") {
+            id = libs.plugins.common.dependency.graph.get().pluginId
+            implementationClass = "$rootPath.common.DependencyGraphPlugin"
         }
     }
 }

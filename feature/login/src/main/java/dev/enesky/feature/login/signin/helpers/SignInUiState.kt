@@ -1,8 +1,8 @@
 package dev.enesky.feature.login.signin.helpers
 
 import dev.enesky.core.common.delegate.IUiState
-import dev.enesky.core.data.LoginResult
-import dev.enesky.core.data.LoginType
+import dev.enesky.core.common.enums.LoginType
+import dev.enesky.core.domain.models.LoginResult
 
 /**
  * Created by Enes Kamil YILMAZ on 21/11/2023

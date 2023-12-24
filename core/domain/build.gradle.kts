@@ -17,13 +17,17 @@
 plugins {
     // Convention Plugins
     id(libs.plugins.library.main.get().pluginId)
-    id(libs.plugins.common.feature.get().pluginId)
+    id(libs.plugins.common.authentication.get().pluginId)
+
+    // Kotlin Plugins
+    id("kotlin-parcelize")
 }
 
 android.namespace = "dev.enesky.core.domain"
 
 dependencies {
     implementation(libs.androidx.paging.compose)
+    implementation(libs.retrofit.converter.gson)
 
     // Module Implementations
     implementation(projects.core.common)

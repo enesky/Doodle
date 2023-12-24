@@ -13,13 +13,13 @@ ksp-plugin                            = "1.9.20-1.0.14"
 google-services-plugin                = "4.4.0"
 crashlytics-plugin                    = "2.9.9"
 firebase-perf-plugin                  = "1.4.2"
-detekt                                = "1.23.3"
+detekt                                = "1.23.4"
 
 # Library Versions
 core-ktx                              = "1.12.0"
 lifecycle-runtime                     = "2.6.2"
-activity-compose                      = "1.8.1"
-androidx-navigation                   = "2.7.5"
+activity-compose                      = "1.8.2"
+androidx-navigation                   = "2.7.6"
 retrofit                              = "2.9.0"
 okhttp                                = "4.12.0"
 chucker                               = "4.0.0"
@@ -29,16 +29,16 @@ compose-state-events                  = "2.1.0"
 data-store                            = "1.0.0"
 compose-bom                           = "2023.10.01"
 paging-compose                        = "3.2.1"
-firebase-bom                          = "32.6.0"
+firebase-bom                          = "32.7.0"
 koin-bom                              = "3.5.1"
 junit                                 = "4.13.2"
 androidx-test-ext-junit               = "1.1.5"
 espresso-core                         = "3.5.1"
-coilCompose                           = "2.4.0"
+coilCompose                           = "2.5.0"
 desugar-jdk-libs                      = "2.0.4"
 jacoco                                = "0.8.7"
 appcompat                             = "1.6.1"
-material                              = "1.10.0"
+material                              = "1.11.0"
 ktlint                                = "11.6.1"
 spotless                              = "6.22.0"
 google-auth                           = "20.7.0"
@@ -76,6 +76,7 @@ common-git-hooks                      = { id= "common.git.hooks", version= "unsp
 common-detekt                         = { id= "common.detekt", version= "unspecified" }
 common-spotless                       = { id= "common.spotless", version= "unspecified" }
 common-authentication                 = { id= "common.authentication", version= "unspecified" }
+common-dependency-graph               = { id= "common.dependency.graph", version= "unspecified" }
 
 [libraries]
 core-ktx                              = { module= "androidx.core:core-ktx", version.ref= "core-ktx" }
@@ -129,12 +130,11 @@ credential-manager                    = { module= "androidx.credentials:credenti
 credential-manager-play-services-auth = { module= "androidx.credentials:credentials-play-services-auth", version.ref= "credential-manager" }
 credential-manager-google-auth        = { module= "com.google.android.libraries.identity.googleid:googleid", version.ref= "credential-manager-google" }
 splash-screen                         = { module= "androidx.core:core-splashscreen", version.ref= "splash-screen" }
-
 accompanist-systemuicontroller        = { module= "com.google.accompanist:accompanist-systemuicontroller", version.ref= "accompanist" }
 accompanist-pager-indicators          = { module= "com.google.accompanist:accompanist-pager-indicators", version.ref= "accompanist" }
 accompanist-placeholder-material      = { module= "com.google.accompanist:accompanist-placeholder-material", version.ref= "accompanist" }
 
-# Dependencies of the included build-logic
+# Dependencies included in build-logic
 android-gradle-plugin                 = { module= "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
 kotlin-gradle-plugin                  = { module= "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-plugin" }
 ksp-gradle-plugin                     = { module= "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp-plugin" }

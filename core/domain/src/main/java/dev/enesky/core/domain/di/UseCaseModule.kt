@@ -33,7 +33,7 @@ val useCaseModule = lazyModule {
     // If it doesn't have a parameter use it like this
     // TopAnimePagingUseCase(get<JikanRepository>()::getTopAnimePagingData)
     single {
-        TopAnimePagingUseCase { get<JikanRepository>().getTopAnimePagingData(it) }
+        TopAnimePagingUseCase(get<JikanRepository>())
     }
 
     single<AnimeUseCase> {

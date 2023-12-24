@@ -30,4 +30,5 @@ plugins {
     id(libs.plugins.common.spotless.get().pluginId)
     id(libs.plugins.common.detekt.get().pluginId)
     id(libs.plugins.common.git.hooks.get().pluginId)
+    id(libs.plugins.common.dependency.graph.get().pluginId)
 }

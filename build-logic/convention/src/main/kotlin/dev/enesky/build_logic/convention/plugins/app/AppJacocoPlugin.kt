@@ -17,7 +17,7 @@
 package dev.enesky.build_logic.convention.plugins.app
 
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
-import dev.enesky.build_logic.convention.configureJacoco
+import dev.enesky.build_logic.convention.helpers.configureJacoco
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType

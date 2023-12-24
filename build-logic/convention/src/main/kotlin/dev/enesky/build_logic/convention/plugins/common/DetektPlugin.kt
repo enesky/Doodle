@@ -16,7 +16,8 @@
  */
 package dev.enesky.build_logic.convention.plugins.common
 
-import dev.enesky.build_logic.convention.libs
+import dev.enesky.build_logic.convention.helpers.detektPlugins
+import dev.enesky.build_logic.convention.helpers.libs
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
@@ -53,8 +54,8 @@ class DetektPlugin : Plugin<Project> {
         }
 
         dependencies {
-            add("detektPlugins", libs.detekt.formatting.rules.get())
-            add("detektPlugins", libs.detekt.compose.rules.get())
+            detektPlugins(libs.detekt.formatting.rules.get())
+            detektPlugins(libs.detekt.compose.rules.get())
         }
 
         extensions.configure<DetektExtension> {
