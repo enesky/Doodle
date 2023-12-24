@@ -22,22 +22,22 @@ Just doodling around
 
 Trying to apply best practices for later usages :)
 
-Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetpack (Compose, ViewModel, Room, Credential Manager), and Material Design based on MVVM, Clean and Multi-Module architecture.
+Doodle demonstrates modern Android development with Jetpack (Compose, ViewModel, Room, Credential Manager), Coroutines, Flow, Koin and Material Design based on MVVM, Clean and Multi-Module architecture.
 
 ## Screenshots
 
 <p align="center">
   <a>
-    <img width=300, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/signin_screen.png" alt="Home Screen">
-    <img width=300, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/home_screen.png" alt="Home Screen">
+    <img width=375, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/signin_screen.png" alt="Home Screen">
+    <img width=375, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/home_screen.png" alt="Home Screen">
   </a>
 </p>
 
-## Module Dependency Graph
+## Multi Module Dependency Graph
 
 <p align="center">
   <a>
-    <img width=600, src="https://github.com/enesky/Doodle/blob/chore/readme_update/tools/dependency-graph/project_digraph.dot.webp" alt="Module Dependency Graph">
+    <img width=750, src="https://github.com/enesky/Doodle/blob/chore/readme_update/tools/dependency-graph/project_digraph.dot.webp" alt="Module Dependency Graph">
     </a>
 </p>
 
@@ -62,9 +62,9 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
         - <a href="https://firebase.google.com/products/auth" target="_blank">Authentication</a>: for user authentication.
     - Credential Manager API: Unifies the sign-in interface across authentication methods, making it clearer and easier for users to sign into apps, regardless of the method they choose.
     - Architecture
-        - MVVM Architecture (View - DataBinding - ViewModel - Model)
-        - Clean Architecture approach (Data - Domain - Presentation)
         - Multi-Module Architecture with lots of customized convention plugins (build_logic - app - core - feature)
+        - MVVM Architecture (View - DataBinding - ViewModel - Model)
+        - Clean Architecture approach (Data - Domain - Presentation(ui))
     - <a href="https://insert-koin.io/" target="_blank">Koin</a>: for dependency injection.
     - <a href="https://github.com/square/retrofit" target="_blank">Retrofit2 & OkHttp3</a>: Construct the REST APIs and paging network data.
     - <a href="https://github.com/google/ksp" target="_blank">ksp</a>: Kotlin Symbol Processing API.
