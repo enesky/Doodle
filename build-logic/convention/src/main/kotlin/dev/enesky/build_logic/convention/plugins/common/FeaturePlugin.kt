@@ -27,10 +27,10 @@ import org.gradle.kotlin.dsl.dependencies
 class FeaturePlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         dependencies {
-            implementation(project(":core:design-system"))
+            implementation(project(":core:domain"))
             implementation(project(":core:common"))
+            implementation(project(":core:design-system"))
             implementation(project(":core:navigation"))
-            implementation(project(":core:data"))
             implementation(project(":core:ui"))
         }
     }
