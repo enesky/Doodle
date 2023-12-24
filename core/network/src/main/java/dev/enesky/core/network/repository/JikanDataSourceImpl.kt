@@ -19,8 +19,8 @@ package dev.enesky.core.network.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import dev.enesky.core.common.utils.Constants.ITEMS_PER_PAGE
 import dev.enesky.core.common.enums.AnimeFilter
+import dev.enesky.core.common.utils.Constants.ITEMS_PER_PAGE
 import dev.enesky.core.data.models.Character
 import dev.enesky.core.data.response.AnimeResponse
 import dev.enesky.core.data.response.FullAnime

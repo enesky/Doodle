@@ -16,10 +16,10 @@
  */
 package dev.enesky.core.network.api
 
-import dev.enesky.core.common.utils.Constants
 import dev.enesky.core.common.enums.AnimeFilter
 import dev.enesky.core.common.enums.AnimeRating
 import dev.enesky.core.common.enums.AnimeType
+import dev.enesky.core.common.utils.Constants
 import dev.enesky.core.data.models.Character
 import dev.enesky.core.data.response.AnimeResponse
 import dev.enesky.core.data.response.FullAnime

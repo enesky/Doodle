@@ -21,11 +21,10 @@ class TopAnimePagingUseCase(
         return flow {
             val result = jikanRepository.getTopAnimePagingData(animeFilter)
             result.map { pagingData ->
-                 pagingData.map { fullAnime ->
+                pagingData.map { fullAnime ->
                     fullAnime.asAnime()
                 }
             }
         }
     }
 }
-
