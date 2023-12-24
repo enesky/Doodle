@@ -10,10 +10,6 @@ import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.core.common.enums.AnimeFilter
 import dev.enesky.core.common.result.Result
 import dev.enesky.core.common.result.asResult
-import dev.enesky.core.data.models.AnimeFilter
-import dev.enesky.core.data.response.AnimeResponse
-import dev.enesky.core.domain.mappers.asAnime
-import dev.enesky.core.domain.mappers.pagingMap
 import dev.enesky.core.domain.usecase.AnimeUseCase
 import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
 import dev.enesky.feature.home.helpers.HomeEvents
@@ -42,19 +38,15 @@ class HomeViewModel(
     private fun getAllAnimes() {
         viewModelScope.launch(Dispatchers.IO) {
             val airingAnimesFlow = topAnimePagingUseCase(AnimeFilter.AIRING)
-                .pagingMap(AnimeResponse::asAnime)
                 .cachedIn(viewModelScope)
 
             val upcomingAnimesFlow = topAnimePagingUseCase(AnimeFilter.UPCOMING)
-                .pagingMap(AnimeResponse::asAnime)
                 .cachedIn(viewModelScope)
 
             val popularAnimesFlow = topAnimePagingUseCase(AnimeFilter.POPULARITY)
-                .pagingMap(AnimeResponse::asAnime)
                 .cachedIn(viewModelScope)
 
             val favoriteAnimesFlow = topAnimePagingUseCase(AnimeFilter.FAVORITE)
-                .pagingMap(AnimeResponse::asAnime)
                 .cachedIn(viewModelScope)
 
             updateUiState {
@@ -95,11 +87,10 @@ class HomeViewModel(
                                 }
                                 return@onEach
                             }
-                            val anime = resource.data.asAnime()
                             updateUiState {
                                 copy(
                                     loading = false,
-                                    previewAnime = anime,
+                                    previewAnime = resource.data,
                                 )
                             }
                         }
