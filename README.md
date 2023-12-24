@@ -28,8 +28,8 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
 
 <p align="center">
   <a>
-    <img width=400, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/signin_screen.png" alt="Home Screen">
-    <img width=400, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/home_screen.png" alt="Home Screen">
+    <img width=300, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/signin_screen.png" alt="Home Screen">
+    <img width=300, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/home_screen.png" alt="Home Screen">
   </a>
 </p>
 
@@ -37,7 +37,7 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
 
 <p align="center">
   <a>
-    <img width=400, src="https://github.com/enesky/Doodle/blob/chore/readme_update/tools/dependency-graph/project_digraph.dot.webp" alt="Module Dependency Graph">
+    <img width=600, src="https://github.com/enesky/Doodle/blob/chore/readme_update/tools/dependency-graph/project_digraph.dot.webp" alt="Module Dependency Graph">
     </a>
 </p>
 
