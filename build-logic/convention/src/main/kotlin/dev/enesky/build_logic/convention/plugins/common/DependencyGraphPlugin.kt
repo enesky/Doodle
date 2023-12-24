@@ -21,11 +21,11 @@ class DependencyGraphPlugin : Plugin<Project> {
             rootProject.getDependencyNodes(dependencyTree)
 
             // Generate dot file for mermaid
-            val dotFile = File("$rootDir/config/dependency-graph/project.dot")
+            val dotFile = File("$rootDir/tools/dependency-graph/project.dot")
             dotFile.generateDotFile(dependencyTree)
 
             // Generate dot file for graphviz
-            val dotDigraphFile = File("$rootDir/config/dependency-graph/project_digraph.dot")
+            val dotDigraphFile = File("$rootDir/tools/dependency-graph/project_digraph.dot")
             dotDigraphFile.generateDigraphDotFile(dependencyTree, rootProject.name)
 
             println("------------------------------------------------------------------------------------")
