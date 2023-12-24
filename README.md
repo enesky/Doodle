@@ -37,8 +37,8 @@ Doodle demonstrates modern Android development with Jetpack (Compose, ViewModel,
 
 <p align="center">
   <a>
-    <img width=750, src="https://github.com/enesky/Doodle/blob/chore/readme_update/tools/dependency-graph/project_digraph.dot.webp" alt="Module Dependency Graph">
-    </a>
+    <img width=750, src="https://github.com/enesky/Doodle/blob/chore/readme_update/tools/dependency-graph/project_digraph.dot.png" alt="Module Dependency Graph">
+  </a>
 </p>
 
 ## Tech stack & Open-source libraries
