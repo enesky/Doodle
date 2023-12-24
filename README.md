@@ -51,9 +51,8 @@ Doodle demonstrates modern Android development with Jetpack (Compose, ViewModel,
         - <a href="https://developer.android.com/kotlin/coroutines" target="_blank">Coroutines</a>: Concurrency design pattern that you can use on Android to simplify code that executes asynchronously.
         - <a href="https://developer.android.com/kotlin/flow/stateflow-and-sharedflow" target="_blank">Stateflow</a>: StateFlow is a state-holder observable flow that emits the current and new state updates to its collectors.
         - <a href="https://kotlinlang.org/docs/reference/coroutines/flow.html" target="_blank">Flow</a>: A flow is an asynchronous version of a Sequence, a type of collection whose values are lazily produced.
-        - <a href="https://developer.android.com/jetpack/compose/navigation" target="_blank">Compose Destinations Navigation</a>: Simplified and type-safe navigation for Compose.
+        - <a href="https://developer.android.com/jetpack/compose/navigation" target="_blank">Navigation with Compose</a>: Navigation component for Compose.
         - <a href="https://developer.android.com/topic/libraries/architecture/datastore" target="_blank">DataStore</a>: Jetpack DataStore is a data storage solution that allows you to store key-value pairs or typed objects with protocol buffers. DataStore uses Kotlin coroutines and Flow to store data asynchronously, consistently, and transactionally.
-        - <a href="https://developer.android.com/topic/libraries/architecture/workmanager" target="_blank">WorkManager</a>: Schedule automatically repeating or guarantee one-time background processing.
     - Firebase
         - <a href="https://firebase.google.com/products/analytics" target="_blank">Analytics</a>: for tracking events.
         - <a href="https://firebase.google.com/products/crashlytics" target="_blank">Crashlytics</a>: for tracking crashes.
@@ -108,7 +107,7 @@ Jikan is a free, open-source API.
 
 ## License:
 
-```xml
+```kotlin
 /*
  *                          Copyright 2023
  *            Designed and developed by Enes Kamil Yılmaz
