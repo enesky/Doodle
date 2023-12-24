@@ -7,6 +7,7 @@ import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
+import dev.enesky.core.common.enums.AnimeFilter
 import dev.enesky.core.common.result.Result
 import dev.enesky.core.common.result.asResult
 import dev.enesky.core.data.models.AnimeFilter

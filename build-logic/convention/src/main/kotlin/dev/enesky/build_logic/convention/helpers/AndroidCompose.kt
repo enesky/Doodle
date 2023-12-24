@@ -32,8 +32,7 @@ internal fun Project.configureAndroidCompose(commonExtension: CommonExtension<*,
             buildConfig = true
         }
 
-        composeOptions.kotlinCompilerExtensionVersion =
-            libs.versions.compose.compiler.get().toString()
+        composeOptions.kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get().toString()
 
         dependencies {
             val composeBomPlatform = platform(libs.compose.bom.get().toString())
