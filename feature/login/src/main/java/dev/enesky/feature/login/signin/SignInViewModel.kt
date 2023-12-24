@@ -11,8 +11,9 @@ import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
-import dev.enesky.core.data.response.LoginType
-import dev.enesky.feature.login.manager.AuthManager
+import dev.enesky.core.common.enums.LoginType
+import dev.enesky.core.domain.manager.AuthManager
+import dev.enesky.core.domain.models.LoginResult
 import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.SignInUiState
 import kotlinx.coroutines.delay
@@ -62,7 +63,7 @@ class SignInViewModel(
                     loginResult = signInResult,
                 )
             }
-            handleResults(signInResult.user != null)
+            handleResults(loginResult = signInResult)
         }
     }
 
@@ -76,7 +77,7 @@ class SignInViewModel(
                 )
             }
             handleResults(
-                isSignInSuccessful = forgotPasswordResult.user != null,
+                loginResult = forgotPasswordResult,
                 shouldNavigateToHome = false,
             )
         }
@@ -109,7 +110,7 @@ class SignInViewModel(
                     loginResult = signInResult,
                 )
             }
-            handleResults(isSignInSuccessful = signInResult.user != null)
+            handleResults(loginResult = signInResult)
         }
     }
 
@@ -124,19 +125,19 @@ class SignInViewModel(
                     loginResult = signInResult,
                 )
             }
-            handleResults(isSignInSuccessful = signInResult.user != null)
+            handleResults(loginResult = signInResult)
         }
     }
 
     // ------------------ EVENTS ------------------
 
     private fun handleResults(
-        isSignInSuccessful: Boolean,
+        loginResult: LoginResult,
         shouldNavigateToHome: Boolean = true,
     ) {
         viewModelScope.launch {
             triggerEvent {
-                if (isSignInSuccessful && shouldNavigateToHome) {
+                if (loginResult.isSignInSuccessful == true && shouldNavigateToHome) {
                     SignInEvents.NavigateToHome
                 } else {
                     SignInEvents.OnError(
