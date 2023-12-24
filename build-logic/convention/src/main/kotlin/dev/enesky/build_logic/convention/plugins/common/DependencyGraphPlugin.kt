@@ -90,7 +90,8 @@ private fun File.generateDotFile(treeMap: MutableMap<String, ElementNode>) {
 
 private fun File.generateDigraphDotFile(treeMap: MutableMap<String, ElementNode>) {
     parentFile.mkdirs()
-    writeText("digraph {\n" +
+    writeText(
+        "digraph {\n" +
             "\n" +
             "    // General settings\n" +
             "    graph [fontsize=42, ranksep=1.25, bgcolor=\"#2B323F\", fontcolor=white];\n" +
@@ -111,7 +112,7 @@ private fun File.generateDigraphDotFile(treeMap: MutableMap<String, ElementNode>
             "    }\n" +
             "\n" +
             "    # Dependencies" +
-            "\n"
+            "\n",
     )
     treeMap.forEach { (_, element) ->
         element.dependencyNode.forEach { childElement ->
