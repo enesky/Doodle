@@ -24,6 +24,23 @@ Trying to apply best practices for later usages :)
 
 Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetpack (Compose, ViewModel, Room, Credential Manager), and Material Design based on MVVM, Clean and Multi-Module architecture.
 
+## Screenshots
+
+<p align="center">
+  <a>
+    <img width=400, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/signin_screen.png" alt="Home Screen">
+    <img width=400, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/home_screen.png" alt="Home Screen">
+  </a>
+</p>
+
+## Module Dependency Graph
+
+<p align="center">
+  <a>
+    <img width=400, src="https://github.com/enesky/Doodle/blob/chore/readme_update/tools/dependency-graph/project_digraph.dot.webp" alt="Module Dependency Graph">
+    </a>
+</p>
+
 ## Tech stack & Open-source libraries
 
 - Minimum SDK level 24
