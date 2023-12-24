@@ -9,6 +9,8 @@ import java.io.File
  * Needs graphviz installed on local machine -> https://graphviz.org/download/
  *
  * Run with -> ./gradlew dependencyGraph --no-configuration-cache
+ *
+ * Inspired by -> <a href="https://github.com/mikeFei1000/dependency-graph-plugin-task">dependency-graph-plugin-task</a>
  **/
 class DependencyGraphPlugin : Plugin<Project> {
 
