@@ -7,7 +7,6 @@ import dev.enesky.core.domain.mappers.asAnime
 import dev.enesky.core.domain.models.Anime
 import dev.enesky.core.network.repository.JikanRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 /**

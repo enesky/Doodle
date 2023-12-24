@@ -16,79 +16,29 @@ class DependencyGraphPlugin : Plugin<Project> {
 
     override fun apply(project: Project): Unit = with(project) {
         tasks.register("dependencyGraph") {
-
             // Get module dependencies tree
             val dependencyTree = linkedMapOf<String, ElementNode>()
-            val queue: MutableList<Project> = mutableListOf(rootProject)
-
-            while (queue.isNotEmpty()) {
-                val firstItem = queue.removeAt(0)
-                val currentNode = collectNode(dependencyTree, firstItem.name)
-                queue.addAll(firstItem.childProjects.values)
-                firstItem.configurations.all { config ->
-                    config.dependencies
-                        .withType(ProjectDependency::class.java)
-                        .map { it.dependencyProject }
-                        .forEach { dependency ->
-                            if (firstItem.name != dependency.name) {
-                                val childNode = collectNode(dependencyTree, dependency.name)
-                                if (currentNode.dependencyNode.none { it.moduleName == childNode.moduleName }) {
-                                    currentNode.dependencyNode.add(childNode)
-                                }
-                            }
-                        }
-                    true
-                }
-            }
+            rootProject.getDependencyNodes(dependencyTree)
 
             // Generate dot file for mermaid
             val dotFile = File("$rootDir/config/dependency-graph/project.dot")
-            dotFile.parentFile.mkdirs()
-            dotFile.writeText("graph TD\n")
-            dependencyTree.forEach { (_, element) ->
-                element.dependencyNode.forEach { childElement ->
-                    dotFile.appendText("  ${element.moduleName}-->${childElement.moduleName}\n")
-                }
-            }
+            dotFile.generateDotFile(dependencyTree)
 
             // Generate dot file for graphviz
             val dotDigraphFile = File("$rootDir/config/dependency-graph/project_digraph.dot")
-            dotDigraphFile.parentFile.mkdirs()
-            dotDigraphFile.writeText("digraph {\n")
-            dotDigraphFile.appendText("  graph [label=\"${rootProject.name}\\n \",labelloc=t,fontsize=42,ranksep=1.4];\n")
-            dotDigraphFile.appendText("  node [style=filled, fillcolor=\"#F96D00\", fontsize=24];\n")
-            dotDigraphFile.appendText("  rankdir=TB;\n\n  # Dependencies\n\n")
-            dependencyTree.forEach { (_, element) ->
-                element.dependencyNode.forEach { childElement ->
-                    dotDigraphFile.appendText("  \"${element.moduleName}\" -> \"${childElement.moduleName}\"\n")
-                }
-            }
-            dotDigraphFile.appendText("}\n")
+            dotDigraphFile.generateDigraphDotFile(dependencyTree, rootProject.name)
 
             println("------------------------------------------------------------------------------------")
             println("Dependency Graph Results:")
 
             // Generate png files with graphviz
-            try {
-                val process = Runtime.getRuntime()
-                    .exec("dot -Tpng -O project_digraph.dot", null, dotDigraphFile.parentFile)
-                process.waitFor()
-                if (process.exitValue() != 0) {
-                    throw RuntimeException(
-                        process.errorStream.bufferedReader().use { it.readText() }
-                    )
-                }
-                // Show result
-                println("-> Check ${dotDigraphFile.absolutePath}.png to see generated dependency graph")
-            } catch (e: Exception) {
-                // Show error
-                println("-> Graphviz tool is not installed on your machine.")
-                println("-> Please install it from https://graphviz.org/download/")
-            }
+            dotDigraphFile.generatePngWithGraphviz()
 
             // Show result
-            println("-> Copy result ${dotFile.absolutePath} to https://mermaid-js.github.io/mermaid-live-editor/ show graph")
-            println("-> Copy result ${dotDigraphFile.absolutePath} to https://dreampuf.github.io/GraphvizOnline/ show digraph")
+            val mermaidEditorUrl = "https://mermaid-js.github.io/mermaid-live-editor/"
+            println("-> Copy result ${dotFile.absolutePath} to $mermaidEditorUrl show graph")
+            val graphvizEditorUrl = "https://dreampuf.github.io/GraphvizOnline/"
+            println("-> Copy result ${dotDigraphFile.absolutePath} to $graphvizEditorUrl show digraph")
             println("------------------------------------------------------------------------------------")
         }
     }
@@ -96,9 +46,79 @@ class DependencyGraphPlugin : Plugin<Project> {
 
 data class ElementNode(
     var moduleName: String = "",
-    var dependencyNode: MutableList<ElementNode> = mutableListOf()
+    var dependencyNode: MutableList<ElementNode> = mutableListOf(),
 )
 
 private fun collectNode(treeMap: MutableMap<String, ElementNode>, moduleName: String): ElementNode {
-    return treeMap.getOrPut(moduleName) { ElementNode().apply { this.moduleName = moduleName } }
+    return treeMap.getOrPut(moduleName) {
+        ElementNode().apply { this.moduleName = moduleName }
+    }
+}
+
+private fun Project.getDependencyNodes(treeMap: MutableMap<String, ElementNode>) {
+    val queue: MutableList<Project> = mutableListOf(this)
+    while (queue.isNotEmpty()) {
+        val firstItem = queue.removeAt(0)
+        val currentNode = collectNode(treeMap, firstItem.name)
+        queue.addAll(firstItem.childProjects.values)
+        firstItem.configurations.all { config ->
+            config.dependencies
+                .withType(ProjectDependency::class.java)
+                .map { it.dependencyProject }
+                .forEach { dependency ->
+                    if (firstItem.name != dependency.name) {
+                        val childNode = collectNode(treeMap, dependency.name)
+                        if (currentNode.dependencyNode.none { it.moduleName == childNode.moduleName }) {
+                            currentNode.dependencyNode.add(childNode)
+                        }
+                    }
+                }
+            true
+        }
+    }
+}
+
+private fun File.generateDotFile(treeMap: MutableMap<String, ElementNode>) {
+    parentFile.mkdirs()
+    writeText("graph TD\n")
+    treeMap.forEach { (_, element) ->
+        element.dependencyNode.forEach { childElement ->
+            appendText("  ${element.moduleName}-->${childElement.moduleName}\n")
+        }
+    }
+}
+
+private fun File.generateDigraphDotFile(treeMap: MutableMap<String, ElementNode>, projectName: String) {
+    parentFile.mkdirs()
+    writeText("digraph {\n")
+    appendText("  graph [label=\"${projectName}\\n \",labelloc=t,fontsize=42,ranksep=1.4];\n")
+    appendText("  node [style=filled, fillcolor=\"#F96D00\", fontsize=24];\n")
+    appendText("  rankdir=TB;\n\n  # Dependencies\n\n")
+    treeMap.forEach { (_, element) ->
+        element.dependencyNode.forEach { childElement ->
+            appendText("  \"${element.moduleName}\" -> \"${childElement.moduleName}\"\n")
+        }
+    }
+    appendText("}\n")
+}
+
+@Suppress("TooGenericExceptionThrown", "SwallowedException")
+private fun File.generatePngWithGraphviz() {
+    try {
+        val process = Runtime
+            .getRuntime()
+            .exec("dot -Tpng -O project_digraph.dot", null, parentFile)
+        process.waitFor()
+        if (process.exitValue() != 0) {
+            throw RuntimeException(
+                process.errorStream.bufferedReader().use { it.readText() },
+            )
+        }
+        // Show result
+        println("-> Check $absolutePath.png to see generated dependency graph")
+    } catch (e: Exception) {
+        // Show error
+        println("-> Graphviz tool is not installed on your machine.")
+        println("-> Please install it from https://graphviz.org/download/")
+    }
 }
