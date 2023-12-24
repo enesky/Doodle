@@ -26,7 +26,7 @@ import org.gradle.kotlin.dsl.apply
  */
 class GitHooksPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
-        apply(from = "config/git-hooks/githooks.gradle")
+        apply(from = "tools/git-hooks/githooks.gradle")
 
         /**
          * Uncomment this if you don't use Spotless

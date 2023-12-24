@@ -36,8 +36,8 @@ class SpotlessPlugin : Plugin<Project> {
         extensions.configure<SpotlessExtension> {
             kotlin {
                 target("**/*.kt")
-                targetExclude("build/**/*.kt", "**/build/**/*.kt", "config/**/*.kt", "${layout.buildDirectory}/**/*.kt")
-                licenseHeaderFile(rootProject.file("config/spotless/licence.kt"))
+                targetExclude("build/**/*.kt", "**/build/**/*.kt", "tools/**/*.kt", "${layout.buildDirectory}/**/*.kt")
+                licenseHeaderFile(rootProject.file("tools/spotless/licence.kt"))
                 // Remove below in order to run licence header apply.
                 // Somehow they are breaking it.
                 ktlint().editorConfigOverride(
@@ -56,15 +56,15 @@ class SpotlessPlugin : Plugin<Project> {
                 target("**/*.gradle.kts")
                 targetExclude("build/**/*.gradle.kts", "**/build/**/*.gradle.kts")
                 licenseHeaderFile(
-                    rootProject.file("config/spotless/licence.kt"),
+                    rootProject.file("tools/spotless/licence.kt"),
                     "(plugins |pluginManagement |import |@file)",
                 )
             }
 
             format("xml") {
                 target("**/*.xml")
-                targetExclude(".idea/**.xml", "build/**/*.xml", "**/build/**/*.xml", "config/**/*.xml")
-                licenseHeaderFile(rootProject.file("config/spotless/licence.xml"), "(<[^!?])")
+                targetExclude(".idea/**.xml", "build/**/*.xml", "**/build/**/*.xml", "tools/**/*.xml")
+                licenseHeaderFile(rootProject.file("tools/spotless/licence.xml"), "(<[^!?])")
             }
 
             lineEndings = LineEnding.PLATFORM_NATIVE

@@ -22,7 +22,24 @@ Just doodling around
 
 Trying to apply best practices for later usages :)
 
-Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetpack (Compose, ViewModel, Room, Credential Manager), and Material Design based on MVVM, Clean and Multi-Module architecture.
+Doodle demonstrates modern Android development with Jetpack (Compose, ViewModel, Room, Credential Manager), Coroutines, Flow, Koin and Material Design based on MVVM, Clean and Multi-Module architecture.
+
+## Screenshots
+
+<p align="center">
+  <a>
+    <img width=375, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/signin_screen.png" alt="Home Screen">
+    <img width=375, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/home_screen.png" alt="Home Screen">
+  </a>
+</p>
+
+## Multi Module Dependency Graph
+
+<p align="center">
+  <a>
+    <img width=750, src="https://github.com/enesky/Doodle/blob/chore/readme_update/tools/dependency-graph/project_digraph.dot.png" alt="Module Dependency Graph">
+  </a>
+</p>
 
 ## Tech stack & Open-source libraries
 
@@ -34,9 +51,8 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
         - <a href="https://developer.android.com/kotlin/coroutines" target="_blank">Coroutines</a>: Concurrency design pattern that you can use on Android to simplify code that executes asynchronously.
         - <a href="https://developer.android.com/kotlin/flow/stateflow-and-sharedflow" target="_blank">Stateflow</a>: StateFlow is a state-holder observable flow that emits the current and new state updates to its collectors.
         - <a href="https://kotlinlang.org/docs/reference/coroutines/flow.html" target="_blank">Flow</a>: A flow is an asynchronous version of a Sequence, a type of collection whose values are lazily produced.
-        - <a href="https://developer.android.com/jetpack/compose/navigation" target="_blank">Compose Destinations Navigation</a>: Simplified and type-safe navigation for Compose.
+        - <a href="https://developer.android.com/jetpack/compose/navigation" target="_blank">Navigation with Compose</a>: Navigation component for Compose.
         - <a href="https://developer.android.com/topic/libraries/architecture/datastore" target="_blank">DataStore</a>: Jetpack DataStore is a data storage solution that allows you to store key-value pairs or typed objects with protocol buffers. DataStore uses Kotlin coroutines and Flow to store data asynchronously, consistently, and transactionally.
-        - <a href="https://developer.android.com/topic/libraries/architecture/workmanager" target="_blank">WorkManager</a>: Schedule automatically repeating or guarantee one-time background processing.
     - Firebase
         - <a href="https://firebase.google.com/products/analytics" target="_blank">Analytics</a>: for tracking events.
         - <a href="https://firebase.google.com/products/crashlytics" target="_blank">Crashlytics</a>: for tracking crashes.
@@ -45,9 +61,9 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
         - <a href="https://firebase.google.com/products/auth" target="_blank">Authentication</a>: for user authentication.
     - Credential Manager API: Unifies the sign-in interface across authentication methods, making it clearer and easier for users to sign into apps, regardless of the method they choose.
     - Architecture
-        - MVVM Architecture (View - DataBinding - ViewModel - Model)
-        - Clean Architecture approach (Data - Domain - Presentation)
         - Multi-Module Architecture with lots of customized convention plugins (build_logic - app - core - feature)
+        - MVVM Architecture (View - DataBinding - ViewModel - Model)
+        - Clean Architecture approach (Data - Domain - Presentation(ui))
     - <a href="https://insert-koin.io/" target="_blank">Koin</a>: for dependency injection.
     - <a href="https://github.com/square/retrofit" target="_blank">Retrofit2 & OkHttp3</a>: Construct the REST APIs and paging network data.
     - <a href="https://github.com/google/ksp" target="_blank">ksp</a>: Kotlin Symbol Processing API.
@@ -57,7 +73,7 @@ Doodle demonstrates modern Android development with Koin, Coroutines, Flow, Jetp
     - <a href="https://github.com/diffplug/spotless" target="_blank">Spotless</a> and <a href="https://github.com/pinterest/ktlint" target="_blank">Ktlint</a> for lint check and auto formatting
     - <a href="https://github.com/renovatebot/renovate" target="_blank">RenovateBot</a> for auto dependency update tool
     - <a href="https://github.com/enesky/Doodle/actions" target="_blank">GitHub Actions</a> for simple ci pipeline
-    - <a href="https://github.com/enesky/Doodle/tree/main/config/git-hooks" target="_blank">GitHooks</a> for running static analysis and code formatters before commit and push actions
+    - <a href="https://github.com/enesky/Doodle/tree/main/tools/git-hooks" target="_blank">GitHooks</a> for running static analysis and code formatters before commit and push actions
     - <a href="https://github.com/square/leakcanary" target="_blank">LeakCanary</a> for leak detection on runtime
     - <a href="https://github.com/ChuckerTeam/chucker" target="_blank">Chucker</a> for network inspector on debug builds
 
@@ -91,7 +107,7 @@ Jikan is a free, open-source API.
 
 ## License:
 
-```xml
+```kotlin
 /*
  *                          Copyright 2023
  *            Designed and developed by Enes Kamil Yılmaz

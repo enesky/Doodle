@@ -1,0 +1,75 @@
+digraph {
+
+    // General settings
+    graph [fontsize=42, ranksep=1.25, bgcolor="#2B323F", fontcolor=white];
+    node [style=bold, color="#F96D00", fontsize=24, fontcolor=white];
+    edge [color=white];
+    rankdir=TB; # Top to bottom
+
+    // Main module settings
+    "app", "data", "domain" [shape=box, height="1", width="1"];
+
+    // Helper module setters
+    "common", "design-system", "ui", "network", "navigation" [shape=hexagon];
+
+    subgraph cluster_feature {
+        label="feature:";
+        color=orange;
+        "login", "home", "details", "explore", "settings", "my-lists";
+    }
+
+    # Dependencies
+    "app" -> "common"
+    "app" -> "data"
+    "app" -> "design-system"
+    "app" -> "domain"
+    "app" -> "network"
+    "app" -> "navigation"
+    "app" -> "ui"
+    "app" -> "login"
+    "app" -> "home"
+    "app" -> "details"
+    "app" -> "explore"
+    "app" -> "my-lists"
+    "app" -> "settings"
+    "design-system" -> "common"
+    "design-system" -> "domain"
+    "domain" -> "common"
+    "domain" -> "data"
+    "domain" -> "network"
+    "network" -> "common"
+    "network" -> "data"
+    "ui" -> "common"
+    "ui" -> "domain"
+    "ui" -> "design-system"
+    "login" -> "domain"
+    "login" -> "common"
+    "login" -> "design-system"
+    "login" -> "navigation"
+    "login" -> "ui"
+    "home" -> "domain"
+    "home" -> "common"
+    "home" -> "design-system"
+    "home" -> "navigation"
+    "home" -> "ui"
+    "details" -> "domain"
+    "details" -> "common"
+    "details" -> "design-system"
+    "details" -> "navigation"
+    "details" -> "ui"
+    "explore" -> "domain"
+    "explore" -> "common"
+    "explore" -> "design-system"
+    "explore" -> "navigation"
+    "explore" -> "ui"
+    "my-lists" -> "domain"
+    "my-lists" -> "common"
+    "my-lists" -> "design-system"
+    "my-lists" -> "navigation"
+    "my-lists" -> "ui"
+    "settings" -> "domain"
+    "settings" -> "common"
+    "settings" -> "design-system"
+    "settings" -> "navigation"
+    "settings" -> "ui"
+}
