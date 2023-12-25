@@ -39,8 +39,8 @@ fun AnimeItem(
 ) {
     val config = LocalConfiguration.current
     val screenWidth = config.screenWidthDp.dp
-    val itemWidth = screenWidth / 3.5f
-    val itemHeight = itemWidth * 1.5f
+    val itemWidth = screenWidth / 3.8f
+    val itemHeight = itemWidth * 1.75f
 
     Column(
         modifier = if (isPlaceholder) {
@@ -93,6 +93,7 @@ fun AnimeItem(
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
                     style = DoodleTheme.typography.regular.h6,
+                    color = DoodleTheme.colors.white,
                 )
                 Text(
                     modifier = Modifier,
@@ -100,6 +101,7 @@ fun AnimeItem(
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
                     style = DoodleTheme.typography.regular.h7,
+                    color = DoodleTheme.colors.white,
                 )
             }
             if (isPlaceholder.not()) {
