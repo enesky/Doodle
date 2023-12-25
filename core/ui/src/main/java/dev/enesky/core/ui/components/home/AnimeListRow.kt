@@ -74,7 +74,7 @@ fun AnimeListRow(
                             anime = it,
                             onNavigateDetailsClick = onNavigateDetailsClick,
                         )
-                    }
+                    } ?: PlaceholderItem()
                 }
             }
 

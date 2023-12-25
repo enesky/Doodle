@@ -40,7 +40,12 @@ class JikanDataSourceImpl(
 
     override fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<AnimeResponse>> {
         return Pager(
-            config = PagingConfig(pageSize = ITEMS_PER_PAGE),
+            config = PagingConfig(
+                pageSize = ITEMS_PER_PAGE,
+                initialLoadSize = ITEMS_PER_PAGE,
+                prefetchDistance = ITEMS_PER_PAGE / 2,
+                enablePlaceholders = true,
+            ),
             pagingSourceFactory = {
                 TopAnimePagingSource(jikanService, animeFilter)
             },
