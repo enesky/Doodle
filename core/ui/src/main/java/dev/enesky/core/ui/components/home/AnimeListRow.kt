@@ -78,9 +78,9 @@ fun AnimeListRow(
                 }
             }
 
-            pagingItems == null
-                || pagingItems.loadState.refresh.isLoading
-                || pagingItems.loadState.append.isLoading -> {
+            pagingItems == null ||
+                pagingItems.loadState.refresh.isLoading ||
+                pagingItems.loadState.append.isLoading -> {
                 items(Constants.ITEMS_PER_PAGE) {
                     PlaceholderItem()
                 }
