@@ -66,9 +66,9 @@ private fun HomeScreen(
     uiState: HomeUiState,
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
+    val popularPagingItems = uiState.popularAnimes?.collectAsLazyPagingItems()
     val airingPagingItems = uiState.airingAnimes?.collectAsLazyPagingItems()
     val upcomingPagingItems = uiState.upcomingAnimes?.collectAsLazyPagingItems()
-    val popularPagingItems = uiState.popularAnimes?.collectAsLazyPagingItems()
     val favoritePagingItems = uiState.favoriteAnimes?.collectAsLazyPagingItems()
 
     fun isRefreshing() = popularPagingItems?.loadState?.refresh?.isLoading == true ||

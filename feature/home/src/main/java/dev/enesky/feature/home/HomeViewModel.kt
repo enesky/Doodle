@@ -37,13 +37,13 @@ class HomeViewModel(
 
     private fun getAllAnimes() {
         viewModelScope.launch(Dispatchers.IO) {
+            val popularAnimesFlow = topAnimePagingUseCase(AnimeFilter.POPULARITY)
+                .cachedIn(viewModelScope)
+
             val airingAnimesFlow = topAnimePagingUseCase(AnimeFilter.AIRING)
                 .cachedIn(viewModelScope)
 
             val upcomingAnimesFlow = topAnimePagingUseCase(AnimeFilter.UPCOMING)
-                .cachedIn(viewModelScope)
-
-            val popularAnimesFlow = topAnimePagingUseCase(AnimeFilter.POPULARITY)
                 .cachedIn(viewModelScope)
 
             val favoriteAnimesFlow = topAnimePagingUseCase(AnimeFilter.FAVORITE)
@@ -52,9 +52,9 @@ class HomeViewModel(
             updateUiState {
                 copy(
                     loading = false,
+                    popularAnimes = popularAnimesFlow,
                     airingAnimes = airingAnimesFlow,
                     upcomingAnimes = upcomingAnimesFlow,
-                    popularAnimes = popularAnimesFlow,
                     favoriteAnimes = favoriteAnimesFlow,
                 )
             }
