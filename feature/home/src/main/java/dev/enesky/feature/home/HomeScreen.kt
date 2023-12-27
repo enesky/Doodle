@@ -28,7 +28,7 @@ import org.koin.androidx.compose.koinViewModel
 fun HomeRoute(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinViewModel(),
-    onNavigateDetailsClick: (id: String) -> Unit,
+    onNavigateDetailsClick: (animeId: String) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -42,10 +42,7 @@ fun HomeRoute(
                 Logger.debug("HomeScreen", "onError: ${homeEvents.errorMessage}")
             }
 
-            is HomeEvents.NavigateToDetails -> {
-                Logger.debug("HomeScreen", "onNavigateDetailsClick: ${homeEvents.animeId}")
-                // TODO -> onNavigateDetailsClick(homeEvents.animeId)
-            }
+            is HomeEvents.NavigateToDetails -> onNavigateDetailsClick(homeEvents.animeId)
 
             is HomeEvents.OnItemOptionsClick -> {
                 // TODO: Add item options click action -> Open a bottom sheet or options menu
@@ -56,7 +53,7 @@ fun HomeRoute(
     HomeScreen(
         modifier = modifier,
         uiState = uiState,
-        onNavigateDetailsClick = {},
+        onNavigateDetailsClick = onNavigateDetailsClick
     )
 }
 
