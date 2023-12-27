@@ -5,11 +5,11 @@ compile-sdk                           = "34"
 min-sdk                               = "24"
 target-sdk                            = "34"
 compose-compiler                      = "1.5.4"
+kotlin                                = "1.9.21"
 
 # Plugin Versions
 gradle-plugin                         = "8.3.0-alpha18"
-kotlin-plugin                         = "1.9.20"
-ksp-plugin                            = "1.9.20-1.0.14"
+ksp-plugin                            = "1.9.21-1.0.16"
 google-services-plugin                = "4.4.0"
 crashlytics-plugin                    = "2.9.9"
 firebase-perf-plugin                  = "1.4.2"
@@ -51,7 +51,7 @@ accompanist                           = "0.32.0"
 android-application                   = { id= "com.android.application", version.ref= "gradle-plugin" }
 android-library                       = { id= "com.android.library", version.ref= "gradle-plugin" }
 android-test                          = { id= "com.android.test", version.ref= "gradle-plugin" }
-kotlin-android                        = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin-plugin" }
+kotlin-android                        = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin" }
 ksp-plugin                            = { id= "com.google.devtools.ksp", version.ref= "ksp-plugin"}
 google-services                       = { id= "com.google.gms.google-services", version.ref= "google-services-plugin"}
 firebase-crashlytics                  = { id= "com.google.firebase.crashlytics", version.ref= "crashlytics-plugin"}
@@ -136,7 +136,7 @@ accompanist-placeholder-material      = { module= "com.google.accompanist:accomp
 
 # Dependencies included in build-logic
 android-gradle-plugin                 = { module= "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
-kotlin-gradle-plugin                  = { module= "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-plugin" }
+kotlin-gradle-plugin                  = { module= "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradle-plugin                     = { module= "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp-plugin" }
 detekt-gradle-plugin                  = { module= "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref= "detekt" }
 desugar-jdk-libs                      = { module= "com.android.tools:desugar_jdk_libs", version.ref= "desugar-jdk-libs" }
