@@ -4,7 +4,7 @@ jvm                                   = "17"
 compile-sdk                           = "34"
 min-sdk                               = "24"
 target-sdk                            = "34"
-compose-compiler                      = "1.5.4"
+compose-compiler                      = "1.5.7"
 kotlin                                = "1.9.21"
 
 # Plugin Versions
