@@ -38,41 +38,18 @@ class DetailsViewModel(
             animeUseCase(animeId = jjkAnimeId)
                 .asResult()
                 .onEach { resource ->
-                    when (resource) {
-                        is Result.Loading -> {
-                            updateUiState {
-                                copy(
-                                    loading = true,
-                                    anime = null,
-                                )
-                            }
-                        }
-
-                        is Result.Success -> {
-                            if (resource.data.id == 0) {
-                                updateUiState {
-                                    copy(
-                                        loading = false,
-                                        anime = null,
-                                    )
-                                }
-                                return@onEach
-                            }
-                            updateUiState {
-                                copy(
-                                    loading = false,
-                                    anime = resource.data,
-                                )
-                            }
-                        }
-
-                        is Result.Error -> {
-                            updateUiState {
-                                copy(
-                                    loading = false,
-                                    anime = null,
-                                )
-                            }
+                    updateUiState {
+                        when(resource) {
+                            is Result.Loading -> copy(loading = true)
+                            is Result.Success -> copy(
+                                loading = false,
+                                anime = resource.data
+                            )
+                            is Result.Error -> copy(
+                                loading = false,
+                                anime = null,
+                                errorMessage = resource.exception?.message
+                            )
                         }
                     }
                 }.launchIn(this)
