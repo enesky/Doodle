@@ -62,7 +62,7 @@ class HomeViewModel(
     }
 
     private fun getPreviewAnime() {
-        val jjkAnimeId = 40748
+        val jjkAnimeId = 51009
         viewModelScope.launch(Dispatchers.IO) {
             animeUseCase(animeId = jjkAnimeId)
                 .asResult()
