@@ -23,6 +23,7 @@ import dev.enesky.build_logic.convention.helpers.getBuildTypes
 import dev.enesky.build_logic.convention.helpers.getGeneralBuildConfigs
 import dev.enesky.build_logic.convention.helpers.getProductFlavors
 import dev.enesky.build_logic.convention.helpers.implementation
+import dev.enesky.build_logic.convention.helpers.ksp
 import dev.enesky.build_logic.convention.helpers.libs
 import dev.enesky.build_logic.convention.helpers.releaseImplementation
 import org.gradle.api.Plugin
@@ -71,6 +72,9 @@ class AppMainPlugin : Plugin<Project> {
             val koinBom = platform(libs.koin.bom)
             implementation(koinBom)
             implementation(libs.bundles.koin.materials)
+
+            implementation(libs.compose.destinations.core)
+            ksp(libs.compose.destinations.ksp)
         }
     }
 }

@@ -45,8 +45,5 @@ internal fun Project.configureAndroidCompose(commonExtension: CommonExtension<*,
 
             implementation(libs.androidx.navigation.compose)
             implementation(libs.lifecycle.runtime.compose)
-
-            implementation(libs.compose.destinations.core)
-            ksp(libs.compose.destinations.ksp)
         }
     }
