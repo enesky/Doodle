@@ -35,6 +35,7 @@ class LibraryMainPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply(libs.plugins.android.library.get().pluginId)
                 apply(libs.plugins.kotlin.android.get().pluginId)
+                apply(libs.plugins.ksp.plugin.get().pluginId)
             }
 
             extensions.configure<LibraryExtension> {
