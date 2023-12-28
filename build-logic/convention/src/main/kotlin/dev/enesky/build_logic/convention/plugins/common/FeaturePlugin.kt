@@ -16,31 +16,18 @@
  */
 package dev.enesky.build_logic.convention.plugins.common
 
-import com.android.build.gradle.LibraryExtension
 import dev.enesky.build_logic.convention.helpers.implementation
 import dev.enesky.build_logic.convention.helpers.ksp
 import dev.enesky.build_logic.convention.helpers.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
-import java.io.File
 
 /**
  * A plugin that applies common dependencies for feature modules.
  */
 class FeaturePlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
-
-        extensions.getByType<LibraryExtension>().apply {
-            // Add KSP source directories to the model to make them visible to Android Studio
-            libraryVariants.all {
-                addJavaSourceFoldersToModel(
-                    File(buildDir, "generated/ksp/$name/kotlin")
-                )
-            }
-        }
-
         dependencies {
             implementation(project(":core:domain"))
             implementation(project(":core:common"))
