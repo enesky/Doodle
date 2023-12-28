@@ -66,9 +66,9 @@ app-compose                           = { id= "app.compose", version= "unspecifi
 app-jacoco                            = { id= "app.jacoco", version= "unspecified" }
 app-firebase                          = { id= "app.firebase", version= "unspecified" }
 library-main                          = { id= "library.main", version= "unspecified" }
+library-feature                       = { id= "library.feature", version= "unspecified" }
 library-compose                       = { id= "library.compose", version= "unspecified" }
 library-jacoco                        = { id= "library.jacoco", version= "unspecified" }
-common-feature                        = { id= "common.feature", version= "unspecified" }
 common-test                           = { id= "common.test", version= "unspecified" }
 common-signing-config                 = { id= "common.signing.config", version= "unspecified" }
 common-api-key-provider               = { id= "common.api.key.provider", version= "unspecified" }

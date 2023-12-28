@@ -85,6 +85,10 @@ gradlePlugin {
             id = libs.plugins.library.main.get().pluginId
             implementationClass = "$rootPath.library.LibraryMainPlugin"
         }
+        register("libraryFeature") {
+            id = libs.plugins.library.feature.get().pluginId
+            implementationClass = "$rootPath.library.LibraryFeaturePlugin"
+        }
         register("libraryCompose") {
             id = libs.plugins.library.compose.get().pluginId
             implementationClass = "$rootPath.library.LibraryComposePlugin"
@@ -98,10 +102,6 @@ gradlePlugin {
          * Common Convention Plugins
          * -> For both app/build.gradle.kts and modules/build.gradle.kts <-
          */
-        register("commonFeature") {
-            id = libs.plugins.common.feature.get().pluginId
-            implementationClass = "$rootPath.common.FeaturePlugin"
-        }
         register("commonTest") {
             id = libs.plugins.common.test.get().pluginId
             implementationClass = "$rootPath.common.TestPlugin"
