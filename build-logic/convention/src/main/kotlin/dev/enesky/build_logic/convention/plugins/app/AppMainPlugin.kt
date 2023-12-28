@@ -17,6 +17,7 @@
 package dev.enesky.build_logic.convention.plugins.app
 
 import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.gradle.AbstractAppExtension
 import dev.enesky.build_logic.convention.helpers.configureKotlinAndroid
 import dev.enesky.build_logic.convention.helpers.debugImplementation
 import dev.enesky.build_logic.convention.helpers.getBuildTypes
@@ -30,6 +31,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import java.io.File
 
 /**
  * Configure Android Application-specific options
@@ -54,6 +56,15 @@ class AppMainPlugin : Plugin<Project> {
                 getGeneralBuildConfigs()
 
                 packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            }
+        }
+
+        // Add KSP source directories to the model to make them visible to Android Studio
+        extensions.configure<AbstractAppExtension> {
+            applicationVariants.all {
+                addJavaSourceFoldersToModel(
+                    File(buildDir, "generated/ksp/$name/kotlin")
+                )
             }
         }
 

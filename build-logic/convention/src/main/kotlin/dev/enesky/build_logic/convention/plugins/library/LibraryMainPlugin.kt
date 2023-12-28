@@ -39,8 +39,8 @@ class LibraryMainPlugin : Plugin<Project> {
             }
 
             extensions.configure<LibraryExtension> {
-                configureKotlinAndroid(this)
                 defaultConfig.targetSdk = libs.versions.target.sdk.get().toString().toInt()
+                configureKotlinAndroid(this)
             }
 
             dependencies {
