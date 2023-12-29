@@ -43,7 +43,7 @@ class JikanDataSourceImpl(
             config = PagingConfig(
                 pageSize = ITEMS_PER_PAGE,
                 initialLoadSize = ITEMS_PER_PAGE,
-                prefetchDistance = ITEMS_PER_PAGE / 2,
+                prefetchDistance = ITEMS_PER_PAGE / 4,
                 enablePlaceholders = true,
             ),
             pagingSourceFactory = {
