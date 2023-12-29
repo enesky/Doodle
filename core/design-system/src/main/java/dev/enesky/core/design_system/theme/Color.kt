@@ -38,6 +38,14 @@ private val DarkGrey = Color(0xFF696974)
 private val WhiteGrey = Color(0xFFEBEBEF)
 private val LineDark = Color(0xFFEAEAEA)
 
+// Testing colors
+private val DarkVoid = Color(0xFF141419)
+private val LiquidLava = Color(0xFFF56E0F)
+private val GluonDark = Color(0xFF1B1B1E)
+private val SlateGray = Color(0xFF262626)
+private val DustyGray = Color(0xFF878787)
+private val Snow = Color(0xFFFBFBFB)
+
 internal val DarkColorScheme = darkColorScheme(
     primary = BlazeOrange,
     secondary = White,
@@ -77,6 +85,14 @@ data class DoodleColors(
     val grey: Color = Grey,
     val darkGrey: Color = DarkGrey,
     val lineDark: Color = LineDark,
+
+    // Testing colors
+    val darkVoid: Color = DarkVoid,
+    val liquidLava: Color = LiquidLava,
+    val gluonDark: Color = GluonDark,
+    val slateGray: Color = SlateGray,
+    val dustyGray: Color = DustyGray,
+    val snow: Color = Snow,
 )
 
 internal val LocalDoodleColors = staticCompositionLocalOf { DoodleColors() }
