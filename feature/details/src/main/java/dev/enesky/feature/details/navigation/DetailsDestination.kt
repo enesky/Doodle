@@ -14,7 +14,7 @@ object DetailsDestination : DoodleNavigationDestination {
     override val destination = "details_destination"
 
     private const val ID_ARGUMENT = "id"
-    val routeWithArguments = "$route/{$ID_ARGUMENT}}"
+    val routeWithArguments = "$route/{$ID_ARGUMENT}"
 
     fun createNavigationRoute(id: String) = "$route/$id"
 }
