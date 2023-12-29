@@ -15,6 +15,7 @@ import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
 import dev.enesky.feature.home.helpers.HomeEvents
 import dev.enesky.feature.home.helpers.HomeUiState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -38,15 +39,19 @@ class HomeViewModel(
     private fun getAllAnimes() {
         viewModelScope.launch(Dispatchers.IO) {
             val popularAnimesFlow = topAnimePagingUseCase(AnimeFilter.POPULARITY)
+                .distinctUntilChanged()
                 .cachedIn(viewModelScope)
 
             val airingAnimesFlow = topAnimePagingUseCase(AnimeFilter.AIRING)
+                .distinctUntilChanged()
                 .cachedIn(viewModelScope)
 
             val upcomingAnimesFlow = topAnimePagingUseCase(AnimeFilter.UPCOMING)
+                .distinctUntilChanged()
                 .cachedIn(viewModelScope)
 
             val favoriteAnimesFlow = topAnimePagingUseCase(AnimeFilter.FAVORITE)
+                .distinctUntilChanged()
                 .cachedIn(viewModelScope)
 
             updateUiState {
