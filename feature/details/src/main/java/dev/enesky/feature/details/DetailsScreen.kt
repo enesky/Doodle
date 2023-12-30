@@ -26,10 +26,10 @@ fun DetailsRoute(
     animeId: String,
     viewModel: DetailsViewModel = koinViewModel(),
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     LaunchedEffect(animeId) {
         viewModel.getThemAll(animeId = animeId.toInt())
     }
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     DetailsScreen(
         modifier = modifier,
