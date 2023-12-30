@@ -52,7 +52,7 @@ fun AnimeListRow(
         )
     },
 ) {
-    AnimeRowTitle(Modifier, title)
+    TitleRow(Modifier, title)
 
     Spacer(modifier = Modifier.size(DoodleTheme.spacing.small))
 
@@ -96,7 +96,7 @@ fun AnimeListRow(
 }
 
 @Composable
-fun AnimeRowTitle(
+fun TitleRow(
     modifier: Modifier = Modifier,
     title: String,
 ) {
