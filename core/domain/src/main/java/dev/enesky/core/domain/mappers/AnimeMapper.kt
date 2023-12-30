@@ -1,7 +1,7 @@
 package dev.enesky.core.domain.mappers
 
 import dev.enesky.core.data.models.AnimeResponse
-import dev.enesky.core.data.models.FullAnime
+import dev.enesky.core.data.models.DetailedAnimeResponse
 import dev.enesky.core.domain.models.Anime
 import dev.enesky.core.domain.utils.getImageUrl
 import dev.enesky.core.domain.utils.toGenreString
@@ -20,7 +20,7 @@ fun AnimeResponse.asAnime(): Anime {
     )
 }
 
-fun FullAnime.asAnime() = Anime(
+fun DetailedAnimeResponse.asAnime() = Anime(
     id = id,
     imageUrl = getImageUrl(images),
     trailer = trailer,

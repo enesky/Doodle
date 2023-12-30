@@ -22,7 +22,7 @@ import dev.enesky.core.common.enums.AnimeType
 import dev.enesky.core.common.utils.Constants
 import dev.enesky.core.data.models.AnimeCharacterResponse
 import dev.enesky.core.data.models.AnimeResponse
-import dev.enesky.core.data.models.FullAnime
+import dev.enesky.core.data.models.DetailedAnimeResponse
 import dev.enesky.core.data.base.BasePagingResponse
 import dev.enesky.core.data.base.BaseResponse
 import retrofit2.Response
@@ -49,7 +49,7 @@ interface JikanService {
     @GET("anime/{id}/full")
     suspend fun getAnimeById(
         @Path("id") animeId: Int,
-    ): Response<BaseResponse<FullAnime>>
+    ): Response<BaseResponse<DetailedAnimeResponse>>
 
     @GET("anime/{anime-id}/characters")
     suspend fun getCharactersByAnimeId(

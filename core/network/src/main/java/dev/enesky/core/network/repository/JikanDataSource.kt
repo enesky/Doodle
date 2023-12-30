@@ -20,7 +20,7 @@ import androidx.paging.PagingData
 import dev.enesky.core.common.enums.AnimeFilter
 import dev.enesky.core.data.models.AnimeCharacterResponse
 import dev.enesky.core.data.models.AnimeResponse
-import dev.enesky.core.data.models.FullAnime
+import dev.enesky.core.data.models.DetailedAnimeResponse
 import dev.enesky.core.data.base.BaseResponse
 import kotlinx.coroutines.flow.Flow
 
@@ -31,6 +31,6 @@ import kotlinx.coroutines.flow.Flow
 interface JikanDataSource {
 
     fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<AnimeResponse>>
-    suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>>
+    suspend fun getAnimeById(animeId: Int): Result<BaseResponse<DetailedAnimeResponse>>
     suspend fun getCharactersByAnimeId(animeId: Int): Result<BaseResponse<List<AnimeCharacterResponse>>>
 }

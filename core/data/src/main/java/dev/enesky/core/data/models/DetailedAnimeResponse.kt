@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
  */
 
 @Parcelize
-data class FullAnime(
+data class DetailedAnimeResponse(
     @SerializedName("mal_id") val id: Int,
     val url: String,
     val images: Images,

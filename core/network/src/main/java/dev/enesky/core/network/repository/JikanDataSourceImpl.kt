@@ -23,7 +23,7 @@ import dev.enesky.core.common.enums.AnimeFilter
 import dev.enesky.core.common.utils.Constants.ITEMS_PER_PAGE
 import dev.enesky.core.data.models.AnimeCharacterResponse
 import dev.enesky.core.data.models.AnimeResponse
-import dev.enesky.core.data.models.FullAnime
+import dev.enesky.core.data.models.DetailedAnimeResponse
 import dev.enesky.core.data.base.BaseResponse
 import dev.enesky.core.network.api.JikanService
 import dev.enesky.core.network.paging.TopAnimePagingSource
@@ -52,7 +52,7 @@ class JikanDataSourceImpl(
         ).flow
     }
 
-    override suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>> {
+    override suspend fun getAnimeById(animeId: Int): Result<BaseResponse<DetailedAnimeResponse>> {
         return kotlin.runCatching {
             jikanService.getAnimeById(animeId).getBodyOrThrowError()
         }
