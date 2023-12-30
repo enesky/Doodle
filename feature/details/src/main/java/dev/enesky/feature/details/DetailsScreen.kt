@@ -45,6 +45,7 @@ import dev.enesky.core.domain.models.placeholderAnimeCharacter
 import dev.enesky.core.domain.models.placeholderDetailedAnime
 import dev.enesky.core.ui.components.details.AnimeCharactersRow
 import dev.enesky.core.ui.components.details.DetailedAnimePreview
+import dev.enesky.core.ui.components.details.DetailedAnimeSummary
 import dev.enesky.core.ui.components.home.TitleRow
 import dev.enesky.feature.details.helpers.DetailsUiState
 import org.koin.androidx.compose.koinViewModel
@@ -122,98 +123,6 @@ private fun DetailsScreen(
             }
             item {
                 // TODO: Add anime recommendations
-            }
-        }
-    }
-}
-
-@Composable
-fun DetailedAnimeSummary(
-    modifier: Modifier = Modifier,
-    summary: String,
-) {
-    var expanded: Boolean by remember { mutableStateOf(false) }
-    var maxLines = if (expanded) Int.MAX_VALUE else 7
-
-    Column(
-        modifier = modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        TitleRow(modifier, "Summary")
-
-        Box {
-            Text(
-                modifier = Modifier
-                    .padding(
-                        start = DoodleTheme.spacing.medium,
-                        end = DoodleTheme.spacing.medium,
-                        top = DoodleTheme.spacing.medium,
-                        bottom = DoodleTheme.spacing.large,
-                    )
-                    .animateContentSize(),
-                text = summary,
-                color = DoodleTheme.colors.white,
-                style = DoodleTheme.typography.regular.h6,
-                maxLines = maxLines,
-            )
-
-            // Add gradient to the bottom of the first paragraph
-            // Foreground gradient
-            Box(
-                modifier = Modifier
-                    .matchParentSize()
-                    .background(
-                        Brush.verticalGradient(
-                            listOf(
-                                DoodleTheme.colors.transparent,
-                                DoodleTheme.colors.transparent,
-                                DoodleTheme.colors.transparent,
-                                DoodleTheme.colors.background.copy(alpha = 0.2f),
-                                DoodleTheme.colors.background,
-                            ),
-                        ),
-                    )
-                    .clickable {
-                        expanded = !expanded
-                    },
-                contentAlignment = Alignment.BottomCenter,
-            ) {
-                Column {
-                    Spacer(modifier = Modifier.height(DoodleTheme.spacing.xLarge))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(
-                            modifier = Modifier,
-                            text = if (expanded) "Show less" else "Show more",
-                            color = DoodleTheme.colors.white,
-                            style = DoodleTheme.typography.bold.h6.copy(
-                                textAlign = TextAlign.Center,
-                            ),
-                        )
-                        // Rotate the arrow icon by 180 degrees when expanded
-                        val rotationAngle by animateFloatAsState(
-                            targetValue = if (expanded) 180f else 0f,
-                            animationSpec = tween(
-                                durationMillis = 500,
-                            ),
-                            label = "",
-                        )
-                        Icon(
-                            modifier = Modifier
-                                .size(24.dp)
-                                .graphicsLayer {
-                                    rotationZ = rotationAngle
-                                },
-                            painter = rememberVectorPainter(image = Icons.Default.KeyboardArrowDown),
-                            tint = DoodleTheme.colors.white,
-                            contentDescription = ""
-                        )
-                    }
-                }
             }
         }
     }
