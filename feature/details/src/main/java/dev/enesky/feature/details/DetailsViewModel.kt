@@ -30,6 +30,7 @@ class DetailsViewModel(
 
     fun getThemAll(animeId: Int) {
         getAnime(animeId)
+        getAnimeCharacters(animeId)
     }
 
     private fun getAnime(animeId: Int) {
@@ -54,4 +55,28 @@ class DetailsViewModel(
                 }.launchIn(this)
         }
     }
+
+    private fun getAnimeCharacters(animeId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            animeCharactersUseCase(animeId = animeId)
+                .asResult()
+                .onEach { resource ->
+                    updateUiState {
+                        when(resource) {
+                            is Result.Loading -> copy(loading = true)
+                            is Result.Success -> copy(
+                                loading = false,
+                                characters = resource.data
+                            )
+                            is Result.Error -> copy(
+                                loading = false,
+                                characters = null,
+                                errorMessage = resource.exception?.message
+                            )
+                        }
+                    }
+                }.launchIn(this)
+        }
+    }
+
 }
