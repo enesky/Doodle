@@ -15,7 +15,7 @@ data class AnimeCharacter(
 // Placeholder AnimeCharacter for preview
 val placeholderAnimeCharacter = AnimeCharacter(
     id = 0,
-    name = "Satoru Gojo",
+    name = "Satoru Gojou",
     imageUrl = "",
     role = "Main",
     favorites = 99999,

@@ -11,7 +11,7 @@ import dev.enesky.core.domain.utils.getImageUrl
 fun AnimeCharacterResponse.asAnimeCharacter(): AnimeCharacter {
     return AnimeCharacter(
         id = character.id,
-        name = character.name,
+        name = character.name.replace(",", ""),
         imageUrl = getImageUrl(character.images),
         role = role,
         favorites = favorites
