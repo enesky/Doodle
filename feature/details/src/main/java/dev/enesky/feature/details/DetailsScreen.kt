@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.ui.components.home.TopAnimePreview
+import dev.enesky.core.ui.components.home.AnimePreview
 import dev.enesky.feature.details.helpers.DetailsUiState
 import org.koin.androidx.compose.koinViewModel
 
@@ -50,7 +50,7 @@ private fun DetailsScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
-            TopAnimePreview(
+            AnimePreview(
                 anime = uiState.anime,
                 isLoading = uiState.loading,
             )

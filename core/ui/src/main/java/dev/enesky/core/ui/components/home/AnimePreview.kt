@@ -15,11 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.enesky.core.common.utils.Empty
-import dev.enesky.core.design_system.R
 import dev.enesky.core.design_system.components.DoodleImagePlaceholder
 import dev.enesky.core.design_system.components.DoodleNetworkImage
 import dev.enesky.core.design_system.theme.DoodleTheme
@@ -32,7 +30,7 @@ import dev.enesky.core.domain.models.placeholderAnime
 
 @Suppress("LongMethod")
 @Composable
-fun TopAnimePreview(
+fun AnimePreview(
     modifier: Modifier = Modifier,
     anime: Anime?,
     isLoading: Boolean = false,
@@ -45,17 +43,12 @@ fun TopAnimePreview(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .padding(
-                all = DoodleTheme.spacing.medium,
-            )
+            .padding(all = DoodleTheme.spacing.medium)
             .clip(DoodleTheme.shapes.small)
-            .also {
-                if (anime != null && onNavigateDetailsClick != null) {
-                    it.clickable {
-                        onNavigateDetailsClick(anime.id.toString())
-                    }
-                }
-            },
+            .clickable(
+                enabled = anime != null && onNavigateDetailsClick != null,
+                onClick = { onNavigateDetailsClick?.invoke(anime?.id.toString()) }
+            ),
     ) {
         if (isLoading || anime == null) {
             DoodleImagePlaceholder(
@@ -120,7 +113,7 @@ fun TopAnimePreview(
 @Composable
 private fun TopAnimePreviewPreview() {
     DoodleTheme {
-        TopAnimePreview(
+        AnimePreview(
             anime = placeholderAnime,
         ) {}
     }
