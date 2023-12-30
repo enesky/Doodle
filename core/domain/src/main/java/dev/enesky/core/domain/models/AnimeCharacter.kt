@@ -11,3 +11,12 @@ data class AnimeCharacter(
     val role: String,
     val favorites: Int
 )
+
+// Placeholder AnimeCharacter for preview
+val placeholderAnimeCharacter = AnimeCharacter(
+    id = 0,
+    name = "Satoru Gojo",
+    imageUrl = "",
+    role = "Main",
+    favorites = 99999,
+)

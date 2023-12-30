@@ -58,7 +58,7 @@ class JikanDataSourceImpl(
         }
     }
 
-    override suspend fun getCharactersByAnimeId(animeId: Int): Result<List<AnimeCharacterResponse>> {
+    override suspend fun getCharactersByAnimeId(animeId: Int): Result<BaseResponse<List<AnimeCharacterResponse>>> {
         return kotlin.runCatching {
             jikanService.getCharactersByAnimeId(animeId).getBodyOrThrowError()
         }

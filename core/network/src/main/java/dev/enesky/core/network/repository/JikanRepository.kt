@@ -40,7 +40,7 @@ class JikanRepository(
         return jikanDataSource.getAnimeById(animeId)
     }
 
-    suspend fun getCharactersByAnimeId(animeId: Int): Result<List<AnimeCharacterResponse>> {
+    suspend fun getCharactersByAnimeId(animeId: Int): Result<BaseResponse<List<AnimeCharacterResponse>>> {
         return jikanDataSource.getCharactersByAnimeId(animeId)
     }
 }

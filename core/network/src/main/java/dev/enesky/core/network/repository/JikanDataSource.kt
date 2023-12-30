@@ -32,5 +32,5 @@ interface JikanDataSource {
 
     fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<AnimeResponse>>
     suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>>
-    suspend fun getCharactersByAnimeId(animeId: Int): Result<List<AnimeCharacterResponse>>
+    suspend fun getCharactersByAnimeId(animeId: Int): Result<BaseResponse<List<AnimeCharacterResponse>>>
 }

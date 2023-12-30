@@ -54,5 +54,5 @@ interface JikanService {
     @GET("anime/{anime-id}/characters")
     suspend fun getCharactersByAnimeId(
         @Path("anime-id") animeId: Int,
-    ): Response<List<AnimeCharacterResponse>>
+    ): Response<BaseResponse<List<AnimeCharacterResponse>>>
 }

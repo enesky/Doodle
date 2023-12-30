@@ -32,8 +32,10 @@ class AnimeCharactersUseCase(
         return flow {
             val result = jikanRepository.getCharactersByAnimeId(animeId)
             (result.getOrNull() ?: result.getOrThrow()).also {
-                val data = it.map { animeCharacterResponse ->
+                val data = it.data.map { animeCharacterResponse ->
                     animeCharacterResponse.asAnimeCharacter()
+                }.sortedByDescending {
+                    animeCharacter -> animeCharacter.favorites
                 }
                 emit(data)
             }
