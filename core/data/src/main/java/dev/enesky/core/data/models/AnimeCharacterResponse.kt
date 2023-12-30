@@ -25,7 +25,7 @@ import kotlinx.parcelize.Parcelize
  */
 
 @Parcelize
-data class Character(
+data class AnimeCharacterResponse(
     val character: Person,
     val role: String,
     val favorites: Int,

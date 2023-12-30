@@ -2,7 +2,7 @@ package dev.enesky.core.domain.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import dev.enesky.core.data.response.Trailer
+import dev.enesky.core.data.models.Trailer
 import kotlinx.parcelize.Parcelize
 
 /**
