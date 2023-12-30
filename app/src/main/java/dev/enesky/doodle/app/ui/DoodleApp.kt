@@ -72,7 +72,7 @@ fun DoodleApp(
                         snackbarHostState = appState.snackbarHostState,
                     )
                 },
-                contentWindowInsets = WindowInsets(0.dp, top = 24.dp, 0.dp, 0.dp),
+                contentWindowInsets = WindowInsets(0.dp, top = 24.dp, 0.dp, bottom = 56.dp),
             ) { innerPadding ->
                 /**
                  * Update the start destination according to the user's login status

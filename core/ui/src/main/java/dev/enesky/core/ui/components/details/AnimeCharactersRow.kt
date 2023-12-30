@@ -44,7 +44,6 @@ import dev.enesky.core.ui.components.home.TitleRow
 @Composable
 fun AnimeCharactersRow(
     modifier: Modifier = Modifier,
-    title: String = stringResource(id = R.string.lorem_ipsum_short),
     animeCharacters: List<AnimeCharacter>? = listOf(placeholderAnimeCharacter, placeholderAnimeCharacter),
     isLoading: Boolean = false,
     emptyContent: @Composable LazyItemScope.() -> Unit = {
@@ -58,7 +57,10 @@ fun AnimeCharactersRow(
 ) {
     Spacer(modifier = Modifier.size(DoodleTheme.spacing.xxSmall))
 
-    TitleRow(modifier, title)
+    TitleRow(
+        modifier = modifier,
+        title = "Characters",
+    )
 
     Spacer(modifier = Modifier.size(DoodleTheme.spacing.small))
 
@@ -183,15 +185,12 @@ private fun AnimeCharactersRowPreview() {
             modifier = Modifier.wrapContentHeight(),
         ) {
             AnimeCharactersRow(
-                title = "Characters",
                 animeCharacters = animeCharacters,
             )
             AnimeCharactersRow(
-                title = "Characters",
                 isLoading = true,
             )
             AnimeCharactersRow(
-                title = "Characters",
                 animeCharacters = emptyAnimeCharacters,
             )
         }
