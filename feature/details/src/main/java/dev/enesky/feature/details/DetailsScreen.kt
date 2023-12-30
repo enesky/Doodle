@@ -3,19 +3,17 @@ package dev.enesky.feature.details
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.design_system.theme.DoodleTheme
+import dev.enesky.core.ui.components.home.TopAnimePreview
+import dev.enesky.feature.details.helpers.DetailsUiState
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -25,30 +23,24 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun DetailsRoute(
     modifier: Modifier = Modifier,
+    animeId: String,
     viewModel: DetailsViewModel = koinViewModel(),
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    LaunchedEffect(animeId) {
+        viewModel.getThemAll(animeId = animeId.toInt())
+    }
+
     DetailsScreen(
         modifier = modifier,
+        uiState = uiState,
     )
 }
 
 @Composable
 private fun DetailsScreen(
     modifier: Modifier = Modifier,
-) {
-    Surface(
-        modifier = modifier.fillMaxSize(),
-        color = DoodleTheme.colors.background,
-    ) {
-        DetailsContent(
-            modifier = Modifier.fillMaxWidth(),
-        )
-    }
-}
-
-@Composable
-private fun DetailsContent(
-    modifier: Modifier = Modifier,
+    uiState: DetailsUiState = DetailsUiState(),
 ) {
     Box(
         modifier = modifier.fillMaxWidth(),
@@ -58,18 +50,10 @@ private fun DetailsContent(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
-            Text(
-                text = "Welcome to Details Screen",
-                style = DoodleTheme.typography.regular.h3,
+            TopAnimePreview(
+                anime = uiState.anime,
+                isLoading = uiState.loading,
             )
-            Button(
-                modifier = Modifier.padding(32.dp),
-                onClick = {
-                    println("@@@@ Clicked to Details Screen")
-                },
-            ) {
-                Text(text = "Click me for nothing :)", color = Color.White)
-            }
         }
     }
 }

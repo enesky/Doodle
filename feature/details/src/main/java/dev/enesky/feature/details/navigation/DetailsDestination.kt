@@ -13,7 +13,7 @@ object DetailsDestination : DoodleNavigationDestination {
     override val route = "details_route"
     override val destination = "details_destination"
 
-    private const val ID_ARGUMENT = "id"
+    const val ID_ARGUMENT = "id"
     val routeWithArguments = "$route/{$ID_ARGUMENT}"
 
     fun createNavigationRoute(id: String) = "$route/$id"
@@ -22,5 +22,7 @@ object DetailsDestination : DoodleNavigationDestination {
 fun NavGraphBuilder.detailsGraph(
     showSnackbar: () -> Unit,
 ) = composableWithAnimation(route = DetailsDestination.routeWithArguments) {
-    DetailsRoute()
+    DetailsRoute(
+        animeId = it.arguments?.getString(DetailsDestination.ID_ARGUMENT) ?: "",
+    )
 }

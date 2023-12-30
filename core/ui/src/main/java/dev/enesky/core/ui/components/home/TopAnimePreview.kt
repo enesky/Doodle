@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.design_system.R
 import dev.enesky.core.design_system.components.DoodleImagePlaceholder
 import dev.enesky.core.design_system.components.DoodleNetworkImage
@@ -35,7 +36,7 @@ fun TopAnimePreview(
     modifier: Modifier = Modifier,
     anime: Anime?,
     isLoading: Boolean = false,
-    onNavigateDetailsClick: (id: String) -> Unit,
+    onNavigateDetailsClick: ((id: String) -> Unit)? = null,
 ) {
     val config = LocalConfiguration.current
     val screenWidth = config.screenWidthDp.dp
@@ -49,7 +50,7 @@ fun TopAnimePreview(
             )
             .clip(DoodleTheme.shapes.small)
             .also {
-                if (anime != null) {
+                if (anime != null && onNavigateDetailsClick != null) {
                     it.clickable {
                         onNavigateDetailsClick(anime.id.toString())
                     }
@@ -101,14 +102,13 @@ fun TopAnimePreview(
         ) {
             Text(
                 modifier = Modifier,
-                text = anime?.title
-                    ?: stringResource(id = R.string.lorem_ipsum_short),
+                text = anime?.title ?: String.Empty,
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.bold.h3,
             )
             Text(
                 modifier = Modifier,
-                text = anime?.genres ?: stringResource(id = R.string.lorem_ipsum_medium),
+                text = anime?.genres ?: String.Empty,
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.bold.h5,
             )

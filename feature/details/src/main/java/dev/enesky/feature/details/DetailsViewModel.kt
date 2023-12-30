@@ -28,14 +28,13 @@ class DetailsViewModel(
     UiState<DetailsUiState> by UiStateDelegate(initialState = { DetailsUiState() }),
     Event<DetailsEvents> by EventDelegate() {
 
-    init {
-        getAnime()
+    fun getThemAll(animeId: Int) {
+        getAnime(animeId)
     }
 
-    private fun getAnime() {
-        val jjkAnimeId = 40748
+    private fun getAnime(animeId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            animeUseCase(animeId = jjkAnimeId)
+            animeUseCase(animeId = animeId)
                 .asResult()
                 .onEach { resource ->
                     updateUiState {
