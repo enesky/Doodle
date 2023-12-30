@@ -16,4 +16,11 @@ fun DetailedAnimeResponse.asDetailedAnime() = DetailedAnime(
     title = titleEnglish ?: title,
     genres = toGenreString(genres),
     summary = synopsis,
+    status = status,
+    airing = airing,
+    rating = rating,
+    score = score,
+    scoredBy = scoredBy,
+    rank = rank,
+    popularity = popularity,
 )

@@ -90,6 +90,50 @@ fun DetailedAnimePreview(
                 style = DoodleTheme.typography.bold.h5,
             )
         }
+
+        // Anime rating
+        Column(
+            modifier = Modifier
+                .padding(DoodleTheme.spacing.medium)
+                .matchParentSize(),
+            horizontalAlignment = Alignment.End,
+            verticalArrangement = Arrangement.Top,
+        ) {
+            Text(
+                modifier = Modifier,
+                text = detailedAnime?.rating ?: String.Empty,
+                color = DoodleTheme.colors.white,
+                style = DoodleTheme.typography.bold.h5,
+            )
+        }
+
+        // Detailed anime status -> Score, Rank, Popularity
+        Column(
+            modifier = Modifier
+                .padding(DoodleTheme.spacing.medium)
+                .matchParentSize(),
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.Top,
+        ) {
+            Text(
+                modifier = Modifier,
+                text = "Score: ${detailedAnime?.score.toString() ?: String.Empty} / 10",
+                color = DoodleTheme.colors.white,
+                style = DoodleTheme.typography.bold.h5,
+            )
+            Text(
+                modifier = Modifier,
+                text = "Rank: ${detailedAnime?.rank.toString() ?: String.Empty}",
+                color = DoodleTheme.colors.white,
+                style = DoodleTheme.typography.bold.h5,
+            )
+            Text(
+                modifier = Modifier,
+                text = "Popularity: ${detailedAnime?.popularity.toString() ?: String.Empty}",
+                color = DoodleTheme.colors.white,
+                style = DoodleTheme.typography.bold.h5,
+            )
+        }
     }
 }
 
