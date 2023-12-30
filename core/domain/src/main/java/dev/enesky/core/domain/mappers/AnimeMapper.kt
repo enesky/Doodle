@@ -13,19 +13,17 @@ import dev.enesky.core.domain.utils.toGenreString
 fun AnimeResponse.asAnime(): Anime {
     return Anime(
         id = id,
-        url = url,
         imageUrl = getImageUrl(images),
         trailer = trailer,
-        title = title,
+        title = titleEnglish ?: title,
         genres = toGenreString(genres),
     )
 }
 
 fun FullAnime.asAnime() = Anime(
     id = id,
-    url = url,
     imageUrl = getImageUrl(images),
     trailer = trailer,
-    title = title,
+    title = titleEnglish ?: title,
     genres = toGenreString(genres),
 )

@@ -69,7 +69,7 @@ private fun DetailsScreen(
         ) {
             item {
                 DetailedAnimePreview(
-                    anime = uiState.anime,
+                    detailedAnime = uiState.detailedAnime,
                     isLoading = uiState.loading,
                 )
             }

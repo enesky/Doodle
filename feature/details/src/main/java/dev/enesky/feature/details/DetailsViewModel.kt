@@ -9,7 +9,7 @@ import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.core.common.result.Result
 import dev.enesky.core.common.result.asResult
 import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
-import dev.enesky.core.domain.usecase.AnimeUseCase
+import dev.enesky.core.domain.usecase.DetailedAnimeUseCase
 import dev.enesky.feature.details.helpers.DetailsEvents
 import dev.enesky.feature.details.helpers.DetailsUiState
 import kotlinx.coroutines.Dispatchers
@@ -22,20 +22,20 @@ import kotlinx.coroutines.launch
  */
 
 class DetailsViewModel(
-    val animeUseCase: AnimeUseCase,
+    val detailedAnimeUseCase: DetailedAnimeUseCase,
     val animeCharactersUseCase: AnimeCharactersUseCase,
 ) : ViewModel(),
     UiState<DetailsUiState> by UiStateDelegate(initialState = { DetailsUiState() }),
     Event<DetailsEvents> by EventDelegate() {
 
     fun getThemAll(animeId: Int) {
-        getAnime(animeId)
+        getDetailedAnime(animeId)
         getAnimeCharacters(animeId)
     }
 
-    private fun getAnime(animeId: Int) {
+    private fun getDetailedAnime(animeId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            animeUseCase(animeId = animeId)
+            detailedAnimeUseCase(animeId = animeId)
                 .asResult()
                 .onEach { resource ->
                     updateUiState {
@@ -43,11 +43,11 @@ class DetailsViewModel(
                             is Result.Loading -> copy(loading = true)
                             is Result.Success -> copy(
                                 loading = false,
-                                anime = resource.data
+                                detailedAnime = resource.data
                             )
                             is Result.Error -> copy(
                                 loading = false,
-                                anime = null,
+                                detailedAnime = null,
                                 errorMessage = resource.exception?.message
                             )
                         }

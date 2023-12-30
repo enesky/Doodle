@@ -22,8 +22,8 @@ import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.design_system.components.DoodleImagePlaceholder
 import dev.enesky.core.design_system.components.DoodleNetworkImage
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.domain.models.Anime
-import dev.enesky.core.domain.models.placeholderAnime
+import dev.enesky.core.domain.models.DetailedAnime
+import dev.enesky.core.domain.models.placeholderDetailedAnime
 
 /**
  * Created by Enes Kamil YILMAZ on 30/12/2023
@@ -33,13 +33,13 @@ import dev.enesky.core.domain.models.placeholderAnime
 @Composable
 fun DetailedAnimePreview(
     modifier: Modifier = Modifier,
-    anime: Anime?,
+    detailedAnime: DetailedAnime?,
     isLoading: Boolean = false,
 ) {
     Box(modifier = modifier.fillMaxSize()) {
         // Anime image
         val itemHeight = LocalConfiguration.current.screenWidthDp.dp * 1.2f
-        if (isLoading || anime == null) {
+        if (isLoading || detailedAnime == null) {
             DoodleImagePlaceholder(
                 modifier = Modifier
                     .height(itemHeight),
@@ -48,9 +48,9 @@ fun DetailedAnimePreview(
             DoodleNetworkImage(
                 modifier = Modifier
                     .height(itemHeight),
-                model = anime.imageUrl,
+                model = detailedAnime.imageUrl,
                 contentScale = ContentScale.Crop,
-                contentDescription = anime.title,
+                contentDescription = detailedAnime.title,
             )
         }
         // Foreground gradient
@@ -79,13 +79,13 @@ fun DetailedAnimePreview(
         ) {
             Text(
                 modifier = Modifier,
-                text = anime?.title ?: String.Empty,
+                text = detailedAnime?.title ?: String.Empty,
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.bold.h3,
             )
             Text(
                 modifier = Modifier,
-                text = anime?.genres ?: String.Empty,
+                text = detailedAnime?.genres ?: String.Empty,
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.bold.h5,
             )
@@ -102,7 +102,7 @@ private fun DetailedAnimePreviewPreview() {
             color = DoodleTheme.colors.background,
         ) {
             DetailedAnimePreview(
-                anime = placeholderAnime
+                detailedAnime = placeholderDetailedAnime
             )
         }
     }

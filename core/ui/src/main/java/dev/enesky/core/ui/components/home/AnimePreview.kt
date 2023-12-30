@@ -22,7 +22,9 @@ import dev.enesky.core.design_system.components.DoodleImagePlaceholder
 import dev.enesky.core.design_system.components.DoodleNetworkImage
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.domain.models.Anime
+import dev.enesky.core.domain.models.DetailedAnime
 import dev.enesky.core.domain.models.placeholderAnime
+import dev.enesky.core.domain.models.placeholderDetailedAnime
 
 /**
  * Created by Enes Kamil YILMAZ on 20/12/2023
@@ -32,7 +34,7 @@ import dev.enesky.core.domain.models.placeholderAnime
 @Composable
 fun AnimePreview(
     modifier: Modifier = Modifier,
-    anime: Anime?,
+    anime: DetailedAnime?,
     isLoading: Boolean = false,
     onNavigateDetailsClick: ((id: String) -> Unit)? = null,
 ) {
@@ -114,7 +116,7 @@ fun AnimePreview(
 private fun TopAnimePreviewPreview() {
     DoodleTheme {
         AnimePreview(
-            anime = placeholderAnime,
+            anime = placeholderDetailedAnime,
         ) {}
     }
 }
