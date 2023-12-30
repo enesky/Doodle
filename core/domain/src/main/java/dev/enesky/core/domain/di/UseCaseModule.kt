@@ -41,6 +41,6 @@ val useCaseModule = lazyModule {
     }
 
     single<AnimeCharactersUseCase> {
-        AnimeCharactersUseCase { get<JikanRepository>().getCharactersByAnimeId(it) }
+        AnimeCharactersUseCase(get<JikanRepository>())
     }
 }

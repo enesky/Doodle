@@ -20,11 +20,11 @@ import dev.enesky.core.common.enums.AnimeFilter
 import dev.enesky.core.common.enums.AnimeRating
 import dev.enesky.core.common.enums.AnimeType
 import dev.enesky.core.common.utils.Constants
-import dev.enesky.core.data.models.Character
-import dev.enesky.core.data.response.AnimeResponse
-import dev.enesky.core.data.response.FullAnime
-import dev.enesky.core.data.response.base.BasePagingResponse
-import dev.enesky.core.data.response.base.BaseResponse
+import dev.enesky.core.data.models.AnimeCharacterResponse
+import dev.enesky.core.data.models.AnimeResponse
+import dev.enesky.core.data.models.FullAnime
+import dev.enesky.core.data.base.BasePagingResponse
+import dev.enesky.core.data.base.BaseResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -54,5 +54,5 @@ interface JikanService {
     @GET("anime/{anime-id}/characters")
     suspend fun getCharactersByAnimeId(
         @Path("anime-id") animeId: Int,
-    ): Response<List<Character>>
+    ): Response<List<AnimeCharacterResponse>>
 }

@@ -14,8 +14,8 @@ import com.google.firebase.auth.auth
 import dev.enesky.core.common.consts.Values
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.common.utils.Logger
-import dev.enesky.core.data.response.LoginResponse
-import dev.enesky.core.data.response.User
+import dev.enesky.core.data.models.LoginResponse
+import dev.enesky.core.data.models.User
 import dev.enesky.core.domain.mappers.asLoginResult
 import dev.enesky.core.domain.models.LoginResult
 import kotlinx.coroutines.suspendCancellableCoroutine

@@ -14,12 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.data.response
+package dev.enesky.core.data.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import dev.enesky.core.data.models.ImageList
-import dev.enesky.core.data.models.Images
 import kotlinx.parcelize.Parcelize
 
 /**
