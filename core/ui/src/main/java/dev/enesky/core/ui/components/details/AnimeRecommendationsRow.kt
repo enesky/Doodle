@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,7 +31,9 @@ import dev.enesky.core.design_system.components.Message
 import dev.enesky.core.design_system.components.placeholder
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.domain.models.AnimeCharacter
+import dev.enesky.core.domain.models.AnimeRecommendation
 import dev.enesky.core.domain.models.placeholderAnimeCharacter
+import dev.enesky.core.domain.models.placeholderAnimeRecommendation
 import dev.enesky.core.ui.components.home.TitleRow
 
 /**
@@ -42,16 +43,16 @@ import dev.enesky.core.ui.components.home.TitleRow
 @Suppress("LongMethod", "MultipleEmitters")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun AnimeCharactersRow(
+fun AnimeRecommendationsRow(
     modifier: Modifier = Modifier,
-    animeCharacters: List<AnimeCharacter>? = listOf(placeholderAnimeCharacter, placeholderAnimeCharacter),
+    animeRecommendations: List<AnimeRecommendation>? = List(5) { placeholderAnimeRecommendation },
     isLoading: Boolean = false,
     emptyContent: @Composable LazyItemScope.() -> Unit = {
         val width = LocalConfiguration.current.screenWidthDp.dp - DoodleTheme.spacing.medium * 2
         val height = width * 0.5f
         Message(
             modifier = Modifier.size(width, height),
-            messageResourceId = R.string.label_no_characters_result,
+            messageResourceId = R.string.label_no_recommendation_result,
         )
     },
 ) {
@@ -59,7 +60,7 @@ fun AnimeCharactersRow(
 
     TitleRow(
         modifier = modifier,
-        title = "Characters",
+        title = "Recommendations",
     )
 
     Spacer(modifier = Modifier.size(DoodleTheme.spacing.small))
@@ -77,14 +78,14 @@ fun AnimeCharactersRow(
         when {
             isLoading -> {
                 items(Constants.ITEMS_PER_PAGE) {
-                    AnimeCharacterPlaceholder()
+                    AnimeRecommendationPlaceholder()
                 }
             }
 
-            !animeCharacters.isNullOrEmpty() -> {
-                items(animeCharacters.count()) { index ->
-                    AnimeCharacterItem(
-                        animeCharacter = animeCharacters[index]
+            !animeRecommendations.isNullOrEmpty() -> {
+                items(animeRecommendations.count()) { index ->
+                    AnimeRecommendationItem(
+                        animeRecommendation = animeRecommendations[index]
                     )
                 }
             }
@@ -100,9 +101,9 @@ fun AnimeCharactersRow(
 
 @Suppress("LongMethod")
 @Composable
-fun AnimeCharacterItem(
+fun AnimeRecommendationItem(
     modifier: Modifier = Modifier,
-    animeCharacter: AnimeCharacter,
+    animeRecommendation: AnimeRecommendation,
     isPlaceholder: Boolean = false,
 ) {
     Column(
@@ -124,9 +125,9 @@ fun AnimeCharacterItem(
                 modifier = Modifier
                     .size(itemWidth, itemHeight)
                     .clip(DoodleTheme.shapes.extraSmall),
-                model = animeCharacter.imageUrl,
+                model = animeRecommendation.imageUrl,
                 contentScale = ContentScale.Crop,
-                contentDescription = animeCharacter.name,
+                contentDescription = animeRecommendation.title,
             )
         }
 
@@ -149,18 +150,10 @@ fun AnimeCharacterItem(
             ) {
                 Text(
                     modifier = Modifier,
-                    text = animeCharacter.name,
+                    text = animeRecommendation.title,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
                     style = DoodleTheme.typography.regular.h6,
-                    color = DoodleTheme.colors.white,
-                )
-                Text(
-                    modifier = Modifier,
-                    text = animeCharacter.role,
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1,
-                    style = DoodleTheme.typography.regular.h7,
                     color = DoodleTheme.colors.white,
                 )
             }
@@ -169,31 +162,35 @@ fun AnimeCharacterItem(
 }
 
 @Composable
-fun AnimeCharacterPlaceholder() {
-    AnimeCharacterItem(
-        animeCharacter = placeholderAnimeCharacter,
+fun AnimeRecommendationPlaceholder() {
+    AnimeRecommendationItem(
+        animeRecommendation = placeholderAnimeRecommendation,
         isPlaceholder = true,
     )
 }
 
 @Preview
 @Composable
-private fun AnimeCharactersRowPreview() {
-    val animeCharacters = List(5) { placeholderAnimeCharacter }
-    val emptyAnimeCharacters = listOf<AnimeCharacter>()
+private fun AnimeRecommendationsRowPreview() {
+    val animeRecommendations = List(5) { placeholderAnimeRecommendation }
+    val emptyAnimeRecommendations = listOf<AnimeRecommendation>()
 
     DoodleTheme {
         Column(
             modifier = Modifier.wrapContentHeight(),
         ) {
-            AnimeCharactersRow(
-                animeCharacters = animeCharacters,
+            AnimeRecommendationsRow(
+                modifier = Modifier,
+                animeRecommendations = animeRecommendations,
             )
-            AnimeCharactersRow(
-                isLoading = true,
+            AnimeRecommendationsRow(
+                modifier = Modifier,
+                animeRecommendations = emptyAnimeRecommendations,
+                isLoading = true
             )
-            AnimeCharactersRow(
-                animeCharacters = emptyAnimeCharacters,
+            AnimeRecommendationsRow(
+                modifier = Modifier,
+                animeRecommendations = null,
             )
         }
     }

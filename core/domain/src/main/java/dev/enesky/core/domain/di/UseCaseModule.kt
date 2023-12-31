@@ -17,6 +17,8 @@
 package dev.enesky.core.domain.di
 
 import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
+import dev.enesky.core.domain.usecase.AnimeEpisodesUseCase
+import dev.enesky.core.domain.usecase.AnimeRecommendationsUseCase
 import dev.enesky.core.domain.usecase.DetailedAnimeUseCase
 import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
 import dev.enesky.core.network.repository.JikanRepository
@@ -43,4 +45,13 @@ val useCaseModule = lazyModule {
     single<AnimeCharactersUseCase> {
         AnimeCharactersUseCase(get<JikanRepository>())
     }
+
+    single<AnimeEpisodesUseCase> {
+        AnimeEpisodesUseCase(get<JikanRepository>())
+    }
+
+    single<AnimeRecommendationsUseCase> {
+        AnimeRecommendationsUseCase(get<JikanRepository>())
+    }
+
 }

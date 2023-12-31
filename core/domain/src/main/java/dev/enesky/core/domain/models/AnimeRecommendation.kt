@@ -9,8 +9,18 @@ import com.google.gson.annotations.SerializedName
 data class AnimeRecommendation(
     @SerializedName("mal_id") val id: Int,
     val animeUrl: String,
-    val images: String,
+    val imageUrl: String,
     val title: String,
     val url: String,
     val votes: Int
+)
+
+// Placeholder AnimeRecommendation for preview
+val placeholderAnimeRecommendation = AnimeRecommendation(
+    id = 0,
+    animeUrl = "",
+    imageUrl = "",
+    title = "Jujutsu Kaisen",
+    url = "",
+    votes = 99999,
 )

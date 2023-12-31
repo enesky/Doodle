@@ -12,7 +12,7 @@ fun RecommendedAnimeResponse.asAnimeRecommendation(): AnimeRecommendation =
     AnimeRecommendation(
         id = entry.id,
         animeUrl = entry.url,
-        images = getImageUrl(entry.images),
+        imageUrl = getImageUrl(entry.images),
         title = entry.title,
         url = url,
         votes = votes,
