@@ -25,6 +25,8 @@ import dev.enesky.core.data.models.AnimeResponse
 import dev.enesky.core.data.models.DetailedAnimeResponse
 import dev.enesky.core.data.base.BasePagingResponse
 import dev.enesky.core.data.base.BaseResponse
+import dev.enesky.core.data.models.AnimeEpisodeResponse
+import dev.enesky.core.data.models.RecommendedAnimeResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -55,4 +57,16 @@ interface JikanService {
     suspend fun getCharactersByAnimeId(
         @Path("anime-id") animeId: Int,
     ): Response<BaseResponse<List<AnimeCharacterResponse>>>
+
+    @GET("anime/{anime-id}/recommendations")
+    suspend fun getRecommendationsByAnimeId(
+        @Path("anime-id") animeId: Int,
+    ): Response<BaseResponse<List<RecommendedAnimeResponse>>>
+
+    @GET("anime/{anime-id}/episodes")
+    suspend fun getEpisodesByAnimeId(
+        @Query("page") page: Int = 1,
+        @Path("anime-id") animeId: Int,
+    ): BasePagingResponse<AnimeEpisodeResponse>
+
 }

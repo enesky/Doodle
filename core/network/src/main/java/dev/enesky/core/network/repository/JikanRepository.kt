@@ -22,6 +22,8 @@ import dev.enesky.core.data.models.AnimeCharacterResponse
 import dev.enesky.core.data.models.AnimeResponse
 import dev.enesky.core.data.models.DetailedAnimeResponse
 import dev.enesky.core.data.base.BaseResponse
+import dev.enesky.core.data.models.AnimeEpisodeResponse
+import dev.enesky.core.data.models.RecommendedAnimeResponse
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -43,4 +45,13 @@ class JikanRepository(
     suspend fun getCharactersByAnimeId(animeId: Int): Result<BaseResponse<List<AnimeCharacterResponse>>> {
         return jikanDataSource.getCharactersByAnimeId(animeId)
     }
+
+    suspend fun getRecommendedAnimesByAnimeId(animeId: Int): Result<BaseResponse<List<RecommendedAnimeResponse>>> {
+        return jikanDataSource.getRecommendedAnimeByAnimeId(animeId)
+    }
+
+    fun getAnimeEpisodesByAnimeId(animeId: Int): Flow<PagingData<AnimeEpisodeResponse>> {
+        return jikanDataSource.getAnimeEpisodesByAnimeId(animeId)
+    }
+
 }

@@ -25,7 +25,10 @@ import dev.enesky.core.data.models.AnimeCharacterResponse
 import dev.enesky.core.data.models.AnimeResponse
 import dev.enesky.core.data.models.DetailedAnimeResponse
 import dev.enesky.core.data.base.BaseResponse
+import dev.enesky.core.data.models.AnimeEpisodeResponse
+import dev.enesky.core.data.models.RecommendedAnimeResponse
 import dev.enesky.core.network.api.JikanService
+import dev.enesky.core.network.paging.AnimeEpisodesPagingSource
 import dev.enesky.core.network.paging.TopAnimePagingSource
 import dev.enesky.core.network.util.getBodyOrThrowError
 import kotlinx.coroutines.flow.Flow
@@ -62,5 +65,25 @@ class JikanDataSourceImpl(
         return kotlin.runCatching {
             jikanService.getCharactersByAnimeId(animeId).getBodyOrThrowError()
         }
+    }
+
+    override suspend fun getRecommendedAnimeByAnimeId(animeId: Int): Result<BaseResponse<List<RecommendedAnimeResponse>>> {
+        return kotlin.runCatching {
+            jikanService.getRecommendationsByAnimeId(animeId).getBodyOrThrowError()
+        }
+    }
+
+    override fun getAnimeEpisodesByAnimeId(animeId: Int): Flow<PagingData<AnimeEpisodeResponse>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = ITEMS_PER_PAGE,
+                initialLoadSize = ITEMS_PER_PAGE,
+                prefetchDistance = ITEMS_PER_PAGE / 4,
+                enablePlaceholders = true,
+            ),
+            pagingSourceFactory = {
+                AnimeEpisodesPagingSource(jikanService, animeId)
+            },
+        ).flow
     }
 }
