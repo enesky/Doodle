@@ -15,7 +15,7 @@ import dev.enesky.core.design_system.components.SwipeRefresh
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.domain.utils.isLoading
 import dev.enesky.core.ui.components.home.AnimeListRow
-import dev.enesky.core.ui.components.home.TopAnimePreview
+import dev.enesky.core.ui.components.home.AnimePreview
 import dev.enesky.feature.home.helpers.HomeEvents
 import dev.enesky.feature.home.helpers.HomeUiState
 import org.koin.androidx.compose.koinViewModel
@@ -43,8 +43,7 @@ fun HomeRoute(
             }
 
             is HomeEvents.NavigateToDetails -> {
-                Logger.debug("HomeScreen", "onNavigateDetailsClick: ${homeEvents.animeId}")
-                // TODO -> onNavigateDetailsClick(homeEvents.animeId)
+                onNavigateDetailsClick(homeEvents.animeId)
             }
 
             is HomeEvents.OnItemOptionsClick -> {
@@ -56,7 +55,7 @@ fun HomeRoute(
     HomeScreen(
         modifier = modifier,
         uiState = uiState,
-        onNavigateDetailsClick = {},
+        onNavigateDetailsClick = onNavigateDetailsClick,
     )
 }
 
@@ -66,9 +65,9 @@ private fun HomeScreen(
     uiState: HomeUiState,
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
+    val popularPagingItems = uiState.popularAnimes?.collectAsLazyPagingItems()
     val airingPagingItems = uiState.airingAnimes?.collectAsLazyPagingItems()
     val upcomingPagingItems = uiState.upcomingAnimes?.collectAsLazyPagingItems()
-    val popularPagingItems = uiState.popularAnimes?.collectAsLazyPagingItems()
     val favoritePagingItems = uiState.favoriteAnimes?.collectAsLazyPagingItems()
 
     fun isRefreshing() = popularPagingItems?.loadState?.refresh?.isLoading == true ||
@@ -95,7 +94,7 @@ private fun HomeScreen(
             ),
         ) {
             item {
-                TopAnimePreview(
+                AnimePreview(
                     anime = uiState.previewAnime,
                     isLoading = uiState.loading,
                     onNavigateDetailsClick = onNavigateDetailsClick,

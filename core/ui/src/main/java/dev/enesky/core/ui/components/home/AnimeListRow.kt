@@ -6,9 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -19,20 +20,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import dev.enesky.core.common.utils.Constants
 import dev.enesky.core.design_system.R
-import dev.enesky.core.design_system.components.Error
 import dev.enesky.core.design_system.components.Message
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.domain.models.Anime
 import dev.enesky.core.domain.models.placeholderAnime
-import dev.enesky.core.domain.utils.error
-import dev.enesky.core.domain.utils.isEmpty
-import dev.enesky.core.domain.utils.isError
-import dev.enesky.core.domain.utils.isFinished
 import dev.enesky.core.domain.utils.isLoading
 import dev.enesky.core.domain.utils.isNotEmpty
+import kotlinx.coroutines.flow.flowOf
 
 /**
  * Created by Enes Kamil YILMAZ on 21/12/2023
@@ -52,15 +51,8 @@ fun AnimeListRow(
             messageResourceId = R.string.label_no_anime_result,
         )
     },
-    errorContent: @Composable LazyItemScope.(errorMessage: String) -> Unit = { errorMessage ->
-        Error(
-            modifier = Modifier.fillMaxWidth(),
-            errorMessage = errorMessage,
-            onRetry = { pagingItems?.retry() },
-        )
-    },
 ) {
-    AnimeRowTitle(Modifier, title)
+    TitleRow(Modifier, title)
 
     Spacer(modifier = Modifier.size(DoodleTheme.spacing.small))
 
@@ -75,34 +67,22 @@ fun AnimeListRow(
         flingBehavior = rememberSnapFlingBehavior(lazyListState = rowState),
     ) {
         when {
-            pagingItems == null || pagingItems.loadState.refresh.isError -> {
-                item(content = emptyContent)
-            }
-
-            pagingItems.isNotEmpty() -> {
+            pagingItems?.isNotEmpty() == true -> {
                 items(pagingItems.itemCount) { index ->
                     pagingItems[index]?.let {
                         AnimeItem(
                             anime = it,
                             onNavigateDetailsClick = onNavigateDetailsClick,
                         )
-                    }
+                    } ?: PlaceholderItem()
                 }
             }
 
-            pagingItems.loadState.refresh.isLoading || pagingItems.loadState.append.isLoading -> {
+            pagingItems == null ||
+                pagingItems.loadState.refresh.isLoading ||
+                pagingItems.loadState.append.isLoading -> {
                 items(Constants.ITEMS_PER_PAGE) {
                     PlaceholderItem()
-                }
-            }
-
-            pagingItems.loadState.append.isError -> {
-                item { errorContent(pagingItems.loadState.append.error.toString()) }
-            }
-
-            pagingItems.loadState.refresh.isFinished -> {
-                if (pagingItems.isEmpty()) {
-                    item(content = emptyContent)
                 }
             }
 
@@ -116,7 +96,7 @@ fun AnimeListRow(
 }
 
 @Composable
-fun AnimeRowTitle(
+fun TitleRow(
     modifier: Modifier = Modifier,
     title: String,
 ) {
@@ -152,15 +132,37 @@ fun PlaceholderItem() {
 @Preview
 @Composable
 private fun AnimeListRowPreview() {
+    val animeList = listOf(placeholderAnime, placeholderAnime, placeholderAnime)
+    val filledPagingData = flowOf(PagingData.from(animeList)).collectAsLazyPagingItems()
+    val emptyPagingData = flowOf(PagingData.from(emptyList<Anime>())).collectAsLazyPagingItems()
+
     DoodleTheme {
-        Column(
-            modifier = Modifier.size(450.dp, 200.dp),
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(DoodleTheme.spacing.medium),
         ) {
-            AnimeListRow(
-                title = "Most Popular",
-                pagingItems = null,
-                onNavigateDetailsClick = {},
-            )
+            item {
+                AnimeListRow(
+                    title = "Airing Now",
+                    pagingItems = filledPagingData,
+                    onNavigateDetailsClick = {},
+                )
+            }
+            item {
+                AnimeListRow(
+                    title = "Airing Now",
+                    pagingItems = emptyPagingData,
+                    onNavigateDetailsClick = {},
+                )
+            }
+            item {
+                AnimeListRow(
+                    title = "Most Popular",
+                    pagingItems = null,
+                    onNavigateDetailsClick = {},
+                )
+            }
         }
     }
 }

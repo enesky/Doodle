@@ -3,6 +3,7 @@ package dev.enesky.feature.home.helpers
 import androidx.paging.PagingData
 import dev.enesky.core.common.delegate.IUiState
 import dev.enesky.core.domain.models.Anime
+import dev.enesky.core.domain.models.DetailedAnime
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -17,5 +18,5 @@ data class HomeUiState(
     val popularAnimes: Flow<PagingData<Anime>>? = null,
     val favoriteAnimes: Flow<PagingData<Anime>>? = null,
     val selectedAnime: Anime? = null,
-    val previewAnime: Anime? = null,
+    val previewAnime: DetailedAnime? = null,
 ) : IUiState

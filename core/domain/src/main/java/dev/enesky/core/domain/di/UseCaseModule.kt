@@ -17,7 +17,9 @@
 package dev.enesky.core.domain.di
 
 import dev.enesky.core.domain.usecase.AnimeCharactersUseCase
-import dev.enesky.core.domain.usecase.AnimeUseCase
+import dev.enesky.core.domain.usecase.AnimeEpisodesUseCase
+import dev.enesky.core.domain.usecase.AnimeRecommendationsUseCase
+import dev.enesky.core.domain.usecase.DetailedAnimeUseCase
 import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
 import dev.enesky.core.network.repository.JikanRepository
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -36,11 +38,20 @@ val useCaseModule = lazyModule {
         TopAnimePagingUseCase(get<JikanRepository>())
     }
 
-    single<AnimeUseCase> {
-        AnimeUseCase(get<JikanRepository>())
+    single<DetailedAnimeUseCase> {
+        DetailedAnimeUseCase(get<JikanRepository>())
     }
 
     single<AnimeCharactersUseCase> {
-        AnimeCharactersUseCase { get<JikanRepository>().getCharactersByAnimeId(it) }
+        AnimeCharactersUseCase(get<JikanRepository>())
     }
+
+    single<AnimeEpisodesUseCase> {
+        AnimeEpisodesUseCase(get<JikanRepository>())
+    }
+
+    single<AnimeRecommendationsUseCase> {
+        AnimeRecommendationsUseCase(get<JikanRepository>())
+    }
+
 }

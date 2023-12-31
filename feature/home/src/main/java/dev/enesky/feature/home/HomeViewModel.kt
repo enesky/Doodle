@@ -10,11 +10,12 @@ import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.core.common.enums.AnimeFilter
 import dev.enesky.core.common.result.Result
 import dev.enesky.core.common.result.asResult
-import dev.enesky.core.domain.usecase.AnimeUseCase
+import dev.enesky.core.domain.usecase.DetailedAnimeUseCase
 import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
 import dev.enesky.feature.home.helpers.HomeEvents
 import dev.enesky.feature.home.helpers.HomeUiState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -25,7 +26,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val topAnimePagingUseCase: TopAnimePagingUseCase,
-    private val animeUseCase: AnimeUseCase,
+    private val detailedAnimeUseCase: DetailedAnimeUseCase,
 ) : ViewModel(),
     UiState<HomeUiState> by UiStateDelegate(initialState = { HomeUiState() }),
     Event<HomeEvents> by EventDelegate() {
@@ -37,24 +38,28 @@ class HomeViewModel(
 
     private fun getAllAnimes() {
         viewModelScope.launch(Dispatchers.IO) {
+            val popularAnimesFlow = topAnimePagingUseCase(AnimeFilter.POPULARITY)
+                .distinctUntilChanged()
+                .cachedIn(viewModelScope)
+
             val airingAnimesFlow = topAnimePagingUseCase(AnimeFilter.AIRING)
+                .distinctUntilChanged()
                 .cachedIn(viewModelScope)
 
             val upcomingAnimesFlow = topAnimePagingUseCase(AnimeFilter.UPCOMING)
-                .cachedIn(viewModelScope)
-
-            val popularAnimesFlow = topAnimePagingUseCase(AnimeFilter.POPULARITY)
+                .distinctUntilChanged()
                 .cachedIn(viewModelScope)
 
             val favoriteAnimesFlow = topAnimePagingUseCase(AnimeFilter.FAVORITE)
+                .distinctUntilChanged()
                 .cachedIn(viewModelScope)
 
             updateUiState {
                 copy(
                     loading = false,
+                    popularAnimes = popularAnimesFlow,
                     airingAnimes = airingAnimesFlow,
                     upcomingAnimes = upcomingAnimesFlow,
-                    popularAnimes = popularAnimesFlow,
                     favoriteAnimes = favoriteAnimesFlow,
                 )
             }
@@ -62,9 +67,9 @@ class HomeViewModel(
     }
 
     private fun getPreviewAnime() {
-        val jjkAnimeId = 40748
+        val jjkAnimeId = 51009
         viewModelScope.launch(Dispatchers.IO) {
-            animeUseCase(animeId = jjkAnimeId)
+            detailedAnimeUseCase(animeId = jjkAnimeId)
                 .asResult()
                 .onEach { resource ->
                     when (resource) {
