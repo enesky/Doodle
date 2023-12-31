@@ -47,16 +47,16 @@ class DetailsViewModel(
                 .asResult()
                 .onEach { resource ->
                     updateUiState {
-                        when(resource) {
+                        when (resource) {
                             is Result.Loading -> copy(loading = true)
                             is Result.Success -> copy(
                                 loading = false,
-                                detailedAnime = resource.data
+                                detailedAnime = resource.data,
                             )
                             is Result.Error -> copy(
                                 loading = false,
                                 detailedAnime = null,
-                                errorMessage = resource.exception?.message
+                                errorMessage = resource.exception?.message,
                             )
                         }
                     }
@@ -70,16 +70,16 @@ class DetailsViewModel(
                 .asResult()
                 .onEach { resource ->
                     updateUiState {
-                        when(resource) {
+                        when (resource) {
                             is Result.Loading -> copy(loading = true)
                             is Result.Success -> copy(
                                 loading = false,
-                                characters = resource.data
+                                characters = resource.data,
                             )
                             is Result.Error -> copy(
                                 loading = false,
                                 characters = null,
-                                errorMessage = resource.exception?.message
+                                errorMessage = resource.exception?.message,
                             )
                         }
                     }
@@ -108,21 +108,20 @@ class DetailsViewModel(
                 .asResult()
                 .onEach { resource ->
                     updateUiState {
-                        when(resource) {
+                        when (resource) {
                             is Result.Loading -> copy(loading = true)
                             is Result.Success -> copy(
                                 loading = false,
-                                recommendations = resource.data
+                                recommendations = resource.data,
                             )
                             is Result.Error -> copy(
                                 loading = false,
                                 recommendations = null,
-                                errorMessage = resource.exception?.message
+                                errorMessage = resource.exception?.message,
                             )
                         }
                     }
                 }.launchIn(this)
         }
     }
-
 }

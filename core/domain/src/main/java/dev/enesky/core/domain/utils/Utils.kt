@@ -1,8 +1,8 @@
 package dev.enesky.core.domain.utils
 
 import dev.enesky.core.common.utils.Constants
-import dev.enesky.core.data.models.Images
 import dev.enesky.core.data.models.Genre
+import dev.enesky.core.data.models.Images
 
 /**
  * Created by Enes Kamil YILMAZ on 23/12/2023

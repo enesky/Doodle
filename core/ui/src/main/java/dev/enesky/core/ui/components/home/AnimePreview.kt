@@ -21,9 +21,7 @@ import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.design_system.components.DoodleImagePlaceholder
 import dev.enesky.core.design_system.components.DoodleNetworkImage
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.domain.models.Anime
 import dev.enesky.core.domain.models.DetailedAnime
-import dev.enesky.core.domain.models.placeholderAnime
 import dev.enesky.core.domain.models.placeholderDetailedAnime
 
 /**
@@ -49,7 +47,7 @@ fun AnimePreview(
             .clip(DoodleTheme.shapes.small)
             .clickable(
                 enabled = anime != null && onNavigateDetailsClick != null,
-                onClick = { onNavigateDetailsClick?.invoke(anime?.id.toString()) }
+                onClick = { onNavigateDetailsClick?.invoke(anime?.id.toString()) },
             ),
     ) {
         if (isLoading || anime == null) {

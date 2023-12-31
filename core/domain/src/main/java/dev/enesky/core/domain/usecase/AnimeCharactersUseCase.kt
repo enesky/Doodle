@@ -35,7 +35,8 @@ class AnimeCharactersUseCase(
                 val data = it.data.map { animeCharacterResponse ->
                     animeCharacterResponse.asAnimeCharacter()
                 }.sortedByDescending {
-                    animeCharacter -> animeCharacter.favorites
+                        animeCharacter ->
+                    animeCharacter.favorites
                 }
                 emit(data)
             }

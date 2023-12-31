@@ -20,12 +20,12 @@ import dev.enesky.core.common.enums.AnimeFilter
 import dev.enesky.core.common.enums.AnimeRating
 import dev.enesky.core.common.enums.AnimeType
 import dev.enesky.core.common.utils.Constants
-import dev.enesky.core.data.models.AnimeCharacterResponse
-import dev.enesky.core.data.models.AnimeResponse
-import dev.enesky.core.data.models.DetailedAnimeResponse
 import dev.enesky.core.data.base.BasePagingResponse
 import dev.enesky.core.data.base.BaseResponse
+import dev.enesky.core.data.models.AnimeCharacterResponse
 import dev.enesky.core.data.models.AnimeEpisodeResponse
+import dev.enesky.core.data.models.AnimeResponse
+import dev.enesky.core.data.models.DetailedAnimeResponse
 import dev.enesky.core.data.models.RecommendedAnimeResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -68,5 +68,4 @@ interface JikanService {
         @Query("page") page: Int = 1,
         @Path("anime-id") animeId: Int,
     ): BasePagingResponse<AnimeEpisodeResponse>
-
 }

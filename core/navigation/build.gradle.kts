@@ -21,3 +21,8 @@ plugins {
 }
 
 android.namespace = "dev.enesky.core.navigation"
+
+dependencies {
+    implementation(libs.compose.destinations.core)
+    ksp(libs.compose.destinations.ksp)
+}

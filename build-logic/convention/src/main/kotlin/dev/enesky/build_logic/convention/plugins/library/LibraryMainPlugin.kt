@@ -24,6 +24,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import java.io.File
 
 /**
  * Android Library Main Convention Plugin
@@ -35,11 +36,19 @@ class LibraryMainPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply(libs.plugins.android.library.get().pluginId)
                 apply(libs.plugins.kotlin.android.get().pluginId)
+                apply(libs.plugins.ksp.plugin.get().pluginId)
             }
 
             extensions.configure<LibraryExtension> {
-                configureKotlinAndroid(this)
                 defaultConfig.targetSdk = libs.versions.target.sdk.get().toString().toInt()
+                configureKotlinAndroid(this)
+
+                // Add KSP source directories to the model to make them visible to Android Studio
+                libraryVariants.all {
+                    addJavaSourceFoldersToModel(
+                        File(buildDir, "generated/ksp/$name/kotlin"),
+                    )
+                }
             }
 
             dependencies {

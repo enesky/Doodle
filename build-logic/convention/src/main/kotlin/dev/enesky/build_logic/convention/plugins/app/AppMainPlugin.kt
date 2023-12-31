@@ -17,18 +17,21 @@
 package dev.enesky.build_logic.convention.plugins.app
 
 import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.gradle.AbstractAppExtension
 import dev.enesky.build_logic.convention.helpers.configureKotlinAndroid
 import dev.enesky.build_logic.convention.helpers.debugImplementation
 import dev.enesky.build_logic.convention.helpers.getBuildTypes
 import dev.enesky.build_logic.convention.helpers.getGeneralBuildConfigs
 import dev.enesky.build_logic.convention.helpers.getProductFlavors
 import dev.enesky.build_logic.convention.helpers.implementation
+import dev.enesky.build_logic.convention.helpers.ksp
 import dev.enesky.build_logic.convention.helpers.libs
 import dev.enesky.build_logic.convention.helpers.releaseImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import java.io.File
 
 /**
  * Configure Android Application-specific options
@@ -56,6 +59,15 @@ class AppMainPlugin : Plugin<Project> {
             }
         }
 
+        // Add KSP source directories to the model to make them visible to Android Studio
+        extensions.configure<AbstractAppExtension> {
+            applicationVariants.all {
+                addJavaSourceFoldersToModel(
+                    File(buildDir, "generated/ksp/$name/kotlin"),
+                )
+            }
+        }
+
         dependencies {
             implementation(libs.core.ktx)
             implementation(libs.activity.compose)
@@ -71,6 +83,9 @@ class AppMainPlugin : Plugin<Project> {
             val koinBom = platform(libs.koin.bom)
             implementation(koinBom)
             implementation(libs.bundles.koin.materials)
+
+            implementation(libs.compose.destinations.core)
+            ksp(libs.compose.destinations.ksp)
         }
     }
 }

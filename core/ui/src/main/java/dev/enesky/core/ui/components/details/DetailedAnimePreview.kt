@@ -149,7 +149,7 @@ private fun DetailedAnimePreviewPreview() {
             color = DoodleTheme.colors.background,
         ) {
             DetailedAnimePreview(
-                detailedAnime = placeholderDetailedAnime
+                detailedAnime = placeholderDetailedAnime,
             )
         }
     }

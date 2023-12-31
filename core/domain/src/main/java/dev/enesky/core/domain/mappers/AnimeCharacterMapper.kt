@@ -14,6 +14,6 @@ fun AnimeCharacterResponse.asAnimeCharacter(): AnimeCharacter {
         name = character.name.replace(",", ""),
         imageUrl = getImageUrl(character.images),
         role = role,
-        favorites = favorites
+        favorites = favorites,
     )
 }

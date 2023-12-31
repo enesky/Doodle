@@ -14,9 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.build_logic.convention.plugins.common
+package dev.enesky.build_logic.convention.plugins.library
 
 import dev.enesky.build_logic.convention.helpers.implementation
+import dev.enesky.build_logic.convention.helpers.ksp
+import dev.enesky.build_logic.convention.helpers.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -24,7 +26,7 @@ import org.gradle.kotlin.dsl.dependencies
 /**
  * A plugin that applies common dependencies for feature modules.
  */
-class FeaturePlugin : Plugin<Project> {
+class LibraryFeaturePlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         dependencies {
             implementation(project(":core:domain"))
@@ -32,6 +34,9 @@ class FeaturePlugin : Plugin<Project> {
             implementation(project(":core:design-system"))
             implementation(project(":core:navigation"))
             implementation(project(":core:ui"))
+
+            implementation(libs.compose.destinations.core)
+            ksp(libs.compose.destinations.ksp)
         }
     }
 }

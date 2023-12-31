@@ -53,5 +53,4 @@ val useCaseModule = lazyModule {
     single<AnimeRecommendationsUseCase> {
         AnimeRecommendationsUseCase(get<JikanRepository>())
     }
-
 }
