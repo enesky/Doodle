@@ -100,7 +100,11 @@ class AuthManager(
                             ).asLoginResult(),
                         )
                     } else {
-                        Logger.error("AuthManager", "signInWithEmailAndPassword: ${task.exception?.message}", task.exception)
+                        Logger.error(
+                            "AuthManager",
+                            "signInWithEmailAndPassword: ${task.exception?.message}",
+                            task.exception,
+                        )
                         continuation.resume(
                             LoginResponse(errorMessage = task.exception?.message).asLoginResult(),
                         )
@@ -132,7 +136,11 @@ class AuthManager(
                             ).asLoginResult(),
                         )
                     } else {
-                        Logger.error("AuthManager", "signUpWithEmailAndPassword: ${task.exception?.message}", task.exception)
+                        Logger.error(
+                            "AuthManager",
+                            "signUpWithEmailAndPassword: ${task.exception?.message}",
+                            task.exception,
+                        )
                         continuation.resume(
                             LoginResponse(errorMessage = task.exception?.message).asLoginResult(),
                         )

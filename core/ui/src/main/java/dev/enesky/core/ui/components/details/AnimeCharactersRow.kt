@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,7 +38,7 @@ import dev.enesky.core.ui.components.home.TitleRow
  * Created by Enes Kamil YILMAZ on 30/12/2023
  */
 
-@Suppress("LongMethod", "MultipleEmitters")
+@Suppress("LongMethod", "MultipleEmitters", "ImmutableCollections", "UnstableCollections")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun AnimeCharactersRow(
@@ -55,10 +54,10 @@ fun AnimeCharactersRow(
         )
     },
 ) {
-    Spacer(modifier = Modifier.size(DoodleTheme.spacing.xxSmall))
+    Spacer(modifier = modifier.size(DoodleTheme.spacing.xxSmall))
 
     TitleRow(
-        modifier = modifier,
+        modifier = Modifier,
         title = "Characters",
     )
 
@@ -84,7 +83,7 @@ fun AnimeCharactersRow(
             !animeCharacters.isNullOrEmpty() -> {
                 items(animeCharacters.count()) { index ->
                     AnimeCharacterItem(
-                        animeCharacter = animeCharacters[index]
+                        animeCharacter = animeCharacters[index],
                     )
                 }
             }

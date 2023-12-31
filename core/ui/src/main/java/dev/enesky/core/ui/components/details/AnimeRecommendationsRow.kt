@@ -30,9 +30,7 @@ import dev.enesky.core.design_system.components.DoodleNetworkImage
 import dev.enesky.core.design_system.components.Message
 import dev.enesky.core.design_system.components.placeholder
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.domain.models.AnimeCharacter
 import dev.enesky.core.domain.models.AnimeRecommendation
-import dev.enesky.core.domain.models.placeholderAnimeCharacter
 import dev.enesky.core.domain.models.placeholderAnimeRecommendation
 import dev.enesky.core.ui.components.home.TitleRow
 
@@ -40,12 +38,12 @@ import dev.enesky.core.ui.components.home.TitleRow
  * Created by Enes Kamil YILMAZ on 30/12/2023
  */
 
-@Suppress("LongMethod", "MultipleEmitters")
+@Suppress("LongMethod", "MultipleEmitters", "ImmutableCollections", "UnstableCollections")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun AnimeRecommendationsRow(
     modifier: Modifier = Modifier,
-    animeRecommendations: List<AnimeRecommendation>? = List(5) { placeholderAnimeRecommendation },
+    animeRecommendations: List<AnimeRecommendation>? = emptyList(),
     isLoading: Boolean = false,
     emptyContent: @Composable LazyItemScope.() -> Unit = {
         val width = LocalConfiguration.current.screenWidthDp.dp - DoodleTheme.spacing.medium * 2
@@ -56,10 +54,10 @@ fun AnimeRecommendationsRow(
         )
     },
 ) {
-    Spacer(modifier = Modifier.size(DoodleTheme.spacing.xxSmall))
+    Spacer(modifier = modifier.size(DoodleTheme.spacing.xxSmall))
 
     TitleRow(
-        modifier = modifier,
+        modifier = Modifier,
         title = "Recommendations",
     )
 
@@ -85,7 +83,7 @@ fun AnimeRecommendationsRow(
             !animeRecommendations.isNullOrEmpty() -> {
                 items(animeRecommendations.count()) { index ->
                     AnimeRecommendationItem(
-                        animeRecommendation = animeRecommendations[index]
+                        animeRecommendation = animeRecommendations[index],
                     )
                 }
             }
@@ -186,7 +184,7 @@ private fun AnimeRecommendationsRowPreview() {
             AnimeRecommendationsRow(
                 modifier = Modifier,
                 animeRecommendations = emptyAnimeRecommendations,
-                isLoading = true
+                isLoading = true,
             )
             AnimeRecommendationsRow(
                 modifier = Modifier,

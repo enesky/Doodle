@@ -21,11 +21,11 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import dev.enesky.core.common.enums.AnimeFilter
 import dev.enesky.core.common.utils.Constants.ITEMS_PER_PAGE
+import dev.enesky.core.data.base.BaseResponse
 import dev.enesky.core.data.models.AnimeCharacterResponse
+import dev.enesky.core.data.models.AnimeEpisodeResponse
 import dev.enesky.core.data.models.AnimeResponse
 import dev.enesky.core.data.models.DetailedAnimeResponse
-import dev.enesky.core.data.base.BaseResponse
-import dev.enesky.core.data.models.AnimeEpisodeResponse
 import dev.enesky.core.data.models.RecommendedAnimeResponse
 import dev.enesky.core.network.api.JikanService
 import dev.enesky.core.network.paging.AnimeEpisodesPagingSource
