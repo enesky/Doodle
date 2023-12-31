@@ -107,9 +107,9 @@ private fun DetailsScreen(
                 )
             }
             item {
-                // TODO: Add anime details
                 DetailedAnimeSummary(
                     summary = uiState.detailedAnime?.summary ?: String.Empty,
+                    isLoading = uiState.loading,
                 )
             }
             item {

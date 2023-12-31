@@ -43,6 +43,7 @@ import dev.enesky.core.ui.components.home.TitleRow
 fun DetailedAnimeSummary(
     modifier: Modifier = Modifier,
     summary: String,
+    isLoading: Boolean = false,
 ) {
     var expanded: Boolean by remember { mutableStateOf(false) }
     var maxLines = if (expanded) Int.MAX_VALUE else 7
@@ -69,6 +70,9 @@ fun DetailedAnimeSummary(
                 style = DoodleTheme.typography.regular.h6,
                 maxLines = maxLines,
             )
+
+            // Don't show the rest of the summary if loading
+            if (isLoading) return@Box
 
             // Add gradient to the bottom of the first paragraph
             // Foreground gradient
