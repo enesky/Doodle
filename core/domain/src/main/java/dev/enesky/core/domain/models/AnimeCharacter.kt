@@ -9,7 +9,7 @@ data class AnimeCharacter(
     val name: String,
     val imageUrl: String,
     val role: String,
-    val favorites: Int
+    val favorites: Int,
 )
 
 // Placeholder AnimeCharacter for preview

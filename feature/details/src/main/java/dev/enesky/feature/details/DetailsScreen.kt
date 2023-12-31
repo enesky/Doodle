@@ -45,7 +45,7 @@ fun DetailsRoute(
         color = DoodleTheme.colors.background,
     ) {
         DetailsScreen(
-            modifier = modifier,
+            modifier = Modifier,
             uiState = uiState,
             onRefresh = {
                 viewModel.getThemAll(animeId = animeId.toInt())
@@ -99,7 +99,7 @@ private fun DetailsScreen(
             item {
                 AnimeRecommendationsRow(
                     animeRecommendations = uiState.recommendations,
-                    isLoading = uiState.loading
+                    isLoading = uiState.loading,
                 )
             }
         }

@@ -19,7 +19,8 @@ class AnimeRecommendationsUseCase(
                 val data = it.data.map { recommendedAnimeResponse ->
                     recommendedAnimeResponse.asAnimeRecommendation()
                 }.sortedByDescending {
-                    animeRecommendation -> animeRecommendation.votes
+                        animeRecommendation ->
+                    animeRecommendation.votes
                 }
                 emit(data)
             }
