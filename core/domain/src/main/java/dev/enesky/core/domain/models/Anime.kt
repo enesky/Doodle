@@ -2,7 +2,7 @@ package dev.enesky.core.domain.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import dev.enesky.core.data.models.Trailer
+import dev.enesky.core.data.response.Trailer
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -12,6 +12,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Anime(
     @SerializedName("mal_id") val id: Int,
+    val url: String,
     val trailer: Trailer? = null,
     val title: String,
     val genres: String,
@@ -24,5 +25,6 @@ val placeholderAnime = Anime(
     title = "Jujutsu Kaisen",
     genres = "Action | Adventure",
     trailer = null,
+    url = "",
     imageUrl = "",
 )

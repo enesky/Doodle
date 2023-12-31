@@ -16,29 +16,10 @@
  */
 package dev.enesky.core.domain.usecase
 
-import dev.enesky.core.domain.mappers.asAnimeCharacter
-import dev.enesky.core.domain.models.AnimeCharacter
-import dev.enesky.core.network.repository.JikanRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import dev.enesky.core.data.models.Character
 
 /**
  * Created by Enes Kamil YILMAZ on 29/10/2023
  */
-class AnimeCharactersUseCase(
-    private val jikanRepository: JikanRepository,
-) {
-    operator fun invoke(animeId: Int): Flow<List<AnimeCharacter>> {
-        return flow {
-            val result = jikanRepository.getCharactersByAnimeId(animeId)
-            (result.getOrNull() ?: result.getOrThrow()).also {
-                val data = it.data.map { animeCharacterResponse ->
-                    animeCharacterResponse.asAnimeCharacter()
-                }.sortedByDescending {
-                    animeCharacter -> animeCharacter.favorites
-                }
-                emit(data)
-            }
-        }
-    }
-}
+
+fun interface AnimeCharactersUseCase : suspend (Int) -> Result<List<Character>>

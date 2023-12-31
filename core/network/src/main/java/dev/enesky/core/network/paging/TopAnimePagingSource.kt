@@ -19,7 +19,7 @@ package dev.enesky.core.network.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import dev.enesky.core.common.enums.AnimeFilter
-import dev.enesky.core.data.models.AnimeResponse
+import dev.enesky.core.data.response.AnimeResponse
 import dev.enesky.core.network.api.JikanService
 import retrofit2.HttpException
 import java.io.IOException

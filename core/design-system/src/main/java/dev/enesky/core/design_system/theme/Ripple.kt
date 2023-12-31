@@ -43,7 +43,7 @@ internal fun rememberDoodleRipple(
 ) = rememberRipple(bounded = bounded, radius = radius, color = color)
 
 private val RippleColor: Color
-    @Composable get() = DoodleTheme.colors.transparent
+    @Composable get() = DoodleTheme.colors.main
 
 private val RippleAlpha = RippleAlpha(
     draggedAlpha = 0.16f,

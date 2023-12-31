@@ -1,7 +1,8 @@
-package dev.enesky.core.data.models
+package dev.enesky.core.data.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import dev.enesky.core.data.models.Images
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -9,7 +10,7 @@ import kotlinx.parcelize.Parcelize
  */
 
 @Parcelize
-data class DetailedAnimeResponse(
+data class FullAnime(
     @SerializedName("mal_id") val id: Int,
     val url: String,
     val images: Images,

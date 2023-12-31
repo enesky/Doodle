@@ -15,16 +15,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.enesky.core.common.utils.Empty
+import dev.enesky.core.design_system.R
 import dev.enesky.core.design_system.components.DoodleImagePlaceholder
 import dev.enesky.core.design_system.components.DoodleNetworkImage
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.domain.models.Anime
-import dev.enesky.core.domain.models.DetailedAnime
 import dev.enesky.core.domain.models.placeholderAnime
-import dev.enesky.core.domain.models.placeholderDetailedAnime
 
 /**
  * Created by Enes Kamil YILMAZ on 20/12/2023
@@ -32,11 +31,11 @@ import dev.enesky.core.domain.models.placeholderDetailedAnime
 
 @Suppress("LongMethod")
 @Composable
-fun AnimePreview(
+fun TopAnimePreview(
     modifier: Modifier = Modifier,
-    anime: DetailedAnime?,
+    anime: Anime?,
     isLoading: Boolean = false,
-    onNavigateDetailsClick: ((id: String) -> Unit)? = null,
+    onNavigateDetailsClick: (id: String) -> Unit,
 ) {
     val config = LocalConfiguration.current
     val screenWidth = config.screenWidthDp.dp
@@ -45,12 +44,17 @@ fun AnimePreview(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .padding(all = DoodleTheme.spacing.medium)
+            .padding(
+                all = DoodleTheme.spacing.medium,
+            )
             .clip(DoodleTheme.shapes.small)
-            .clickable(
-                enabled = anime != null && onNavigateDetailsClick != null,
-                onClick = { onNavigateDetailsClick?.invoke(anime?.id.toString()) }
-            ),
+            .also {
+                if (anime != null) {
+                    it.clickable {
+                        onNavigateDetailsClick(anime.id.toString())
+                    }
+                }
+            },
     ) {
         if (isLoading || anime == null) {
             DoodleImagePlaceholder(
@@ -97,13 +101,14 @@ fun AnimePreview(
         ) {
             Text(
                 modifier = Modifier,
-                text = anime?.title ?: String.Empty,
+                text = anime?.title
+                    ?: stringResource(id = R.string.lorem_ipsum_short),
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.bold.h3,
             )
             Text(
                 modifier = Modifier,
-                text = anime?.genres ?: String.Empty,
+                text = anime?.genres ?: stringResource(id = R.string.lorem_ipsum_medium),
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.bold.h5,
             )
@@ -115,8 +120,8 @@ fun AnimePreview(
 @Composable
 private fun TopAnimePreviewPreview() {
     DoodleTheme {
-        AnimePreview(
-            anime = placeholderDetailedAnime,
+        TopAnimePreview(
+            anime = placeholderAnime,
         ) {}
     }
 }

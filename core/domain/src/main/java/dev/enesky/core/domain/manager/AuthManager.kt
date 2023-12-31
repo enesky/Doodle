@@ -14,8 +14,8 @@ import com.google.firebase.auth.auth
 import dev.enesky.core.common.consts.Values
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.common.utils.Logger
-import dev.enesky.core.data.models.LoginResponse
-import dev.enesky.core.data.models.User
+import dev.enesky.core.data.response.LoginResponse
+import dev.enesky.core.data.response.User
 import dev.enesky.core.domain.mappers.asLoginResult
 import dev.enesky.core.domain.models.LoginResult
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -100,7 +100,6 @@ class AuthManager(
                             ).asLoginResult(),
                         )
                     } else {
-                        Logger.error("AuthManager", "signInWithEmailAndPassword: ${task.exception?.message}", task.exception)
                         continuation.resume(
                             LoginResponse(errorMessage = task.exception?.message).asLoginResult(),
                         )
@@ -132,7 +131,6 @@ class AuthManager(
                             ).asLoginResult(),
                         )
                     } else {
-                        Logger.error("AuthManager", "signUpWithEmailAndPassword: ${task.exception?.message}", task.exception)
                         continuation.resume(
                             LoginResponse(errorMessage = task.exception?.message).asLoginResult(),
                         )
@@ -155,7 +153,6 @@ class AuthManager(
                             ).asLoginResult(),
                         )
                     } else {
-                        Logger.error("AuthManager", "forgotPassword: ${task.exception?.message}", task.exception)
                         continuation.resume(
                             LoginResponse(errorMessage = task.exception?.message).asLoginResult(),
                         )
@@ -187,7 +184,6 @@ class AuthManager(
                             ).asLoginResult(),
                         )
                     } else {
-                        Logger.error("AuthManager", "signInAnonymously: ${task.exception?.message}", task.exception)
                         continuation.resume(
                             LoginResponse(errorMessage = task.exception?.message).asLoginResult(),
                         )

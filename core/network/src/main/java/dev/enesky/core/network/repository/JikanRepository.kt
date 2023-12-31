@@ -18,12 +18,10 @@ package dev.enesky.core.network.repository
 
 import androidx.paging.PagingData
 import dev.enesky.core.common.enums.AnimeFilter
-import dev.enesky.core.data.models.AnimeCharacterResponse
-import dev.enesky.core.data.models.AnimeResponse
-import dev.enesky.core.data.models.DetailedAnimeResponse
-import dev.enesky.core.data.base.BaseResponse
-import dev.enesky.core.data.models.AnimeEpisodeResponse
-import dev.enesky.core.data.models.RecommendedAnimeResponse
+import dev.enesky.core.data.models.Character
+import dev.enesky.core.data.response.AnimeResponse
+import dev.enesky.core.data.response.FullAnime
+import dev.enesky.core.data.response.base.BaseResponse
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -38,20 +36,11 @@ class JikanRepository(
         return jikanDataSource.getTopAnimePagingData(animeFilter)
     }
 
-    suspend fun getAnimeById(animeId: Int): Result<BaseResponse<DetailedAnimeResponse>> {
+    suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>> {
         return jikanDataSource.getAnimeById(animeId)
     }
 
-    suspend fun getCharactersByAnimeId(animeId: Int): Result<BaseResponse<List<AnimeCharacterResponse>>> {
+    suspend fun getCharactersByAnimeId(animeId: Int): Result<List<Character>> {
         return jikanDataSource.getCharactersByAnimeId(animeId)
     }
-
-    suspend fun getRecommendedAnimesByAnimeId(animeId: Int): Result<BaseResponse<List<RecommendedAnimeResponse>>> {
-        return jikanDataSource.getRecommendedAnimeByAnimeId(animeId)
-    }
-
-    fun getAnimeEpisodesByAnimeId(animeId: Int): Flow<PagingData<AnimeEpisodeResponse>> {
-        return jikanDataSource.getAnimeEpisodesByAnimeId(animeId)
-    }
-
 }

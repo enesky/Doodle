@@ -14,34 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.data.models
+package dev.enesky.core.domain.usecase
 
-import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
+import dev.enesky.core.domain.mappers.asAnime
+import dev.enesky.core.domain.models.Anime
+import dev.enesky.core.network.repository.JikanRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 /**
- * Created by Enes Kamil YILMAZ on 28/10/2023
- */
+ Created by Enes Kamil YILMAZ on 28/10/2023
+*/
 
-@Parcelize
-data class AnimeCharacterResponse(
-    val character: Person,
-    val role: String,
-    val favorites: Int,
-    val voiceActors: List<VoiceActor>,
-) : Parcelable
-
-@Parcelize
-data class Person(
-    @SerializedName("mal_id") val id: Int,
-    val url: String,
-    val images: Images,
-    val name: String,
-) : Parcelable
-
-@Parcelize
-data class VoiceActor(
-    val person: Person,
-    val language: String,
-) : Parcelable
+class AnimeUseCase(
+    private val jikanRepository: JikanRepository,
+) {
+    operator fun invoke(animeId: Int): Flow<Anime> {
+        return flow {
+            val result = jikanRepository.getAnimeById(animeId)
+            (result.getOrNull() ?: result.getOrThrow()).also {
+                emit(it.data.asAnime())
+            }
+        }
+    }
+}

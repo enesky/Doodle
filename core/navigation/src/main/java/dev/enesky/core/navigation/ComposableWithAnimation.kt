@@ -12,7 +12,7 @@ import androidx.navigation.compose.composable
  * Created by Enes Kamil YILMAZ on 30/11/2023
  */
 
-const val ANIMATION_DURATION = 300
+const val ANIMATION_DURATION = 500
 
 fun NavGraphBuilder.composableWithAnimation(
     route: String,

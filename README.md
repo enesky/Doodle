@@ -28,10 +28,8 @@ Doodle demonstrates modern Android development with Jetpack (Compose, ViewModel,
 
 <p align="center">
   <a>
-    <img width=300, src="docs/signin_screen.png" alt="Sign In Screen">
-    <img width=300, src="docs/home_screen.png" alt="Home Screen">
-    <img width=300, src="docs/details_screen_1.png" alt="Details Screen -Top">
-    <img width=300, src="docs/details_screen_2.png" alt="Details Screen -Bottom">
+    <img width=375, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/signin_screen.png" alt="Home Screen">
+    <img width=375, src="https://github.com/enesky/Doodle/blob/chore/readme_update/docs/home_screen.png" alt="Home Screen">
   </a>
 </p>
 

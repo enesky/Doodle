@@ -1,28 +1,21 @@
 package dev.enesky.feature.details
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.Surface
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import dev.enesky.core.common.utils.Empty
-import dev.enesky.core.design_system.components.SwipeRefresh
+import androidx.compose.ui.unit.dp
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.domain.models.placeholderAnimeCharacter
-import dev.enesky.core.domain.models.placeholderDetailedAnime
-import dev.enesky.core.ui.components.details.AnimeCharactersRow
-import dev.enesky.core.ui.components.details.AnimeRecommendationsRow
-import dev.enesky.core.ui.components.details.DetailedAnimePreview
-import dev.enesky.core.ui.components.details.DetailedAnimeSummary
-import dev.enesky.feature.details.helpers.DetailsUiState
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -32,75 +25,50 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun DetailsRoute(
     modifier: Modifier = Modifier,
-    animeId: String,
     viewModel: DetailsViewModel = koinViewModel(),
 ) {
-    LaunchedEffect(animeId) {
-        viewModel.getThemAll(animeId = animeId.toInt())
-    }
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
-    Surface(
-        modifier = modifier.fillMaxSize(),
-        color = DoodleTheme.colors.background,
-    ) {
-        DetailsScreen(
-            modifier = modifier,
-            uiState = uiState,
-            onRefresh = {
-                viewModel.getThemAll(animeId = animeId.toInt())
-            },
-        )
-    }
+    DetailsScreen(
+        modifier = modifier,
+    )
 }
 
 @Composable
 private fun DetailsScreen(
     modifier: Modifier = Modifier,
-    uiState: DetailsUiState = DetailsUiState(),
-    onRefresh: () -> Unit = {},
 ) {
-    SwipeRefresh(
-        modifier = modifier,
-        isRefreshing = uiState.loading,
-        onRefresh = onRefresh,
+    Surface(
+        modifier = modifier.fillMaxSize(),
+        color = DoodleTheme.colors.background,
     ) {
-        val listState = rememberLazyListState()
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+        DetailsContent(
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+}
+
+@Composable
+private fun DetailsContent(
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier = modifier.fillMaxWidth(),
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top,
-            contentPadding = PaddingValues(
-                vertical = DoodleTheme.spacing.xSmall,
-            ),
-            state = listState,
+            verticalArrangement = Arrangement.Center,
         ) {
-            item {
-                DetailedAnimePreview(
-                    detailedAnime = uiState.detailedAnime,
-                    isLoading = uiState.loading,
-                )
-            }
-            item {
-                DetailedAnimeSummary(
-                    summary = uiState.detailedAnime?.summary ?: String.Empty,
-                    isLoading = uiState.loading,
-                )
-            }
-            item {
-                AnimeCharactersRow(
-                    animeCharacters = uiState.characters,
-                    isLoading = uiState.loading,
-                )
-            }
-            item {
-                // TODO: Add anime episodes
-            }
-            item {
-                AnimeRecommendationsRow(
-                    animeRecommendations = uiState.recommendations,
-                    isLoading = uiState.loading
-                )
+            Text(
+                text = "Welcome to Details Screen",
+                style = DoodleTheme.typography.regular.h3,
+            )
+            Button(
+                modifier = Modifier.padding(32.dp),
+                onClick = {
+                    println("@@@@ Clicked to Details Screen")
+                },
+            ) {
+                Text(text = "Click me for nothing :)", color = Color.White)
             }
         }
     }
@@ -110,16 +78,6 @@ private fun DetailsScreen(
 @Composable
 private fun DetailsScreenPreview() {
     DoodleTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = DoodleTheme.colors.background,
-        ) {
-            DetailsScreen(
-                uiState = DetailsUiState(
-                    detailedAnime = placeholderDetailedAnime,
-                    characters = List(5) { placeholderAnimeCharacter },
-                ),
-            )
-        }
+        DetailsScreen()
     }
 }

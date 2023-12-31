@@ -1,4 +1,4 @@
-package dev.enesky.core.data.base
+package dev.enesky.core.data.response.base
 
 /**
  * Created by Enes Kamil YILMAZ on 20/12/2023

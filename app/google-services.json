@@ -149,14 +149,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "553106997185-j8cr6k0vcfa1pos5qsbbkeuqi7c7j7a7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "dev.enesky.doodle.prod.premium",
-            "certificate_hash": "3d1ec796e095be9a866e0b8e8b7f03e85aaf13ec"
-          }
-        },
-        {
           "client_id": "553106997185-ledv97hihtesekldheej0u6hesnr166q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

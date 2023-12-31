@@ -14,23 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.enesky.core.network.repository
+package dev.enesky.core.data.models
 
-import androidx.paging.PagingData
-import dev.enesky.core.common.enums.AnimeFilter
-import dev.enesky.core.data.models.Character
-import dev.enesky.core.data.response.AnimeResponse
-import dev.enesky.core.data.response.FullAnime
-import dev.enesky.core.data.response.base.BaseResponse
-import kotlinx.coroutines.flow.Flow
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by Enes Kamil YILMAZ on 28/10/2023
  */
 
-interface JikanDataSource {
+@Parcelize
+data class Character(
+    val character: Person,
+    val role: String,
+    val favorites: Int,
+    val voiceActors: List<VoiceActor>,
+) : Parcelable
 
-    fun getTopAnimePagingData(animeFilter: AnimeFilter): Flow<PagingData<AnimeResponse>>
-    suspend fun getAnimeById(animeId: Int): Result<BaseResponse<FullAnime>>
-    suspend fun getCharactersByAnimeId(animeId: Int): Result<List<Character>>
-}
+@Parcelize
+data class Person(
+    @SerializedName("mal_id") val id: Int,
+    val url: String,
+    val images: Images,
+    val name: String,
+) : Parcelable
+
+@Parcelize
+data class VoiceActor(
+    val person: Person,
+    val language: String,
+) : Parcelable

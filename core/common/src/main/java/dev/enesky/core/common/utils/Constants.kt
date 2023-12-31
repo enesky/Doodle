@@ -21,6 +21,6 @@ package dev.enesky.core.common.utils
  */
 object Constants {
 
-    const val ITEMS_PER_PAGE = 12
+    const val ITEMS_PER_PAGE = 20
     const val PLACEHOLDER_IMG_URL = "https://fakeimg.pl/400x600/2b323f/FFFFFF?text=Not+found"
 }
