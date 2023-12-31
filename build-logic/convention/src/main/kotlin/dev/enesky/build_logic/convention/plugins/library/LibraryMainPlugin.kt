@@ -46,7 +46,7 @@ class LibraryMainPlugin : Plugin<Project> {
                 // Add KSP source directories to the model to make them visible to Android Studio
                 libraryVariants.all {
                     addJavaSourceFoldersToModel(
-                        File(buildDir, "generated/ksp/$name/kotlin")
+                        File(buildDir, "generated/ksp/$name/kotlin"),
                     )
                 }
             }

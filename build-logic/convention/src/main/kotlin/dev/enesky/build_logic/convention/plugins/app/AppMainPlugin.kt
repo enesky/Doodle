@@ -63,7 +63,7 @@ class AppMainPlugin : Plugin<Project> {
         extensions.configure<AbstractAppExtension> {
             applicationVariants.all {
                 addJavaSourceFoldersToModel(
-                    File(buildDir, "generated/ksp/$name/kotlin")
+                    File(buildDir, "generated/ksp/$name/kotlin"),
                 )
             }
         }

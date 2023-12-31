@@ -12,7 +12,7 @@ data class AnimeRecommendation(
     val imageUrl: String,
     val title: String,
     val url: String,
-    val votes: Int
+    val votes: Int,
 )
 
 // Placeholder AnimeRecommendation for preview

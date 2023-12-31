@@ -9,12 +9,12 @@ import com.google.gson.annotations.SerializedName
 data class RecommendedAnimeResponse(
     val entry: AnimeEntry,
     val url: String,
-    val votes: Int
+    val votes: Int,
 )
 
 data class AnimeEntry(
     @SerializedName("mal_id") val id: Int,
     val url: String,
     val images: Images,
-    val title: String
+    val title: String,
 )
