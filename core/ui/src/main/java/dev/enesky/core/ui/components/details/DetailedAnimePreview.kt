@@ -107,8 +107,10 @@ fun DetailedAnimePreview(
             )
         }
 
-        // Detailed anime status -> Score, Rank, Popularity
+        // Don't show details if detailedAnime is null
         if (detailedAnime == null) return@Box
+
+        // Detailed anime status -> Score, Rank, Popularity
         Column(
             modifier = Modifier
                 .padding(DoodleTheme.spacing.medium)
@@ -118,19 +120,19 @@ fun DetailedAnimePreview(
         ) {
             Text(
                 modifier = Modifier,
-                text = "Score: ${detailedAnime?.score.toString()} / 10",
+                text = "Score: ${detailedAnime.score} / 10",
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.bold.h6,
             )
             Text(
                 modifier = Modifier,
-                text = "Rank: ${detailedAnime?.rank.toString()}",
+                text = "Rank #${detailedAnime.rank}",
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.bold.h6,
             )
             Text(
                 modifier = Modifier,
-                text = "Popularity: ${detailedAnime?.popularity.toString()}",
+                text = "Popularity #${detailedAnime.popularity}",
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.bold.h6,
             )
