@@ -70,3 +70,7 @@
 -keep class androidx.credentials.playservices.** {
   *;
 }
+
+# Keep data models for release builds
+-keep class dev.enesky.core.data.** { *; }
+-keep class dev.enesky.core.domain.models.** { *; }

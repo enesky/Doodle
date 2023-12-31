@@ -1,7 +1,7 @@
 package dev.enesky.core.domain.mappers
 
 import dev.enesky.core.common.utils.Constants
-import dev.enesky.core.data.response.LoginResponse
+import dev.enesky.core.data.models.LoginResponse
 import dev.enesky.core.domain.models.LoginResult
 
 /**

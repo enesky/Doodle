@@ -15,7 +15,7 @@ import dev.enesky.core.design_system.components.SwipeRefresh
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.domain.utils.isLoading
 import dev.enesky.core.ui.components.home.AnimeListRow
-import dev.enesky.core.ui.components.home.TopAnimePreview
+import dev.enesky.core.ui.components.home.AnimePreview
 import dev.enesky.feature.home.helpers.HomeEvents
 import dev.enesky.feature.home.helpers.HomeUiState
 import org.koin.androidx.compose.koinViewModel
@@ -28,7 +28,7 @@ import org.koin.androidx.compose.koinViewModel
 fun HomeRoute(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinViewModel(),
-    onNavigateDetailsClick: (animeId: String) -> Unit,
+    onNavigateDetailsClick: (id: String) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -42,7 +42,9 @@ fun HomeRoute(
                 Logger.debug("HomeScreen", "onError: ${homeEvents.errorMessage}")
             }
 
-            is HomeEvents.NavigateToDetails -> onNavigateDetailsClick(homeEvents.animeId)
+            is HomeEvents.NavigateToDetails -> {
+                onNavigateDetailsClick(homeEvents.animeId)
+            }
 
             is HomeEvents.OnItemOptionsClick -> {
                 // TODO: Add item options click action -> Open a bottom sheet or options menu
@@ -53,7 +55,7 @@ fun HomeRoute(
     HomeScreen(
         modifier = modifier,
         uiState = uiState,
-        onNavigateDetailsClick = onNavigateDetailsClick
+        onNavigateDetailsClick = onNavigateDetailsClick,
     )
 }
 
@@ -92,7 +94,7 @@ private fun HomeScreen(
             ),
         ) {
             item {
-                TopAnimePreview(
+                AnimePreview(
                     anime = uiState.previewAnime,
                     isLoading = uiState.loading,
                     onNavigateDetailsClick = onNavigateDetailsClick,
