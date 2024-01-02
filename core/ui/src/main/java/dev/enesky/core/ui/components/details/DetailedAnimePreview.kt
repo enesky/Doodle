@@ -96,7 +96,7 @@ fun DetailedAnimePreview(
             modifier = Modifier
                 .padding(
                     vertical = DoodleTheme.spacing.large,
-                    horizontal = DoodleTheme.spacing.medium
+                    horizontal = DoodleTheme.spacing.medium,
                 )
                 .matchParentSize(),
             horizontalAlignment = Alignment.End,
@@ -118,7 +118,7 @@ fun DetailedAnimePreview(
             modifier = Modifier
                 .padding(
                     vertical = DoodleTheme.spacing.large,
-                    horizontal = DoodleTheme.spacing.medium
+                    horizontal = DoodleTheme.spacing.medium,
                 )
                 .matchParentSize(),
             horizontalAlignment = Alignment.Start,
