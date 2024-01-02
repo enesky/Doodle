@@ -94,7 +94,10 @@ fun DetailedAnimePreview(
         // Anime rating
         Column(
             modifier = Modifier
-                .padding(DoodleTheme.spacing.medium)
+                .padding(
+                    vertical = DoodleTheme.spacing.large,
+                    horizontal = DoodleTheme.spacing.medium
+                )
                 .matchParentSize(),
             horizontalAlignment = Alignment.End,
             verticalArrangement = Arrangement.Top,
@@ -113,7 +116,10 @@ fun DetailedAnimePreview(
         // Detailed anime status -> Score, Rank, Popularity
         Column(
             modifier = Modifier
-                .padding(DoodleTheme.spacing.medium)
+                .padding(
+                    vertical = DoodleTheme.spacing.large,
+                    horizontal = DoodleTheme.spacing.medium
+                )
                 .matchParentSize(),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top,
