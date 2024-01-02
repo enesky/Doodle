@@ -2,7 +2,10 @@ package dev.enesky.feature.details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Surface
@@ -40,17 +43,11 @@ fun DetailsRoute(
     }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    Surface(
-        modifier = modifier.fillMaxSize(),
-        color = DoodleTheme.colors.background,
+    DetailsScreen(
+        modifier = modifier,
+        uiState = uiState,
     ) {
-        DetailsScreen(
-            modifier = Modifier,
-            uiState = uiState,
-            onRefresh = {
-                viewModel.getThemAll(animeId = animeId.toInt())
-            },
-        )
+        viewModel.getThemAll(animeId = animeId.toInt())
     }
 }
 
@@ -71,7 +68,8 @@ private fun DetailsScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
             contentPadding = PaddingValues(
-                vertical = DoodleTheme.spacing.xSmall,
+                top = DoodleTheme.spacing.xSmall,
+                bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding(),
             ),
             state = listState,
         ) {

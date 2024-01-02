@@ -1,7 +1,6 @@
 package dev.enesky.feature.settings
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import dev.enesky.core.design_system.annotation.PreviewUiMode
+import dev.enesky.core.design_system.components.CenteredBox
 import dev.enesky.core.design_system.theme.DoodleTheme
 
 /**
@@ -48,7 +48,7 @@ private fun SettingsScreen(
 private fun SettingsContent(
     modifier: Modifier = Modifier,
 ) {
-    Box(
+    CenteredBox(
         modifier = modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center,
     ) {

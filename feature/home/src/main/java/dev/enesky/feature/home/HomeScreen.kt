@@ -33,6 +33,7 @@ fun HomeRoute(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     if (uiState.errorMessage != null) {
+        // TODO: Add error dialog
         Logger.debug("HomeScreen", "onError: ${uiState.errorMessage}")
     }
 
@@ -90,7 +91,7 @@ private fun HomeScreen(
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
-                vertical = DoodleTheme.spacing.xSmall,
+                vertical = DoodleTheme.spacing.medium,
             ),
         ) {
             item {
