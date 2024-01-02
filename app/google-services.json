@@ -30,6 +30,14 @@
           }
         },
         {
+          "client_id": "553106997185-pvc41jk2ec1ci7a0o9o42dtg093kjr5c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.enesky.doodle",
+            "certificate_hash": "3d1ec796e095be9a866e0b8e8b7f03e85aaf13ec"
+          }
+        },
+        {
           "client_id": "553106997185-ajekuvkorclhd9eoj10ks5eev6vth0te.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -64,6 +72,14 @@
           "android_info": {
             "package_name": "dev.enesky.doodle.dev.premium",
             "certificate_hash": "660f03a88e2f83dbc4d4d32893ec82b6adc4caa8"
+          }
+        },
+        {
+          "client_id": "553106997185-kh07j1fqek2slgrth9ddp1igk4rjctni.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.enesky.doodle.dev.premium",
+            "certificate_hash": "3d1ec796e095be9a866e0b8e8b7f03e85aaf13ec"
           }
         },
         {
@@ -103,6 +119,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "553106997185-1flt7bu97cf74bd4r593qiu5797bk4gd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.enesky.doodle.dev.trial",
+            "certificate_hash": "3d1ec796e095be9a866e0b8e8b7f03e85aaf13ec"
+          }
+        },
         {
           "client_id": "553106997185-5ikbjclgucql0670tgih4mn16h5v4s2v.apps.googleusercontent.com",
           "client_type": 1,
@@ -201,6 +225,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "553106997185-7nt0vcj848mct6h9cm9krg5bhb4v1ec7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.enesky.doodle.prod.trial",
+            "certificate_hash": "3d1ec796e095be9a866e0b8e8b7f03e85aaf13ec"
+          }
+        },
         {
           "client_id": "553106997185-obob5fs699518sjg347478n7oeiqeb4e.apps.googleusercontent.com",
           "client_type": 1,
