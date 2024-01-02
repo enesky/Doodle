@@ -86,7 +86,7 @@ fun DoodleApp(
                 TransparentSystemBars()
 
                 Surface(
-                    modifier = modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     color = DoodleTheme.colors.background,
                 ) {
                     /**
