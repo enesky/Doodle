@@ -56,5 +56,6 @@ include(
     ":feature:details",
     ":feature:explore",
     ":feature:my-lists",
-    ":feature:settings"
+    ":feature:settings",
+    ":feature:splash"
 )
