@@ -47,4 +47,5 @@ dependencies {
     implementation(projects.feature.explore)
     implementation(projects.feature.myLists)
     implementation(projects.feature.settings)
+    implementation(projects.feature.splash)
 }
