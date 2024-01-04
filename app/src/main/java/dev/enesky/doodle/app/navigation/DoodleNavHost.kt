@@ -13,6 +13,7 @@ import dev.enesky.feature.home.navigation.homeGraph
 import dev.enesky.feature.login.navigation.loginGraph
 import dev.enesky.feature.my_lists.navigation.myListsGraph
 import dev.enesky.feature.settings.navigation.settingsGraph
+import dev.enesky.feature.splash.navigation.splashGraph
 
 /**
  * Created by Enes Kamil YILMAZ on 11/11/2023
@@ -32,6 +33,20 @@ fun DoodleNavHost(
         navController = navController,
         startDestination = startDestination.route,
     ) {
+        splashGraph(
+            onNavigateToLoginScreen = {
+                onNavigateToDestination(
+                    HomeDestination,
+                    HomeDestination.route,
+                )
+            },
+            onNavigateToHomeScreen = {
+                onNavigateToDestination(
+                    HomeDestination,
+                    HomeDestination.route,
+                )
+            },
+        )
         loginGraph(
             navController = navController,
             onNavigateToHomeDestination = {
