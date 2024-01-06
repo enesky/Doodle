@@ -30,18 +30,15 @@ fun rememberDoodleAppState(
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
-    startDestination: DoodleNavigationDestination = LoginDestination,
 ) = remember(
     snackbarHostState,
     coroutineScope,
     navController,
-    startDestination,
 ) {
     DoodleAppState(
         snackbarHostState = snackbarHostState,
         coroutineScope = coroutineScope,
         navController = navController,
-        startDestination = startDestination,
     )
 }
 
@@ -50,7 +47,6 @@ class DoodleAppState(
     val snackbarHostState: SnackbarHostState,
     val coroutineScope: CoroutineScope,
     val navController: NavHostController,
-    var startDestination: DoodleNavigationDestination,
 ) {
 
     // Snackbar related properties and functions
