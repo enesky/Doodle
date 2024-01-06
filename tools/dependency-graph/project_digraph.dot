@@ -15,7 +15,7 @@ digraph {
     subgraph cluster_feature {
         label="feature:";
         color=orange;
-        "login", "home", "details", "explore", "settings", "my-lists";
+        "login", "home", "details", "explore", "settings", "my-lists", "splash";
     }
 
     # Dependencies
@@ -32,6 +32,7 @@ digraph {
     "app" -> "explore"
     "app" -> "my-lists"
     "app" -> "settings"
+    "app" -> "splash"
     "design-system" -> "common"
     "design-system" -> "domain"
     "domain" -> "common"
@@ -72,4 +73,9 @@ digraph {
     "settings" -> "design-system"
     "settings" -> "navigation"
     "settings" -> "ui"
+    "splash" -> "domain"
+    "splash" -> "common"
+    "splash" -> "design-system"
+    "splash" -> "navigation"
+    "splash" -> "ui"
 }
