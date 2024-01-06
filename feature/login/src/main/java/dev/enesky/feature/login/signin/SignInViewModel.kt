@@ -16,6 +16,7 @@ import dev.enesky.core.domain.manager.AuthManager
 import dev.enesky.core.domain.models.LoginResult
 import dev.enesky.feature.login.signin.helpers.SignInEvents
 import dev.enesky.feature.login.signin.helpers.SignInUiState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -31,7 +32,7 @@ class SignInViewModel(
 
     init {
         val initialDelay = 500L
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             delay(initialDelay)
             signInWithCredentialApi()
         }
@@ -55,7 +56,7 @@ class SignInViewModel(
     // ------------------ EMAIL ------------------
 
     fun signInWithEmailAndPassword(email: String, password: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val signInResult = authManager.signInWithEmailAndPassword(email, password)
             updateUiState {
                 copy(
@@ -68,7 +69,7 @@ class SignInViewModel(
     }
 
     fun forgotPassword(email: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val forgotPasswordResult = authManager.forgotPassword(email)
             updateUiState {
                 copy(
@@ -88,7 +89,7 @@ class SignInViewModel(
     fun signInWithGoogleLauncher(
         launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>,
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val signInIntentSender = authManager.signInWithGoogleLauncher()
             launcher.launch(
                 IntentSenderRequest.Builder(
@@ -102,7 +103,7 @@ class SignInViewModel(
         intent: Intent? = null,
         idToken: String? = null,
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val signInResult = authManager.signInWithGoogleResult(intent, idToken)
             updateUiState {
                 copy(
@@ -117,7 +118,7 @@ class SignInViewModel(
     // ------------------ ANONYMOUS ------------------
 
     fun signInAnonymously() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val signInResult = authManager.signInAnonymously()
             updateUiState {
                 copy(
@@ -135,7 +136,7 @@ class SignInViewModel(
         loginResult: LoginResult,
         shouldNavigateToHome: Boolean = true,
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             triggerEvent {
                 if (loginResult.isSignInSuccessful == true && shouldNavigateToHome) {
                     SignInEvents.NavigateToHome
@@ -149,7 +150,7 @@ class SignInViewModel(
     }
 
     fun navigateToSignUp() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             triggerEvent {
                 SignInEvents.NavigateToSignUp
             }
