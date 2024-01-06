@@ -29,7 +29,7 @@ class SplashViewModel(
         }
     }
 
-    suspend fun checkUser() {
+    private suspend fun checkUser() {
         delay(1000L)
         triggerEvent {
             if (authManager.isUserLoggedIn()) {

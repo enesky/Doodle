@@ -26,7 +26,6 @@ import org.koin.androidx.compose.koinViewModel
  * Created by Enes Kamil YILMAZ on 04/01/2024
  */
 
-@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun SplashRoute(
     modifier: Modifier = Modifier,
@@ -35,30 +34,6 @@ fun SplashRoute(
     viewModel: SplashViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val lifecycleOwner = LocalLifecycleOwner.current
-
-    // TODO: Wait for permission result
-    val notificationPermissionState = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
-        } else {
-            null
-        }
-
-    DisposableEffect(
-        key1 = lifecycleOwner,
-        effect = {
-            val observer = LifecycleEventObserver { _, event ->
-                if (event == Lifecycle.Event.ON_START) {
-                    notificationPermissionState?.launchPermissionRequest()
-                }
-            }
-            lifecycleOwner.lifecycle.addObserver(observer)
-
-            onDispose {
-                lifecycleOwner.lifecycle.removeObserver(observer)
-            }
-        }
-    )
 
     ObserveAsEvents(flow = viewModel.eventFlow) {
         when (it) {
@@ -72,19 +47,18 @@ fun SplashRoute(
 
             is SplashEvents.OnError -> TODO()
         }
-
     }
+
+    RequestPermissions()
 
     SplashScreen(
         modifier = modifier,
-        uiState = uiState,
     )
 }
 
 @Composable
 private fun SplashScreen(
     modifier: Modifier = Modifier,
-    uiState: SplashUiState = SplashUiState(),
 ) {
     CenteredBox(
         modifier = modifier.fillMaxWidth(),
@@ -96,6 +70,35 @@ private fun SplashScreen(
             contentDescription = "Doodle Icon",
         )
     }
+}
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+private fun RequestPermissions() {
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    // TODO: Wait for permission result
+    val permissionState = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
+    } else {
+        null
+    }
+
+    DisposableEffect(
+        key1 = lifecycleOwner,
+        effect = {
+            val observer = LifecycleEventObserver { _, event ->
+                if (event == Lifecycle.Event.ON_START) {
+                    permissionState?.launchPermissionRequest()
+                }
+            }
+            lifecycleOwner.lifecycle.addObserver(observer)
+
+            onDispose {
+                lifecycleOwner.lifecycle.removeObserver(observer)
+            }
+        }
+    )
 }
 
 @PreviewUiMode
