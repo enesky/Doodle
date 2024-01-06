@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.navOptions
 import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.feature.details.navigation.DetailsDestination
 import dev.enesky.feature.details.navigation.detailsGraph
@@ -14,6 +15,7 @@ import dev.enesky.feature.login.navigation.LoginDestination
 import dev.enesky.feature.login.navigation.loginGraph
 import dev.enesky.feature.my_lists.navigation.myListsGraph
 import dev.enesky.feature.settings.navigation.settingsGraph
+import dev.enesky.feature.splash.navigation.SplashDestination
 import dev.enesky.feature.splash.navigation.splashGraph
 
 /**
@@ -36,15 +38,19 @@ fun DoodleNavHost(
     ) {
         splashGraph(
             onNavigateToLoginScreen = {
-                onNavigateToDestination(
-                    LoginDestination,
-                    LoginDestination.route,
+                navController.navigate(LoginDestination.route, navOptions {
+                        popUpTo(SplashDestination.route) {
+                            inclusive = true
+                        }
+                    }
                 )
             },
             onNavigateToHomeScreen = {
-                onNavigateToDestination(
-                    HomeDestination,
-                    HomeDestination.route,
+                navController.navigate(HomeDestination.route, navOptions {
+                        popUpTo(SplashDestination.route) {
+                            inclusive = true
+                        }
+                    }
                 )
             },
         )
