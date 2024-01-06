@@ -8,7 +8,7 @@ compose-compiler                      = "1.5.7"
 kotlin                                = "1.9.21"
 
 # Plugin Versions
-gradle-plugin                         = "8.4.0-alpha02"
+gradle-plugin                         = "8.4.0-alpha03"
 ksp-plugin                            = "1.9.21-1.0.16"
 google-services-plugin                = "4.4.0"
 crashlytics-plugin                    = "2.9.9"
@@ -128,6 +128,7 @@ credential-manager                    = { module= "androidx.credentials:credenti
 credential-manager-play-services-auth = { module= "androidx.credentials:credentials-play-services-auth", version.ref= "credential-manager" }
 credential-manager-google-auth        = { module= "com.google.android.libraries.identity.googleid:googleid", version.ref= "credential-manager-google" }
 accompanist-systemuicontroller        = { module= "com.google.accompanist:accompanist-systemuicontroller", version.ref= "accompanist" }
+accompanist-permissions               = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 accompanist-pager-indicators          = { module= "com.google.accompanist:accompanist-pager-indicators", version.ref= "accompanist" }
 accompanist-placeholder-material      = { module= "com.google.accompanist:accompanist-placeholder-material", version.ref= "accompanist" }
 detekt-compose-rules                  = { module= "io.nlopez.compose.rules:detekt", version.ref= "detekt-compose" }
@@ -154,4 +155,4 @@ network                               = ["retrofit", "retrofit-converter-gson", 
 firebase-materials                    = ["firebase-analytics", "firebase-crashlytics", "firebase-performance", "firebase-authentication", "firebase-remote-config"]
 androidx-libraries                    = ["androidx-paging-compose", "data-store", "data-store-preferences"]
 credential-manager                    = ["credential-manager", "credential-manager-play-services-auth", "credential-manager-google-auth"]
-accompanist-materials                 = ["accompanist-systemuicontroller", "accompanist-pager-indicators", "accompanist-placeholder-material"]
+accompanist-materials                 = ["accompanist-systemuicontroller", "accompanist-permissions", "accompanist-pager-indicators", "accompanist-placeholder-material"]
