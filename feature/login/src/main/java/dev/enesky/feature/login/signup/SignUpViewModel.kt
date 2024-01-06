@@ -11,6 +11,7 @@ import dev.enesky.core.domain.manager.AuthManager
 import dev.enesky.core.domain.models.LoginResult
 import dev.enesky.feature.login.signup.helpers.SignUpEvents
 import dev.enesky.feature.login.signup.helpers.SignUpUiState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -24,7 +25,7 @@ class SignUpViewModel(
     Event<SignUpEvents> by EventDelegate() {
 
     fun signUpWithEmail(email: String, password: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val resultFromSignUp = authManager.signUpWithEmailAndPassword(
                 email = email,
                 password = password,
@@ -46,7 +47,7 @@ class SignUpViewModel(
     private fun handleResults(
         loginResult: LoginResult,
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             triggerEvent {
                 if (loginResult.isSignInSuccessful == true) {
                     SignUpEvents.NavigateToHome
