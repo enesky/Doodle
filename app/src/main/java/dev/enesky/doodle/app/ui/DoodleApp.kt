@@ -24,16 +24,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import dev.enesky.core.design_system.components.TransparentSystemBars
 import dev.enesky.core.design_system.theme.DoodleTheme
-import dev.enesky.core.domain.manager.AuthManager
 import dev.enesky.doodle.app.navigation.DoodleNavHost
 import dev.enesky.doodle.app.ui.component.DoodleBottomBar
 import dev.enesky.doodle.app.ui.component.DoodleSnackbarHost
 import dev.enesky.doodle.app.ui.component.LocalSnackbarHostState
-import dev.enesky.feature.home.navigation.HomeDestination
-import org.koin.compose.koinInject
+import dev.enesky.feature.splash.navigation.SplashDestination
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -73,16 +70,8 @@ fun DoodleApp(
                         snackbarHostState = appState.snackbarHostState,
                     )
                 },
-                contentWindowInsets = WindowInsets(0.dp, top = 0.dp, 0.dp, bottom = 0.dp),
+                contentWindowInsets = WindowInsets(0,0,0,0),
             ) { innerPadding ->
-                /**
-                 * Update the start destination according to the user's login status
-                 */
-                val authManager: AuthManager = koinInject<AuthManager>()
-                if (authManager.isUserLoggedIn()) {
-                    appState.startDestination = HomeDestination
-                }
-
                 TransparentSystemBars()
 
                 Surface(
@@ -101,7 +90,7 @@ fun DoodleApp(
                             .padding(paddingValues = innerPadding)
                             .consumeWindowInsets(paddingValues = innerPadding),
                         navController = appState.navController,
-                        startDestination = appState.startDestination,
+                        startDestination = SplashDestination,
                         onNavigateToDestination = appState::navigate,
                         onBackClick = appState::onBackClick,
                         onShowMessage = { message -> appState.showMessage(message) },
