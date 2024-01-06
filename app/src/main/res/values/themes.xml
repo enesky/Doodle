@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Doodle.Starting" parent="Theme.Doodle">
-        <!-- Set the splash screen background, animated icon, and animation
-        duration. -->
+
         <item name="windowSplashScreenBackground">#2B323F</item>
-
-        <!-- Use windowSplashScreenAnimatedIcon to add a drawable or an animated
-             drawable. One of these is required. -->
         <item name="windowSplashScreenAnimatedIcon">@drawable/doodle_icon</item>
-
-        <!-- Required for animated icons. -->
-        <item name="windowSplashScreenAnimationDuration">200</item>
-
-        <!-- Set the theme of the Activity that directly follows your splash
-        screen. This is required. -->
+        <item name="windowSplashScreenAnimationDuration">0</item>
         <item name="postSplashScreenTheme">@style/Theme.Doodle</item>
+
     </style>
 </resources>
