@@ -12,6 +12,7 @@ graph TD
   app-->explore
   app-->my-lists
   app-->settings
+  app-->splash
   design-system-->common
   design-system-->domain
   domain-->common
@@ -52,3 +53,8 @@ graph TD
   settings-->design-system
   settings-->navigation
   settings-->ui
+  splash-->domain
+  splash-->common
+  splash-->design-system
+  splash-->navigation
+  splash-->ui

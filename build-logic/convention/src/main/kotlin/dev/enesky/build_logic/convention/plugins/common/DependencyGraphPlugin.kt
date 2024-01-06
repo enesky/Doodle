@@ -108,7 +108,7 @@ private fun File.generateDigraphDotFile(treeMap: MutableMap<String, ElementNode>
             "    subgraph cluster_feature {\n" +
             "        label=\"feature:\";\n" +
             "        color=orange;\n" +
-            "        \"login\", \"home\", \"details\", \"explore\", \"settings\", \"my-lists\";\n" +
+            "        \"login\", \"home\", \"details\", \"explore\", \"settings\", \"my-lists\", \"splash\";\n" +
             "    }\n" +
             "\n" +
             "    # Dependencies" +
@@ -138,7 +138,7 @@ private fun File.generatePngWithGraphviz() {
         println("-> Check $absolutePath.png to see generated dependency graph")
     } catch (e: Exception) {
         // Show error
-        println("-> Graphviz tool is not installed on your machine.")
-        println("-> Please install it from https://graphviz.org/download/")
+        println("\n" + "-> Graphviz tool is not installed on your machine.")
+        println("-> Please install it from https://graphviz.org/download/" + "\n")
     }
 }
