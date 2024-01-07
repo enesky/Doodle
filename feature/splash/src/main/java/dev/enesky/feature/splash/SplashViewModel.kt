@@ -2,6 +2,7 @@ package dev.enesky.feature.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dev.enesky.core.common.consts.ErrorMessages
 import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.IEvent
@@ -17,6 +18,8 @@ import kotlinx.coroutines.launch
  * Created by Enes Kamil YILMAZ on 05/01/2024
  */
 
+const val SPLASH_DELAY = 1500L
+
 class SplashViewModel(
     private val authManager: AuthManager,
 ) : ViewModel(),
@@ -26,16 +29,23 @@ class SplashViewModel(
     init {
         viewModelScope.launch(Dispatchers.IO) {
             checkUser()
+            delay(SPLASH_DELAY)
+            triggerNavigation()
         }
     }
 
     private suspend fun checkUser() {
-        delay(1000L)
+        updateUiState {
+            copy(isUserLoggedIn = authManager.isUserLoggedIn())
+        }
+    }
+
+    private suspend fun triggerNavigation() {
         triggerEvent {
-            if (authManager.isUserLoggedIn()) {
-                SplashEvents.OnNavigateToHomeScreen
-            } else {
-                SplashEvents.OnNavigateToLoginScreen
+            when (uiState.value.isUserLoggedIn) {
+                true -> SplashEvents.OnNavigateToHomeScreen
+                false -> SplashEvents.OnNavigateToLoginScreen
+                else -> SplashEvents.OnError(ErrorMessages.GENERAL_ERROR)
             }
         }
     }
@@ -45,6 +55,7 @@ class SplashViewModel(
 data class SplashUiState(
     override val loading: Boolean = false,
     override var errorMessage: String? = null,
+    val isUserLoggedIn: Boolean? = null,
 ) : IUiState
 
 sealed interface SplashEvents : IEvent {
