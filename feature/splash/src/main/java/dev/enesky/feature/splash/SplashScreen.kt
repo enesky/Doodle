@@ -2,24 +2,27 @@ package dev.enesky.feature.splash
 
 import android.Manifest
 import android.os.Build
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberPermissionState
 import dev.enesky.core.common.utils.ObserveAsEvents
-import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.core.design_system.components.CenteredBox
 import dev.enesky.core.design_system.theme.DoodleTheme
+import dev.enesky.feature.home.HomeScreen
+import dev.enesky.feature.login.signin.SignInScreen
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -35,6 +38,14 @@ fun SplashRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
+    when (uiState.isUserLoggedIn) {
+        true -> SplashToHomeScreen(modifier)
+        false -> SplashToLoginScreen(modifier)
+        null -> SplashScreen(modifier)
+    }
+
+    RequestPermissions()
+
     ObserveAsEvents(flow = viewModel.eventFlow) {
         when (it) {
             is SplashEvents.OnNavigateToLoginScreen -> {
@@ -48,63 +59,82 @@ fun SplashRoute(
             is SplashEvents.OnError -> TODO()
         }
     }
+}
 
-    RequestPermissions()
+@Composable
+private fun SplashToHomeScreen(
+    modifier: Modifier = Modifier,
+) {
+    Box(modifier = modifier) {
+        HomeScreen {}
+        SplashScreen()
+    }
+}
 
-    SplashScreen(
-        modifier = modifier,
-    )
+@Composable
+private fun SplashToLoginScreen(
+    modifier: Modifier = Modifier,
+) {
+    Box(modifier = modifier) {
+        SignInScreen {}
+        SplashScreen()
+    }
 }
 
 @Composable
 private fun SplashScreen(
     modifier: Modifier = Modifier,
 ) {
-    CenteredBox(
-        modifier = modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center,
+    Surface(
+        modifier = modifier.fillMaxSize(),
+        color = DoodleTheme.colors.background.copy(alpha = 0.5f),
     ) {
-        Icon(
-            painter = painterResource(id = dev.enesky.core.design_system.R.drawable.doodle_icon),
-            tint = DoodleTheme.colors.white,
-            contentDescription = "Doodle Icon",
-        )
+        CenteredBox(
+            modifier = modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                painter = painterResource(id = dev.enesky.core.design_system.R.drawable.doodle_icon),
+                tint = DoodleTheme.colors.white,
+                contentDescription = "Doodle Icon",
+            )
+        }
     }
 }
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 private fun RequestPermissions() {
-    val lifecycleOwner = LocalLifecycleOwner.current
-
-    // TODO: Wait for permission result
     val permissionState = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
     } else {
-        null
+        return
     }
 
-    DisposableEffect(
-        key1 = lifecycleOwner,
-        effect = {
-            val observer = LifecycleEventObserver { _, event ->
-                if (event == Lifecycle.Event.ON_START) {
-                    permissionState?.launchPermissionRequest()
-                }
+    LaunchedEffect(Unit) {
+        when(permissionState.status) {
+            PermissionStatus.Granted -> return@LaunchedEffect
+            PermissionStatus.Denied(shouldShowRationale = true) -> {
+                // Denied one time but can be requested again -> Todo: Explain why you need this permission
+                permissionState.launchPermissionRequest()
             }
-            lifecycleOwner.lifecycle.addObserver(observer)
-
-            onDispose {
-                lifecycleOwner.lifecycle.removeObserver(observer)
-            }
+            else -> permissionState.launchPermissionRequest()
         }
-    )
+    }
 }
 
-@PreviewUiMode
+@Preview
 @Composable
-private fun SplashScreenPreview() {
+private fun SplashToHomeScreenPreview() {
     DoodleTheme {
-        SplashScreen()
+        SplashToHomeScreen()
+    }
+}
+
+@Preview
+@Composable
+private fun SplashToLoginScreenPreview() {
+    DoodleTheme {
+        SplashToLoginScreen()
     }
 }
