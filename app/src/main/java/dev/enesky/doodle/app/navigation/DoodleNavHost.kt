@@ -38,19 +38,23 @@ fun DoodleNavHost(
     ) {
         splashGraph(
             onNavigateToLoginScreen = {
-                navController.navigate(LoginDestination.route, navOptions {
+                navController.navigate(
+                    LoginDestination.route,
+                    navOptions {
                         popUpTo(SplashDestination.route) {
                             inclusive = true
                         }
-                    }
+                    },
                 )
             },
             onNavigateToHomeScreen = {
-                navController.navigate(HomeDestination.route, navOptions {
+                navController.navigate(
+                    HomeDestination.route,
+                    navOptions {
                         popUpTo(SplashDestination.route) {
                             inclusive = true
                         }
-                    }
+                    },
                 )
             },
         )

@@ -90,7 +90,7 @@ private fun SplashScreen(
         color = DoodleTheme.colors.background.copy(alpha = 0.5f),
     ) {
         CenteredBox(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
@@ -112,7 +112,7 @@ private fun RequestPermissions() {
     }
 
     LaunchedEffect(Unit) {
-        when(permissionState.status) {
+        when (permissionState.status) {
             PermissionStatus.Granted -> return@LaunchedEffect
             PermissionStatus.Denied(shouldShowRationale = true) -> {
                 // Denied one time but can be requested again -> Todo: Explain why you need this permission
