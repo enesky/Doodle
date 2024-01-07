@@ -22,3 +22,8 @@ plugins {
 }
 
 android.namespace = "dev.enesky.feature.splash"
+
+dependencies {
+    implementation(projects.feature.home)
+    implementation(projects.feature.login)
+}
