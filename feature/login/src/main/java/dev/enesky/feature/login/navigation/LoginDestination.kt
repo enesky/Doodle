@@ -2,6 +2,7 @@ package dev.enesky.feature.login.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.core.navigation.composableWithAnimation
@@ -35,7 +36,7 @@ fun NavGraphBuilder.loginGraph(
         route = LoginDestination.route,
         startDestination = SignInDestination.route,
     ) {
-        composableWithAnimation(
+        composable(
             route = SignInDestination.route,
         ) {
             SignInScreenRoute(
