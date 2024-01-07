@@ -78,4 +78,6 @@ digraph {
     "splash" -> "design-system"
     "splash" -> "navigation"
     "splash" -> "ui"
+    "splash" -> "home"
+    "splash" -> "login"
 }
