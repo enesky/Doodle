@@ -84,9 +84,9 @@ fun SignInScreenRoute(
 }
 
 @Composable
-private fun SignInScreen(
+fun SignInScreen(
     modifier: Modifier = Modifier,
-    signInUiState: SignInUiState,
+    signInUiState: SignInUiState = SignInUiState(),
     forgotPasswordButtonAction: (email: String) -> Unit = {},
     onSignInWithEmail: (email: String, password: String) -> Unit = { _, _ -> },
     onGoogleSignInClick: () -> Unit = {},

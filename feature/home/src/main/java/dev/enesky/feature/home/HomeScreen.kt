@@ -61,9 +61,9 @@ fun HomeRoute(
 }
 
 @Composable
-private fun HomeScreen(
+fun HomeScreen(
     modifier: Modifier = Modifier,
-    uiState: HomeUiState,
+    uiState: HomeUiState = HomeUiState(),
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
     val popularPagingItems = uiState.popularAnimes?.collectAsLazyPagingItems()
