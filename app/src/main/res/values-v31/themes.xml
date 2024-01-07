@@ -2,7 +2,7 @@
 <resources>
     <style name="Theme.Doodle.Starting" parent="Theme.Doodle">
 
-        <item name="android:windowSplashScreenBackground">#2B323F</item>
+        <item name="android:windowSplashScreenBackground">@color/ebony_clay</item>
         <item name="android:windowSplashScreenAnimationDuration">0</item>
         <item name="postSplashScreenTheme">@style/Theme.Doodle</item>
 
