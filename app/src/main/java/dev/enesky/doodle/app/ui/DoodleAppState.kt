@@ -15,7 +15,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.enesky.core.navigation.DoodleNavigationDestination
 import dev.enesky.doodle.app.navigation.BottomNavBarItem
-import dev.enesky.feature.login.navigation.LoginDestination
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
@@ -116,6 +115,4 @@ class DoodleAppState(
         }
 
     fun onBackClick() = navController.popBackStack()
-
-    // TODO: Add system ui color controller -> system bar & navigation bar
 }
