@@ -70,7 +70,7 @@ fun DoodleApp(
                         snackbarHostState = appState.snackbarHostState,
                     )
                 },
-                contentWindowInsets = WindowInsets(0,0,0,0),
+                contentWindowInsets = WindowInsets(0, 0, 0, 0),
             ) { innerPadding ->
                 TransparentSystemBars()
 

@@ -49,7 +49,6 @@ class SplashViewModel(
             }
         }
     }
-
 }
 
 data class SplashUiState(
