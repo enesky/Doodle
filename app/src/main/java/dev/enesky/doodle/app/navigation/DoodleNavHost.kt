@@ -37,6 +37,7 @@ fun DoodleNavHost(
         startDestination = startDestination.route,
     ) {
         splashGraph(
+            onShowMessage = onShowMessage,
             onNavigateToLoginScreen = {
                 navController.navigate(
                     LoginDestination.route,
@@ -60,6 +61,7 @@ fun DoodleNavHost(
         )
         loginGraph(
             navController = navController,
+            onShowMessage = onShowMessage,
             onNavigateToHomeDestination = {
                 onNavigateToDestination(
                     HomeDestination,
@@ -68,6 +70,7 @@ fun DoodleNavHost(
             },
         )
         homeGraph(
+            onShowMessage = onShowMessage,
             onNavigateToDetailsDestination = { animeId ->
                 onNavigateToDestination(
                     DetailsDestination,
@@ -75,9 +78,9 @@ fun DoodleNavHost(
                 )
             },
         )
-        detailsGraph { onShowMessage("Snackbar") }
-        exploreGraph { onShowMessage("Snackbar") }
-        myListsGraph { onShowMessage("Snackbar") }
-        settingsGraph { onShowMessage("Snackbar") }
+        detailsGraph(onShowMessage)
+        exploreGraph(onShowMessage)
+        myListsGraph(onShowMessage)
+        settingsGraph(onShowMessage)
     }
 }

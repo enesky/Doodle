@@ -20,7 +20,7 @@ object DetailsDestination : DoodleNavigationDestination {
 }
 
 fun NavGraphBuilder.detailsGraph(
-    showSnackbar: () -> Unit,
+    onShowMessage: (String) -> Unit,
 ) = composableWithAnimation(route = DetailsDestination.routeWithArguments) {
     DetailsRoute(
         animeId = it.arguments?.getString(DetailsDestination.ID_ARGUMENT) ?: "",

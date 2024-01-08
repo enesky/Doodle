@@ -31,6 +31,7 @@ object SignUpDestination : DoodleNavigationDestination {
 fun NavGraphBuilder.loginGraph(
     navController: NavHostController,
     onNavigateToHomeDestination: () -> Unit,
+    onShowMessage: (String) -> Unit,
 ) {
     navigation(
         route = LoginDestination.route,
@@ -40,6 +41,7 @@ fun NavGraphBuilder.loginGraph(
             route = SignInDestination.route,
         ) {
             SignInScreenRoute(
+                onShowMessage = onShowMessage,
                 navigateHome = onNavigateToHomeDestination,
                 navigateSignUp = {
                     navController.navigate(SignUpDestination.route)
@@ -48,6 +50,7 @@ fun NavGraphBuilder.loginGraph(
         }
         composableWithAnimation(route = SignUpDestination.route) {
             SignUpScreenRoute(
+                onShowMessage = onShowMessage,
                 onNavigateToHome = onNavigateToHomeDestination,
                 onNavigateToSignIn = {
                     navController.navigate(SignInDestination.route)

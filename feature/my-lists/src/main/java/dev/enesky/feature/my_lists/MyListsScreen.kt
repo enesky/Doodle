@@ -19,6 +19,7 @@ import dev.enesky.core.design_system.theme.DoodleTheme
 @Composable
 fun MyListsRoute(
     modifier: Modifier = Modifier,
+    onShowMessage: (String) -> Unit,
 ) {
     MyListsScreen(modifier)
 }

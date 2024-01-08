@@ -28,25 +28,19 @@ import org.koin.androidx.compose.koinViewModel
 fun HomeRoute(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinViewModel(),
+    onShowMessage: (String) -> Unit,
     onNavigateDetailsClick: (id: String) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     if (uiState.errorMessage != null) {
-        // TODO: Add error dialog
-        Logger.debug("HomeScreen", "onError: ${uiState.errorMessage}")
+        onShowMessage(uiState.errorMessage!!)
     }
 
     ObserveAsEvents(flow = viewModel.eventFlow) { homeEvents ->
         when (homeEvents) {
-            is HomeEvents.OnError -> {
-                Logger.debug("HomeScreen", "onError: ${homeEvents.errorMessage}")
-            }
-
-            is HomeEvents.NavigateToDetails -> {
-                onNavigateDetailsClick(homeEvents.animeId)
-            }
-
+            is HomeEvents.OnError -> onShowMessage(homeEvents.errorMessage)
+            is HomeEvents.NavigateToDetails -> onNavigateDetailsClick(homeEvents.animeId)
             is HomeEvents.OnItemOptionsClick -> {
                 // TODO: Add item options click action -> Open a bottom sheet or options menu
             }

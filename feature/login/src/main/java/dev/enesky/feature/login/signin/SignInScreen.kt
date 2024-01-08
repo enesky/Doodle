@@ -38,6 +38,7 @@ import org.koin.androidx.compose.koinViewModel
 fun SignInScreenRoute(
     modifier: Modifier = Modifier,
     viewModel: SignInViewModel = koinViewModel(),
+    onShowMessage: (String) -> Unit,
     navigateHome: () -> Unit,
     navigateSignUp: () -> Unit,
 ) {

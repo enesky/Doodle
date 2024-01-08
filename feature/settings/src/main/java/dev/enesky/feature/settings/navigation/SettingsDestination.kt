@@ -15,7 +15,7 @@ object SettingsDestination : DoodleNavigationDestination {
 }
 
 fun NavGraphBuilder.settingsGraph(
-    showSnackbar: () -> Unit,
+    onShowMessage: (String) -> Unit,
 ) = composable(route = SettingsDestination.route) {
-    SettingsRoute()
+    SettingsRoute(onShowMessage = onShowMessage)
 }

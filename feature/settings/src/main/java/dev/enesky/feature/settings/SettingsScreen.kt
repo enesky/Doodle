@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import dev.enesky.core.common.utils.Logger
 import dev.enesky.core.design_system.annotation.PreviewUiMode
 import dev.enesky.core.design_system.components.CenteredBox
 import dev.enesky.core.design_system.theme.DoodleTheme
@@ -24,33 +25,21 @@ import dev.enesky.core.design_system.theme.DoodleTheme
 @Composable
 fun SettingsRoute(
     modifier: Modifier = Modifier,
+    onShowMessage: (String) -> Unit = {},
 ) {
     SettingsScreen(
         modifier = modifier,
+        onShowMessage = onShowMessage,
     )
 }
 
 @Composable
 private fun SettingsScreen(
     modifier: Modifier = Modifier,
-) {
-    Surface(
-        modifier = modifier.fillMaxSize(),
-        color = DoodleTheme.colors.background,
-    ) {
-        SettingsContent(
-            modifier = Modifier.fillMaxWidth(),
-        )
-    }
-}
-
-@Composable
-private fun SettingsContent(
-    modifier: Modifier = Modifier,
+    onShowMessage: (String) -> Unit,
 ) {
     CenteredBox(
         modifier = modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -63,7 +52,7 @@ private fun SettingsContent(
             Button(
                 modifier = Modifier.padding(32.dp),
                 onClick = {
-                    println("@@@@ Clicked to Settings Screen")
+                    onShowMessage("Test message")
                 },
             ) {
                 Text(text = "Click me for nothing :)", color = Color.White)
@@ -76,6 +65,6 @@ private fun SettingsContent(
 @Composable
 private fun SettingsScreenPreview() {
     DoodleTheme {
-        SettingsScreen()
+        SettingsScreen {}
     }
 }

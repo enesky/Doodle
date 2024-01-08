@@ -34,6 +34,7 @@ fun SplashRoute(
     modifier: Modifier = Modifier,
     onNavigateToLoginScreen: () -> Unit,
     onNavigateToHomeScreen: () -> Unit,
+    onShowMessage: (String) -> Unit,
     viewModel: SplashViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -48,15 +49,9 @@ fun SplashRoute(
 
     ObserveAsEvents(flow = viewModel.eventFlow) {
         when (it) {
-            is SplashEvents.OnNavigateToLoginScreen -> {
-                onNavigateToLoginScreen()
-            }
-
-            is SplashEvents.OnNavigateToHomeScreen -> {
-                onNavigateToHomeScreen()
-            }
-
-            is SplashEvents.OnError -> TODO()
+            is SplashEvents.OnNavigateToLoginScreen -> onNavigateToLoginScreen()
+            is SplashEvents.OnNavigateToHomeScreen -> onNavigateToHomeScreen()
+            is SplashEvents.OnError -> onShowMessage(it.errorMessage)
         }
     }
 }

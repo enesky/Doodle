@@ -15,7 +15,7 @@ object MyListsDestination : DoodleNavigationDestination {
 }
 
 fun NavGraphBuilder.myListsGraph(
-    showSnackbar: () -> Unit,
+    onShowMessage: (String) -> Unit,
 ) = composable(route = MyListsDestination.route) {
-    MyListsRoute()
+    MyListsRoute(onShowMessage = onShowMessage)
 }

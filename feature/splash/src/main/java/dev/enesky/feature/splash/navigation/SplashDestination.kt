@@ -17,9 +17,11 @@ object SplashDestination : DoodleNavigationDestination {
 fun NavGraphBuilder.splashGraph(
     onNavigateToLoginScreen: () -> Unit,
     onNavigateToHomeScreen: () -> Unit,
+    onShowMessage: (String) -> Unit,
 ) = composable(route = SplashDestination.route) {
     SplashRoute(
         onNavigateToLoginScreen = onNavigateToLoginScreen,
         onNavigateToHomeScreen = onNavigateToHomeScreen,
+        onShowMessage = onShowMessage,
     )
 }
