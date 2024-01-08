@@ -16,8 +16,10 @@ object HomeDestination : DoodleNavigationDestination {
 
 fun NavGraphBuilder.homeGraph(
     onNavigateToDetailsDestination: (animeId: String) -> Unit,
+    onShowMessage: (String) -> Unit,
 ) = composable(route = HomeDestination.route) {
     HomeRoute(
+        onShowMessage = onShowMessage,
         onNavigateDetailsClick = onNavigateToDetailsDestination,
     )
 }

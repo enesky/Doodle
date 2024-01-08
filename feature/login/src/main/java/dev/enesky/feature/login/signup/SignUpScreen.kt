@@ -32,6 +32,7 @@ import org.koin.androidx.compose.koinViewModel
 fun SignUpScreenRoute(
     modifier: Modifier = Modifier,
     viewModel: SignUpViewModel = koinViewModel(),
+    onShowMessage: (String) -> Unit,
     onNavigateToSignIn: () -> Unit,
     onNavigateToHome: () -> Unit,
 ) {
@@ -39,10 +40,7 @@ fun SignUpScreenRoute(
 
     ObserveAsEvents(flow = viewModel.eventFlow) { event ->
         when (event) {
-            is SignUpEvents.OnError -> {
-                Logger.debug("SignUpScreen", "onError: ${event.errorMessage}")
-            }
-
+            is SignUpEvents.OnError -> onShowMessage(event.errorMessage)
             is SignUpEvents.NavigateToHome -> onNavigateToHome()
             is SignUpEvents.NavigateToSignIn -> onNavigateToSignIn()
         }

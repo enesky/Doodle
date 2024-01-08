@@ -15,7 +15,7 @@ object ExploreDestination : DoodleNavigationDestination {
 }
 
 fun NavGraphBuilder.exploreGraph(
-    showSnackbar: () -> Unit,
+    onShowMessage: (String) -> Unit,
 ) = composable(route = ExploreDestination.route) {
-    ExploreRoute()
+    ExploreRoute(onShowMessage = onShowMessage)
 }
