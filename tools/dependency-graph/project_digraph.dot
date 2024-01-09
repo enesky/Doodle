@@ -80,4 +80,5 @@ digraph {
     "splash" -> "ui"
     "splash" -> "home"
     "splash" -> "login"
+    "benchmark" -> "app"
 }

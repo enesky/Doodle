@@ -30,6 +30,14 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+    buildTypes {
+        create("benchmark") {
+            initWith(buildTypes.getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
+        }
+    }
 }
 
 dependencies {
