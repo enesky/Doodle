@@ -59,3 +59,4 @@ include(
     ":feature:settings",
     ":feature:splash"
 )
+include(":benchmark")
