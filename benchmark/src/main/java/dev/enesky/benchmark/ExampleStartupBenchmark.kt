@@ -27,9 +27,9 @@ class ExampleStartupBenchmark {
 
     @Test
     fun startup() = benchmarkRule.measureRepeated(
-        packageName = "dev.enesky.benchmark",
+        packageName = BenchmarkConstans.DEFAULT_PACKAGE_NAME,
         metrics = listOf(StartupTimingMetric()),
-        iterations = 5,
+        iterations = 10,
         startupMode = StartupMode.COLD
     ) {
         pressHome()
