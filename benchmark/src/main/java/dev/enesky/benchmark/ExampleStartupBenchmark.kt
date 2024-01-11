@@ -26,11 +26,33 @@ class ExampleStartupBenchmark {
     val benchmarkRule = MacrobenchmarkRule()
 
     @Test
-    fun startup() = benchmarkRule.measureRepeated(
+    fun startupCold() = benchmarkRule.measureRepeated(
         packageName = BenchmarkConstans.DEFAULT_PACKAGE_NAME,
         metrics = listOf(StartupTimingMetric()),
-        iterations = 10,
+        iterations = 5,
         startupMode = StartupMode.COLD
+    ) {
+        pressHome()
+        startActivityAndWait()
+    }
+
+    @Test
+    fun startupWarm() = benchmarkRule.measureRepeated(
+        packageName = BenchmarkConstans.DEFAULT_PACKAGE_NAME,
+        metrics = listOf(StartupTimingMetric()),
+        iterations = 5,
+        startupMode = StartupMode.WARM
+    ) {
+        pressHome()
+        startActivityAndWait()
+    }
+
+    @Test
+    fun startupHot() = benchmarkRule.measureRepeated(
+        packageName = BenchmarkConstans.DEFAULT_PACKAGE_NAME,
+        metrics = listOf(StartupTimingMetric()),
+        iterations = 5,
+        startupMode = StartupMode.HOT
     ) {
         pressHome()
         startActivityAndWait()
