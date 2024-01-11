@@ -24,6 +24,7 @@ compose-destinations                  = "1.9.55"
 compose-bom                           = "2023.10.01"
 ui-automator                          = "2.2.0"
 benchmark-macro-junit4                = "1.2.2"
+profiler-installer                    = "1.3.1"
 koin-bom                              = "3.5.1"
 appcompat                             = "1.6.1"
 material                              = "1.11.0"
@@ -100,6 +101,7 @@ material3                             = { module= "androidx.compose.material3:ma
 material-icons-extended               = { module= "androidx.compose.material:material-icons-extended" }
 ui-automator                          = { module= "androidx.test.uiautomator:uiautomator", version.ref = "ui-automator" }
 benchmark-macro-junit4                = { module= "androidx.benchmark:benchmark-macro-junit4", version.ref = "benchmark-macro-junit4" }
+profiler-installer                    = { module= "androidx.profileinstaller:profileinstaller", version.ref = "profiler-installer" }
 koin-bom                              = { module= "io.insert-koin:koin-bom", version.ref= "koin-bom" }
 koin-coroutines                       = { module= "io.insert-koin:koin-core-coroutines"}
 koin-navigation                       = { module= "io.insert-koin:koin-androidx-navigation"}

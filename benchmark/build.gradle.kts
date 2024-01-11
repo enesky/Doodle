@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.espresso.core)
     implementation(libs.ui.automator)
     implementation(libs.benchmark.macro.junit4)
+    implementation(libs.profiler.installer)
 }
 
 androidComponents {
