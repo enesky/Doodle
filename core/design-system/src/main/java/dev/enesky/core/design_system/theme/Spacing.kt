@@ -37,6 +37,8 @@ private val XXXL = 64.dp
 data class DoodleSpacing(
     val default: Dp = DefaultSpace,
     val border: Dp = BorderStroke,
+    val statusBarPadding: Dp = XXL,
+
     val xxxSmall: Dp = XXXS,
     val xxSmall: Dp = XXS,
     val xSmall: Dp = XS,

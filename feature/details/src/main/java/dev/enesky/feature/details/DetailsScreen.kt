@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.design_system.components.SwipeRefresh
@@ -68,7 +69,7 @@ private fun DetailsScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
             contentPadding = PaddingValues(
-                top = DoodleTheme.spacing.xSmall,
+                top = DoodleTheme.spacing.statusBarPadding,
                 bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding(),
             ),
             state = listState,

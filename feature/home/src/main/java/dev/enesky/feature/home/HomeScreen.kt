@@ -1,11 +1,15 @@
 package dev.enesky.feature.home
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import dev.enesky.core.common.utils.Logger
@@ -85,7 +89,8 @@ fun HomeScreen(
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
-                vertical = DoodleTheme.spacing.medium,
+                top = DoodleTheme.spacing.statusBarPadding,
+                bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding(),
             ),
         ) {
             item {
