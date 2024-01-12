@@ -30,7 +30,7 @@ class ExampleStartupBenchmark {
         packageName = BenchmarkConstans.DEFAULT_PACKAGE_NAME,
         metrics = listOf(StartupTimingMetric()),
         iterations = 5,
-        startupMode = StartupMode.COLD
+        startupMode = StartupMode.COLD,
     ) {
         pressHome()
         startActivityAndWait()
@@ -41,7 +41,7 @@ class ExampleStartupBenchmark {
         packageName = BenchmarkConstans.DEFAULT_PACKAGE_NAME,
         metrics = listOf(StartupTimingMetric()),
         iterations = 5,
-        startupMode = StartupMode.WARM
+        startupMode = StartupMode.WARM,
     ) {
         pressHome()
         startActivityAndWait()
@@ -52,7 +52,7 @@ class ExampleStartupBenchmark {
         packageName = BenchmarkConstans.DEFAULT_PACKAGE_NAME,
         metrics = listOf(StartupTimingMetric()),
         iterations = 5,
-        startupMode = StartupMode.HOT
+        startupMode = StartupMode.HOT,
     ) {
         pressHome()
         startActivityAndWait()
