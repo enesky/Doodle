@@ -24,7 +24,7 @@ fun SwipeRefresh(
     modifier: Modifier = Modifier,
     backgroundColor: Color = DoodleTheme.colors.background,
     contentColor: Color = DoodleTheme.colors.main,
-    indicatorPadding: PaddingValues = PaddingValues(0.dp),
+    indicatorPadding: PaddingValues = PaddingValues(DoodleTheme.spacing.statusBarPadding),
     indicatorAlignment: Alignment = Alignment.TopCenter,
     scale: Boolean = true,
     content: @Composable () -> Unit,
