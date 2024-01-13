@@ -27,10 +27,10 @@ import org.gradle.kotlin.dsl.dependencies
 internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) = with(commonExtension) {
-    compileSdk = libs.versions.compile.sdk.get().toString().toInt()
+    compileSdk = libs.versions.compile.sdk.get().toInt()
 
     defaultConfig {
-        minSdk = libs.versions.min.sdk.get().toString().toInt()
+        minSdk = libs.versions.min.sdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -41,7 +41,7 @@ internal fun Project.configureKotlinAndroid(
     }
 
     kotlinOptions {
-        jvmTarget = libs.versions.jvm.get().toString()
+        jvmTarget = libs.versions.jvm.get()
     }
 
     dependencies {
