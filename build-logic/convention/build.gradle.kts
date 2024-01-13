@@ -106,6 +106,10 @@ gradlePlugin {
             id = libs.plugins.common.test.get().pluginId
             implementationClass = "$rootPath.common.TestPlugin"
         }
+        register("commonBenchmarkTest") {
+            id = libs.plugins.common.benchmark.test.get().pluginId
+            implementationClass = "$rootPath.common.BenchmarkTestPlugin"
+        }
         register("commonSigningConfig") {
             id = libs.plugins.common.signing.config.get().pluginId
             implementationClass = "$rootPath.common.SigningConfigPlugin"
