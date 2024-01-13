@@ -16,8 +16,10 @@
  */
 package dev.enesky.build_logic.convention.plugins.library
 
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
 import dev.enesky.build_logic.convention.helpers.configureKotlinAndroid
+import dev.enesky.build_logic.convention.helpers.disableUnnecessaryAndroidTests
 import dev.enesky.build_logic.convention.helpers.implementation
 import dev.enesky.build_logic.convention.helpers.libs
 import org.gradle.api.Plugin
@@ -49,6 +51,10 @@ class LibraryMainPlugin : Plugin<Project> {
                         File(buildDir, "generated/ksp/$name/kotlin"),
                     )
                 }
+            }
+
+            extensions.configure<LibraryAndroidComponentsExtension> {
+                disableUnnecessaryAndroidTests(target)
             }
 
             dependencies {
