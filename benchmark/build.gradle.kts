@@ -77,8 +77,6 @@ dependencies {
     implementation(libs.ui.automator)
     implementation(libs.benchmark.macro.junit4)
     implementation(libs.profiler.installer)
-    //implementation(libs.androidx.test.rules)
-    //implementation(libs.androidx.test.runner)
 }
 
 androidComponents {
