@@ -8,7 +8,7 @@ compose-compiler                      = "1.5.7"
 kotlin                                = "1.9.21"
 
 # Plugin Versions
-gradle-plugin                         = "8.4.0-alpha03"
+gradle-plugin                         = "8.2.1"
 ksp-plugin                            = "1.9.21-1.0.16"
 macro-benchmark                       = "1.2.2"
 google-services-plugin                = "4.4.0"

@@ -28,7 +28,7 @@ import java.util.Properties
 internal val Project.libs
     get() = the<LibrariesForLibs>()
 
-internal fun CommonExtension<*, *, *, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) =
+internal fun CommonExtension<*, *, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) =
     (this as ExtensionAware).extensions.configure("kotlinOptions", block)
 
 internal fun getLocalProperties(rootProject: Project): Properties {
