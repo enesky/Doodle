@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 plugins {
+    alias(libs.plugins.baseline.profile)
     id(libs.plugins.common.benchmark.test.get().pluginId)
 }
 
