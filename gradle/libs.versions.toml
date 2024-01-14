@@ -10,6 +10,7 @@ kotlin                                = "1.9.21"
 # Plugin Versions
 gradle-plugin                         = "8.4.0-alpha03"
 ksp-plugin                            = "1.9.21-1.0.16"
+macro-benchmark                       = "1.2.2"
 google-services-plugin                = "4.4.0"
 crashlytics-plugin                    = "2.9.9"
 firebase-perf-plugin                  = "1.4.2"
@@ -56,6 +57,7 @@ android-library                       = { id= "com.android.library", version.ref
 android-test                          = { id= "com.android.test", version.ref= "gradle-plugin" }
 kotlin-android                        = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin" }
 ksp-plugin                            = { id= "com.google.devtools.ksp", version.ref= "ksp-plugin"}
+baseline-profile                       = { id= "androidx.baselineprofile", version.ref = "macro-benchmark"}
 google-services                       = { id= "com.google.gms.google-services", version.ref= "google-services-plugin"}
 firebase-crashlytics                  = { id= "com.google.firebase.crashlytics", version.ref= "crashlytics-plugin"}
 firebase-performance                  = { id= "com.google.firebase.firebase-perf", version.ref= "firebase-perf-plugin"}

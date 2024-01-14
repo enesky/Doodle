@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 plugins {
+    alias(libs.plugins.baseline.profile)
+
     // Convention Plugins
     id(libs.plugins.app.main.get().pluginId)
     id(libs.plugins.app.compose.get().pluginId)
