@@ -39,11 +39,6 @@ android {
             isDebuggable = true
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks.add("release")
-            buildConfigField(
-                "String",
-                "APP_BUILD_TYPE_SUFFIX",
-                "\".benchmark\""
-            )
         }
     }
 
@@ -54,19 +49,19 @@ android {
     productFlavors {
         create("dev") {
             dimension = "version"
-            buildConfigField("String", "APP_FLAVOR_SUFFIX", "\".dev\"")
+            buildConfigField("String", "APP_FLAVOR_VERS_SUFFIX", "\".dev\"")
         }
         create("prod") {
             dimension = "version"
-            buildConfigField("String", "APP_FLAVOR_SUFFIX", "\".prod\"")
+            buildConfigField("String", "APP_FLAVOR_VERS_SUFFIX", "\".prod\"")
         }
         create("trial") {
             dimension = "mode"
-            buildConfigField("String", "APP_FLAVOR_SUFFIX", "\".trial\"")
+            buildConfigField("String", "APP_FLAVOR_MODE_SUFFIX", "\".trial\"")
         }
         create("premium") {
             dimension = "mode"
-            buildConfigField("String", "APP_FLAVOR_SUFFIX", "\".premium\"")
+            buildConfigField("String", "APP_FLAVOR_MODE_SUFFIX", "\".premium\"")
         }
     }
 
