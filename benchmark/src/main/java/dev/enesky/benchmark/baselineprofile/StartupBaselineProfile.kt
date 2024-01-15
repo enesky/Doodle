@@ -14,10 +14,8 @@ import org.junit.Test
  * via the `includeInStartupProfile` parameter.
  */
 class StartupBaselineProfile {
-    @RequiresApi(Build.VERSION_CODES.P)
     @get:Rule val baselineProfileRule = BaselineProfileRule()
 
-    @RequiresApi(Build.VERSION_CODES.P)
     @Test
     fun generate() = baselineProfileRule.collect(
         PACKAGE_NAME,
