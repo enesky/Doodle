@@ -2,7 +2,8 @@
 # Project Versions
 jvm                                   = "17"
 compile-sdk                           = "34"
-min-sdk                               = "24"
+min-sdk-app                           = "24"
+min-sdk-benchmark                     = "28"
 target-sdk                            = "34"
 compose-compiler                      = "1.5.7"
 kotlin                                = "1.9.21"

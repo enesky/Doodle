@@ -23,6 +23,7 @@ android {
     namespace = "dev.enesky.benchmark"
 
     defaultConfig {
+        minSdk = libs.versions.min.sdk.benchmark.get().toInt()
         testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR,DEBUGGABLE"
 
         buildConfigField("String", "APP_BUILD_TYPE_SUFFIX", "\"\"")
