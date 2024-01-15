@@ -58,4 +58,12 @@ dependencies {
     implementation(projects.feature.myLists)
     implementation(projects.feature.settings)
     implementation(projects.feature.splash)
+
+    baselineProfile(projects.benchmark)
+}
+
+baselineProfile {
+    // Don't build on every iteration of a full assemble.
+    // Instead enable generation directly for the release build variant.
+    automaticGenerationDuringBuild = false
 }
