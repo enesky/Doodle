@@ -65,8 +65,24 @@ android {
         }
     }
 
+    testOptions.managedDevices.devices {
+        create<com.android.build.api.dsl.ManagedVirtualDevice>("pixel7Api33") {
+            device = "Pixel 7"
+            apiLevel = 33
+            systemImageSource = "aosp"
+        }
+    }
+
     targetProjectPath = ":app"
     experimentalProperties["android.experimental.self-instrumenting"] = true
+}
+
+baselineProfile {
+    // This specifies the managed devices to use that you run the tests on.
+    managedDevices += "pixel7Api33"
+
+    // Don't use a connected device but rely on a GMD for consistency between local and CI builds.
+    useConnectedDevices = false
 }
 
 dependencies {
