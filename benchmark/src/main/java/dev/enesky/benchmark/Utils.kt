@@ -13,7 +13,7 @@ val PACKAGE_NAME = buildString {
     append("dev.enesky.doodle")
     append(BuildConfig.APP_FLAVOR_VERS_SUFFIX)
     append(BuildConfig.APP_FLAVOR_MODE_SUFFIX)
-    //append(BuildConfig.APP_BUILD_TYPE_SUFFIX)
+    // append(BuildConfig.APP_BUILD_TYPE_SUFFIX)
 }
 
 /**

@@ -1,7 +1,5 @@
 package dev.enesky.benchmark.baselineprofile
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.benchmark.macro.MacrobenchmarkScope
 import androidx.benchmark.macro.junit4.BaselineProfileRule
 import dev.enesky.benchmark.PACKAGE_NAME

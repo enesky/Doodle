@@ -57,7 +57,7 @@ class SpotlessPlugin : Plugin<Project> {
                 targetExclude("build/**/*.gradle.kts", "**/build/**/*.gradle.kts")
                 licenseHeaderFile(
                     rootProject.file("tools/spotless/licence.kt"),
-                    "(plugins |pluginManagement |import |@file)",
+                    "(plugins |pluginManagement |import |@file |dependencyResolutionManagement)",
                 )
             }
 
