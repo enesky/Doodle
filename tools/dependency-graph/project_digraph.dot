@@ -19,6 +19,7 @@ digraph {
     }
 
     # Dependencies
+    "app" -> "benchmark"
     "app" -> "common"
     "app" -> "data"
     "app" -> "design-system"
@@ -33,6 +34,7 @@ digraph {
     "app" -> "my-lists"
     "app" -> "settings"
     "app" -> "splash"
+    "benchmark" -> "app"
     "design-system" -> "common"
     "design-system" -> "domain"
     "domain" -> "common"
@@ -80,5 +82,4 @@ digraph {
     "splash" -> "ui"
     "splash" -> "home"
     "splash" -> "login"
-    "benchmark" -> "app"
 }
