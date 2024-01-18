@@ -22,7 +22,6 @@ import dev.enesky.build_logic.convention.helpers.configureKotlinAndroid
 import dev.enesky.build_logic.convention.helpers.debugImplementation
 import dev.enesky.build_logic.convention.helpers.getBuildTypes
 import dev.enesky.build_logic.convention.helpers.getGeneralBuildConfigs
-import dev.enesky.build_logic.convention.helpers.getProductFlavors
 import dev.enesky.build_logic.convention.helpers.implementation
 import dev.enesky.build_logic.convention.helpers.ksp
 import dev.enesky.build_logic.convention.helpers.libs
@@ -52,7 +51,7 @@ class AppMainPlugin : Plugin<Project> {
                 targetSdk = libs.versions.target.sdk.get().toString().toInt()
 
                 getBuildTypes()
-                getProductFlavors()
+                // getProductFlavors()
                 getGeneralBuildConfigs()
 
                 packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
