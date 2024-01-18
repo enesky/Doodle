@@ -1,4 +1,5 @@
 graph TD
+  app-->benchmark
   app-->common
   app-->data
   app-->design-system
@@ -13,6 +14,7 @@ graph TD
   app-->my-lists
   app-->settings
   app-->splash
+  benchmark-->app
   design-system-->common
   design-system-->domain
   domain-->common
@@ -60,4 +62,3 @@ graph TD
   splash-->ui
   splash-->home
   splash-->login
-  benchmark-->app

@@ -58,7 +58,7 @@ android-library                       = { id= "com.android.library", version.ref
 android-test                          = { id= "com.android.test", version.ref= "gradle-plugin" }
 kotlin-android                        = { id= "org.jetbrains.kotlin.android", version.ref= "kotlin" }
 ksp-plugin                            = { id= "com.google.devtools.ksp", version.ref= "ksp-plugin"}
-baseline-profile                       = { id= "androidx.baselineprofile", version.ref = "macro-benchmark"}
+baseline-profile                      = { id= "androidx.baselineprofile", version.ref = "macro-benchmark"}
 google-services                       = { id= "com.google.gms.google-services", version.ref= "google-services-plugin"}
 firebase-crashlytics                  = { id= "com.google.firebase.crashlytics", version.ref= "crashlytics-plugin"}
 firebase-performance                  = { id= "com.google.firebase.firebase-perf", version.ref= "firebase-perf-plugin"}
