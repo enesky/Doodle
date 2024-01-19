@@ -26,6 +26,7 @@ internal fun ApplicationExtension.getBuildTypes() = buildTypes {
         isDebuggable = true
         applicationIdSuffix = DoodleBuildType.DEBUG.applicationIdSuffix
         buildConfigField("boolean", "logEnabled", "true")
+        resValue("string", "app_name_flavor", "Doodle -debug")
     }
 
     val release = getByName("release") {
@@ -40,8 +41,8 @@ internal fun ApplicationExtension.getBuildTypes() = buildTypes {
 
         applicationIdSuffix = DoodleBuildType.RELEASE.applicationIdSuffix
         // Specified Build Configs
-        buildConfigField("String", "example", "\"Lorem Ipsum but release\"")
         buildConfigField("boolean", "logEnabled", "false")
+        resValue("string", "app_name_flavor", "Doodle")
     }
 
     create("benchmark") {
@@ -53,11 +54,6 @@ internal fun ApplicationExtension.getBuildTypes() = buildTypes {
         proguardFiles("benchmark-rules.pro")
         applicationIdSuffix = DoodleBuildType.BENCHMARK.applicationIdSuffix
     }
-}
-
-internal fun ApplicationDefaultConfig.getGeneralBuildConfigs() {
-    resValue("string", "app_name_flavor", "Doodle")
-    buildConfigField("String", "example", "\"Lorem Ipsum\"")
 }
 
 /* -> Removed for simplicity
