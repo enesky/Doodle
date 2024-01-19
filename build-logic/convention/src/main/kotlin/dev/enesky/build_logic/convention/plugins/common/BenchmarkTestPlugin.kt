@@ -2,12 +2,10 @@ package dev.enesky.build_logic.convention.plugins.common
 
 import com.android.build.gradle.TestExtension
 import dev.enesky.build_logic.convention.helpers.configureKotlinAndroid
-import dev.enesky.build_logic.convention.helpers.implementation
 import dev.enesky.build_logic.convention.helpers.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
 
 /**
  * Configure Test libraries for Android
@@ -23,14 +21,6 @@ class BenchmarkTestPlugin : Plugin<Project> {
         extensions.configure<TestExtension> {
             configureKotlinAndroid(this)
             defaultConfig.targetSdk = libs.versions.target.sdk.get().toInt()
-        }
-
-        dependencies {
-            implementation(libs.bundles.testing)
-            implementation(platform(libs.compose.bom))
-            implementation(libs.junit)
-            implementation(platform(libs.koin.bom))
-            implementation(libs.bundles.koin.test.materials)
         }
     }
 }
