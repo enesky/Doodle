@@ -9,12 +9,7 @@ import androidx.test.uiautomator.Until
  * Created by Enes Kamil YILMAZ on 14/01/2024
  */
 
-val PACKAGE_NAME = buildString {
-    append("dev.enesky.doodle")
-    append(BuildConfig.APP_FLAVOR_VERS_SUFFIX)
-    append(BuildConfig.APP_FLAVOR_MODE_SUFFIX)
-    // append(BuildConfig.APP_BUILD_TYPE_SUFFIX)
-}
+const val PACKAGE_NAME = "dev.enesky.doodle"
 
 /**
  * Waits until an object with [selector] if visible on screen and returns the object.
