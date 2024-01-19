@@ -31,7 +31,8 @@ internal fun ApplicationExtension.getBuildTypes() =
             isDebuggable = true
             buildConfigField("boolean", "logEnabled", "true")
         }
-        release {
+
+        val release = getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
             isDebuggable = false
@@ -44,6 +45,15 @@ internal fun ApplicationExtension.getBuildTypes() =
             // Specified Build Configs
             buildConfigField("String", "example", "\"Lorem Ipsum but release\"")
             buildConfigField("boolean", "logEnabled", "false")
+        }
+
+        create("benchmark") {
+            // Enable all the optimizations from release build through initWith(release).
+            initWith(release)
+            matchingFallbacks.add("release")
+            signingConfig = signingConfigs.getByName("debug")
+            // Only use benchmark proguard rules
+            proguardFiles("benchmark-rules.pro")
         }
     }
 
