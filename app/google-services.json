@@ -31,7 +31,47 @@
           "current_key": "AIzaSyAGd3e4gg1HrUbHqBHWDiAFj_iqN4P_Hf4"
         },
         {
-          "current_key": "AIzaSyAlwmRaJT983I6wm3n2-EjHhaH8Fot-2HQ"
+          "current_key": "AIzaSyCJfZYLDU1vYJqMm702CGLL2YAvZQ3Yo8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553106997185-ajekuvkorclhd9eoj10ks5eev6vth0te.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553106997185:android:77a5eac1c02abd7c7b3940",
+        "android_client_info": {
+          "package_name": "dev.enesky.doodle.benchmark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553106997185-uc6uretur2u43usnup5ki2eciamv926t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.enesky.doodle.benchmark",
+            "certificate_hash": "f7f18d4a34b50a0cb3914bd036876298df6e2301"
+          }
+        },
+        {
+          "client_id": "553106997185-ajekuvkorclhd9eoj10ks5eev6vth0te.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGd3e4gg1HrUbHqBHWDiAFj_iqN4P_Hf4"
+        },
+        {
+          "current_key": "AIzaSyCJfZYLDU1vYJqMm702CGLL2YAvZQ3Yo8A"
         }
       ],
       "services": {
@@ -71,7 +111,7 @@
           "current_key": "AIzaSyAGd3e4gg1HrUbHqBHWDiAFj_iqN4P_Hf4"
         },
         {
-          "current_key": "AIzaSyAlwmRaJT983I6wm3n2-EjHhaH8Fot-2HQ"
+          "current_key": "AIzaSyCJfZYLDU1vYJqMm702CGLL2YAvZQ3Yo8A"
         }
       ],
       "services": {
