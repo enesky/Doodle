@@ -19,44 +19,48 @@ package dev.enesky.build_logic.convention.helpers
 import com.android.build.api.dsl.ApplicationDefaultConfig
 import com.android.build.api.dsl.ApplicationExtension
 
-/**
- * Created by Enes Kamil YILMAZ on 03/11/2023
- */
-
-internal fun ApplicationExtension.getBuildTypes() =
-    buildTypes {
-        debug {
-            isMinifyEnabled = false
-            isShrinkResources = false
-            isDebuggable = true
-            buildConfigField("boolean", "logEnabled", "true")
-        }
-
-        val release = getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            isDebuggable = false
-
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
-            )
-
-            // Specified Build Configs
-            buildConfigField("String", "example", "\"Lorem Ipsum but release\"")
-            buildConfigField("boolean", "logEnabled", "false")
-        }
-
-        create("benchmark") {
-            // Enable all the optimizations from release build through initWith(release).
-            initWith(release)
-            matchingFallbacks.add("release")
-            signingConfig = signingConfigs.getByName("debug")
-            // Only use benchmark proguard rules
-            proguardFiles("benchmark-rules.pro")
-        }
+internal fun ApplicationExtension.getBuildTypes() = buildTypes {
+    debug {
+        isMinifyEnabled = false
+        isShrinkResources = false
+        isDebuggable = true
+        applicationIdSuffix = DoodleBuildType.DEBUG.applicationIdSuffix
+        buildConfigField("boolean", "logEnabled", "true")
     }
 
+    val release = getByName("release") {
+        isMinifyEnabled = true
+        isShrinkResources = true
+        isDebuggable = false
+
+        proguardFiles(
+            getDefaultProguardFile("proguard-android-optimize.txt"),
+            "proguard-rules.pro",
+        )
+
+        applicationIdSuffix = DoodleBuildType.RELEASE.applicationIdSuffix
+        // Specified Build Configs
+        buildConfigField("String", "example", "\"Lorem Ipsum but release\"")
+        buildConfigField("boolean", "logEnabled", "false")
+    }
+
+    create("benchmark") {
+        // Enable all the optimizations from release build through initWith(release).
+        initWith(release)
+        matchingFallbacks.add("release")
+        signingConfig = signingConfigs.getByName("debug")
+        // Only use benchmark proguard rules
+        proguardFiles("benchmark-rules.pro")
+        applicationIdSuffix = DoodleBuildType.BENCHMARK.applicationIdSuffix
+    }
+}
+
+internal fun ApplicationDefaultConfig.getGeneralBuildConfigs() {
+    resValue("string", "app_name_flavor", "Doodle")
+    buildConfigField("String", "example", "\"Lorem Ipsum\"")
+}
+
+/* -> Removed for simplicity
 internal fun ApplicationExtension.getProductFlavors() {
     flavorDimensions += listOf("version", "mode")
     productFlavors {
@@ -91,8 +95,4 @@ internal fun ApplicationExtension.getProductFlavors() {
         }
     }
 }
-
-internal fun ApplicationDefaultConfig.getGeneralBuildConfigs() {
-    resValue("string", "app_name_flavor", "Doodle")
-    buildConfigField("String", "example", "\"Lorem Ipsum\"")
-}
+*/
