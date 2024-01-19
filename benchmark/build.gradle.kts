@@ -25,11 +25,7 @@ android {
     defaultConfig {
         minSdk = libs.versions.min.sdk.benchmark.get().toInt()
         testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR,DEBUGGABLE"
-
-        buildConfigField("String", "APP_BUILD_TYPE_SUFFIX", "\"\"")
     }
-
-    buildFeatures.buildConfig = true
 
     buildTypes {
         // This benchmark buildType is used for benchmarking, and should function like your
@@ -41,31 +37,6 @@ android {
             matchingFallbacks.add("release")
         }
     }
-
-    // Use the same flavor dimensions as the application to allow generating Baseline Profiles on prod,
-    // which is more close to what will be shipped to users (no fake data), but has ability to run the
-    // benchmarks on demo, so we benchmark on stable data.
-    /*
-    flavorDimensions += listOf("version", "mode")
-    productFlavors {
-        create("dev") {
-            dimension = "version"
-            buildConfigField("String", "APP_FLAVOR_VERS_SUFFIX", "\".dev\"")
-        }
-        create("prod") {
-            dimension = "version"
-            buildConfigField("String", "APP_FLAVOR_VERS_SUFFIX", "\".prod\"")
-        }
-        create("trial") {
-            dimension = "mode"
-            buildConfigField("String", "APP_FLAVOR_MODE_SUFFIX", "\".trial\"")
-        }
-        create("premium") {
-            dimension = "mode"
-            buildConfigField("String", "APP_FLAVOR_MODE_SUFFIX", "\".premium\"")
-        }
-    }
-    */
 
     testOptions.managedDevices.devices {
         create<com.android.build.api.dsl.ManagedVirtualDevice>("pixel7Api33") {
@@ -82,7 +53,6 @@ android {
 baselineProfile {
     // This specifies the managed devices to use that you run the tests on.
     managedDevices += "pixel7Api33"
-
     // Don't use a connected device but rely on a GMD for consistency between local and CI builds.
     useConnectedDevices = false
 }
@@ -92,7 +62,7 @@ dependencies {
     implementation(libs.ui.automator)
     implementation(libs.benchmark.macro.junit4)
     implementation(libs.profiler.installer)
-    implementation(libs.chucker)
+    implementation(libs.junit)
 }
 
 androidComponents {
