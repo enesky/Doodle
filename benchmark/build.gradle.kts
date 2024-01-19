@@ -1,3 +1,5 @@
+import dev.enesky.build_logic.convention.helpers.DoodleBuildType
+
 /*
  *                          Copyright 2023
  *            Designed and developed by Enes Kamil Yılmaz
@@ -25,7 +27,10 @@ android {
     defaultConfig {
         minSdk = libs.versions.min.sdk.benchmark.get().toInt()
         testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR,DEBUGGABLE"
+        buildConfigField("String", "APP_BUILD_TYPE_SUFFIX", "\"\"")
     }
+
+    buildFeatures.buildConfig = true
 
     buildTypes {
         // This benchmark buildType is used for benchmarking, and should function like your
@@ -35,6 +40,11 @@ android {
             isDebuggable = true
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks.add("release")
+            buildConfigField(
+                "String",
+                "APP_BUILD_TYPE_SUFFIX",
+                "\"${DoodleBuildType.BENCHMARK.applicationIdSuffix ?: ""}\""
+            )
         }
     }
 
