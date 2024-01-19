@@ -1,5 +1,3 @@
-import dev.enesky.build_logic.convention.helpers.DoodleBuildType
-
 /*
  *                          Copyright 2023
  *            Designed and developed by Enes Kamil Yılmaz
@@ -16,6 +14,8 @@ import dev.enesky.build_logic.convention.helpers.DoodleBuildType
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import dev.enesky.build_logic.convention.helpers.DoodleBuildType
+
 plugins {
     alias(libs.plugins.baseline.profile)
     id(libs.plugins.common.benchmark.test.get().pluginId)
