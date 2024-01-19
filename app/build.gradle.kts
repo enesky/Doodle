@@ -32,14 +32,6 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
-    buildTypes {
-        create("benchmark") {
-            initWith(buildTypes.getByName("release"))
-            signingConfig = signingConfigs.getByName("debug")
-            matchingFallbacks += listOf("release")
-            isDebuggable = false
-        }
-    }
 }
 
 dependencies {
@@ -59,6 +51,8 @@ dependencies {
     implementation(projects.feature.settings)
     implementation(projects.feature.splash)
 
+    // Benchmark
+    androidTestImplementation(libs.benchmark.macro.junit4)
     baselineProfile(projects.benchmark)
 }
 
@@ -66,4 +60,7 @@ baselineProfile {
     // Don't build on every iteration of a full assemble.
     // Instead enable generation directly for the release build variant.
     automaticGenerationDuringBuild = false
+
+    // Saves the generated profile in src/<variant>/generated/baselineProfiles
+    saveInSrc = true
 }
