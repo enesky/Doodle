@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -76,22 +75,7 @@ fun DoodleApp(
                 },
                 contentWindowInsets = WindowInsets(0, 0, 0, 0),
             ) { innerPadding ->
-                TransparentSystemBars()
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(
-                            color = DoodleTheme.colors.background,
-                        ),
-                ) {
-                    /**
-                     * TODO: Loading screen
-                     * if (appState.showLoading) {
-                     *   LoadingWithTriangleDots()
-                     * }
-                     */
-
+                DoodleScaffoldScreen(modifier = Modifier) {
                     DoodleNavHost(
                         modifier = Modifier
                             .padding(paddingValues = innerPadding)
@@ -102,21 +86,46 @@ fun DoodleApp(
                         onBackClick = appState::onBackClick,
                         onShowMessage = { message -> appState.showMessage(message) },
                     )
-
-                    // Add build type indicator on top right corner
-                    if (BuildConfig.BUILD_TYPE != "release") {
-                        Text(
-                            modifier = Modifier
-                                .align(Alignment.TopEnd)
-                                .padding(top = DoodleTheme.spacing.xLarge)
-                                .background(color = DoodleTheme.colors.red),
-                            text = "  ${BuildConfig.BUILD_TYPE}    ",
-                            color = DoodleTheme.colors.white,
-                            style = DoodleTheme.typography.regular.h7,
-                        )
-                    }
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun DoodleScaffoldScreen(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit,
+) {
+    TransparentSystemBars()
+
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(
+                color = DoodleTheme.colors.background,
+            ),
+    ) {
+        /**
+         * TODO: Loading screen
+         * if (appState.showLoading) {
+         *   LoadingWithTriangleDots()
+         * }
+         */
+
+        content()
+
+        // Add build type indicator on top right corner
+        if (BuildConfig.BUILD_TYPE != "release") {
+            Text(
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(top = DoodleTheme.spacing.xLarge)
+                    .background(color = DoodleTheme.colors.red),
+                text = "  ${BuildConfig.BUILD_TYPE}    ",
+                color = DoodleTheme.colors.white,
+                style = DoodleTheme.typography.regular.h7,
+            )
         }
     }
 }

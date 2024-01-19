@@ -16,7 +16,6 @@
  */
 package dev.enesky.build_logic.convention.helpers
 
-import com.android.build.api.dsl.ApplicationDefaultConfig
 import com.android.build.api.dsl.ApplicationExtension
 
 internal fun ApplicationExtension.getBuildTypes() = buildTypes {
