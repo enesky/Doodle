@@ -51,7 +51,7 @@ class AppMainPlugin : Plugin<Project> {
                 targetSdk = libs.versions.target.sdk.get().toString().toInt()
 
                 getBuildTypes()
-                // getProductFlavors()
+                //getProductFlavors()
                 getGeneralBuildConfigs()
 
                 packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
