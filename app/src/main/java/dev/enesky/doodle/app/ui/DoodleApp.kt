@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -121,8 +122,14 @@ private fun DoodleScaffoldScreen(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(top = DoodleTheme.spacing.xLarge)
-                    .background(color = DoodleTheme.colors.red),
-                text = "  ${BuildConfig.BUILD_TYPE}    ",
+                    .background(
+                        color = DoodleTheme.colors.red,
+                        shape = RoundedCornerShape(
+                            topStart = DoodleTheme.spacing.large,
+                            bottomStart = DoodleTheme.spacing.large,
+                        )
+                    ),
+                text = "  ${BuildConfig.BUILD_TYPE}  ",
                 color = DoodleTheme.colors.white,
                 style = DoodleTheme.typography.regular.h7,
             )
