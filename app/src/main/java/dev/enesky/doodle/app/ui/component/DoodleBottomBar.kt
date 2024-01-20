@@ -55,7 +55,7 @@ fun DoodleBottomBar(
 ) {
     Surface(
         modifier = modifier,
-        color = DoodleTheme.colors.background,
+        color = DoodleTheme.colors.softDark,
     ) {
         val animationSpec = BottomBarAnimationSpec
         var previousSelectedItem: BottomNavBarItem = currentItem
