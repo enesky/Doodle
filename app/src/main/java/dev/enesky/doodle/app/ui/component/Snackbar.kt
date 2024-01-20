@@ -24,16 +24,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.unit.dp
+import dev.enesky.core.design_system.theme.DoodleTheme
 
 @Composable
 fun DoodleSnackbarHost(
     snackbarHostState: SnackbarHostState,
     modifier: Modifier = Modifier,
-    shape: Shape = RoundedCornerShape(8.dp),
-    // TODO: -> containerColor: Color = Theme.colors.primarySoft,
-    // TODO: -> contentColor: Color = Theme.colors.whiteGrey,
-    // TODO: -> actionColor: Color = Theme.colors.primaryBlue
+    shape: Shape = RoundedCornerShape(DoodleTheme.spacing.small),
 ) {
     SnackbarHost(
         hostState = snackbarHostState,
@@ -42,9 +39,10 @@ fun DoodleSnackbarHost(
         Snackbar(
             snackbarData = snackbarData,
             shape = shape,
-            // TODO: -> containerColor = containerColor,
-            // TODO: -> contentColor = contentColor,
-            // TODO: -> actionColor = actionColor
+            containerColor = DoodleTheme.colors.softDark,
+            contentColor = DoodleTheme.colors.white,
+            actionColor = DoodleTheme.colors.main,
+            dismissActionContentColor = DoodleTheme.colors.main,
         )
     }
 }
