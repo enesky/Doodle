@@ -24,5 +24,6 @@ fun NavGraphBuilder.detailsGraph(
 ) = composableWithAnimation(route = DetailsDestination.routeWithArguments) {
     DetailsRoute(
         animeId = it.arguments?.getString(DetailsDestination.ID_ARGUMENT) ?: "",
+        onShowMessage = onShowMessage,
     )
 }
