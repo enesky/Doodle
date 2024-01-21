@@ -36,12 +36,17 @@ import org.koin.androidx.compose.koinViewModel
 fun DetailsRoute(
     modifier: Modifier = Modifier,
     animeId: String,
+    onShowMessage: (String) -> Unit,
     viewModel: DetailsViewModel = koinViewModel(),
 ) {
     LaunchedEffect(animeId) {
         viewModel.getThemAll(animeId = animeId.toInt())
     }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    uiState.errorMessage?.let {
+        onShowMessage(it)
+    }
 
     DetailsScreen(
         modifier = modifier,
