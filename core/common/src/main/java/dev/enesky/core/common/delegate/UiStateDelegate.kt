@@ -10,10 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 /**
  * Base interface for defining new UiState data classes
  **/
-interface IUiState {
-    val loading: Boolean
-    var errorMessage: String?
-}
+interface IUiState
 
 /**
  * Base interface for ui state delegation
