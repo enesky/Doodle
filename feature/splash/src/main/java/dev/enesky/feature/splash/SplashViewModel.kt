@@ -52,8 +52,6 @@ class SplashViewModel(
 }
 
 data class SplashUiState(
-    override val loading: Boolean = false,
-    override var errorMessage: String? = null,
     val isUserLoggedIn: Boolean? = null,
 ) : IUiState
 
