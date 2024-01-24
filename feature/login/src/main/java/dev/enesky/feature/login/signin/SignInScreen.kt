@@ -59,9 +59,7 @@ fun SignInScreenRoute(
 
     ObserveAsEvents(flow = viewModel.eventFlow) { signInEvents ->
         when (signInEvents) {
-            is SignInEvents.OnError -> {
-                Logger.debug("SignInScreen", "SignInEvents.OnError: ${signInEvents.errorMessage}")
-            }
+            is SignInEvents.OnError -> onShowMessage(signInEvents.errorMessage)
             is SignInEvents.NavigateToHome -> navigateHome()
             is SignInEvents.NavigateToSignUp -> navigateSignUp()
         }
