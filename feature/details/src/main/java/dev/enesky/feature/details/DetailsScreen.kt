@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.Empty
+import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.design_system.components.SwipeRefresh
 import dev.enesky.core.design_system.theme.DoodleTheme
 import dev.enesky.core.domain.models.placeholderAnimeCharacter
@@ -25,6 +26,7 @@ import dev.enesky.core.ui.components.details.AnimeCharactersRow
 import dev.enesky.core.ui.components.details.AnimeRecommendationsRow
 import dev.enesky.core.ui.components.details.DetailedAnimePreview
 import dev.enesky.core.ui.components.details.DetailedAnimeSummary
+import dev.enesky.feature.details.helpers.DetailsEvents
 import dev.enesky.feature.details.helpers.DetailsUiState
 import org.koin.androidx.compose.koinViewModel
 
@@ -39,13 +41,30 @@ fun DetailsRoute(
     onShowMessage: (String) -> Unit,
     viewModel: DetailsViewModel = koinViewModel(),
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     LaunchedEffect(animeId) {
         viewModel.getThemAll(animeId = animeId.toInt())
     }
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    uiState.errorMessage?.let {
-        onShowMessage(it)
+    LaunchedEffect(key1 = uiState.errorMessage) {
+        if (uiState.errorMessage.isNullOrEmpty().not()) {
+            viewModel.triggerEvent {
+                DetailsEvents.OnError(uiState.errorMessage ?: String.Empty)
+            }
+        }
+    }
+
+    ObserveAsEvents(flow = viewModel.eventFlow) { event ->
+        when (event) {
+            is DetailsEvents.OnError -> {
+                onShowMessage(event.errorMessage)
+                uiState.errorMessage = null
+            }
+            is DetailsEvents.OnTrailerPlayClick -> {
+
+            }
+        }
     }
 
     DetailsScreen(
