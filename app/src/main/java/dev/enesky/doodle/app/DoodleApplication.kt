@@ -17,6 +17,9 @@
 package dev.enesky.doodle.app
 
 import android.app.Application
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import dev.enesky.doodle.BuildConfig
 import dev.enesky.doodle.app.di.appModule
 import org.koin.android.ext.koin.androidContext
@@ -36,7 +39,7 @@ class DoodleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initializeKoin()
-
+        setRemoteConfigDefaults()
         // val isFirstTime: Boolean = true -> TODO: Use this with DataStore
     }
 
@@ -55,5 +58,13 @@ class DoodleApplication : Application() {
 
         // Wait for start jobs to complete
         KoinPlatform.getKoin().waitAllStartJobs()
+    }
+
+    private fun setRemoteConfigDefaults() {
+        Firebase.remoteConfig.setConfigSettingsAsync(
+            remoteConfigSettings {
+                minimumFetchIntervalInSeconds = 3600
+            }
+        )
     }
 }
