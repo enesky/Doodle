@@ -21,7 +21,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.lifecycleScope
+import dev.enesky.core.domain.manager.RemoteConfigManager
 import dev.enesky.doodle.app.ui.DoodleApp
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
@@ -32,6 +36,10 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             DoodleApp()
+        }
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            RemoteConfigManager.init()
         }
     }
 }
