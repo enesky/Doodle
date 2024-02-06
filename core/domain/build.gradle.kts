@@ -28,6 +28,8 @@ android.namespace = "dev.enesky.core.domain"
 dependencies {
     implementation(libs.androidx.paging.compose)
     implementation(libs.retrofit.converter.gson)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.remote.config)
 
     // Module Implementations
     implementation(projects.core.common)
