@@ -10,6 +10,7 @@ import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.core.common.enums.AnimeFilter
 import dev.enesky.core.common.result.Result
 import dev.enesky.core.common.result.asResult
+import dev.enesky.core.domain.manager.RemoteConfigManager
 import dev.enesky.core.domain.usecase.DetailedAnimeUseCase
 import dev.enesky.core.domain.usecase.TopAnimePagingUseCase
 import dev.enesky.feature.home.helpers.HomeEvents
@@ -67,9 +68,8 @@ class HomeViewModel(
     }
 
     private fun getPreviewAnime() {
-        val jjkAnimeId = 51009
         viewModelScope.launch(Dispatchers.IO) {
-            detailedAnimeUseCase(animeId = jjkAnimeId)
+            detailedAnimeUseCase(animeId = RemoteConfigManager.homeScreenPreviewAnimeId)
                 .asResult()
                 .onEach { resource ->
                     when (resource) {
