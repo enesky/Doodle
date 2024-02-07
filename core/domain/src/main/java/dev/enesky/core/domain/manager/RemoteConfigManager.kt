@@ -35,12 +35,12 @@ object RemoteConfigManager {
                 remoteConfigSettings {
                     minimumFetchIntervalInSeconds = fetchInterval
                     fetchTimeoutInSeconds = fetchRetry
-                }
+                },
             )
             setDefaultsAsync(
                 mutableMapOf<String, Any>(
                     HOME_SCREEN_PREVIEW_ANIME_ID to "10",
-                )
+                ),
             )
         }
         // Fetch remote config
@@ -63,7 +63,6 @@ object RemoteConfigManager {
 
     val homeScreenPreviewAnimeId: Int
         get() = remoteConfig.getLong(HOME_SCREEN_PREVIEW_ANIME_ID).toInt()
-
 }
 
 object RemoteConfigKeys {
@@ -73,5 +72,5 @@ object RemoteConfigKeys {
 enum class FetchStatus {
     LOADING,
     SUCCESS,
-    ERROR
+    ERROR,
 }
