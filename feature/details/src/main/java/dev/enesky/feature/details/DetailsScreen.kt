@@ -62,7 +62,6 @@ fun DetailsRoute(
                 uiState.errorMessage = null
             }
             is DetailsEvents.OnTrailerPlayClick -> {
-
             }
         }
     }

@@ -56,7 +56,7 @@ class DoodleAppState(
                     val message = messages.first()
                     snackbarHostState.showSnackbar(
                         message = message,
-                        withDismissAction = true
+                        withDismissAction = true,
                     )
                     snackbarMessages.update { messageList ->
                         messageList.filterNot { it == message }

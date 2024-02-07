@@ -127,7 +127,7 @@ private fun DoodleScaffoldScreen(
                         shape = RoundedCornerShape(
                             topStart = DoodleTheme.spacing.large,
                             bottomStart = DoodleTheme.spacing.large,
-                        )
+                        ),
                     ),
                 text = "  ${BuildConfig.BUILD_TYPE}  ",
                 color = DoodleTheme.colors.white,
