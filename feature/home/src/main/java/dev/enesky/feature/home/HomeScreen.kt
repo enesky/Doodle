@@ -36,7 +36,7 @@ fun HomeRoute(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     if (uiState.errorMessage != null) {
-        onShowMessage(uiState.errorMessage!!)
+        onShowMessage(uiState.errorMessage.toString())
     }
 
     ObserveAsEvents(flow = viewModel.eventFlow) { homeEvents ->
