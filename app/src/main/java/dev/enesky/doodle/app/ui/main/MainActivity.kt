@@ -22,7 +22,7 @@ import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
-import dev.enesky.core.domain.manager.RemoteConfigManager
+import dev.enesky.core.domain.manager.remoteconfig.RemoteConfigManager
 import dev.enesky.doodle.app.ui.DoodleApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

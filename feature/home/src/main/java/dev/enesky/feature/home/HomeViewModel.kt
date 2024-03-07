@@ -17,6 +17,7 @@ import dev.enesky.feature.home.helpers.HomeEvents
 import dev.enesky.feature.home.helpers.HomeUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -41,18 +42,22 @@ class HomeViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             val popularAnimesFlow = topAnimePagingUseCase(AnimeFilter.POPULARITY)
                 .distinctUntilChanged()
+                .flowOn(Dispatchers.IO)
                 .cachedIn(viewModelScope)
 
             val airingAnimesFlow = topAnimePagingUseCase(AnimeFilter.AIRING)
                 .distinctUntilChanged()
+                .flowOn(Dispatchers.IO)
                 .cachedIn(viewModelScope)
 
             val upcomingAnimesFlow = topAnimePagingUseCase(AnimeFilter.UPCOMING)
                 .distinctUntilChanged()
+                .flowOn(Dispatchers.IO)
                 .cachedIn(viewModelScope)
 
             val favoriteAnimesFlow = topAnimePagingUseCase(AnimeFilter.FAVORITE)
                 .distinctUntilChanged()
+                .flowOn(Dispatchers.IO)
                 .cachedIn(viewModelScope)
 
             updateUiState {
@@ -68,48 +73,48 @@ class HomeViewModel(
     }
 
     private fun getPreviewAnime() {
-        viewModelScope.launch(Dispatchers.IO) {
-            detailedAnimeUseCase(animeId = RemoteConfigManager.homeScreenPreviewAnimeId)
-                .asResult()
-                .onEach { resource ->
-                    when (resource) {
-                        is Result.Loading -> {
-                            updateUiState {
-                                copy(
-                                    loading = true,
-                                    previewAnime = null,
-                                )
-                            }
-                        }
-
-                        is Result.Success -> {
-                            if (resource.data.id == 0) {
-                                updateUiState {
-                                    copy(
-                                        loading = false,
-                                        previewAnime = null,
-                                    )
-                                }
-                                return@onEach
-                            }
-                            updateUiState {
-                                copy(
-                                    loading = false,
-                                    previewAnime = resource.data,
-                                )
-                            }
-                        }
-
-                        is Result.Error -> {
-                            updateUiState {
-                                copy(
-                                    loading = false,
-                                    previewAnime = null,
-                                )
-                            }
+        detailedAnimeUseCase(animeId = RemoteConfigManager.Values.homeScreenPreviewAnimeId)
+            .asResult()
+            .onEach { resource ->
+                when (resource) {
+                    is Result.Loading -> {
+                        updateUiState {
+                            copy(
+                                loading = true,
+                                previewAnime = null,
+                            )
                         }
                     }
-                }.launchIn(this)
-        }
+
+                    is Result.Success -> {
+                        if (resource.data.id == 0) {
+                            updateUiState {
+                                copy(
+                                    loading = false,
+                                    previewAnime = null,
+                                )
+                            }
+                            return@onEach
+                        }
+                        updateUiState {
+                            copy(
+                                loading = false,
+                                previewAnime = resource.data,
+                            )
+                        }
+                    }
+
+                    is Result.Error -> {
+                        updateUiState {
+                            copy(
+                                loading = false,
+                                previewAnime = null,
+                            )
+                        }
+                    }
+                }
+            }
+            .flowOn(Dispatchers.IO)
+            .launchIn(viewModelScope)
     }
 }

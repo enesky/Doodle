@@ -17,6 +17,7 @@ import dev.enesky.feature.details.helpers.DetailsEvents
 import dev.enesky.feature.details.helpers.DetailsUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -42,55 +43,59 @@ class DetailsViewModel(
     }
 
     private fun getDetailedAnime(animeId: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            detailedAnimeUseCase(animeId = animeId)
-                .asResult()
-                .onEach { resource ->
-                    updateUiState {
-                        when (resource) {
-                            is Result.Loading -> copy(loading = true)
-                            is Result.Success -> copy(
-                                loading = false,
-                                detailedAnime = resource.data,
-                            )
-                            is Result.Error -> copy(
-                                loading = false,
-                                detailedAnime = null,
-                                errorMessage = resource.exception?.message,
-                            )
-                        }
+        detailedAnimeUseCase(animeId = animeId)
+            .asResult()
+            .onEach { resource ->
+                updateUiState {
+                    when (resource) {
+                        is Result.Loading -> copy(loading = true)
+                        is Result.Success -> copy(
+                            loading = false,
+                            detailedAnime = resource.data,
+                        )
+
+                        is Result.Error -> copy(
+                            loading = false,
+                            detailedAnime = null,
+                            errorMessage = resource.exception?.message,
+                        )
                     }
-                }.launchIn(this)
-        }
+                }
+            }
+            .flowOn(Dispatchers.IO)
+            .launchIn(viewModelScope)
+
     }
 
     private fun getAnimeCharacters(animeId: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            animeCharactersUseCase(animeId = animeId)
-                .asResult()
-                .onEach { resource ->
-                    updateUiState {
-                        when (resource) {
-                            is Result.Loading -> copy(loading = true)
-                            is Result.Success -> copy(
-                                loading = false,
-                                characters = resource.data,
-                            )
-                            is Result.Error -> copy(
-                                loading = false,
-                                characters = null,
-                                errorMessage = resource.exception?.message,
-                            )
-                        }
+        animeCharactersUseCase(animeId = animeId)
+            .asResult()
+            .onEach { resource ->
+                updateUiState {
+                    when (resource) {
+                        is Result.Loading -> copy(loading = true)
+                        is Result.Success -> copy(
+                            loading = false,
+                            characters = resource.data,
+                        )
+
+                        is Result.Error -> copy(
+                            loading = false,
+                            characters = null,
+                            errorMessage = resource.exception?.message,
+                        )
                     }
-                }.launchIn(this)
-        }
+                }
+            }
+            .flowOn(Dispatchers.IO)
+            .launchIn(viewModelScope)
     }
 
     private fun getAnimeEpisodes(animeId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val popularAnimesFlow = animeEpisodesUseCase(animeId)
                 .distinctUntilChanged()
+                .flowOn(Dispatchers.IO)
                 .cachedIn(viewModelScope)
 
             updateUiState {
@@ -103,25 +108,26 @@ class DetailsViewModel(
     }
 
     private fun getAnimeRecommendations(animeId: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            animeRecommendationsUseCase(animeId = animeId)
-                .asResult()
-                .onEach { resource ->
-                    updateUiState {
-                        when (resource) {
-                            is Result.Loading -> copy(loading = true)
-                            is Result.Success -> copy(
-                                loading = false,
-                                recommendations = resource.data,
-                            )
-                            is Result.Error -> copy(
-                                loading = false,
-                                recommendations = null,
-                                errorMessage = resource.exception?.message,
-                            )
-                        }
+        animeRecommendationsUseCase(animeId = animeId)
+            .asResult()
+            .onEach { resource ->
+                updateUiState {
+                    when (resource) {
+                        is Result.Loading -> copy(loading = true)
+                        is Result.Success -> copy(
+                            loading = false,
+                            recommendations = resource.data,
+                        )
+
+                        is Result.Error -> copy(
+                            loading = false,
+                            recommendations = null,
+                            errorMessage = resource.exception?.message,
+                        )
                     }
-                }.launchIn(this)
-        }
+                }
+            }
+            .flowOn(Dispatchers.IO)
+            .launchIn(viewModelScope)
     }
 }
