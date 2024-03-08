@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import dev.enesky.core.common.consts.ErrorMessages
 import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
+import dev.enesky.core.common.delegate.IErrorEvent
 import dev.enesky.core.common.delegate.IEvent
 import dev.enesky.core.common.delegate.IUiState
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.core.domain.manager.AuthManager
+import dev.enesky.feature.home.helpers.HomeEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -52,13 +54,12 @@ class SplashViewModel(
 }
 
 data class SplashUiState(
-    override val loading: Boolean = false,
-    override var errorMessage: String? = null,
+    override val isLoading: Boolean = false,
     val isUserLoggedIn: Boolean? = null,
 ) : IUiState
 
 sealed interface SplashEvents : IEvent {
-    data class OnError(val errorMessage: String) : SplashEvents
+    data class OnError(override val errorMessage: String) : SplashEvents, IErrorEvent
     data object OnNavigateToLoginScreen : SplashEvents
     data object OnNavigateToHomeScreen : SplashEvents
 }

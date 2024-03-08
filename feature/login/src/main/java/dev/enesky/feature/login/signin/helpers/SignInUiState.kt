@@ -9,8 +9,7 @@ import dev.enesky.core.domain.models.LoginResult
  */
 
 data class SignInUiState(
-    override val loading: Boolean = false,
-    override var errorMessage: String? = null,
+    override val isLoading: Boolean = false,
     val loginType: LoginType = LoginType.ANONYMOUS,
     val loginResult: LoginResult? = null,
 ) : IUiState

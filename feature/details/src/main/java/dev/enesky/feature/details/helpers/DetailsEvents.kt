@@ -1,5 +1,6 @@
 package dev.enesky.feature.details.helpers
 
+import dev.enesky.core.common.delegate.IErrorEvent
 import dev.enesky.core.common.delegate.IEvent
 
 /**
@@ -7,6 +8,6 @@ import dev.enesky.core.common.delegate.IEvent
  */
 
 sealed interface DetailsEvents : IEvent {
-    data class OnError(val errorMessage: String) : DetailsEvents
+    data class OnError(override val errorMessage: String) : DetailsEvents, IErrorEvent
     data class OnTrailerPlayClick(val animeId: String) : DetailsEvents
 }

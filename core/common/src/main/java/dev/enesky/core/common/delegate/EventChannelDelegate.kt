@@ -13,6 +13,10 @@ import kotlinx.coroutines.flow.receiveAsFlow
  */
 interface IEvent
 
+interface IErrorEvent : IEvent {
+    val errorMessage: String
+}
+
 /**
  * Base interface for event delegation
  */
@@ -46,7 +50,7 @@ interface Event<T : IEvent> {
  *
  * @check ObserveAsEvents in core/common/src/main/java/dev/enesky/core/common/utils/ObserveAsEvents.kt
  */
-class EventDelegate<T : IEvent> : Event<T> {
+class  EventDelegate<T : IEvent> : Event<T> {
 
     override val event: Channel<T> = Channel()
     override val eventFlow: Flow<T> = event.receiveAsFlow()
