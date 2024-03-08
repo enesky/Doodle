@@ -35,10 +35,6 @@ fun HomeRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    if (uiState.errorMessage != null) {
-        onShowMessage(uiState.errorMessage.toString())
-    }
-
     ObserveAsEvents(flow = viewModel.eventFlow) { homeEvents ->
         when (homeEvents) {
             is HomeEvents.OnError -> onShowMessage(homeEvents.errorMessage)
@@ -94,7 +90,7 @@ fun HomeScreen(
             item {
                 AnimePreview(
                     anime = uiState.previewAnime,
-                    isLoading = uiState.loading,
+                    isLoading = uiState.isLoading,
                     onNavigateDetailsClick = onNavigateDetailsClick,
                 )
             }

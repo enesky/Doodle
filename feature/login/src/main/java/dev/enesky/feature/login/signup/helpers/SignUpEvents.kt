@@ -1,5 +1,6 @@
 package dev.enesky.feature.login.signup.helpers
 
+import dev.enesky.core.common.delegate.IErrorEvent
 import dev.enesky.core.common.delegate.IEvent
 
 /**
@@ -7,7 +8,7 @@ import dev.enesky.core.common.delegate.IEvent
  */
 
 sealed interface SignUpEvents : IEvent {
-    data class OnError(val errorMessage: String) : SignUpEvents
+    data class OnError(override val errorMessage: String) : SignUpEvents, IErrorEvent
     data object NavigateToHome : SignUpEvents
     data object NavigateToSignIn : SignUpEvents
 }

@@ -1,5 +1,6 @@
 package dev.enesky.feature.home.helpers
 
+import dev.enesky.core.common.delegate.IErrorEvent
 import dev.enesky.core.common.delegate.IEvent
 
 /**
@@ -7,7 +8,7 @@ import dev.enesky.core.common.delegate.IEvent
  */
 
 sealed interface HomeEvents : IEvent {
-    data class OnError(val errorMessage: String) : HomeEvents
+    data class OnError(override val errorMessage: String) : HomeEvents, IErrorEvent
     data class OnItemOptionsClick(val animeId: String) : HomeEvents
     data class NavigateToDetails(val animeId: String) : HomeEvents
 }

@@ -13,8 +13,7 @@ import kotlinx.coroutines.flow.Flow
  */
 
 data class DetailsUiState(
-    override val loading: Boolean = false,
-    override var errorMessage: String? = null,
+    override val isLoading: Boolean = false,
     val detailedAnime: DetailedAnime? = null,
     val characters: List<AnimeCharacter>? = null,
     val episodes: Flow<PagingData<AnimeEpisode>>? = null,

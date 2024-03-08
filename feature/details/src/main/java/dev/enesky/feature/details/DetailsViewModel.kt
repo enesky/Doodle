@@ -3,6 +3,7 @@ package dev.enesky.feature.details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
+import dev.enesky.core.common.consts.getErrorMessage
 import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
@@ -46,19 +47,26 @@ class DetailsViewModel(
         detailedAnimeUseCase(animeId = animeId)
             .asResult()
             .onEach { resource ->
-                updateUiState {
-                    when (resource) {
-                        is Result.Loading -> copy(loading = true)
-                        is Result.Success -> copy(
-                            loading = false,
+                when (resource) {
+                    is Result.Loading -> updateUiState { copy(isLoading = true) }
+                    is Result.Success -> updateUiState {
+                        copy(
+                            isLoading = false,
                             detailedAnime = resource.data,
                         )
-
-                        is Result.Error -> copy(
-                            loading = false,
-                            detailedAnime = null,
-                            errorMessage = resource.exception?.message,
-                        )
+                    }
+                    is Result.Error -> {
+                        updateUiState {
+                            copy(
+                                isLoading = false,
+                                detailedAnime = null,
+                            )
+                        }
+                        triggerEvent {
+                            DetailsEvents.OnError(
+                                getErrorMessage(resource.exception)
+                            )
+                        }
                     }
                 }
             }
@@ -71,19 +79,26 @@ class DetailsViewModel(
         animeCharactersUseCase(animeId = animeId)
             .asResult()
             .onEach { resource ->
-                updateUiState {
-                    when (resource) {
-                        is Result.Loading -> copy(loading = true)
-                        is Result.Success -> copy(
-                            loading = false,
+                when (resource) {
+                    is Result.Loading -> updateUiState { copy(isLoading = true) }
+                    is Result.Success -> updateUiState {
+                        copy(
+                            isLoading = false,
                             characters = resource.data,
                         )
-
-                        is Result.Error -> copy(
-                            loading = false,
-                            characters = null,
-                            errorMessage = resource.exception?.message,
-                        )
+                    }
+                    is Result.Error -> {
+                        updateUiState {
+                            copy(
+                                isLoading = false,
+                                characters = null,
+                            )
+                        }
+                        triggerEvent {
+                            DetailsEvents.OnError(
+                                getErrorMessage(resource.exception)
+                            )
+                        }
                     }
                 }
             }
@@ -100,7 +115,7 @@ class DetailsViewModel(
 
             updateUiState {
                 copy(
-                    loading = false,
+                    isLoading = false,
                     episodes = popularAnimesFlow,
                 )
             }
@@ -111,19 +126,26 @@ class DetailsViewModel(
         animeRecommendationsUseCase(animeId = animeId)
             .asResult()
             .onEach { resource ->
-                updateUiState {
-                    when (resource) {
-                        is Result.Loading -> copy(loading = true)
-                        is Result.Success -> copy(
-                            loading = false,
+                when (resource) {
+                    is Result.Loading -> updateUiState { copy(isLoading = true) }
+                    is Result.Success -> updateUiState {
+                        copy(
+                            isLoading = false,
                             recommendations = resource.data,
                         )
-
-                        is Result.Error -> copy(
-                            loading = false,
-                            recommendations = null,
-                            errorMessage = resource.exception?.message,
-                        )
+                    }
+                    is Result.Error -> {
+                        updateUiState {
+                            copy(
+                                isLoading = false,
+                                recommendations = null,
+                            )
+                        }
+                        triggerEvent {
+                            DetailsEvents.OnError(
+                                getErrorMessage(resource.exception)
+                            )
+                        }
                     }
                 }
             }

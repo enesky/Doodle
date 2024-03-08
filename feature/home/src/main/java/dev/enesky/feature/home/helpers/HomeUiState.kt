@@ -11,8 +11,7 @@ import kotlinx.coroutines.flow.Flow
  */
 
 data class HomeUiState(
-    override val loading: Boolean = false,
-    override var errorMessage: String? = null,
+    override val isLoading: Boolean = false,
     val airingAnimes: Flow<PagingData<Anime>>? = null,
     val upcomingAnimes: Flow<PagingData<Anime>>? = null,
     val popularAnimes: Flow<PagingData<Anime>>? = null,

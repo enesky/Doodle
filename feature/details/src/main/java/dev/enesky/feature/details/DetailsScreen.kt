@@ -47,22 +47,10 @@ fun DetailsRoute(
         viewModel.getThemAll(animeId = animeId.toInt())
     }
 
-    LaunchedEffect(key1 = uiState.errorMessage) {
-        if (uiState.errorMessage.isNullOrEmpty().not()) {
-            viewModel.triggerEvent {
-                DetailsEvents.OnError(uiState.errorMessage ?: String.Empty)
-            }
-        }
-    }
-
     ObserveAsEvents(flow = viewModel.eventFlow) { event ->
         when (event) {
-            is DetailsEvents.OnError -> {
-                onShowMessage(event.errorMessage)
-                uiState.errorMessage = null
-            }
-            is DetailsEvents.OnTrailerPlayClick -> {
-            }
+            is DetailsEvents.OnError -> onShowMessage(event.errorMessage)
+            is DetailsEvents.OnTrailerPlayClick -> { }
         }
     }
 
@@ -82,7 +70,7 @@ private fun DetailsScreen(
 ) {
     SwipeRefresh(
         modifier = modifier,
-        isRefreshing = uiState.loading,
+        isRefreshing = uiState.isLoading,
         onRefresh = onRefresh,
     ) {
         val listState = rememberLazyListState()
@@ -99,19 +87,19 @@ private fun DetailsScreen(
             item {
                 DetailedAnimePreview(
                     detailedAnime = uiState.detailedAnime,
-                    isLoading = uiState.loading,
+                    isLoading = uiState.isLoading,
                 )
             }
             item {
                 DetailedAnimeSummary(
                     summary = uiState.detailedAnime?.summary ?: String.Empty,
-                    isLoading = uiState.loading,
+                    isLoading = uiState.isLoading,
                 )
             }
             item {
                 AnimeCharactersRow(
                     animeCharacters = uiState.characters,
-                    isLoading = uiState.loading,
+                    isLoading = uiState.isLoading,
                 )
             }
             item {
@@ -120,7 +108,7 @@ private fun DetailsScreen(
             item {
                 AnimeRecommendationsRow(
                     animeRecommendations = uiState.recommendations,
-                    isLoading = uiState.loading,
+                    isLoading = uiState.isLoading,
                 )
             }
         }

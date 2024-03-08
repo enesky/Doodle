@@ -3,6 +3,8 @@ package dev.enesky.feature.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
+import dev.enesky.core.common.consts.ErrorMessages
+import dev.enesky.core.common.consts.getErrorMessage
 import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
 import dev.enesky.core.common.delegate.UiState
@@ -62,7 +64,7 @@ class HomeViewModel(
 
             updateUiState {
                 copy(
-                    loading = false,
+                    isLoading = false,
                     popularAnimes = popularAnimesFlow,
                     airingAnimes = airingAnimesFlow,
                     upcomingAnimes = upcomingAnimesFlow,
@@ -80,7 +82,7 @@ class HomeViewModel(
                     is Result.Loading -> {
                         updateUiState {
                             copy(
-                                loading = true,
+                                isLoading = true,
                                 previewAnime = null,
                             )
                         }
@@ -90,7 +92,7 @@ class HomeViewModel(
                         if (resource.data.id == 0) {
                             updateUiState {
                                 copy(
-                                    loading = false,
+                                    isLoading = false,
                                     previewAnime = null,
                                 )
                             }
@@ -98,7 +100,7 @@ class HomeViewModel(
                         }
                         updateUiState {
                             copy(
-                                loading = false,
+                                isLoading = false,
                                 previewAnime = resource.data,
                             )
                         }
@@ -107,8 +109,13 @@ class HomeViewModel(
                     is Result.Error -> {
                         updateUiState {
                             copy(
-                                loading = false,
+                                isLoading = false,
                                 previewAnime = null,
+                            )
+                        }
+                        triggerEvent {
+                            HomeEvents.OnError(
+                                getErrorMessage(resource.exception)
                             )
                         }
                     }
