@@ -3,7 +3,6 @@ package dev.enesky.feature.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import dev.enesky.core.common.consts.ErrorMessages
 import dev.enesky.core.common.consts.getErrorMessage
 import dev.enesky.core.common.delegate.Event
 import dev.enesky.core.common.delegate.EventDelegate
@@ -115,7 +114,7 @@ class HomeViewModel(
                         }
                         triggerEvent {
                             HomeEvents.OnError(
-                                getErrorMessage(resource.exception)
+                                getErrorMessage(resource.exception),
                             )
                         }
                     }

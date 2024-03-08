@@ -11,5 +11,4 @@ sealed interface SignInEvents : IEvent {
     data class OnError(override val errorMessage: String) : SignInEvents, IErrorEvent
     data object NavigateToHome : SignInEvents
     data object NavigateToSignUp : SignInEvents
-
 }

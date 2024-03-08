@@ -64,7 +64,7 @@ class DetailsViewModel(
                         }
                         triggerEvent {
                             DetailsEvents.OnError(
-                                getErrorMessage(resource.exception)
+                                getErrorMessage(resource.exception),
                             )
                         }
                     }
@@ -72,7 +72,6 @@ class DetailsViewModel(
             }
             .flowOn(Dispatchers.IO)
             .launchIn(viewModelScope)
-
     }
 
     private fun getAnimeCharacters(animeId: Int) {
@@ -96,7 +95,7 @@ class DetailsViewModel(
                         }
                         triggerEvent {
                             DetailsEvents.OnError(
-                                getErrorMessage(resource.exception)
+                                getErrorMessage(resource.exception),
                             )
                         }
                     }
@@ -143,7 +142,7 @@ class DetailsViewModel(
                         }
                         triggerEvent {
                             DetailsEvents.OnError(
-                                getErrorMessage(resource.exception)
+                                getErrorMessage(resource.exception),
                             )
                         }
                     }
