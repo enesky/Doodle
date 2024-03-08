@@ -11,7 +11,6 @@ import dev.enesky.core.common.delegate.IUiState
 import dev.enesky.core.common.delegate.UiState
 import dev.enesky.core.common.delegate.UiStateDelegate
 import dev.enesky.core.domain.manager.AuthManager
-import dev.enesky.feature.home.helpers.HomeEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

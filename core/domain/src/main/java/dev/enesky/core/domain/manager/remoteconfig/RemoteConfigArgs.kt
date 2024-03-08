@@ -14,5 +14,4 @@ object RemoteConfigArgs {
         const val ONE_PIECE_ANIME_ID = "21"
         const val VINLAND_SAGA_SEASON_2_ANIME_ID = "49387"
     }
-
 }
