@@ -9,23 +9,23 @@ compose-compiler                      = "1.5.7"
 kotlin                                = "1.9.21"
 
 # Plugin Versions
-gradle-plugin                         = "8.2.1"
+gradle-plugin                         = "8.2.2"
 ksp-plugin                            = "1.9.21-1.0.16"
-macro-benchmark                       = "1.2.2"
-google-services-plugin                = "4.4.0"
+macro-benchmark                       = "1.2.3"
+google-services-plugin                = "4.4.1"
 crashlytics-plugin                    = "2.9.9"
 firebase-perf-plugin                  = "1.4.2"
 detekt                                = "1.23.4"
 
 # Library Versions
 core-ktx                              = "1.12.0"
-lifecycle-runtime                     = "2.6.2"
+lifecycle-runtime                     = "2.7.0"
 activity-compose                      = "1.8.2"
-androidx-navigation                   = "2.7.6"
+androidx-navigation                   = "2.7.7"
 compose-destinations                  = "1.9.55"
-compose-bom                           = "2024.01.00"
-ui-automator                          = "2.2.0"
-benchmark-macro-junit4                = "1.2.2"
+compose-bom                           = "2024.02.02"
+ui-automator                          = "2.3.0"
+benchmark-macro-junit4                = "1.2.3"
 profiler-installer                    = "1.3.1"
 koin-bom                              = "3.5.1"
 appcompat                             = "1.6.1"
@@ -38,9 +38,9 @@ leak-canary                           = "2.12"
 data-store                            = "1.0.0"
 paging-compose                        = "3.2.1"
 splash-screen                         = "1.0.1"
-firebase-bom                          = "32.7.0"
-google-auth                           = "20.7.0"
-credential-manager                    = "1.2.0"
+firebase-bom                          = "32.7.3"
+google-auth                           = "21.0.0"
+credential-manager                    = "1.2.1"
 credential-manager-google             = "1.1.0"
 accompanist                           = "0.32.0"
 ktlint                                = "11.6.1"
@@ -138,7 +138,7 @@ credential-manager                    = { module= "androidx.credentials:credenti
 credential-manager-play-services-auth = { module= "androidx.credentials:credentials-play-services-auth", version.ref= "credential-manager" }
 credential-manager-google-auth        = { module= "com.google.android.libraries.identity.googleid:googleid", version.ref= "credential-manager-google" }
 accompanist-systemuicontroller        = { module= "com.google.accompanist:accompanist-systemuicontroller", version.ref= "accompanist" }
-accompanist-permissions               = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
+accompanist-permissions               = { module= "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 accompanist-pager-indicators          = { module= "com.google.accompanist:accompanist-pager-indicators", version.ref= "accompanist" }
 accompanist-placeholder-material      = { module= "com.google.accompanist:accompanist-placeholder-material", version.ref= "accompanist" }
 detekt-compose-rules                  = { module= "io.nlopez.compose.rules:detekt", version.ref= "detekt-compose" }
