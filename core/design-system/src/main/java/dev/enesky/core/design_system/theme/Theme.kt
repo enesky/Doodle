@@ -16,8 +16,6 @@
  */
 package dev.enesky.core.design_system.theme
 
-import androidx.compose.foundation.LocalIndication
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Shapes
@@ -56,8 +54,6 @@ private fun ProvideDoodleThemeDependencies(
         LocalDoodleShapes provides DoodleShapes(),
         LocalDoodleTypography provides DoodleTypography(),
         LocalDoodleSpacing provides DoodleSpacing(),
-        LocalIndication provides rememberDoodleRipple(),
-        LocalRippleTheme provides DoodleRippleTheme,
     ) {
         ProvideTextStyle(
             value = DoodleTheme.typography.regular.h5,
