@@ -18,6 +18,7 @@ package dev.enesky.build_logic.convention.helpers
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.dependencies
 
 /**
@@ -25,14 +26,14 @@ import org.gradle.kotlin.dsl.dependencies
  */
 internal fun Project.configureAndroidCompose(commonExtension: CommonExtension<*, *, *, *, *>) =
     with(commonExtension) {
+        apply(plugin = "org.jetbrains.kotlin.plugin.compose")
+
         defaultConfig.vectorDrawables.useSupportLibrary = true
 
         buildFeatures {
             compose = true
             buildConfig = true
         }
-
-        composeOptions.kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get().toString()
 
         dependencies {
             val composeBomPlatform = platform(libs.compose.bom.get().toString())
