@@ -8,7 +8,7 @@ target-sdk                            = "35"
 kotlin                                = "2.1.0"
 
 # Plugin Versions
-gradle-plugin                         = "8.2.2"
+gradle-plugin                         = "8.8.1"
 ksp-plugin                            = "2.1.0-1.0.29"
 macro-benchmark                       = "1.3.3"
 google-services-plugin                = "4.4.2"
